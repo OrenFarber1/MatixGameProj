@@ -1,0 +1,27 @@
+﻿<Page x:Class="MatixGameClient.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xBoard="clr-namespace:MatixGameClient"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="525"
+      Title="GamePage">
+
+    <Grid Background="White">
+        <Border >
+            <DockPanel >
+                <StackPanel DockPanel.Dock ="top">
+                    <Label x:Name="welcomeTitle" Content="Playing Matix Game" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" MinHeight="62" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock ="Left">
+                    <TextBlock DockPanel.Dock ="Top">First Player</TextBlock>
+                </StackPanel>
+                <StackPanel DockPanel.Dock ="right">
+                    <TextBlock DockPanel.Dock ="Top">Second Player</TextBlock>
+                </StackPanel>
+                <xBoard:Board HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Page>

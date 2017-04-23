@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+  <xs:complexType name="UserInformationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserInformationData" nillable="true" type="tns:UserInformationData" />
+  <xs:complexType name="RegistrationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="tns:OperationStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegistrationResult" nillable="true" type="tns:RegistrationResult" />
+  <xs:simpleType name="OperationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Failure" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OperationStatus" nillable="true" type="tns:OperationStatus" />
+  <xs:complexType name="LoginData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginData" nillable="true" type="tns:LoginData" />
+  <xs:complexType name="LoginResultData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="tns:OperationStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginResultData" nillable="true" type="tns:LoginResultData" />
+  <xs:complexType name="WaitingPlayerResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" type="tns:OperationStatus" />
+      <xs:element minOccurs="0" name="WaitingPlayerslist" nillable="true" type="tns:ArrayOfWaitingPlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaitingPlayerResult" nillable="true" type="tns:WaitingPlayerResult" />
+  <xs:complexType name="ArrayOfWaitingPlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WaitingPlayer" nillable="true" type="tns:WaitingPlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWaitingPlayer" nillable="true" type="tns:ArrayOfWaitingPlayer" />
+  <xs:complexType name="WaitingPlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaitingPlayer" nillable="true" type="tns:WaitingPlayer" />
+</xs:schema>

@@ -1,0 +1,37 @@
+﻿using MatixGameClient.MatixGameServiceReference;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace MatixGameClient
+{
+    [CallbackBehavior(
+       ConcurrencyMode = ConcurrencyMode.Single,
+       UseSynchronizationContext = false)]
+    public  class MatixClientCallback : IMatixServiceCallback
+    {
+        // Saves the UI synchronization context
+        private SynchronizationContext uiSyncContext = null;
+
+
+        public MatixClientCallback(SynchronizationContext syncContext)             
+        {
+            uiSyncContext = syncContext;
+        }
+
+        public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)
+        {
+            // The UI thread won't be handling the callback, but it is the only one allowed to update the controls.  
+            // So, we will dispatch the UI update back to the UI sync context.
+            //SendOrPostCallback callback =
+            //    delegate (object state)
+            //    { this.WritePartyLogMessage(String.Format("{0} has joined the party.", state.ToString())); };
+
+            //uiSyncContext.Post(callback, guestName);
+        }
+    }
+}

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="MatixGameClient.Board"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MatixGameClient"
+            HorizontalAlignment ="Stretch" HorizontalContentAlignment ="Stretch"
+	VerticalAlignment ="Stretch" VerticalContentAlignment ="Stretch"    
+    MouseLeftButtonDown="BoardMouseLeftButtonDown"           
+	Width="Auto"
+    Height="Auto">
+    <UserControl.Resources>
+        <DataTemplate x:Key ="CellTemplate" >
+            <Border x:Name ="Border" BorderBrush ="SteelBlue" BorderThickness ="1" >
+                <TextBlock  Focusable ="False" HorizontalAlignment ="Center" 
+                            VerticalAlignment ="Center" FontWeight ="Bold"                            
+                            FontSize ="21" 
+                            Foreground="#FFFFCC11"
+                            Text ="{Binding Path=Value}">
+                </TextBlock>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <LinearGradientBrush StartPoint ="0,0" EndPoint ="0,1">
+                                    <GradientStop Color="#FF4F0891" Offset ="0"/>
+                                    <GradientStop Color="#FF8749C0" Offset ="0.5"/>
+                                    <GradientStop Color="#FF3D056F" Offset ="0.75"/>
+                                    <GradientStop Color="#FF4F0891" Offset ="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Token}" Value="True">
+                                <Setter Property="Background" Value="#FF112233"/>
+                                <Setter Property="TextBlock.Foreground" Value="#FF112233" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Used}" Value="True">
+                                <Setter Property="Background" Value="Orange"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key ="RowTemplate">
+            <ItemsControl ItemTemplate ="{StaticResource CellTemplate}" ItemsSource ="{Binding}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows ="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ItemsControl  ItemTemplate ="{StaticResource RowTemplate}" ItemsSource ="{Binding Path=RowCollection}" x:Name ="BoardControl">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid Columns ="1"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>
+
