@@ -9,9 +9,19 @@ namespace MatixGameClient
 {
     class Cell : INotifyPropertyChanged
     {
-        
+        /// <summary>
+        /// The current cell value 
+        /// </summary>
         private int cellValue;
+
+        /// <summary>
+        /// Is this cell is currently a token 
+        /// </summary>
         private bool token;
+
+        /// <summary>
+        /// Is this cell already used by a player
+        /// </summary>
         private bool used;
 
         public int Value

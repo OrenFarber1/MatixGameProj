@@ -20,6 +20,7 @@ namespace WcfMatixServiceLibrary
 
         // TODO: Add your service operations here
 
+
         [OperationContract]
         RegistrationResult UserRegistration(UserInformationData userData);
 

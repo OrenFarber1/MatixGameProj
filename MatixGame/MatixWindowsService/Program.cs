@@ -20,7 +20,7 @@ namespace MatixWindowsService
             // BasicConfigurator replaced with XmlConfigurator.
             log4net.Config.XmlConfigurator.Configure();
 
-            Log.Info("************************************************************************");
+            Log.Info("*************************************************************************");
 
             if (!Environment.UserInteractive)
             {
