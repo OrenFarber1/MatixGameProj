@@ -1,4 +1,4 @@
-﻿namespace MatixGameService
+﻿namespace MatixWindowsService
 {
     partial class ProjectInstaller
     {

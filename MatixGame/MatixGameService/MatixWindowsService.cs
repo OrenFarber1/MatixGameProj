@@ -11,7 +11,7 @@ using System.ServiceModel;
 using WcfMatixServiceLibrary;
 using log4net;
 
-namespace MatixGameService
+namespace MatixWindowsService
 {
     public partial class MatixWindowsService : ServiceBase
     {

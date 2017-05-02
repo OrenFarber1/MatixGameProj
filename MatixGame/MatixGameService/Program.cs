@@ -6,7 +6,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MatixGameService
+namespace MatixWindowsService
 {
     static class Program
     {
