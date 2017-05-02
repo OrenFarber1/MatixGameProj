@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Archithecture", "ModelingProject1\Archithecture.modelproj", "{AE3258E5-2088-4182-B114-6176ABC53496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatixGameService", "MatixGameService\MatixGameService.csproj", "{8B4D4B3B-B447-44E9-9C1F-93EC3863A3AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatixWindowsService", "MatixGameService\MatixWindowsService.csproj", "{8B4D4B3B-B447-44E9-9C1F-93EC3863A3AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfMatixServiceLibrary", "WcfMatixServiceLibrary\WcfMatixServiceLibrary.csproj", "{CBF194D8-274F-4449-8155-C1BA3BA0E0C9}"
 EndProject
