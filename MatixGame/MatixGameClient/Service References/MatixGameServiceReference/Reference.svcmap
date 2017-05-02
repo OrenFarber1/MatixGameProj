@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="799f69b6-3c7c-4b1c-893a-5c899d0b70bf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="39eed012-62de-4738-b3bb-7d2c1075ccb9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8525/MatixWcfService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:23370/MatixWcfService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e763e1a7-b046-4dc0-b572-49b6c5a69614" SourceId="1" SourceUrl="net.tcp://localhost:8525/MatixWcfService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ea807abf-0082-48c6-a984-213e2d24bbb1" SourceId="1" SourceUrl="net.tcp://localhost:8525/MatixWcfService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f31a7c30-afb4-430f-b0ef-63a391d77357" SourceId="1" SourceUrl="net.tcp://localhost:8525/MatixWcfService/mex" />
-    <MetadataFile FileName="WcfMatixServiceLibrary.xsd" MetadataType="Schema" ID="b43d7c38-5c5e-473d-95a1-3224e6fc20d3" SourceId="1" SourceUrl="net.tcp://localhost:8525/MatixWcfService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f2b1dc70-acf9-49e8-aa99-e9f6296f2503" SourceId="1" SourceUrl="net.tcp://localhost:23370/MatixWcfService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ac7a8167-4451-4ee6-9f2b-ed8cbb3d301d" SourceId="1" SourceUrl="net.tcp://localhost:23370/MatixWcfService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="114e6371-a064-4f2b-8323-04a2a1b75ab1" SourceId="1" SourceUrl="net.tcp://localhost:23370/MatixWcfService/mex" />
+    <MetadataFile FileName="WcfMatixServiceLibrary.xsd" MetadataType="Schema" ID="96198920-a389-46d2-803f-a57104d3b243" SourceId="1" SourceUrl="net.tcp://localhost:23370/MatixWcfService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
