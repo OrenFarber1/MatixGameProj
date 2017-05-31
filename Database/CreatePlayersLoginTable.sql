@@ -1,13 +1,13 @@
 USE [MATIX_GAME]
 GO
 
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK__PLAYERS_LOGIN_PLAYERID]') AND parent_object_id = OBJECT_ID(N'[dbo].[PLAYERS_LOGIN]'))
-ALTER TABLE [dbo].[PLAYERS_LOGIN] DROP CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID]
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK__PLAYERS_LOGIN_PLAYERID]') AND parent_object_id = OBJECT_ID(N'[dbo].[PlayersLogin]'))
+ALTER TABLE [dbo].[PlayersLogin] DROP CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID]
 GO
 
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__PLAYERS_L__Creat__30F848ED]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[PLAYERS_LOGIN] DROP CONSTRAINT [DF__PLAYERS_L__Creat__30F848ED]
+ALTER TABLE [dbo].[PlayersLogin] DROP CONSTRAINT [DF__PLAYERS_L__Creat__30F848ED]
 END
 
 GO
@@ -15,23 +15,23 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PLAYERS_LOGIN]    Script Date: 05/27/2017 01:09:11 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PLAYERS_LOGIN]') AND type in (N'U'))
-DROP TABLE [dbo].[PLAYERS_LOGIN]
+/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 05/31/2017 20:34:44 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PlayersLogin]') AND type in (N'U'))
+DROP TABLE [dbo].[PlayersLogin]
 GO
 
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PLAYERS_LOGIN]    Script Date: 05/27/2017 01:09:11 ******/
+/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 05/31/2017 20:34:44 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[PLAYERS_LOGIN](
-	[LoginId] [bigint] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[PlayersLogin](
+	[LoginId] [bigint] NOT NULL,
 	[PlayerId] [bigint] NOT NULL,
 	[CreateTime] [datetime] NOT NULL,
 	[IPAddress] [nvarchar](50) NOT NULL,
@@ -43,13 +43,13 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-ALTER TABLE [dbo].[PLAYERS_LOGIN]  WITH CHECK ADD  CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID] FOREIGN KEY([PlayerId])
-REFERENCES [dbo].[PLAYERS] ([PlayerId])
+ALTER TABLE [dbo].[PlayersLogin]  WITH CHECK ADD  CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID] FOREIGN KEY([PlayerId])
+REFERENCES [dbo].[Players] ([PlayerId])
 GO
 
-ALTER TABLE [dbo].[PLAYERS_LOGIN] CHECK CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID]
+ALTER TABLE [dbo].[PlayersLogin] CHECK CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID]
 GO
 
-ALTER TABLE [dbo].[PLAYERS_LOGIN] ADD  DEFAULT (getdate()) FOR [CreateTime]
+ALTER TABLE [dbo].[PlayersLogin] ADD  DEFAULT (getdate()) FOR [CreateTime]
 GO
 

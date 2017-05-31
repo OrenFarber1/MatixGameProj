@@ -28,6 +28,7 @@ namespace MatixGameClient
         public MainWindow()
         { 
             InitializeComponent();
+               
 
        ///     MessageBox.Show("Before!");
             try
@@ -53,4 +54,6 @@ namespace MatixGameClient
            mainFrame.NavigationService.Navigate(welcome);
         }
     }
+
+  
 }

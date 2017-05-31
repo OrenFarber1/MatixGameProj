@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatixWindowsService", "Mati
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "MatixArchithecture", "MatixArchithecture\MatixArchithecture.modelproj", "{AE3258E5-2088-4182-B114-6176ABC53496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatixDatabaseLibrary", "MatixDatabaseLibrary\MatixDatabaseLibrary.csproj", "{A4CB8918-FEA6-44C3-955A-D9FFD5268911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{AE3258E5-2088-4182-B114-6176ABC53496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3258E5-2088-4182-B114-6176ABC53496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3258E5-2088-4182-B114-6176ABC53496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CB8918-FEA6-44C3-955A-D9FFD5268911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CB8918-FEA6-44C3-955A-D9FFD5268911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CB8918-FEA6-44C3-955A-D9FFD5268911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CB8918-FEA6-44C3-955A-D9FFD5268911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ GO
 
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__PLAYERS__CreateT__20C1E124]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[PLAYERS] DROP CONSTRAINT [DF__PLAYERS__CreateT__20C1E124]
+ALTER TABLE [dbo].[Players] DROP CONSTRAINT [DF__PLAYERS__CreateT__20C1E124]
 END
 
 GO
@@ -11,22 +11,22 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PLAYERS]    Script Date: 05/27/2017 01:08:14 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PLAYERS]') AND type in (N'U'))
-DROP TABLE [dbo].[PLAYERS]
+/****** Object:  Table [dbo].[Players]    Script Date: 05/31/2017 20:34:29 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Players]') AND type in (N'U'))
+DROP TABLE [dbo].[Players]
 GO
 
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PLAYERS]    Script Date: 05/27/2017 01:08:14 ******/
+/****** Object:  Table [dbo].[Players]    Script Date: 05/31/2017 20:34:29 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[PLAYERS](
+CREATE TABLE [dbo].[Players](
 	[PlayerId] [bigint] IDENTITY(1,1) NOT NULL,
 	[CreateTime] [datetime] NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
@@ -42,6 +42,6 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-ALTER TABLE [dbo].[PLAYERS] ADD  DEFAULT (getdate()) FOR [CreateTime]
+ALTER TABLE [dbo].[Players] ADD  DEFAULT (getdate()) FOR [CreateTime]
 GO
 

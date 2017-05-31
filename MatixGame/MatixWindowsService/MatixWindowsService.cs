@@ -50,6 +50,7 @@ namespace MatixWindowsService
             //MatixWcfService sevice = new MatixWcfService(Log);
             gameServiceHost = new ServiceHost(typeof(MatixWcfService));
             gameServiceHost.Open();
+
         }
 
         protected override void OnStop()
