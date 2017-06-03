@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace MatixBusinessLibrary
 {
-    public class MatixGameManager : MatixBuisnessInterface
+    public class MatixGameManager : IMatixBuisnessInterface
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         MatixDataAccess matixData = null;
-        ServiceHost matixHost = null;
+        MatixServiceHost matixHost = null;
 
         public MatixGameManager()
         {
             matixData = new MatixDataAccess();
+            matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
+            matixHost.Open();
         }
 
         public bool AddPlayer(string firstName, string lastName, string nickName, string email, string passwordHash)

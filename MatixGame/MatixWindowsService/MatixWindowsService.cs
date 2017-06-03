@@ -74,8 +74,8 @@ namespace MatixWindowsService
                 gameServiceHost.Close();
             }
             
-            gameServiceHost = new ServiceHost(typeof(MatixWcfService));
-            gameServiceHost.Open();
+        //    gameServiceHost = new ServiceHost(typeof(MatixWcfService));
+         //   gameServiceHost.Open();
 
             matixGameManager = new MatixGameManager();
 

@@ -14,7 +14,16 @@ namespace WcfMatixServiceLibrary
     public class MatixWcfService : IMatixService
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-            
+
+        private IMatixBuisnessInterface matixBuisnessInterface = null;
+
+        public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
+        {
+            matixBuisnessInterface = buisnessInterface;
+        }
+
+
+
         int x = 1;
         public string GetData(int value)
         {
