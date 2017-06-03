@@ -23,6 +23,9 @@
         <Border  Grid.Row="1" Grid.Column="1" CornerRadius="6" BorderBrush="#A58200" Background="#FFFFDB54" BorderThickness="2">
             <StackPanel Background="#FFFFDB54" Grid.Row="1" Grid.Column="1" MinHeight="100" MinWidth="350" VerticalAlignment="Center">
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
+                    <Label x:Name="errorMessage" Content=""  Height="28" Width="180" FontFamily="Pristina" FontWeight="Bold" Foreground="Red" FontSize="16"/>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
                     <Label x:Name="firstNameLabel" Content="First Name: "  Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <TextBox  x:Name="firstNameTextBox"  Height="24" TextWrapping="Wrap"  Width="200"/>
                 </StackPanel>
@@ -43,8 +46,8 @@
                     <PasswordBox x:Name="PassTextBox" HorizontalAlignment="Left" Height="23"   Width="200"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label  x:Name="verifyPassLabel" Content="Verify Password:" Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
-                    <PasswordBox x:Name="verifyPassTextBox"  Height="23"  Width="200"/>
+                    <Label  x:Name="confirmPassLabel" Content="Confirm Password:" Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <PasswordBox x:Name="confirmPassTextBox"  Height="23"  Width="200"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -71,5 +74,5 @@
             </Button>
         </StackPanel>
     </Grid>
-  
+
 </Page>

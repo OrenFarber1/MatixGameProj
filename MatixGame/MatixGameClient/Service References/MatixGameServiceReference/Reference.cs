@@ -96,7 +96,7 @@ namespace MatixGameClient.MatixGameServiceReference {
         private string NickNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordHashField;
+        private string PasswordField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -161,14 +161,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PasswordHash {
+        public string Password {
             get {
-                return this.PasswordHashField;
+                return this.PasswordField;
             }
             set {
-                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
-                    this.PasswordHashField = value;
-                    this.RaisePropertyChanged("PasswordHash");
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }

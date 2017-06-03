@@ -47,9 +47,10 @@ namespace WcfMatixServiceLibrary
 
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
-
             logger.Info("UserRegistration");
-            
+
+            matixBuisnessInterface.AddPlayer(userData.FirstName, userData.LastName, userData.NickName, userData.EmailAddress, userData.Password);
+
             RegistrationResult result = new RegistrationResult();
 
             result.Status = OperationStatusnEnum.Success;

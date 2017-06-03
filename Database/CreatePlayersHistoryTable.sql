@@ -1,7 +1,18 @@
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PlayersHistory]    Script Date: 05/31/2017 23:08:41 ******/
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK__PLAYER_HISTORY_GAMEID]') AND parent_object_id = OBJECT_ID(N'[dbo].[PlayersHistory]'))
+ALTER TABLE [dbo].[PlayersHistory] DROP CONSTRAINT [FK__PLAYER_HISTORY_GAMEID]
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK__PLAYER_HISTORY_PLAYERID]') AND parent_object_id = OBJECT_ID(N'[dbo].[PlayersHistory]'))
+ALTER TABLE [dbo].[PlayersHistory] DROP CONSTRAINT [FK__PLAYER_HISTORY_PLAYERID]
+GO
+
+USE [MATIX_GAME]
+GO
+
+/****** Object:  Table [dbo].[PlayersHistory]    Script Date: 06/03/2017 22:25:54 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PlayersHistory]') AND type in (N'U'))
 DROP TABLE [dbo].[PlayersHistory]
 GO
@@ -9,7 +20,7 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PlayersHistory]    Script Date: 05/31/2017 23:08:41 ******/
+/****** Object:  Table [dbo].[PlayersHistory]    Script Date: 06/03/2017 22:25:54 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -29,14 +40,7 @@ CREATE TABLE [dbo].[PlayersHistory](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-
-ALTER TABLE [dbo].[PlayersHistory]  WITH CHECK ADD  CONSTRAINT [FK__PLAYER_HISTORY_PLAYERID] FOREIGN KEY([PlayerId])
-REFERENCES [dbo].[Players] ([PlayerId])
 GO
-
-ALTER TABLE [dbo].[PlayersHistory] CHECK CONSTRAINT [FK__PLAYER_HISTORY_PLAYERID]
-GO
-
 
 ALTER TABLE [dbo].[PlayersHistory]  WITH CHECK ADD  CONSTRAINT [FK__PLAYER_HISTORY_GAMEID] FOREIGN KEY([GameId])
 REFERENCES [dbo].[Games] ([GameId])
@@ -45,6 +49,10 @@ GO
 ALTER TABLE [dbo].[PlayersHistory] CHECK CONSTRAINT [FK__PLAYER_HISTORY_GAMEID]
 GO
 
+ALTER TABLE [dbo].[PlayersHistory]  WITH CHECK ADD  CONSTRAINT [FK__PLAYER_HISTORY_PLAYERID] FOREIGN KEY([PlayerId])
+REFERENCES [dbo].[Players] ([PlayerId])
+GO
 
-
+ALTER TABLE [dbo].[PlayersHistory] CHECK CONSTRAINT [FK__PLAYER_HISTORY_PLAYERID]
+GO
 

@@ -59,9 +59,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="MatixData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>MatixData.designer.cs</LastGenOutput>

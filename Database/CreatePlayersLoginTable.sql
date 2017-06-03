@@ -15,7 +15,7 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 05/31/2017 20:34:44 ******/
+/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 06/03/2017 22:26:13 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PlayersLogin]') AND type in (N'U'))
 DROP TABLE [dbo].[PlayersLogin]
 GO
@@ -23,7 +23,7 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 05/31/2017 20:34:44 ******/
+/****** Object:  Table [dbo].[PlayersLogin]    Script Date: 06/03/2017 22:26:13 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -33,8 +33,10 @@ GO
 CREATE TABLE [dbo].[PlayersLogin](
 	[LoginId] [bigint] NOT NULL,
 	[PlayerId] [bigint] NOT NULL,
-	[CreateTime] [datetime] NOT NULL,
+	[LoginTime] [datetime] NOT NULL,
 	[IPAddress] [nvarchar](50) NOT NULL,
+	[LogoutTime] [datetime] NULL,
+	[Reason] [nvarchar](80) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[LoginId] ASC
@@ -50,6 +52,6 @@ GO
 ALTER TABLE [dbo].[PlayersLogin] CHECK CONSTRAINT [FK__PLAYERS_LOGIN_PLAYERID]
 GO
 
-ALTER TABLE [dbo].[PlayersLogin] ADD  DEFAULT (getdate()) FOR [CreateTime]
+ALTER TABLE [dbo].[PlayersLogin] ADD  DEFAULT (getdate()) FOR [LoginTime]
 GO
 

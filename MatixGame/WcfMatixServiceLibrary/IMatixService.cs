@@ -153,7 +153,7 @@ namespace WcfMatixServiceLibrary
         string lastName;
         string emailAddress;
         string nickName;
-        string passwordHash;
+        string password;
 
         /// <summary>
         /// The user first name 
@@ -199,10 +199,10 @@ namespace WcfMatixServiceLibrary
         /// A hash on the password the user uses
         /// </summary>
         [DataMember]
-        public string PasswordHash
+        public string Password
         {
-            get { return passwordHash; }
-            set { passwordHash = value; }
+            get { return password; }
+            set { password = value; }
         }
 
     }

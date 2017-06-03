@@ -22,7 +22,7 @@ namespace MatixGameClient
     /// </summary>
     public partial class LoginPage : Page
     {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Reference to the WCF service instance 
@@ -46,7 +46,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            Log.Info("loginButton_Click");
+            logger.Info("loginButton_Click");
 
             LoginData loginData = new LoginData();
             LoginResultData result = service.UserLogin(loginData);
