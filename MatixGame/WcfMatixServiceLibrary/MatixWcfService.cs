@@ -9,28 +9,21 @@ using System.Text;
 namespace WcfMatixServiceLibrary
 {
     [ServiceBehavior(
-         ConcurrencyMode = ConcurrencyMode.Single,
+        ConcurrencyMode = ConcurrencyMode.Single,
         InstanceContextMode = InstanceContextMode.PerSession) ]
     public class MatixWcfService : IMatixService
     {
-        //private ILog Log = null;
-
-        //public MatixWcfService(ILog log)
-        //{
-        //    Log = log;
-        //}
-
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            
         int x = 1;
         public string GetData(int value)
         {
-      //      Log.Info("GetData");
-
-            return string.Format("You entered: {0}", value* x++);
+             return string.Format("You entered: {0}", value* x++);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
-
+            logger.Info("GetDataUsingDataContract"); 
 
             if (composite == null)
             {
@@ -46,8 +39,8 @@ namespace WcfMatixServiceLibrary
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
 
-          //  Log.Info("UserRegistration");
-
+            logger.Info("UserRegistration");
+            
             RegistrationResult result = new RegistrationResult();
 
             result.Status = OperationStatusnEnum.Success;
@@ -59,7 +52,7 @@ namespace WcfMatixServiceLibrary
         public LoginResultData UserLogin(LoginData loginData)
         {
 
-        //  Log.Info("UserLogin"); 
+          logger.Info("UserLogin"); 
 
             LoginResultData result = new LoginResultData();
 

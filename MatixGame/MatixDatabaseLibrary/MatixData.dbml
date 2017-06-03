@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MATIX_GAME" Class="MatixDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ORENF;Initial Catalog=MATIX_GAME;User ID=sa" SettingsObjectName="MatixDatabaseLibrary.Properties.Settings" SettingsPropertyName="MATIX_GAMEConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Games" Member="Games">
+    <Type Name="Game">
+      <Column Name="GameId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HorizontalPlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VerticalPlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CellsMatrix" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Players" Member="Players">
+    <Type Name="Player">
+      <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Player_PlayersLogin" Member="PlayersLogins" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersLogin" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayersLogin" Member="PlayersLogins">
+    <Type Name="PlayersLogin">
+      <Column Name="LoginId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IPAddress" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Player_PlayersLogin" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

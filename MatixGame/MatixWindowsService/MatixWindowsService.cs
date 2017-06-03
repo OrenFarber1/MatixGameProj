@@ -10,56 +10,90 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using WcfMatixServiceLibrary;
 using log4net;
+using System.Threading;
+using MatixBusinessLibrary;
 
 namespace MatixWindowsService
 {
     public partial class MatixWindowsService : ServiceBase
     {
-        private ILog Log = null;
+        private ManualResetEvent shutdownEvent = new ManualResetEvent(false);
+        private Thread thread;
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private MatixGameManager matixGameManager = null;
+
         internal static ServiceHost gameServiceHost = null;
         
         public MatixWindowsService(ILog logRef)
         {
-            Log = logRef;
+            logger.Info("MatixWindowsService Created");
             InitializeComponent();
         }
 
         public void StartAsConsole(string[] args)
         {
+            logger.Info("Started As Console...");
+
             OnStart(args);
             Console.WriteLine("Press any key to stop the Matix Server");
             Console.Read();
             OnStop();
+
+            logger.Info("Ended As Console...");
         }
 
         protected override void OnStart(string[] args)
         {
-            if (gameServiceHost != null)
-            {
-                gameServiceHost.Close();
-            }
+            logger.Info("OnStart - Started");
 
-            // Note that when an object is provided to this overload, 
-            // some features related to the Windows Communication Foundation (WCF) instancing
-            // behavior work differently. For example, calling InstanceContext.ReleaseServiceInstance
-            // have no effect when a well-known object instance is provided using this constructor 
-            // overload. Similarly, any other instance release mechanism is ignored. The ServiceHost 
-            // always behaves as if the OperationBehaviorAttribute.ReleaseInstanceMode property is 
-            // set to ReleaseInstanceMode.None for all operations.
-
-            //MatixWcfService sevice = new MatixWcfService(Log);
-            gameServiceHost = new ServiceHost(typeof(MatixWcfService));
-            gameServiceHost.Open();
-
+            thread = new Thread(WorkerThreadFunc);
+            thread.Name = "Service Worker Thread";
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         protected override void OnStop()
         {
+            logger.Info("OnStop - Started");
+
+            shutdownEvent.Set();
+            if (!thread.Join(3000))
+            { 
+                // give the thread 3 seconds to stop
+                thread.Abort();
+            }
+        }
+
+        private void WorkerThreadFunc()
+        {
+            logger.Info("WorkerThreadFunc - Started");
+
+            if (gameServiceHost != null)
+            {
+                gameServiceHost.Close();
+            }
+            
+            gameServiceHost = new ServiceHost(typeof(MatixWcfService));
+            gameServiceHost.Open();
+
+            matixGameManager = new MatixGameManager();
+
+            while (!shutdownEvent.WaitOne(0))
+            {
+                // Replace the Sleep() call with the work you need to do
+                Thread.Sleep(1000);
+            }
+
+            logger.Info("WorkerThreadFunc - Thread loop ended");
+            
             if (gameServiceHost != null)
             {
                 gameServiceHost.Close();
                 gameServiceHost = null;
             }
+
+            logger.Info("WorkerThreadFunc - Ended");
         }
     }
 }
