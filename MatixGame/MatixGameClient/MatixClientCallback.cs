@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MatixGameClient
 {
@@ -21,6 +22,11 @@ namespace MatixGameClient
         public MatixClientCallback(SynchronizationContext syncContext)             
         {
             uiSyncContext = syncContext;
+        }
+
+        public void Ping(int value)
+        {
+            MessageBox.Show("Ping: " + value);
         }
 
         public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)

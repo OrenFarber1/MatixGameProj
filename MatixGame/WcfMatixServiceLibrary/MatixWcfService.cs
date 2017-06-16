@@ -13,36 +13,25 @@ namespace WcfMatixServiceLibrary
         InstanceContextMode = InstanceContextMode.PerSession) ]
     public class MatixWcfService : IMatixService
     {
+        /// <summary>
+        /// logger
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// Reference to the business layer interface 
+        /// </summary>
         private IMatixBuisnessInterface matixBuisnessInterface = null;
+
+        /// <summary>
+        /// A dictionary of uses email address and its callback function
+        /// </summary>
+        Dictionary<string, IMatixServiceCallback> usersCallbackes = null;
 
         public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
         {
             matixBuisnessInterface = buisnessInterface;
-        }
-
-
-
-        int x = 1;
-        public string GetData(int value)
-        {
-             return string.Format("You entered: {0}", value* x++);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            logger.Info("GetDataUsingDataContract"); 
-
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
         }
 
         public RegistrationResult UserRegistration(UserInformationData userData)
@@ -61,8 +50,13 @@ namespace WcfMatixServiceLibrary
 
         public LoginResultData UserLogin(LoginData loginData)
         {
+            logger.Info("UserLogin");
+            
+            if(matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password))
+            {
+                usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();
 
-          logger.Info("UserLogin"); 
+            }
 
             LoginResultData result = new LoginResultData();
 

@@ -15,67 +15,6 @@ namespace MatixGameClient.MatixGameServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserInformationData", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
     [System.SerializableAttribute()]
     public partial class UserInformationData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -268,7 +207,7 @@ namespace MatixGameClient.MatixGameServiceReference {
         private string EmailAddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordHashField;
+        private string PasswordField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -294,14 +233,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PasswordHash {
+        public string Password {
             get {
-                return this.PasswordHashField;
+                return this.PasswordField;
             }
             set {
-                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
-                    this.PasswordHashField = value;
-                    this.RaisePropertyChanged("PasswordHash");
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -503,18 +442,6 @@ namespace MatixGameClient.MatixGameServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MatixGameServiceReference.IMatixService", CallbackContract=typeof(MatixGameClient.MatixGameServiceReference.IMatixServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IMatixService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetData", ReplyAction="http://tempuri.org/IMatixService/GetDataResponse")]
-        string GetData(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetData", ReplyAction="http://tempuri.org/IMatixService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IMatixService/GetDataUsingDataContractResponse")]
-        MatixGameClient.MatixGameServiceReference.CompositeType GetDataUsingDataContract(MatixGameClient.MatixGameServiceReference.CompositeType composite);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IMatixService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.CompositeType> GetDataUsingDataContractAsync(MatixGameClient.MatixGameServiceReference.CompositeType composite);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserRegistration", ReplyAction="http://tempuri.org/IMatixService/UserRegistrationResponse")]
         MatixGameClient.MatixGameServiceReference.RegistrationResult UserRegistration(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
         
@@ -536,6 +463,9 @@ namespace MatixGameClient.MatixGameServiceReference {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMatixServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/Ping")]
+        void Ping(int value);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr")]
         void UpdateWaitingPlayr(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
@@ -567,22 +497,6 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public MatixServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
-        }
-        
-        public string GetData(int value) {
-            return base.Channel.GetData(value);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value) {
-            return base.Channel.GetDataAsync(value);
-        }
-        
-        public MatixGameClient.MatixGameServiceReference.CompositeType GetDataUsingDataContract(MatixGameClient.MatixGameServiceReference.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
-        }
-        
-        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.CompositeType> GetDataUsingDataContractAsync(MatixGameClient.MatixGameServiceReference.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
         }
         
         public MatixGameClient.MatixGameServiceReference.RegistrationResult UserRegistration(MatixGameClient.MatixGameServiceReference.UserInformationData userData) {

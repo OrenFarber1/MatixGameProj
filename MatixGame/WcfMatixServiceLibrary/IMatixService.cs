@@ -13,15 +13,6 @@ namespace WcfMatixServiceLibrary
     public interface IMatixService
     {
         [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
-
-
-        [OperationContract]
         RegistrationResult UserRegistration(UserInformationData userData);
 
         [OperationContract]
@@ -80,7 +71,7 @@ namespace WcfMatixServiceLibrary
     public class LoginData
     {
         string emailAddress;
-        string passwordHash;
+        string password;
 
         /// <summary>
         /// The user email address 
@@ -96,10 +87,10 @@ namespace WcfMatixServiceLibrary
         /// A hash on the password the user uses
         /// </summary>
         [DataMember]
-        public string PasswordHash
+        public string Password
         {
-            get { return passwordHash; }
-            set { passwordHash = value; }
+            get { return password; }
+            set { password = value; }
         }
     }
 

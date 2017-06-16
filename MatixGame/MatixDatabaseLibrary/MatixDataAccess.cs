@@ -12,6 +12,11 @@ namespace MatixDatabaseLibrary
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// Check whether an email exists in the database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>True if exists otherwise false</returns>
         public bool IsEmailExist(string email)
         {
             logger.Info("IsEnmailExist");
@@ -25,6 +30,27 @@ namespace MatixDatabaseLibrary
 
             return exists;
         }
+
+        /// <summary>
+        /// Check whether an email and password 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="passwordHash"></param>
+        /// <returns></returns>
+        public bool CheckEmailAndPasswordHash(string email, string passwordHash)
+        {
+            logger.InfoFormat("CheckEmailAndPasswordHash Email: {0}, Pass: {1}", email, passwordHash);
+
+            bool exists = false;
+
+            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            {
+                exists = matixData.Players.Any(u => u.Email == email && u.PasswordHash == passwordHash);
+            }
+
+            return exists;
+        }
+
 
         public bool AddPlayer(string firstName, string lastName, string nickName, string email, string passwordHash)
         {

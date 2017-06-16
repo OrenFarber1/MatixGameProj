@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -22,17 +23,26 @@ namespace MatixGameClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// logger
+        /// </summary>
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Callback instance 
+        /// </summary>
         private static MatixClientCallback callback = new MatixClientCallback(SynchronizationContext.Current);
         private MatixGameServiceReference.MatixServiceClient service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(callback), "NetTcpBinding_IMatixService");
 
         public MainWindow()
         { 
             InitializeComponent();
-               
 
-       ///     MessageBox.Show("Before!");
+            bool showWelcom = false;
+
             try
             {
+                //Open connection to the server 
                 service.Open();
 
                 ((ICommunicationObject)service).Faulted += new EventHandler(delegate
@@ -40,20 +50,25 @@ namespace MatixGameClient
                     MessageBox.Show("Service faulted!");
                 });
 
+                showWelcom = true;
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
-
+               logger.ErrorFormat("Main Window - Exception: {0}", e.Message);
+               showWelcom = false;
             }
-            
-           /// MessageBox.Show("After!");
-            ////        string s = service.GetData(12);
 
-            WelcomePage welcome = new WelcomePage(service);
-           mainFrame.NavigationService.Navigate(welcome);
+            if (showWelcom)
+            {
+                WelcomePage welcome = new WelcomePage(service);
+                mainFrame.NavigationService.Navigate(welcome);
+            }
+            else
+            {
+                string message = "Fail to connect to server " + Environment.NewLine + "Try to connect later!";
+                ErrorPage errorPage = new ErrorPage(message);
+                mainFrame.NavigationService.Navigate(errorPage);
+            }
         }
-    }
-
-  
+    }  
 }

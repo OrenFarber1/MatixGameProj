@@ -70,6 +70,10 @@
     </Compile>
     <Compile Include="Cell.cs" />
     <Compile Include="CellCollection.cs" />
+    <Compile Include="CursorWait.cs" />
+    <Compile Include="ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -89,6 +93,10 @@
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Board.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,9 +153,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.LoginResultData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

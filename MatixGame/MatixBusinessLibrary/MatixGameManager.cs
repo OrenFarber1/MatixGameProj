@@ -19,7 +19,14 @@ namespace MatixBusinessLibrary
         /// </summary>
         static string salt = "Should I use another hashing algorithm";
 
+        /// <summary>
+        /// Data Access Layer 
+        /// </summary>
         MatixDataAccess matixData = null;
+
+        /// <summary>
+        /// Wcf Server host 
+        /// </summary>
         MatixServiceHost matixHost = null;
 
         public MatixGameManager()
@@ -32,11 +39,11 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Add a new player to the database 
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="nickName"></param>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="firstName">User first name</param>
+        /// <param name="lastName">User last name</param>
+        /// <param name="nickName">User nick name</param>
+        /// <param name="email">User email address</param>
+        /// <param name="password">User password</param>
         /// <returns></returns>
         public bool AddPlayer(string firstName, string lastName, string nickName, string email, string password)
         {
@@ -51,15 +58,39 @@ namespace MatixBusinessLibrary
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString( password + salt);
 
-            bool added = matixData.AddPlayer(firstName, lastName, nickName, email, passwordHash);
-
-
-
-            return true;
+            // Add user credentials to the database
+            bool added = matixData.AddPlayer(firstName, lastName, nickName, email, passwordHash);            
+            return added;
         }
-        
+
         /// <summary>
-        /// Generate hash array based on the input string
+        /// Validate the user credentials and save a login record
+        /// </summary>
+        /// <param name="email">User email address</param>
+        /// <param name="password">User password</param>
+        /// <returns></returns>
+        public bool UserLogin(string email, string password)
+        {
+            logger.InfoFormat("UserLogin Email: {0}, Pass: {1}", email, password);
+            
+            // Generate password hash  based on the user password and some salt.           
+            string passwordHash = GetHashString(password + salt);
+
+            // checked the database that user email and password exists 
+            if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
+            {
+                // Add a login record
+                if (matixData.PlayerLogin(email, passwordHash))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Generate hash array based on the input string using SHA256
         /// </summary>
         /// <param name="inputString"></param>
         /// <returns></returns>

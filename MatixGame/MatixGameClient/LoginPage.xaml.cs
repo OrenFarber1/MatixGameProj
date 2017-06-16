@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,19 +48,40 @@ namespace MatixGameClient
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("loginButton_Click");
-
-            LoginData loginData = new LoginData();
-            LoginResultData result = service.UserLogin(loginData);
-                        
-            if(result.Status == OperationStatus.Failure)
+            
+            if (!Regex.IsMatch(emailAddrTextBox.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
             {
+                errorMessage.Content = "Enter a valid email.";
+                emailAddrTextBox.Select(0, emailAddrTextBox.Text.Length);
+                emailAddrTextBox.Focus();
+            }
 
+            else if (PassTextBox.Password.Length == 0)
+            {
+                errorMessage.Content = "Enter password.";
+                PassTextBox.Focus();
             }
             else
             {
+                using (new CursorWait())
+                {
+                    LoginData loginData = new LoginData();
 
+                    loginData.EmailAddress = emailAddrTextBox.Text;
+                    loginData.Password = PassTextBox.Password;
+
+                    LoginResultData result = service.UserLogin(loginData);
+
+                    if (result.Status == OperationStatus.Failure)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
             }
-            
         }
 
         /// <summary>
@@ -83,5 +105,6 @@ namespace MatixGameClient
             WelcomePage welcome = new WelcomePage(service);
             NavigationService.Navigate(welcome);
         }
+        
     }
 }

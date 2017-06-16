@@ -19,12 +19,12 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" x:Name="welcomeTitle" Content="Welcome to the Matix Game" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" MinHeight="62" />
+        <Label Grid.Row="0" Grid.Column="1" x:Name="welcomeTitle" Content="Welcome to the Matix Game" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" MinHeight="62" />
         <Border  Grid.Row="1" Grid.Column="1" CornerRadius="6" BorderBrush="#A58200" Background="#FFFFDB54" BorderThickness="2">
             <StackPanel Background="#FFFFDB54" Grid.Row="1" Grid.Column="1" MinHeight="100" VerticalAlignment="Center">
-                <Button x:Name="loginButton" Content="Login to game server" Height="50" Margin="20" Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="Pristina" Click="loginButton_Click"/>
-                <Button x:Name="getListButton" Content="Get players list" Height="50" Margin="20"  Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="Pristina" />
-                <Button x:Name="startGameButton" Content="Start a new game" Height="50" Margin="20" Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="Pristina" Click="startGameButton_Click"/>
+                <Button x:Name="loginButton" Content="Login to game server" Height="50" Margin="20" Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="rockwell" Click="loginButton_Click"/>
+                <Button x:Name="getListButton" Content="Get players list" Height="50" Margin="20"  Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="rockwell" />
+                <Button x:Name="startGameButton" Content="Start a new game" Height="50" Margin="20" Width="220" Cursor="Hand" Foreground="#FFFFCC11" Background="#6b18b7" FontSize="20" FontFamily="rockwell" Click="startGameButton_Click"/>
             </StackPanel>
         </Border>
 

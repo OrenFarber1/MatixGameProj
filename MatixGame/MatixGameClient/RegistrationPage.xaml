@@ -19,40 +19,40 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" x:Name="registerTitle" Content="Player Registration" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" MinHeight="62" />
+        <Label Grid.Row="0" Grid.Column="1" x:Name="registerTitle" Content="Player Registration" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" MinHeight="62" />
         <Border  Grid.Row="1" Grid.Column="1" CornerRadius="6" BorderBrush="#A58200" Background="#FFFFDB54" BorderThickness="2">
-            <StackPanel Background="#FFFFDB54" Grid.Row="1" Grid.Column="1" MinHeight="100" MinWidth="350" VerticalAlignment="Center">
+            <StackPanel Background="#FFFFDB54" Grid.Row="1" Grid.Column="1" MinHeight="100" MinWidth="450" VerticalAlignment="Center">
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label x:Name="errorMessage" Content=""  Height="28" Width="180" FontFamily="Pristina" FontWeight="Bold" Foreground="Red" FontSize="16"/>
+                    <Label x:Name="errorMessage" Content=""  Height="28" Width="180" FontFamily="rockwell" FontWeight="Bold" Foreground="Red" FontSize="16"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label x:Name="firstNameLabel" Content="First Name: "  Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label x:Name="firstNameLabel" Content="First Name: "  Height="28" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <TextBox  x:Name="firstNameTextBox"  Height="24" TextWrapping="Wrap"  Width="200"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label x:Name="lastNameLabel" Content="Last Name: "  Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label x:Name="lastNameLabel" Content="Last Name: "  Height="28" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <TextBox  x:Name="lastNameTextBox"  Height="23" TextWrapping="Wrap"  Width="200"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label x:Name="nickNameLabel" Content="Nick Name: "  Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label x:Name="nickNameLabel" Content="Nick Name: "  Height="28" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <TextBox  x:Name="nickNameTextBox"  Height="23" TextWrapping="Wrap"  Width="200"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label x:Name="emailAddrLabel" Content="Email: "  Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label x:Name="emailAddrLabel" Content="Email: "  Height="28" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <TextBox  x:Name="emailAddrTextBox"  Height="23" TextWrapping="Wrap"  Width="200"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label  x:Name="PassLabel" Content="Password: " HorizontalAlignment="Left" Height="28"  VerticalAlignment="Top" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label  x:Name="PassLabel" Content="Password: " HorizontalAlignment="Left" Height="28"  VerticalAlignment="Top" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <PasswordBox x:Name="PassTextBox" HorizontalAlignment="Left" Height="23"   Width="200"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
-                    <Label  x:Name="confirmPassLabel" Content="Confirm Password:" Height="28" Width="100" FontFamily="Pristina" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label  x:Name="confirmPassLabel" Content="Confirm Password:" Height="28" Width="165" FontFamily="rockwell" FontWeight="Bold" Foreground="#6b1867" FontSize="16"/>
                     <PasswordBox x:Name="confirmPassTextBox"  Height="23"  Width="200"/>
                 </StackPanel>
             </StackPanel>
         </Border>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,12,0,12" HorizontalAlignment="Center">
-            <Button x:Name="registerButton" Content="Register" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="Pristina" Click="RegisterClicked" >
+            <Button x:Name="registerButton" Content="Register" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="RegisterClicked" >
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -62,7 +62,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="backButton" Content="back" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="Pristina" Click="BackClicked">
+            <Button x:Name="backButton" Content="back" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="BackClicked">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>

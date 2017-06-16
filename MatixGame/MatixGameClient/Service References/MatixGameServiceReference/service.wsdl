@@ -40,18 +40,6 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IMatixService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IMatixService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMatixService_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IMatixService_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
-  </wsdl:message>
   <wsdl:message name="IMatixService_UserRegistration_InputMessage">
     <wsdl:part name="parameters" element="tns:UserRegistration" />
   </wsdl:message>
@@ -70,18 +58,13 @@
   <wsdl:message name="IMatixService_GetWaitingPlayr_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetWaitingPlayrResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_UpdateWaitingPlayr_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateWaitingPlayr" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IMatixService">
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetData" message="tns:IMatixService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetDataResponse" message="tns:IMatixService_GetData_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetDataUsingDataContract" message="tns:IMatixService_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetDataUsingDataContractResponse" message="tns:IMatixService_GetDataUsingDataContract_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserRegistration">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserRegistration" message="tns:IMatixService_UserRegistration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UserRegistrationResponse" message="tns:IMatixService_UserRegistration_OutputMessage" />
@@ -94,6 +77,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetWaitingPlayr" message="tns:IMatixService_GetWaitingPlayr_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetWaitingPlayrResponse" message="tns:IMatixService_GetWaitingPlayr_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayr">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr" message="tns:IMatixService_UpdateWaitingPlayr_OutputCallbackMessage" />
     </wsdl:operation>
@@ -102,24 +88,6 @@
     <wsp:PolicyReference URI="#TcpBinding_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetData">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/GetData" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/GetDataUsingDataContract" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UserRegistration">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UserRegistration" style="document" />
       <wsdl:input>
@@ -143,6 +111,12 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/Ping" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -12,9 +12,14 @@ namespace WcfMatixServiceLibrary
     /// </summary>
     public interface IMatixServiceCallback
     {
-     
+
+        [OperationContract(IsOneWay = true)]
+        void Ping(int value);
+
         [OperationContract(IsOneWay = true)]
         void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers);
+
+        
 
     }
 }
