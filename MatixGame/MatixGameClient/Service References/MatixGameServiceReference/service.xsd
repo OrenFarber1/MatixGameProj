@@ -25,7 +25,7 @@
   <xs:element name="UserLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLoginResult" nillable="true" type="q4:LoginResultData" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLoginResult" nillable="true" type="q4:LoginResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

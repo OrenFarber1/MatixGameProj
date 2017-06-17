@@ -153,7 +153,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.LoginResultData.datasource">
+    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.RegistrationResult.datasource">

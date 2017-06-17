@@ -31,6 +31,26 @@ namespace MatixDatabaseLibrary
             return exists;
         }
 
+        public string GetUserNickName(string email)
+        {
+            logger.InfoFormat("GetUserNickName Email: {0}", email);
+
+            string nickName = "";
+            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            {
+                var query = from player in matixData.Players
+                            where player.Email == email
+                            select player;
+
+                foreach (Player p in query)
+                {
+                    nickName = p.NickName;
+                }
+            }
+
+            return nickName;
+        }
+
         /// <summary>
         /// Check whether an email and password 
         /// </summary>
@@ -52,54 +72,52 @@ namespace MatixDatabaseLibrary
         }
 
 
-        public bool AddPlayer(string firstName, string lastName, string nickName, string email, string passwordHash)
+        public void AddPlayer(string firstName, string lastName, string nickName, string email, string passwordHash)
         {
             logger.Info("AddPlayer");
-
-            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            try
             {
-                Player player = new Player
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
-                    CreateTime = DateTime.Now,
-                    FirstName = firstName,
-                    LastName = lastName,
-                    NickName = nickName,
-                    Email = email,
-                    PasswordHash = passwordHash
-                };
+                    Player player = new Player
+                    {
+                        CreateTime = DateTime.Now,
+                        FirstName = firstName,
+                        LastName = lastName,
+                        NickName = nickName,
+                        Email = email,
+                        PasswordHash = passwordHash
+                    };
 
-                matixData.Players.InsertOnSubmit(player);
-
-                try
-                {
-                	matixData.SubmitChanges();
+                    matixData.Players.InsertOnSubmit(player);
+                    matixData.SubmitChanges();
                 }
-                catch (System.Exception ex)
-                {
-                    logger.ErrorFormat("Exception on AddPlayer - {0}", ex);
-                }
+                
             }
-            
-            return true;
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on AddPlayer - {0}", ex);
+                throw new Invalid​Operation​Exception("Add Player operation Failed");
+            }
+
         }
 
         public bool UpdatePlayerInformation(string firstName, string lastName, string nickName)
         {
             using (MatixDataDataContext matixData = new MatixDataDataContext())
             {
-                var query =
-                from player in matixData.Players
-                where player.PlayerId == 11000
-                select player;
+                var query = from player in matixData.Players
+                            where player.PlayerId == 11000
+                            select player;
 
-                foreach(Player p in query)
+                foreach (Player p in query)
                 {
 
                 }
 
                 try
                 {
-                	matixData.SubmitChanges();
+                    matixData.SubmitChanges();
                 }
                 catch (System.Exception ex)
                 {
@@ -110,7 +128,7 @@ namespace MatixDatabaseLibrary
 
             return true;
         }
-           
+
         public bool PlayerLogin(string email, string passwordHash)
         {
 

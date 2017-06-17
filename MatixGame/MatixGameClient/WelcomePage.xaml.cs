@@ -21,12 +21,22 @@ namespace MatixGameClient
     public partial class WelcomePage : Page
     {
         private MatixGameServiceReference.MatixServiceClient service = null;
+        private string nickName;
+        private string email;
 
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service)
         {
             InitializeComponent();
-
             service = _service;
+        }
+
+        public WelcomePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
+        {
+            InitializeComponent();
+            service = _service;
+            nickName = _nickName;
+            email = _email;
+            loginName.Content = "Hi " + _nickName;
         }
 
         /// <summary>

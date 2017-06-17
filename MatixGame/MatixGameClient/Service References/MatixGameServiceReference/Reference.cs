@@ -192,6 +192,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Failure = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InvalidEmail = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InvalidPassword = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -257,18 +263,15 @@ namespace MatixGameClient.MatixGameServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResultData", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class LoginResultData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class LoginResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NickNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SessionKeyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MatixGameClient.MatixGameServiceReference.OperationStatus StatusField;
@@ -292,19 +295,6 @@ namespace MatixGameClient.MatixGameServiceReference {
                 if ((object.ReferenceEquals(this.NickNameField, value) != true)) {
                     this.NickNameField = value;
                     this.RaisePropertyChanged("NickName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SessionKey {
-            get {
-                return this.SessionKeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SessionKeyField, value) != true)) {
-                    this.SessionKeyField = value;
-                    this.RaisePropertyChanged("SessionKey");
                 }
             }
         }
@@ -449,10 +439,10 @@ namespace MatixGameClient.MatixGameServiceReference {
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.RegistrationResult> UserRegistrationAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
-        MatixGameClient.MatixGameServiceReference.LoginResultData UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData);
+        MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
-        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResultData> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData);
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResult> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayr", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayrResponse")]
         MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayr();
@@ -507,11 +497,11 @@ namespace MatixGameClient.MatixGameServiceReference {
             return base.Channel.UserRegistrationAsync(userData);
         }
         
-        public MatixGameClient.MatixGameServiceReference.LoginResultData UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData) {
+        public MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData) {
             return base.Channel.UserLogin(loginData);
         }
         
-        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResultData> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData) {
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResult> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData) {
             return base.Channel.UserLoginAsync(loginData);
         }
         

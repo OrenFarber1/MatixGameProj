@@ -70,14 +70,25 @@ namespace MatixGameClient
                     loginData.EmailAddress = emailAddrTextBox.Text;
                     loginData.Password = PassTextBox.Password;
 
-                    LoginResultData result = service.UserLogin(loginData);
+                    LoginResult result = service.UserLogin(loginData);
 
-                    if (result.Status == OperationStatus.Failure)
+                    switch (result.Status)
                     {
-
-                    }
-                    else
-                    {
+                        case OperationStatus.Success:
+                            {
+                                WelcomePage welcome = new WelcomePage(service);
+                                NavigationService.Navigate(welcome);
+                            }
+                            break;
+                        case OperationStatus.Failure:
+                            errorMessage.Content = "Internal server error";
+                            break;
+                        case OperationStatus.InvalidEmail:
+                            errorMessage.Content = "Email address doesn't exist";
+                            break;
+                        case OperationStatus.InvalidPassword:
+                            errorMessage.Content = "The password is incorrect";
+                            break;
 
                     }
                 }

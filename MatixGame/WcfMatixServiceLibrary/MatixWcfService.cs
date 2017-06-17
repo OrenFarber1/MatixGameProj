@@ -28,42 +28,34 @@ namespace WcfMatixServiceLibrary
         /// </summary>
         Dictionary<string, IMatixServiceCallback> usersCallbackes = null;
 
+     
         public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
         {
             matixBuisnessInterface = buisnessInterface;
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
+           
         }
 
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
             logger.Info("UserRegistration");
 
-            matixBuisnessInterface.AddPlayer(userData.FirstName, userData.LastName, userData.NickName, userData.EmailAddress, userData.Password);
-
-            RegistrationResult result = new RegistrationResult();
-
-            result.Status = OperationStatusnEnum.Success;
-            result.Message = "OK";
-
+            RegistrationResult result = matixBuisnessInterface.AddPlayer(userData.FirstName, userData.LastName, userData.NickName, userData.EmailAddress, userData.Password);
+                    
             return result;
         }
 
-        public LoginResultData UserLogin(LoginData loginData)
+        public LoginResult UserLogin(LoginData loginData)
         {
             logger.Info("UserLogin");
-            
-            if(matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password))
+
+            LoginResult result = matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password);
+
+            if ( result.Status == OperationStatusnEnum.Success)
             {
-                usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();
-
+                usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();                
             }
-
-            LoginResultData result = new LoginResultData();
-
-            result.Status = OperationStatusnEnum.Success;
-            result.NickName = "???";
-            result.SessionKey = "654654";
-
+            
             return result;
         }
 

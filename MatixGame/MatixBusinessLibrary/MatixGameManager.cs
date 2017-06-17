@@ -13,7 +13,7 @@ namespace MatixBusinessLibrary
     public class MatixGameManager : IMatixBuisnessInterface
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         /// <summary>
         /// Use to add salt while creating a password hash
         /// </summary>
@@ -25,15 +25,22 @@ namespace MatixBusinessLibrary
         MatixDataAccess matixData = null;
 
         /// <summary>
-        /// Wcf Server host 
+        /// WCF Server host 
         /// </summary>
         MatixServiceHost matixHost = null;
 
+        /// <summary>
+        /// A dictionary of active emails and their nick names 
+        /// </summary>
+        Dictionary<string, string> userNickName = null;
+
+
         public MatixGameManager()
         {
+            userNickName = new Dictionary<string, string>();
             matixData = new MatixDataAccess();
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
-            matixHost.Open();
+            matixHost.Open();                       
         }
 
         /// <summary>
@@ -45,48 +52,86 @@ namespace MatixBusinessLibrary
         /// <param name="email">User email address</param>
         /// <param name="password">User password</param>
         /// <returns></returns>
-        public bool AddPlayer(string firstName, string lastName, string nickName, string email, string password)
+        public RegistrationResult AddPlayer(string firstName, string lastName, string nickName, string email, string password)
         {
             logger.Info("AddPlayer");
+            
+            // Generate password hash  based on the user password and some salt.           
+            string passwordHash = GetHashString(password + salt);
 
-            if(matixData.IsEmailExist(email))
+            RegistrationResult result = new RegistrationResult();
+
+            try
             {
-                // Error 
-                return false;
+
+                if (matixData.IsEmailExist(email))
+                {
+                    // Error 
+                    result.Status = OperationStatusnEnum.InvalidEmail;
+                }
+
+                // Add user credentials to the database
+                matixData.AddPlayer(firstName, lastName, nickName, email, passwordHash);
+
+                result.Status = OperationStatusnEnum.Success;
+
+            }
+            catch (System.Invalid​Operation​Exception ex)
+            {
+                logger.ErrorFormat("AddPlayer - Exception: {0}", ex);
+                result.Status = OperationStatusnEnum.Failure;
             }
 
-            // Generate password hash  based on the user password and some salt.           
-            string passwordHash = GetHashString( password + salt);
-
-            // Add user credentials to the database
-            bool added = matixData.AddPlayer(firstName, lastName, nickName, email, passwordHash);            
-            return added;
+            return result; 
         }
 
         /// <summary>
         /// Validate the user credentials and save a login record
         /// </summary>
-        /// <param name="email">User email address</param>
-        /// <param name="password">User password</param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public bool UserLogin(string email, string password)
+        public LoginResult UserLogin(string email, string password)
         {
             logger.InfoFormat("UserLogin Email: {0}, Pass: {1}", email, password);
-            
+
+            LoginResult result = new LoginResult();
+
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString(password + salt);
-
+                       
             // checked the database that user email and password exists 
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
                 // Add a login record
                 if (matixData.PlayerLogin(email, passwordHash))
                 {
-                    return true;
+                    result.Status = OperationStatusnEnum.Success;
+
+                    string nickName;
+                    if (!userNickName.TryGetValue(email, out nickName))
+                    {
+                        // Get it from the database
+                        nickName = matixData.GetUserNickName(email);
+                        userNickName[email] = nickName;
+                    }
+                    result.NickName = nickName;
+                }
+                else
+                {
+                    result.Status = OperationStatusnEnum.Failure;
+                }
+            }
+            else
+            {
+                if(matixData.IsEmailExist(email))
+                {
+                    result.Status = OperationStatusnEnum.InvalidPassword;                    
                 }
             }
 
-            return false;
+            result.Status = OperationStatusnEnum.InvalidEmail;
+            return result;
         }
 
         /// <summary>
@@ -96,7 +141,7 @@ namespace MatixBusinessLibrary
         /// <returns></returns>
         private byte[] GetHash(string inputString)
         {
-            HashAlgorithm algorithm = SHA256.Create();  
+            HashAlgorithm algorithm = SHA256.Create();
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
 

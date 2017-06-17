@@ -16,7 +16,7 @@ namespace WcfMatixServiceLibrary
         RegistrationResult UserRegistration(UserInformationData userData);
 
         [OperationContract]
-        LoginResultData UserLogin(LoginData loginData);
+        LoginResult UserLogin(LoginData loginData);
         
         [OperationContract]
         WaitingPlayerResult GetWaitingPlayr();
@@ -34,7 +34,11 @@ namespace WcfMatixServiceLibrary
         [EnumMember]
         Success,
         [EnumMember]
-        Failure
+        Failure,
+        [EnumMember]
+        InvalidEmail,
+        [EnumMember]
+        InvalidPassword
     }
 
     /// <summary>
@@ -95,10 +99,9 @@ namespace WcfMatixServiceLibrary
     }
 
     [DataContract]
-    public class LoginResultData
+    public class LoginResult
     {
         string nickName;
-        string sessionKey;
         OperationStatusnEnum status;
 
         /// <summary>
@@ -111,17 +114,7 @@ namespace WcfMatixServiceLibrary
             set { nickName = value; }
         }
 
-        /// <summary>
-        /// The current session key
-        /// </summary>
-        [DataMember]
-        public string SessionKey
-        {
-            get { return sessionKey; }
-            set { sessionKey = value; }
-        }
-
-        /// <summary>
+         /// <summary>
         /// The operation result status
         /// </summary>
         [DataMember]
