@@ -1,4 +1,5 @@
 ﻿using log4net;
+using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace MatixGameClient
         { 
             InitializeComponent();
 
-            bool showWelcom = false;
+            bool showWelcome = false;
 
             try
             {
@@ -50,22 +51,48 @@ namespace MatixGameClient
                     MessageBox.Show("Service faulted!");
                 });
 
-                showWelcom = true;
+                showWelcome = true;
             }
             catch (Exception e)
             {
                logger.ErrorFormat("Main Window - Exception: {0}", e.Message);
-               showWelcom = false;
+               showWelcome = false;
             }
 
-            if (showWelcom)
+            if (showWelcome)
             {
-                WelcomePage welcome = new WelcomePage(service);
+                string email = Properties.Settings.Default.email;
+                string pass = Properties.Settings.Default.password;
+
+                WelcomePage welcome;
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+                {
+                    welcome = new WelcomePage(service);
+                }
+                else
+                {
+                    LoginData loginData = new LoginData();
+
+                    loginData.EmailAddress = email;
+                    loginData.Password = pass;
+
+                    LoginResult result = service.UserLogin(loginData);
+                 
+                    if (result.Status == OperationStatus.Success)
+                    {
+                        welcome = new WelcomePage(service, result.NickName, email);
+                    }
+                    else
+                    {
+                        welcome = new WelcomePage(service);
+                    }
+                }
+
                 mainFrame.NavigationService.Navigate(welcome);
             }
             else
             {
-                string message = "Fail to connect to server " + Environment.NewLine + "Try to connect later!";
+                string message = "Failed to connect to server!" + Environment.NewLine + "Try to connect later.";
                 ErrorPage errorPage = new ErrorPage(message);
                 mainFrame.NavigationService.Navigate(errorPage);
             }

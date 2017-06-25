@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,31 @@ namespace MatixGameClient
     /// </summary>
     public partial class GamePage : Page
     {
-        public GamePage()
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private MatixGameServiceReference.MatixServiceClient service = null;
+        private string nickName;
+        private string email;
+
+
+        public GamePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
+            nickName = _nickName;
+            email = _email;
+            service = _service;
+            loginName.Content = "Hi " + _nickName;
+        }
+
+        /// <summary>
+        /// Back to the Welcome page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            WelcomePage welcome = new WelcomePage(service, nickName, email);
+            NavigationService.Navigate(welcome);
         }
     }
 }

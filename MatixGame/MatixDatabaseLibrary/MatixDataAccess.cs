@@ -15,8 +15,8 @@ namespace MatixDatabaseLibrary
         /// <summary>
         /// Check whether an email exists in the database
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns>True if exists otherwise false</returns>
+        /// <param name="email">The user email address</param>
+        /// <returns>True if the email exists otherwise false</returns>
         public bool IsEmailExist(string email)
         {
             logger.Info("IsEnmailExist");
@@ -31,6 +31,11 @@ namespace MatixDatabaseLibrary
             return exists;
         }
 
+        /// <summary>
+        /// Get the user nick name 
+        /// </summary>
+        /// <param name="email">User email address</param>
+        /// <returns>The nick name string</returns>
         public string GetUserNickName(string email)
         {
             logger.InfoFormat("GetUserNickName Email: {0}", email);
@@ -71,7 +76,14 @@ namespace MatixDatabaseLibrary
             return exists;
         }
 
-
+        /// <summary>
+        /// Add a new player record to the database 
+        /// </summary>
+        /// <param name="firstName">User first name</param>
+        /// <param name="lastName">User last name</param>
+        /// <param name="nickName">The user nick name</param>
+        /// <param name="email">The user email address</param>
+        /// <param name="passwordHash">A hash string generated from the user password and some salt </param>
         public void AddPlayer(string firstName, string lastName, string nickName, string email, string passwordHash)
         {
             logger.Info("AddPlayer");
@@ -102,6 +114,13 @@ namespace MatixDatabaseLibrary
 
         }
 
+        /// <summary>
+        /// Update user information in the database 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="nickName"></param>
+        /// <returns></returns>
         public bool UpdatePlayerInformation(string firstName, string lastName, string nickName)
         {
             using (MatixDataDataContext matixData = new MatixDataDataContext())
@@ -129,8 +148,46 @@ namespace MatixDatabaseLibrary
             return true;
         }
 
-        public bool PlayerLogin(string email, string passwordHash)
+
+        /// <summary>
+        /// Create a new record that a user logged in to the server
+        /// </summary>
+        /// <param name="email">User email address</param>
+        /// <param name="passwordHash"></param>
+        /// <returns></returns>
+        public bool PlayerLogin(string email, string passwordHash, string ip)
         {
+            try
+            {
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    long id = 0;
+                    var query = from player in matixData.Players
+                                where player.Email == email
+                                select player;
+
+                    foreach (Player p in query)
+                    {
+                        id = p.PlayerId;
+                    }
+                    
+                    PlayersLogin login = new PlayersLogin
+                    {
+                        PlayerId = id,
+                        LoginTime = DateTime.Now,
+                        IPAddress = ip
+                    };
+
+                    matixData.PlayersLogins.InsertOnSubmit(login);
+                    matixData.SubmitChanges();
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on AddPlayer - {0}", ex);
+                throw new Invalid​Operation​Exception("Add Player operation Failed");
+            }
 
             return true;
         }

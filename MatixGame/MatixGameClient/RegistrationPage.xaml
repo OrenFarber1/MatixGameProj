@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height=".3*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height=".3*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -52,7 +52,7 @@
             </StackPanel>
         </Border>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,12,0,12" HorizontalAlignment="Center">
-            <Button x:Name="registerButton" Content="Register" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="RegisterClicked" >
+            <Button x:Name="registerButton" Content="Register" Width="75" Height="35" VerticalAlignment="Top" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="RegisterClicked" IsDefault="True">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -62,7 +62,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="backButton" Content="back" Width="75" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="BackClicked">
+            <Button x:Name="backButton" Content="back" Width="75" Height="35" VerticalAlignment="Top" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="BackClicked">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -74,5 +74,4 @@
             </Button>
         </StackPanel>
     </Grid>
-
 </Page>

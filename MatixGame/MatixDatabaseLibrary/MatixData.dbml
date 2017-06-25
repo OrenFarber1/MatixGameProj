@@ -7,6 +7,7 @@
       <Column Name="HorizontalPlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="VerticalPlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="CellsMatrix" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Game_PlayersHistory" Member="PlayersHistories" ThisKey="GameId" OtherKey="GameId" Type="PlayersHistory" />
     </Type>
   </Table>
   <Table Name="dbo.Players" Member="Players">
@@ -19,15 +20,30 @@
       <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Player_PlayersLogin" Member="PlayersLogins" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersLogin" />
+      <Association Name="Player_PlayersHistory" Member="PlayersHistories" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersHistory" />
     </Type>
   </Table>
   <Table Name="dbo.PlayersLogin" Member="PlayersLogins">
     <Type Name="PlayersLogin">
       <Column Name="LoginId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LoginTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IPAddress" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LogoutTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Reason" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
       <Association Name="Player_PlayersLogin" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayersHistory" Member="PlayersHistories">
+    <Type Name="PlayersHistory">
+      <Column Name="HistoryId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HistoryTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="GameId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Win" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Score" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_PlayersHistory" Member="Game" ThisKey="GameId" OtherKey="GameId" Type="Game" IsForeignKey="true" />
+      <Association Name="Player_PlayersHistory" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

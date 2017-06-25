@@ -62,12 +62,9 @@ namespace WcfMatixServiceLibrary
 
         public WaitingPlayerResult GetWaitingPlayr()
         {
-         ///   Log.Info("GetWaitingPlayr");
+            logger.Info("GetWaitingPlayr");
 
-
-            WaitingPlayerResult result = new WaitingPlayerResult();
-
-            result.Status = OperationStatusnEnum.Success;
+            WaitingPlayerResult result = matixBuisnessInterface.GetWaitingPlayrslist();
 
             return result;
         }

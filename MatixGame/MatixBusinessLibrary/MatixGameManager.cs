@@ -30,14 +30,20 @@ namespace MatixBusinessLibrary
         MatixServiceHost matixHost = null;
 
         /// <summary>
-        /// A dictionary of active emails and their nick names 
+        /// A list of active users with their emails and nick names 
         /// </summary>
         Dictionary<string, string> userNickName = null;
+
+        /// <summary>
+        /// A list of waiting players
+        /// </summary>
+        HashSet<string> waitingPlayers = null;
 
 
         public MatixGameManager()
         {
             userNickName = new Dictionary<string, string>();
+            waitingPlayers = new HashSet<string>();
             matixData = new MatixDataAccess();
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
             matixHost.Open();                       
@@ -97,6 +103,8 @@ namespace MatixBusinessLibrary
 
             LoginResult result = new LoginResult();
 
+            string ip = "";
+
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString(password + salt);
                        
@@ -104,7 +112,7 @@ namespace MatixBusinessLibrary
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
                 // Add a login record
-                if (matixData.PlayerLogin(email, passwordHash))
+                if (matixData.PlayerLogin(email, passwordHash, ip))
                 {
                     result.Status = OperationStatusnEnum.Success;
 
@@ -116,6 +124,17 @@ namespace MatixBusinessLibrary
                         userNickName[email] = nickName;
                     }
                     result.NickName = nickName;
+
+                    // Add the player to the waiting list
+                    if(waitingPlayers.Add(email))
+                    {
+                        logger.InfoFormat("UserLogin Email: {0} Added to the waiting list.", email);
+                    }
+                    else
+                    {
+                        logger.ErrorFormat("UserLogin Email: {0} Faile to add to the waiting list or email already there.", email);
+                    }
+
                 }
                 else
                 {
@@ -128,9 +147,30 @@ namespace MatixBusinessLibrary
                 {
                     result.Status = OperationStatusnEnum.InvalidPassword;                    
                 }
+                else
+                {
+                    result.Status = OperationStatusnEnum.InvalidEmail;
+                }
             }
+                    
+            return result;
+        }
 
-            result.Status = OperationStatusnEnum.InvalidEmail;
+        public WaitingPlayerResult GetWaitingPlayrslist()
+        {
+            logger.Info("GetWaitingPlayr");
+
+            WaitingPlayerResult result = new WaitingPlayerResult();
+
+            foreach(string email in waitingPlayers)
+            {
+                WaitingPlayer waitingPlayer = new WaitingPlayer();
+                waitingPlayer.NickName = userNickName[email];
+                result.WaitingPlayerslist.Add(waitingPlayer);
+            }
+            
+            result.Status = OperationStatusnEnum.Success;
+
             return result;
         }
 

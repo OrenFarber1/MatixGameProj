@@ -38,6 +38,7 @@ namespace MatixGameClient
         {
             InitializeComponent();
             service = _service;
+            emailAddrTextBox.Focus();
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace MatixGameClient
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("loginButton_Click");
-            
+
             if (!Regex.IsMatch(emailAddrTextBox.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
             {
                 errorMessage.Content = "Enter a valid email.";
@@ -76,7 +77,12 @@ namespace MatixGameClient
                     {
                         case OperationStatus.Success:
                             {
-                                WelcomePage welcome = new WelcomePage(service);
+                                Properties.Settings.Default.email = emailAddrTextBox.Text;
+                                Properties.Settings.Default.password = PassTextBox.Password;
+
+                                Properties.Settings.Default.Save();
+
+                                WelcomePage welcome = new WelcomePage(service, result.NickName, emailAddrTextBox.Text);
                                 NavigationService.Navigate(welcome);
                             }
                             break;
@@ -116,6 +122,6 @@ namespace MatixGameClient
             WelcomePage welcome = new WelcomePage(service);
             NavigationService.Navigate(welcome);
         }
-        
+
     }
 }

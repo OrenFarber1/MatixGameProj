@@ -39,6 +39,9 @@ namespace MatixDatabaseLibrary
     partial void InsertPlayersLogin(PlayersLogin instance);
     partial void UpdatePlayersLogin(PlayersLogin instance);
     partial void DeletePlayersLogin(PlayersLogin instance);
+    partial void InsertPlayersHistory(PlayersHistory instance);
+    partial void UpdatePlayersHistory(PlayersHistory instance);
+    partial void DeletePlayersHistory(PlayersHistory instance);
     #endregion
 		
 		public MatixDataDataContext() : 
@@ -94,6 +97,14 @@ namespace MatixDatabaseLibrary
 				return this.GetTable<PlayersLogin>();
 			}
 		}
+		
+		public System.Data.Linq.Table<PlayersHistory> PlayersHistories
+		{
+			get
+			{
+				return this.GetTable<PlayersHistory>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Games")]
@@ -111,6 +122,8 @@ namespace MatixDatabaseLibrary
 		private long _VerticalPlayerId;
 		
 		private System.Xml.Linq.XElement _CellsMatrix;
+		
+		private EntitySet<PlayersHistory> _PlayersHistories;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -130,6 +143,7 @@ namespace MatixDatabaseLibrary
 		
 		public Game()
 		{
+			this._PlayersHistories = new EntitySet<PlayersHistory>(new Action<PlayersHistory>(this.attach_PlayersHistories), new Action<PlayersHistory>(this.detach_PlayersHistories));
 			OnCreated();
 		}
 		
@@ -233,6 +247,19 @@ namespace MatixDatabaseLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_PlayersHistory", Storage="_PlayersHistories", ThisKey="GameId", OtherKey="GameId")]
+		public EntitySet<PlayersHistory> PlayersHistories
+		{
+			get
+			{
+				return this._PlayersHistories;
+			}
+			set
+			{
+				this._PlayersHistories.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -251,6 +278,18 @@ namespace MatixDatabaseLibrary
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_PlayersHistories(PlayersHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Game = this;
+		}
+		
+		private void detach_PlayersHistories(PlayersHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Game = null;
 		}
 	}
 	
@@ -276,6 +315,8 @@ namespace MatixDatabaseLibrary
 		
 		private EntitySet<PlayersLogin> _PlayersLogins;
 		
+		private EntitySet<PlayersHistory> _PlayersHistories;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -299,6 +340,7 @@ namespace MatixDatabaseLibrary
 		public Player()
 		{
 			this._PlayersLogins = new EntitySet<PlayersLogin>(new Action<PlayersLogin>(this.attach_PlayersLogins), new Action<PlayersLogin>(this.detach_PlayersLogins));
+			this._PlayersHistories = new EntitySet<PlayersHistory>(new Action<PlayersHistory>(this.attach_PlayersHistories), new Action<PlayersHistory>(this.detach_PlayersHistories));
 			OnCreated();
 		}
 		
@@ -455,6 +497,19 @@ namespace MatixDatabaseLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_PlayersHistory", Storage="_PlayersHistories", ThisKey="PlayerId", OtherKey="PlayerId")]
+		public EntitySet<PlayersHistory> PlayersHistories
+		{
+			get
+			{
+				return this._PlayersHistories;
+			}
+			set
+			{
+				this._PlayersHistories.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -486,6 +541,18 @@ namespace MatixDatabaseLibrary
 			this.SendPropertyChanging();
 			entity.Player = null;
 		}
+		
+		private void attach_PlayersHistories(PlayersHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = this;
+		}
+		
+		private void detach_PlayersHistories(PlayersHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlayersLogin")]
@@ -498,9 +565,13 @@ namespace MatixDatabaseLibrary
 		
 		private long _PlayerId;
 		
-		private System.DateTime _CreateTime;
+		private System.DateTime _LoginTime;
 		
 		private string _IPAddress;
+		
+		private System.Nullable<System.DateTime> _LogoutTime;
+		
+		private string _Reason;
 		
 		private EntityRef<Player> _Player;
 		
@@ -512,10 +583,14 @@ namespace MatixDatabaseLibrary
     partial void OnLoginIdChanged();
     partial void OnPlayerIdChanging(long value);
     partial void OnPlayerIdChanged();
-    partial void OnCreateTimeChanging(System.DateTime value);
-    partial void OnCreateTimeChanged();
+    partial void OnLoginTimeChanging(System.DateTime value);
+    partial void OnLoginTimeChanged();
     partial void OnIPAddressChanging(string value);
     partial void OnIPAddressChanged();
+    partial void OnLogoutTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnLogoutTimeChanged();
+    partial void OnReasonChanging(string value);
+    partial void OnReasonChanged();
     #endregion
 		
 		public PlayersLogin()
@@ -568,22 +643,22 @@ namespace MatixDatabaseLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreateTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LoginTime
 		{
 			get
 			{
-				return this._CreateTime;
+				return this._LoginTime;
 			}
 			set
 			{
-				if ((this._CreateTime != value))
+				if ((this._LoginTime != value))
 				{
-					this.OnCreateTimeChanging(value);
+					this.OnLoginTimeChanging(value);
 					this.SendPropertyChanging();
-					this._CreateTime = value;
-					this.SendPropertyChanged("CreateTime");
-					this.OnCreateTimeChanged();
+					this._LoginTime = value;
+					this.SendPropertyChanged("LoginTime");
+					this.OnLoginTimeChanged();
 				}
 			}
 		}
@@ -604,6 +679,46 @@ namespace MatixDatabaseLibrary
 					this._IPAddress = value;
 					this.SendPropertyChanged("IPAddress");
 					this.OnIPAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogoutTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LogoutTime
+		{
+			get
+			{
+				return this._LogoutTime;
+			}
+			set
+			{
+				if ((this._LogoutTime != value))
+				{
+					this.OnLogoutTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LogoutTime = value;
+					this.SendPropertyChanged("LogoutTime");
+					this.OnLogoutTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reason", DbType="NVarChar(80)")]
+		public string Reason
+		{
+			get
+			{
+				return this._Reason;
+			}
+			set
+			{
+				if ((this._Reason != value))
+				{
+					this.OnReasonChanging(value);
+					this.SendPropertyChanging();
+					this._Reason = value;
+					this.SendPropertyChanged("Reason");
+					this.OnReasonChanged();
 				}
 			}
 		}
@@ -631,6 +746,270 @@ namespace MatixDatabaseLibrary
 					if ((value != null))
 					{
 						value.PlayersLogins.Add(this);
+						this._PlayerId = value.PlayerId;
+					}
+					else
+					{
+						this._PlayerId = default(long);
+					}
+					this.SendPropertyChanged("Player");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlayersHistory")]
+	public partial class PlayersHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _HistoryId;
+		
+		private System.DateTime _HistoryTime;
+		
+		private long _PlayerId;
+		
+		private long _GameId;
+		
+		private bool _Win;
+		
+		private int _Score;
+		
+		private EntityRef<Game> _Game;
+		
+		private EntityRef<Player> _Player;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHistoryIdChanging(long value);
+    partial void OnHistoryIdChanged();
+    partial void OnHistoryTimeChanging(System.DateTime value);
+    partial void OnHistoryTimeChanged();
+    partial void OnPlayerIdChanging(long value);
+    partial void OnPlayerIdChanged();
+    partial void OnGameIdChanging(long value);
+    partial void OnGameIdChanged();
+    partial void OnWinChanging(bool value);
+    partial void OnWinChanged();
+    partial void OnScoreChanging(int value);
+    partial void OnScoreChanged();
+    #endregion
+		
+		public PlayersHistory()
+		{
+			this._Game = default(EntityRef<Game>);
+			this._Player = default(EntityRef<Player>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HistoryId", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long HistoryId
+		{
+			get
+			{
+				return this._HistoryId;
+			}
+			set
+			{
+				if ((this._HistoryId != value))
+				{
+					this.OnHistoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._HistoryId = value;
+					this.SendPropertyChanged("HistoryId");
+					this.OnHistoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HistoryTime", DbType="DateTime NOT NULL")]
+		public System.DateTime HistoryTime
+		{
+			get
+			{
+				return this._HistoryTime;
+			}
+			set
+			{
+				if ((this._HistoryTime != value))
+				{
+					this.OnHistoryTimeChanging(value);
+					this.SendPropertyChanging();
+					this._HistoryTime = value;
+					this.SendPropertyChanged("HistoryTime");
+					this.OnHistoryTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerId", DbType="BigInt NOT NULL")]
+		public long PlayerId
+		{
+			get
+			{
+				return this._PlayerId;
+			}
+			set
+			{
+				if ((this._PlayerId != value))
+				{
+					if (this._Player.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayerIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlayerId = value;
+					this.SendPropertyChanged("PlayerId");
+					this.OnPlayerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GameId", DbType="BigInt NOT NULL")]
+		public long GameId
+		{
+			get
+			{
+				return this._GameId;
+			}
+			set
+			{
+				if ((this._GameId != value))
+				{
+					if (this._Game.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGameIdChanging(value);
+					this.SendPropertyChanging();
+					this._GameId = value;
+					this.SendPropertyChanged("GameId");
+					this.OnGameIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Win", DbType="Bit NOT NULL")]
+		public bool Win
+		{
+			get
+			{
+				return this._Win;
+			}
+			set
+			{
+				if ((this._Win != value))
+				{
+					this.OnWinChanging(value);
+					this.SendPropertyChanging();
+					this._Win = value;
+					this.SendPropertyChanged("Win");
+					this.OnWinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int NOT NULL")]
+		public int Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_PlayersHistory", Storage="_Game", ThisKey="GameId", OtherKey="GameId", IsForeignKey=true)]
+		public Game Game
+		{
+			get
+			{
+				return this._Game.Entity;
+			}
+			set
+			{
+				Game previousValue = this._Game.Entity;
+				if (((previousValue != value) 
+							|| (this._Game.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Game.Entity = null;
+						previousValue.PlayersHistories.Remove(this);
+					}
+					this._Game.Entity = value;
+					if ((value != null))
+					{
+						value.PlayersHistories.Add(this);
+						this._GameId = value.GameId;
+					}
+					else
+					{
+						this._GameId = default(long);
+					}
+					this.SendPropertyChanged("Game");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_PlayersHistory", Storage="_Player", ThisKey="PlayerId", OtherKey="PlayerId", IsForeignKey=true)]
+		public Player Player
+		{
+			get
+			{
+				return this._Player.Entity;
+			}
+			set
+			{
+				Player previousValue = this._Player.Entity;
+				if (((previousValue != value) 
+							|| (this._Player.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Player.Entity = null;
+						previousValue.PlayersHistories.Remove(this);
+					}
+					this._Player.Entity = value;
+					if ((value != null))
+					{
+						value.PlayersHistories.Add(this);
 						this._PlayerId = value.PlayerId;
 					}
 					else

@@ -23,6 +23,18 @@
                     <Label x:Name ="secondPlayer" Content="Second Nick" Margin="12,12,12,12" Height="36" MinWidth="65" FontSize="18" FontFamily="rockwell" Foreground="#6b1867" />
                     <Label x:Name ="secondPlayerScore" Content="-12345" HorizontalAlignment="Center" Height="36" MinWidth="65" FontSize="18" FontFamily="rockwell" Foreground="#6b1867" />
                 </StackPanel>
+                <StackPanel DockPanel.Dock ="Bottom">
+                    <Button x:Name="backButton" Content="back" Width="75" Height="35" Margin="0,0,0,12" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="backButton_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
+                                <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                <GradientStop Color="#FFD6A900" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
                 <xBoard:Board HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
             </DockPanel>
         </Border>
