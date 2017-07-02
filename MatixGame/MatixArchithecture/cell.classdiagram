@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="f8113b07-3d4a-4eae-8dd5-aa26c3f118c4" name="cell" linkedPackageId="30b234f7-7bf0-44b5-821e-4c8d1a86a3ee" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="37ef78b8-c1a0-47fd-a6fa-9edd61d3b603">
-      <profileInstance Id="bb77c02e-1b01-4ebd-bd04-617ce63aed5f" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="df2684d3-0e80-467e-b2bd-9ae912c0f49d">
-      <profileInstance Id="33d8b9c1-16ab-4e4b-9d58-0e174ef11f7e" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="38bc1745-e2b4-4f21-95d1-a2a7807ddcfb" name="Cell" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -72,5 +58,19 @@
   </packagedElements>
   <package Id="30b234f7-7bf0-44b5-821e-4c8d1a86a3ee" name="ModelingProject1">
     <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="37ef78b8-c1a0-47fd-a6fa-9edd61d3b603">
+        <profileInstance Id="bb77c02e-1b01-4ebd-bd04-617ce63aed5f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="df2684d3-0e80-467e-b2bd-9ae912c0f49d">
+        <profileInstance Id="33d8b9c1-16ab-4e4b-9d58-0e174ef11f7e" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

@@ -104,7 +104,7 @@ namespace MatixDatabaseLibrary
                     matixData.Players.InsertOnSubmit(player);
                     matixData.SubmitChanges();
                 }
-                
+
             }
             catch (System.Exception ex)
             {
@@ -170,7 +170,7 @@ namespace MatixDatabaseLibrary
                     {
                         id = p.PlayerId;
                     }
-                    
+
                     PlayersLogin login = new PlayersLogin
                     {
                         PlayerId = id,
@@ -191,5 +191,45 @@ namespace MatixDatabaseLibrary
 
             return true;
         }
+
+
+        /// <summary>
+        /// Retrieve player information 
+        /// </summary>
+        /// <param name="email">Player's email</param>
+        /// <returns></returns>
+        public PlayerScoreData GetWaitingPlayerData(string email)
+        {
+            PlayerScoreData playerData = new PlayerScoreData();
+
+            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            {
+                var query = from PlayersHistories in matixData.PlayersHistories
+                            where
+                              PlayersHistories.Player.Email == email
+                            group new { PlayersHistories.Player, PlayersHistories } by new
+                            {
+                                PlayersHistories.Player.NickName
+                            } into g
+                            select new
+                            {
+                                g.Key.NickName,
+                                Games = g.Count(p => p.PlayersHistories.GameId != 0),
+                                Winnings = g.Count(p => p.PlayersHistories.Win == true),
+                                TotalScore = (int?)g.Sum(p => p.PlayersHistories.Score)
+                            };
+
+                foreach (var p in query)
+                {
+                    playerData.NickName = p.NickName;
+                    playerData.NumberOfWinnings = p.Winnings;
+                    playerData.TotalNumberOfGames = p.Games;
+                    playerData.TotalScore = (int)p.TotalScore;
+                }
+            }
+
+            return playerData;
+        }
+
     }
 }

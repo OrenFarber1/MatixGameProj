@@ -28,7 +28,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[PlayersHistory](
-	[HistoryId] [bigint] NOT NULL,
+	[HistoryId] [bigint] IDENTITY(1,1) NOT NULL,
 	[HistoryTime] [datetime] NOT NULL,
 	[PlayerId] [bigint] NOT NULL,
 	[GameId] [bigint] NOT NULL,

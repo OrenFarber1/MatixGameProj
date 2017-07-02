@@ -97,14 +97,12 @@ namespace MatixBusinessLibrary
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public LoginResult UserLogin(string email, string password)
+        public LoginResult UserLogin(string email, string password, string ipAddress)
         {
-            logger.InfoFormat("UserLogin Email: {0}, Pass: {1}", email, password);
+            logger.InfoFormat("UserLogin Email: {0}, Pass: {1}, Ip: {2}", email, password, ipAddress);
 
             LoginResult result = new LoginResult();
-
-            string ip = "";
-
+                      
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString(password + salt);
                        
@@ -112,7 +110,7 @@ namespace MatixBusinessLibrary
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
                 // Add a login record
-                if (matixData.PlayerLogin(email, passwordHash, ip))
+                if (matixData.PlayerLogin(email, passwordHash, ipAddress))
                 {
                     result.Status = OperationStatusnEnum.Success;
 
@@ -156,19 +154,50 @@ namespace MatixBusinessLibrary
             return result;
         }
 
-        public WaitingPlayerResult GetWaitingPlayrslist()
+        public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)
         {
-            logger.Info("GetWaitingPlayr");
+            logger.Info("GetWaitingPlayr ");
 
             WaitingPlayerResult result = new WaitingPlayerResult();
 
             foreach(string email in waitingPlayers)
             {
+                if (email == excludedEmail)
+                    continue;
+
                 WaitingPlayer waitingPlayer = new WaitingPlayer();
+                PlayerScoreData playerData = matixData.GetWaitingPlayerData(email);
+
                 waitingPlayer.NickName = userNickName[email];
+                waitingPlayer.TotalGames = playerData.TotalNumberOfGames;
+                waitingPlayer.TotalScore = playerData.TotalScore;
+                waitingPlayer.NumberOfWinnings = playerData.NumberOfWinnings;
+
                 result.WaitingPlayerslist.Add(waitingPlayer);
             }
-            
+
+            WaitingPlayer waitingPlayer1 = new WaitingPlayer();          
+            waitingPlayer1.NickName = "Player1";
+            waitingPlayer1.TotalGames = 15;
+            waitingPlayer1.TotalScore = 85;
+            waitingPlayer1.NumberOfWinnings = 7;
+            result.WaitingPlayerslist.Add(waitingPlayer1);
+
+            waitingPlayer1 = new WaitingPlayer();
+            waitingPlayer1.NickName = "Player2";
+            waitingPlayer1.TotalGames = 150;
+            waitingPlayer1.TotalScore = -6585;
+            waitingPlayer1.NumberOfWinnings = 87;
+            result.WaitingPlayerslist.Add(waitingPlayer1);
+
+
+            waitingPlayer1 = new WaitingPlayer();
+            waitingPlayer1.NickName = "Player__3";
+            waitingPlayer1.TotalGames = 25;
+            waitingPlayer1.TotalScore = 45;
+            waitingPlayer1.NumberOfWinnings = 17;
+            result.WaitingPlayerslist.Add(waitingPlayer1);
+
             result.Status = OperationStatusnEnum.Success;
 
             return result;

@@ -31,7 +31,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[PlayersLogin](
-	[LoginId] [bigint] NOT NULL,
+	[LoginId] [bigint] IDENTITY(1,1) NOT NULL,
 	[PlayerId] [bigint] NOT NULL,
 	[LoginTime] [datetime] NOT NULL,
 	[IPAddress] [nvarchar](50) NOT NULL,

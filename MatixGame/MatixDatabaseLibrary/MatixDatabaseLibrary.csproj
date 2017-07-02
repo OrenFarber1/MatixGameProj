@@ -51,6 +51,7 @@
       <DependentUpon>MatixData.dbml</DependentUpon>
     </Compile>
     <Compile Include="MatixDataAccess.cs" />
+    <Compile Include="PlayerScoreData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

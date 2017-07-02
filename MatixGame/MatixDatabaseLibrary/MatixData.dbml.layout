@@ -1,50 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MatixData">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="MatixData">
   <DataContextMoniker Name="/MatixDataDataContext" />
   <nestedChildShapes>
-    <classShape Id="9162eea7-59cc-438b-aee2-412e30ba67f5" absoluteBounds="1.625, 2, 2, 1.7708968098958331">
+    <classShape Id="9162eea7-59cc-438b-aee2-412e30ba67f5" absoluteBounds="7.25, 4.625, 2, 1.7708968098958331">
       <DataClassMoniker Name="/MatixDataDataContext/Game" />
       <nestedChildShapes>
-        <elementListCompartment Id="83b1503d-e6c0-4265-8a03-cf31cc88bccb" absoluteBounds="1.6400000000000001, 2.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="83b1503d-e6c0-4265-8a03-cf31cc88bccb" absoluteBounds="7.2650000000000006, 5.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="67fd4f10-4f2b-47ef-b6a7-5a79ac834f2a" absoluteBounds="4.375, 0.875, 2, 2.1554996744791666">
+    <classShape Id="67fd4f10-4f2b-47ef-b6a7-5a79ac834f2a" absoluteBounds="2.125, 1.375, 2, 2.1554996744791666">
       <DataClassMoniker Name="/MatixDataDataContext/Player" />
       <nestedChildShapes>
-        <elementListCompartment Id="1f75d2f4-90a0-4786-a782-78778bf40978" absoluteBounds="4.39, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1f75d2f4-90a0-4786-a782-78778bf40978" absoluteBounds="2.1399999999999997, 1.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b3e383f4-6d47-4f5a-8863-c401a569fb7c" absoluteBounds="7.75, 1.25, 2, 1.9631982421875">
+    <classShape Id="968786ba-deeb-4c82-8e46-de162a20a83d" absoluteBounds="1.625, 4.5, 2, 1.9631982421875">
       <DataClassMoniker Name="/MatixDataDataContext/PlayersLogin" />
       <nestedChildShapes>
-        <elementListCompartment Id="1e07f5f9-f8cc-4814-8a67-4f59dd4e4d96" absoluteBounds="7.7650000000000006, 1.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b280f559-be2f-46e3-8d6d-1a5ef03888af" absoluteBounds="1.6399999999999997, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.375 : 2.14024983723958); (7.75 : 2.14024983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 3.53049967447917); (2.875 : 4.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MatixDataDataContext/Player/Player_PlayersLogin" />
       <nodes>
         <classShapeMoniker Id="67fd4f10-4f2b-47ef-b6a7-5a79ac834f2a" />
-        <classShapeMoniker Id="b3e383f4-6d47-4f5a-8863-c401a569fb7c" />
+        <classShapeMoniker Id="968786ba-deeb-4c82-8e46-de162a20a83d" />
       </nodes>
     </associationConnector>
-    <classShape Id="810ef474-aa75-484d-af24-718e3f19b68b" absoluteBounds="6.125, 4.125, 2, 1.9631982421875">
+    <classShape Id="9d74ef5d-4127-40d3-b549-d8dad1387ea5" absoluteBounds="6.875, 1.375, 2, 1.9631982421875">
       <DataClassMoniker Name="/MatixDataDataContext/PlayersHistory" />
       <nestedChildShapes>
-        <elementListCompartment Id="e5d5422a-9a0c-4380-94a2-503052b16bbd" absoluteBounds="6.14, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4c0a966b-4a86-4c19-af99-1c8683c696e7" absoluteBounds="6.89, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.625 : 3.52329752604167); (5.16666616666667 : 3.52329752604167 : JumpStart); (5.33333283333333 : 3.52329752604167 : JumpEnd); (7.0625 : 3.52329752604167); (7.0625 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.0625 : 4.625); (8.0625 : 3.3381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MatixDataDataContext/Game/Game_PlayersHistory" />
       <nodes>
         <classShapeMoniker Id="9162eea7-59cc-438b-aee2-412e30ba67f5" />
-        <classShapeMoniker Id="810ef474-aa75-484d-af24-718e3f19b68b" />
+        <classShapeMoniker Id="9d74ef5d-4127-40d3-b549-d8dad1387ea5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.2499995 : 3.03049967447917); (5.2499995 : 5.10659912109375); (6.125 : 5.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.125 : 2.35659912109375); (6.875 : 2.35659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MatixDataDataContext/Player/Player_PlayersHistory" />
       <nodes>
         <classShapeMoniker Id="67fd4f10-4f2b-47ef-b6a7-5a79ac834f2a" />
-        <classShapeMoniker Id="810ef474-aa75-484d-af24-718e3f19b68b" />
+        <classShapeMoniker Id="9d74ef5d-4127-40d3-b549-d8dad1387ea5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d14d1e69-b8ff-4e72-b42f-ccadaa28dd80" absoluteBounds="4.375, 6.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/MatixDataDataContext/GameActivity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a93e533a-3828-4efa-bfa6-24a476c9f42d" absoluteBounds="4.39, 6.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.25 : 5.51044840494792); (5.375 : 5.51044840494792); (5.375 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MatixDataDataContext/Game/Game_GameActivity" />
+      <nodes>
+        <classShapeMoniker Id="9162eea7-59cc-438b-aee2-412e30ba67f5" />
+        <classShapeMoniker Id="d14d1e69-b8ff-4e72-b42f-ccadaa28dd80" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.90625 : 3.53049967447917); (3.90625 : 7.57774983723958); (4.375 : 7.57774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MatixDataDataContext/Player/Player_GameActivity" />
+      <nodes>
+        <classShapeMoniker Id="67fd4f10-4f2b-47ef-b6a7-5a79ac834f2a" />
+        <classShapeMoniker Id="d14d1e69-b8ff-4e72-b42f-ccadaa28dd80" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

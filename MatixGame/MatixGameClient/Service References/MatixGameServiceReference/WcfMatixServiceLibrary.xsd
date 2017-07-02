@@ -23,6 +23,8 @@
       <xs:enumeration value="Failure" />
       <xs:enumeration value="InvalidEmail" />
       <xs:enumeration value="InvalidPassword" />
+      <xs:enumeration value="OperationtimeOut" />
+      <xs:enumeration value="Rejected" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="OperationStatus" nillable="true" type="tns:OperationStatus" />
@@ -56,6 +58,9 @@
   <xs:complexType name="WaitingPlayer">
     <xs:sequence>
       <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberOfWinnings" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalGames" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalScore" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="WaitingPlayer" nillable="true" type="tns:WaitingPlayer" />

@@ -29,15 +29,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetWaitingPlayr">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetWaitingPlayrResponse">
+  <xs:element name="GetWaitingPlayers">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetWaitingPlayrResult" nillable="true" type="q5:WaitingPlayerResult" />
+        <xs:element minOccurs="0" name="excludedEmail" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWaitingPlayersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetWaitingPlayersResult" nillable="true" type="q5:WaitingPlayerResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectPlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nickName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectPlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectPlayerResult" type="q6:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -51,7 +67,7 @@
   <xs:element name="UpdateWaitingPlayr">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q6:WaitingPlayerResult" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q7:WaitingPlayerResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

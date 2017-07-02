@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 
 namespace WcfMatixServiceLibrary
 {
+    /// <summary>
+    /// The class MatixWcfService is an implementation of the IMatixService interface
+    /// </summary>
     [ServiceBehavior(
         ConcurrencyMode = ConcurrencyMode.Single,
         InstanceContextMode = InstanceContextMode.PerSession) ]
     public class MatixWcfService : IMatixService
     {
         /// <summary>
-        /// logger
+        /// logger 
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -35,13 +39,22 @@ namespace WcfMatixServiceLibrary
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
            
         }
+    
+        private string GetUserIpAddress()
+        {
+            OperationContext oOperationContext = OperationContext.Current;
+            MessageProperties oMessageProperties = oOperationContext.IncomingMessageProperties;
+            RemoteEndpointMessageProperty oRemoteEndpointMessageProperty = (RemoteEndpointMessageProperty)oMessageProperties[RemoteEndpointMessageProperty.Name];
+
+             return oRemoteEndpointMessageProperty.Address;
+        }
 
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
             logger.Info("UserRegistration");
 
             RegistrationResult result = matixBuisnessInterface.AddPlayer(userData.FirstName, userData.LastName, userData.NickName, userData.EmailAddress, userData.Password);
-                    
+
             return result;
         }
 
@@ -49,7 +62,10 @@ namespace WcfMatixServiceLibrary
         {
             logger.Info("UserLogin");
 
-            LoginResult result = matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password);
+            // Get the IP address the user connect from 
+            string ipAddress = GetUserIpAddress();
+
+            LoginResult result = matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password, ipAddress);
 
             if ( result.Status == OperationStatusnEnum.Success)
             {
@@ -60,14 +76,22 @@ namespace WcfMatixServiceLibrary
         }
 
 
-        public WaitingPlayerResult GetWaitingPlayr()
+        public WaitingPlayerResult GetWaitingPlayers(string excludedEmail)
         {
-            logger.Info("GetWaitingPlayr");
+            logger.Info("GetWaitingPlayers");
 
-            WaitingPlayerResult result = matixBuisnessInterface.GetWaitingPlayrslist();
+            WaitingPlayerResult result = matixBuisnessInterface.GetWaitingPlayersList(excludedEmail);
 
             return result;
         }
 
+        public OperationStatusnEnum SelectPlayer(string nickName)
+        {
+            logger.InfoFormat("SelectPlayer {0}", nickName);
+
+
+
+            return OperationStatusnEnum.Success;
+        }
     }
 }

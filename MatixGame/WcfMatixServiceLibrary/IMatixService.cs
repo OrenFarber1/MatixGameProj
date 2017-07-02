@@ -19,10 +19,10 @@ namespace WcfMatixServiceLibrary
         LoginResult UserLogin(LoginData loginData);
         
         [OperationContract]
-        WaitingPlayerResult GetWaitingPlayr();
+        WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
 
-
-        
+        [OperationContract]
+        OperationStatusnEnum SelectPlayer(string nickName);
     }
 
     /// <summary>
@@ -38,7 +38,11 @@ namespace WcfMatixServiceLibrary
         [EnumMember]
         InvalidEmail,
         [EnumMember]
-        InvalidPassword
+        InvalidPassword,
+        [EnumMember]
+        OperationtimeOut,
+        [EnumMember]
+        Rejected
     }
 
     /// <summary>
@@ -196,6 +200,9 @@ namespace WcfMatixServiceLibrary
     public class WaitingPlayer
     {
         string nickName;
+        int totalGames;
+        int numberOfWinnings;
+        int totalScore;
 
         /// <summary>
         /// The user nick name
@@ -207,6 +214,28 @@ namespace WcfMatixServiceLibrary
             set { nickName = value; }
         }
 
+        [DataMember]
+        public int TotalGames
+        {
+            get { return totalGames; }
+            set { totalGames = value; }
+        }
+
+
+        [DataMember]
+        public int NumberOfWinnings
+        {
+            get { return numberOfWinnings; }
+            set { numberOfWinnings = value; }
+        }
+
+
+        [DataMember]
+        public int TotalScore
+        {
+            get { return totalScore; }
+            set { totalScore = value; }
+        }
     }
 
     /// <summary>

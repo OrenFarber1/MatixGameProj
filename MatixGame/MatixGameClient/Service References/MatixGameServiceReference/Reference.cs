@@ -198,6 +198,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         InvalidPassword = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OperationtimeOut = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rejected = 5,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -395,6 +401,15 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NickNameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberOfWinningsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalGamesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalScoreField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -414,6 +429,45 @@ namespace MatixGameClient.MatixGameServiceReference {
                 if ((object.ReferenceEquals(this.NickNameField, value) != true)) {
                     this.NickNameField = value;
                     this.RaisePropertyChanged("NickName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumberOfWinnings {
+            get {
+                return this.NumberOfWinningsField;
+            }
+            set {
+                if ((this.NumberOfWinningsField.Equals(value) != true)) {
+                    this.NumberOfWinningsField = value;
+                    this.RaisePropertyChanged("NumberOfWinnings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalGames {
+            get {
+                return this.TotalGamesField;
+            }
+            set {
+                if ((this.TotalGamesField.Equals(value) != true)) {
+                    this.TotalGamesField = value;
+                    this.RaisePropertyChanged("TotalGames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalScore {
+            get {
+                return this.TotalScoreField;
+            }
+            set {
+                if ((this.TotalScoreField.Equals(value) != true)) {
+                    this.TotalScoreField = value;
+                    this.RaisePropertyChanged("TotalScore");
                 }
             }
         }
@@ -444,11 +498,17 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResult> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayr", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayrResponse")]
-        MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayr();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayersResponse")]
+        MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayr", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayrResponse")]
-        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.WaitingPlayerResult> GetWaitingPlayrAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayersResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.WaitingPlayerResult> GetWaitingPlayersAsync(string excludedEmail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayer", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayer(string nickName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayer", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -505,12 +565,20 @@ namespace MatixGameClient.MatixGameServiceReference {
             return base.Channel.UserLoginAsync(loginData);
         }
         
-        public MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayr() {
-            return base.Channel.GetWaitingPlayr();
+        public MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayers(string excludedEmail) {
+            return base.Channel.GetWaitingPlayers(excludedEmail);
         }
         
-        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.WaitingPlayerResult> GetWaitingPlayrAsync() {
-            return base.Channel.GetWaitingPlayrAsync();
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.WaitingPlayerResult> GetWaitingPlayersAsync(string excludedEmail) {
+            return base.Channel.GetWaitingPlayersAsync(excludedEmail);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayer(string nickName) {
+            return base.Channel.SelectPlayer(nickName);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName) {
+            return base.Channel.SelectPlayerAsync(nickName);
         }
     }
 }
