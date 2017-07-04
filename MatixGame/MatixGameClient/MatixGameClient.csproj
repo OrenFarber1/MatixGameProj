@@ -87,6 +87,9 @@
     </Compile>
     <Compile Include="Cell.cs" />
     <Compile Include="CellCollection.cs" />
+    <Compile Include="ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CursorWait.cs" />
     <Compile Include="ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
@@ -109,10 +112,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="UpdatePlayerDetailsPage.xaml.cs">
+      <DependentUpon>UpdatePlayerDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Board.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePasswordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdatePlayerDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -77,7 +77,6 @@ namespace MatixGameClient
                 emailAddrTextBox.Select(0, emailAddrTextBox.Text.Length);
                 emailAddrTextBox.Focus();
             }
-
             else if (PassTextBox.Password.Length == 0)
             {
                 errorMessage.Content = "Enter password.";

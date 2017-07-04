@@ -38,6 +38,8 @@ namespace MatixGameClient
 
             singlePlayerButton.IsEnabled = false;
             multyPlayersButton.IsEnabled = false;
+            updateDetailsButton.IsEnabled = false;
+            statisticsButton.IsEnabled = false;
         }
 
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
@@ -52,6 +54,8 @@ namespace MatixGameClient
 
             singlePlayerButton.IsEnabled = true;
             multyPlayersButton.IsEnabled = true;
+            updateDetailsButton.IsEnabled = true;
+            statisticsButton.IsEnabled = true;
         }
 
         /// <summary>
@@ -63,7 +67,7 @@ namespace MatixGameClient
         {
             if (loggedin)
             {
-                Properties.Settings.Default.email = "" ;
+                Properties.Settings.Default.email = "";
                 Properties.Settings.Default.password = "";
                 Properties.Settings.Default.Save();
 
@@ -73,6 +77,8 @@ namespace MatixGameClient
 
                 singlePlayerButton.IsEnabled = false;
                 multyPlayersButton.IsEnabled = false;
+                updateDetailsButton.IsEnabled = false;
+                statisticsButton.IsEnabled = false;
             }
             else
             {
@@ -89,23 +95,38 @@ namespace MatixGameClient
         private void singlePlayerButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User clicked game");
-            GamePage gamePage = new GamePage(service, nickName, email);
-            NavigationService.Navigate(gamePage);
+            GamePage page = new GamePage(service, nickName, email);
+            NavigationService.Navigate(page);
         }
 
-             
+
         private void multiPlayersButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("multi players clicked");
-            PlayersListPage playersListPage = new PlayersListPage(service, nickName, email);
-            NavigationService.Navigate(playersListPage);
+            PlayersListPage page = new PlayersListPage(service, nickName, email);
+            NavigationService.Navigate(page);
         }
 
+
+        private void UpdateDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("User click to update details");
+
+            UpdatePlayerDetailsPage page = new UpdatePlayerDetailsPage(service, nickName, email);
+            NavigationService.Navigate(page);
+
+        }
+
+        private void StatisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("User click on player statistics");
+
+        }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to quit");
-            System.Environment.Exit(0);            
+            System.Environment.Exit(0);
         }
     }
 }

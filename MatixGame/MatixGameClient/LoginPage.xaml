@@ -19,24 +19,24 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" x:Name="loginTitle" Content="Login To Game Server" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="bold" Foreground="#6b1867" MinHeight="62" />
-        <Border  Grid.Row="1" Grid.Column="1" CornerRadius="6" BorderBrush="#A58200" Background="#FFFFDB54" BorderThickness="2">
-            <StackPanel Background="#FFFFDB54" Grid.Row="1" Grid.Column="1" MinHeight="100" VerticalAlignment="Center">
+        <Label Grid.Row="0" Grid.Column="1" x:Name="loginTitle" Content="Login To Game Server" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="bold" Foreground="#680C8C" MinHeight="62" />
+        <Border  Grid.Row="1" Grid.Column="1" CornerRadius="6" BorderBrush="#947500" Background="#FFFCD544" BorderThickness="2">
+            <StackPanel Background="#FFFCD544" Grid.Row="1" Grid.Column="1" MinHeight="100" VerticalAlignment="Center">
                 <StackPanel  Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center">
                     <Label x:Name="errorMessage" Content=""  Height="28" Width="auto" FontFamily="rockwell" FontWeight="Bold" Foreground="Red" FontSize="16"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" Margin="0,25,0,0" HorizontalAlignment="Center">
-                    <Label x:Name="useEmailLabel" Content="Email: "  Height="28" Width="90" FontFamily="rockwell" FontWeight="bold" Foreground="#6b1867" FontSize="16"/>
+                    <Label x:Name="useEmailLabel" Content="Email: "  Height="28" Width="90" FontFamily="rockwell" FontWeight="bold" Foreground="#680C8C" FontSize="16"/>
                     <TextBox  x:Name="emailAddrTextBox"  Height="23" TextWrapping="Wrap"  Width="200" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,25,0,25" HorizontalAlignment="Center">
-                    <Label  x:Name="PassLabel" Content="Password: " HorizontalAlignment="Left" Height="28" Margin="0,0,0,0" VerticalAlignment="Top" Width="90" FontFamily="rockwell" FontWeight="bold" Foreground="#6b1867" FontSize="16"/>
-                    <PasswordBox x:Name="PassTextBox" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0"  VerticalAlignment="Top" Width="200"/>
+                    <Label  x:Name="PassLabel" Content="Password: " HorizontalAlignment="Left" Height="28" Margin="0,0,0,0" VerticalAlignment="Top" Width="90" FontFamily="rockwell" FontWeight="bold" Foreground="#680C8C" FontSize="16"/>
+                    <PasswordBox x:Name="PassTextBox" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0"  VerticalAlignment="Top" Width="200" />
                 </StackPanel>
             </StackPanel>
         </Border>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,12,0,12" HorizontalAlignment="Center">
-            <Button x:Name="loginButton" Content="Login" Width="75" Height="35" VerticalAlignment="Top" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="loginButton_Click" IsDefault="True">
+            <Button x:Name="loginButton" Content="Login" Width="75" Height="35" VerticalAlignment="Top" Foreground="#FF680C8C" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="loginButton_Click" IsDefault="True">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -46,7 +46,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="registerButton" Content="Register" Width="75"  Height="35" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" RenderTransformOrigin="2.203,0.962" Click="registerButton_Click" VerticalAlignment="Top">
+            <Button x:Name="registerButton" Content="Register" Width="75"  Height="35" Margin="20,0,0,0" Foreground="#FF680C8C" FontSize="16" Cursor="Hand" FontFamily="rockwell" RenderTransformOrigin="2.203,0.962" Click="registerButton_Click" VerticalAlignment="Top">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -56,7 +56,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="backButton" Content="back" Width="75"  Height="35" Margin="20,0,0,0" Foreground="#FF4F0891" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="backButton_Click" VerticalAlignment="Top">
+            <Button x:Name="backButton" Content="back" Width="75"  Height="35" Margin="20,0,0,0" Foreground="#FF680C8C" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="backButton_Click" VerticalAlignment="Top">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>

@@ -15,7 +15,7 @@
                 <TextBlock  Focusable ="False" HorizontalAlignment ="Center" 
                             VerticalAlignment ="Center" FontWeight ="Bold"                            
                             FontSize ="21" 
-                            Foreground="#FFFFCC11"
+                            Foreground="#FCD544"
                             Text ="{Binding Path=Value}">
                 </TextBlock>
                 <Border.Style>
