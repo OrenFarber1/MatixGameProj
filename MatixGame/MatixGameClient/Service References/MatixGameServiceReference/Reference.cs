@@ -509,6 +509,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayer", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -519,6 +525,9 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr")]
         void UpdateWaitingPlayr(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameAction")]
+        void UpdateGameAction(int row, int col);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -579,6 +588,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName) {
             return base.Channel.SelectPlayerAsync(nickName);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col) {
+            return base.Channel.SetGameAction(email, row, col);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col) {
+            return base.Channel.SetGameActionAsync(email, row, col);
         }
     }
 }

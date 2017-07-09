@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using log4net;
+using System.Xml.Linq;
 
 namespace MatixDatabaseLibrary
 {
@@ -17,9 +18,9 @@ namespace MatixDatabaseLibrary
         /// </summary>
         /// <param name="email">The user email address</param>
         /// <returns>True if the email exists otherwise false</returns>
-        public bool IsEmailExist(string email)
+        public bool IsPlayerEmailExist(string email)
         {
-            logger.Info("IsEnmailExist");
+            logger.Info("IsPlayerEmailExist");
 
             bool exists = false;
 
@@ -36,9 +37,9 @@ namespace MatixDatabaseLibrary
         /// </summary>
         /// <param name="email">User email address</param>
         /// <returns>The nick name string</returns>
-        public string GetUserNickName(string email)
+        public string GetPlayerNickName(string email)
         {
-            logger.InfoFormat("GetUserNickName Email: {0}", email);
+            logger.InfoFormat("GetPlayerNickName Email: {0}", email);
 
             string nickName = "";
             using (MatixDataDataContext matixData = new MatixDataDataContext())
@@ -55,6 +56,8 @@ namespace MatixDatabaseLibrary
 
             return nickName;
         }
+
+
 
         /// <summary>
         /// Check whether an email and password 
@@ -231,5 +234,45 @@ namespace MatixDatabaseLibrary
             return playerData;
         }
 
+        public bool CreateNewGameTask(string horizontalEmail, string verticalEmail, string boardXml)
+        {
+            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            {
+                long horizontalPlayerId = GetPlayerId(matixData, horizontalEmail);
+                long verticalPlayerId = GetPlayerId(matixData, verticalEmail);
+
+                Game game = new Game
+                {
+                    CreateTime = DateTime.Now,
+                    HorizontalPlayerId = horizontalPlayerId,
+                    VerticalPlayerId = verticalPlayerId,
+                    CellsMatrix = XElement.Parse(boardXml),
+                };
+
+                matixData.Games.InsertOnSubmit(game);
+                matixData.SubmitChanges();
+            }
+
+
+        
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Query the Players table and get the record id for the requested email
+        /// </summary>
+        /// <param name="matixData">Open data context</param>
+        /// <param name="email">requested email</param>
+        /// <returns></returns>
+        private long GetPlayerId(MatixDataDataContext matixData, string email)
+        {
+            var query = (from player in matixData.Players
+                         where player.Email == email
+                         select new { player.PlayerId }).Single();
+
+            return query.PlayerId;
+        }
     }
 }

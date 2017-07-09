@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="28a5e8e5-2c21-4efd-9bdd-b4693690bab1" name="Registration" linkedPackageId="88d417d9-190d-4181-9f6e-618a088d12ad" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="9d485e02-58be-4583-879c-dcd9b4bb5a16">
-      <profileInstance Id="a439dd59-1301-4d96-93a8-32ce098d8a59" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="464b29d1-c73e-4ec8-a18a-62f27ca1098a">
-      <profileInstance Id="84947749-3636-436c-8994-9328c1eea7b4" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="28a5e8e5-2c21-4efd-9bdd-b4693690bab1" name="Registration" linkedPackageId="88d417d9-190d-4181-9f6e-618a088d12ad" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="326b406b-1ea9-4847-9fec-53e07d653289" name="Registration" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -182,7 +168,7 @@
               <messageOccurrenceSpecificationMoniker Id="99678208-8758-485f-98cf-3bb7d7bf3969" LastKnownName="MessageOccurrenceSpecification2" />
             </receiveEvent>
           </message>
-          <message Id="d4ec23d7-b0ff-47eb-9bfc-56f7c94b473a" name="lPlayer login" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+          <message Id="d4ec23d7-b0ff-47eb-9bfc-56f7c94b473a" name="PlayerLogin" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
             <elementDefinition Id="e1cfb200-ab52-4247-82de-717f150048fe" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="f0bbb305-f9dd-48b3-a2b2-0f8410695e2d" LastKnownName="MessageOccurrenceSpecification5" />
@@ -200,7 +186,7 @@
               <messageOccurrenceSpecificationMoniker Id="36c1f093-6e9e-4b89-b235-9ec4b958ea9d" LastKnownName="MessageOccurrenceSpecification8" />
             </receiveEvent>
           </message>
-          <message Id="f2002d79-b2f6-4380-ae1d-7af47fc06d13" name="Session key" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+          <message Id="f2002d79-b2f6-4380-ae1d-7af47fc06d13" name="OperationStatusnEnum.Success" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
             <elementDefinition Id="36455606-9861-4b3c-8d41-6ca657d3c051" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="cd57e59f-8bd2-456d-b01e-ac35fc56bc83" LastKnownName="MessageOccurrenceSpecification3" />
@@ -248,5 +234,19 @@
   </packagedElements>
   <package Id="88d417d9-190d-4181-9f6e-618a088d12ad" name="ModelingProject1">
     <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="9d485e02-58be-4583-879c-dcd9b4bb5a16">
+        <profileInstance Id="a439dd59-1301-4d96-93a8-32ce098d8a59" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="464b29d1-c73e-4ec8-a18a-62f27ca1098a">
+        <profileInstance Id="84947749-3636-436c-8994-9328c1eea7b4" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </SequenceDesignerModel>

@@ -46,7 +46,7 @@ namespace MatixGameClient
             {
                 token = value;
                 if (PropertyChanged != null) PropertyChanged(this,
-                  new PropertyChangedEventArgs("Chip"));
+                  new PropertyChangedEventArgs("Token"));
             }
         }
                

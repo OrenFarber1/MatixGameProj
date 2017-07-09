@@ -30,13 +30,13 @@
                                 </LinearGradientBrush>
                             </Setter.Value>
                         </Setter>
-                        <Style.Triggers>
+                        <Style.Triggers>                           
+                            <DataTrigger Binding="{Binding Path=Used}" Value="True">
+                                <Setter Property="Background" Value="Orange"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding Path=Token}" Value="True">
                                 <Setter Property="Background" Value="#FF112233"/>
                                 <Setter Property="TextBlock.Foreground" Value="#FF112233" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=Used}" Value="True">
-                                <Setter Property="Background" Value="Orange"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

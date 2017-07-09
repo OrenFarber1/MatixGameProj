@@ -85,11 +85,20 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
-        public OperationStatusnEnum SelectPlayer(string nickName)
+        public OperationStatusnEnum SelectPlayerToPlay(string email, string nickName)
         {
-            logger.InfoFormat("SelectPlayer {0}", nickName);
+            logger.InfoFormat("SelectPlayer email: {0}, nickname: {1} ",email,  nickName);
 
+            OperationStatusnEnum result = matixBuisnessInterface.StartPlayingWithPlayer(email, nickName);
 
+            return result;
+        }
+
+        public OperationStatusnEnum SetGameAction(string email, int row, int col)
+        {
+            logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to col: {2}", email, row, col);
+
+            OperationStatusnEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
 
             return OperationStatusnEnum.Success;
         }

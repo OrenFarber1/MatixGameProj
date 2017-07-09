@@ -29,6 +29,11 @@ namespace MatixGameClient
             MessageBox.Show("Ping: " + value);
         }
 
+        public void UpdateGameAction(int row, int col)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)
         {
             // The UI thread won't be handling the callback, but it is the only one allowed to update the controls.  

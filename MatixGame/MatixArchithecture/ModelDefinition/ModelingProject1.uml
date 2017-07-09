@@ -4212,7 +4212,7 @@
         <messages>
           <message
             Id="e4a25b00-6fc2-4948-af7e-42e36698ef3d"
-            name="Register"
+            name="UserRegistration"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -4231,7 +4231,7 @@
           </message>
           <message
             Id="b45ce8c1-b6a3-41c6-abb4-bcd30616d895"
-            name="Add new player"
+            name="AddPlayer"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -4250,7 +4250,6 @@
           </message>
           <message
             Id="f06ff92c-629d-4f90-b0f4-10bc899b081e"
-            name="True if OK"
             messageKind="Complete"
             messageSort="Reply"
             createSelfMessage="false">
@@ -4269,7 +4268,7 @@
           </message>
           <message
             Id="c9f08e86-75dc-4a79-9047-1fde32db68f6"
-            name="True if OK"
+            name="Registration Result"
             messageKind="Complete"
             messageSort="Reply"
             createSelfMessage="false">
@@ -4288,7 +4287,7 @@
           </message>
           <message
             Id="41386a5b-a87a-4034-b39a-a2e2438aa72d"
-            name="Login"
+            name="UserLogin"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -4307,7 +4306,7 @@
           </message>
           <message
             Id="2a72efa9-026e-4b0c-baf3-ad7c0b9deeb1"
-            name="lPlayer login"
+            name="PlayerLogin"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -4345,7 +4344,7 @@
           </message>
           <message
             Id="5990bcec-360b-4c13-a353-325916ee6446"
-            name="Session key"
+            name="Login Result"
             messageKind="Complete"
             messageSort="Reply"
             createSelfMessage="false">
@@ -4731,7 +4730,7 @@
           </message>
           <message
             Id="e1cfb200-ab52-4247-82de-717f150048fe"
-            name="lPlayer login"
+            name="PlayerLogin"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -4769,7 +4768,7 @@
           </message>
           <message
             Id="36455606-9861-4b3c-8d41-6ca657d3c051"
-            name="Session key"
+            name="OperationStatusnEnum.Success"
             messageKind="Complete"
             messageSort="Reply"
             createSelfMessage="false">

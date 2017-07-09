@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="f4d96bb5-6b3f-46f0-ab21-360350e7c751" name="Sequence1" linkedPackageId="83605b11-386c-4e36-ace5-a51aab4474ee" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="e7de9eca-e777-4e23-8b4c-6e8915aa9d69">
-      <profileInstance Id="d885104f-1856-4fdc-b8f5-f3464ca9a447" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="c582fe8a-9d72-4fe3-b3d1-646263685c5f">
-      <profileInstance Id="95626db5-2c59-4ee4-85dc-4d6d641f06ec" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="f4d96bb5-6b3f-46f0-ab21-360350e7c751" name="Sequence1" linkedPackageId="83605b11-386c-4e36-ace5-a51aab4474ee" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="63c06bbf-94c3-4424-a908-a968f43d0aa0" name="Sequence1" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -305,7 +291,7 @@
           </lifeline>
         </lifelines>
         <messages>
-          <message Id="fa251986-7dc2-4691-a91e-0b046418d993" name="Register" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+          <message Id="fa251986-7dc2-4691-a91e-0b046418d993" name="UserRegistration" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
             <elementDefinition Id="e4a25b00-6fc2-4948-af7e-42e36698ef3d" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="c30b7a13-7272-4c47-95ec-5c4f8d09a1e2" LastKnownName="MessageOccurrenceSpecification9" />
@@ -314,7 +300,7 @@
               <messageOccurrenceSpecificationMoniker Id="c94edc9e-f927-45b2-8b4a-a25b120de180" LastKnownName="MessageOccurrenceSpecification10" />
             </receiveEvent>
           </message>
-          <message Id="11f3c48f-9fd3-4c70-a150-c525815d8f85" name="Add new player" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+          <message Id="11f3c48f-9fd3-4c70-a150-c525815d8f85" name="AddPlayer" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
             <elementDefinition Id="b45ce8c1-b6a3-41c6-abb4-bcd30616d895" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="f3e14023-2275-4c8c-877b-8d9300fd0741" LastKnownName="MessageOccurrenceSpecification15" />
@@ -323,7 +309,7 @@
               <messageOccurrenceSpecificationMoniker Id="54643d48-1012-4236-96ff-903120183bf8" LastKnownName="MessageOccurrenceSpecification16" />
             </receiveEvent>
           </message>
-          <message Id="6160b74a-b51f-4145-a069-d7ec6b2f552e" name="True if OK" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+          <message Id="6160b74a-b51f-4145-a069-d7ec6b2f552e" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
             <elementDefinition Id="f06ff92c-629d-4f90-b0f4-10bc899b081e" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="67a17b55-1faa-44d9-b3e8-2c9cde4173e2" LastKnownName="MessageOccurrenceSpecification17" />
@@ -332,7 +318,7 @@
               <messageOccurrenceSpecificationMoniker Id="04ef0eda-ae57-4eef-804a-a9bc36b23b50" LastKnownName="MessageOccurrenceSpecification18" />
             </receiveEvent>
           </message>
-          <message Id="6ce2e2d2-ecb9-4b45-ae6f-a66a16a41c2b" name="True if OK" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+          <message Id="6ce2e2d2-ecb9-4b45-ae6f-a66a16a41c2b" name="Registration Result" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
             <elementDefinition Id="c9f08e86-75dc-4a79-9047-1fde32db68f6" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="d399bef0-e349-4c64-a708-6dd3f3ab4d07" LastKnownName="MessageOccurrenceSpecification11" />
@@ -341,7 +327,7 @@
               <messageOccurrenceSpecificationMoniker Id="00bce273-2692-4e8a-8081-c447b0a3bae1" LastKnownName="MessageOccurrenceSpecification12" />
             </receiveEvent>
           </message>
-          <message Id="3061b9bd-268e-401b-9b15-73286e61d9c6" name="Login" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+          <message Id="3061b9bd-268e-401b-9b15-73286e61d9c6" name="UserLogin" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
             <elementDefinition Id="41386a5b-a87a-4034-b39a-a2e2438aa72d" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="14a64a0f-5a7a-47fc-a129-94fda2b3b63f" LastKnownName="MessageOccurrenceSpecification1" />
@@ -350,7 +336,7 @@
               <messageOccurrenceSpecificationMoniker Id="14060570-f537-4f63-8d01-9aae0d8d5a14" LastKnownName="MessageOccurrenceSpecification2" />
             </receiveEvent>
           </message>
-          <message Id="4a66c257-677a-4c20-b422-6789cb47e570" name="lPlayer login" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+          <message Id="4a66c257-677a-4c20-b422-6789cb47e570" name="PlayerLogin" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
             <elementDefinition Id="2a72efa9-026e-4b0c-baf3-ad7c0b9deeb1" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="9b6eeb4c-dd0d-4547-90c4-9489766bf3e5" LastKnownName="MessageOccurrenceSpecification5" />
@@ -368,7 +354,7 @@
               <messageOccurrenceSpecificationMoniker Id="c5baea58-f853-46c3-990c-d57c3600297d" LastKnownName="MessageOccurrenceSpecification8" />
             </receiveEvent>
           </message>
-          <message Id="63673a84-a765-40e4-8444-16139e78c198" name="Session key" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+          <message Id="63673a84-a765-40e4-8444-16139e78c198" name="Login Result" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
             <elementDefinition Id="5990bcec-360b-4c13-a353-325916ee6446" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="0eaddb7c-8e41-47cc-b680-b4dfd527a14f" LastKnownName="MessageOccurrenceSpecification3" />
@@ -442,5 +428,19 @@
   </packagedElements>
   <package Id="83605b11-386c-4e36-ace5-a51aab4474ee" name="ModelingProject1">
     <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="e7de9eca-e777-4e23-8b4c-6e8915aa9d69">
+        <profileInstance Id="d885104f-1856-4fdc-b8f5-f3464ca9a447" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="c582fe8a-9d72-4fe3-b3d1-646263685c5f">
+        <profileInstance Id="95626db5-2c59-4ee4-85dc-4d6d641f06ec" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </SequenceDesignerModel>

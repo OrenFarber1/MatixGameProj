@@ -17,12 +17,15 @@ namespace WcfMatixServiceLibrary
 
         [OperationContract]
         LoginResult UserLogin(LoginData loginData);
-        
+
         [OperationContract]
         WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
 
         [OperationContract]
-        OperationStatusnEnum SelectPlayer(string nickName);
+        OperationStatusnEnum SelectPlayerToPlay(string email, string nickName);
+
+        [OperationContract]
+        OperationStatusnEnum SetGameAction(string email, int row, int col);
     }
 
     /// <summary>
@@ -118,7 +121,7 @@ namespace WcfMatixServiceLibrary
             set { nickName = value; }
         }
 
-         /// <summary>
+        /// <summary>
         /// The operation result status
         /// </summary>
         [DataMember]
@@ -195,7 +198,9 @@ namespace WcfMatixServiceLibrary
 
     }
 
-
+    /// <summary>
+    /// Waiting player statistics information 
+    /// </summary>
     [DataContract]
     public class WaitingPlayer
     {
@@ -205,7 +210,7 @@ namespace WcfMatixServiceLibrary
         int totalScore;
 
         /// <summary>
-        /// The user nick name
+        /// A player's nickname
         /// </summary>
         [DataMember]
         public string NickName
@@ -214,6 +219,9 @@ namespace WcfMatixServiceLibrary
             set { nickName = value; }
         }
 
+        /// <summary>
+        /// A player's total number of games
+        /// </summary>
         [DataMember]
         public int TotalGames
         {
@@ -221,7 +229,9 @@ namespace WcfMatixServiceLibrary
             set { totalGames = value; }
         }
 
-
+        /// <summary>
+        /// A player's total number of winnings 
+        /// </summary>
         [DataMember]
         public int NumberOfWinnings
         {
@@ -229,7 +239,9 @@ namespace WcfMatixServiceLibrary
             set { numberOfWinnings = value; }
         }
 
-
+        /// <summary>
+        /// A player's total score (value can be negative)
+        /// </summary>
         [DataMember]
         public int TotalScore
         {
@@ -258,7 +270,7 @@ namespace WcfMatixServiceLibrary
         [DataMember]
         public List<WaitingPlayer> WaitingPlayerslist
         {
-            get { return waitingPlayerslist; }            
+            get { return waitingPlayerslist; }
         }
 
         /// <summary>
@@ -272,27 +284,76 @@ namespace WcfMatixServiceLibrary
         }
     }
 
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "WcfMatixServiceLibrary.ContractType".
     [DataContract]
-    public class CompositeType
+    public class MatixCell
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        int row;
+        int column;
+        int value;
+        bool token;
 
+        /// <summary>
+        /// Cell row index
+        /// </summary>
         [DataMember]
-        public bool BoolValue
+        public int Row
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return row; }
+            set { row = value; }
         }
 
+        /// <summary>
+        /// Cell column index
+        /// </summary>
         [DataMember]
-        public string StringValue
+        public int Column
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return column; }
+            set { column = value; }
         }
+
+        /// <summary>
+        /// Cell value 
+        /// </summary>
+        [DataMember]
+        public int Value
+        {
+            get { return value; }
+            set { this.value = value; }
+        }
+
+        /// <summary>
+        /// A flag indicate whether the cell is a token or not
+        /// </summary>
+        [DataMember]
+        public bool Token
+        {
+            get { return token; }
+            set { token = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [DataContract]
+    public class MatixBoard
+    {  
+        /// <summary>
+        /// List of MatrixCells lists
+        /// </summary>
+        List<List<MatixCell>> matixCells;
+        
+        /// <summary>
+        /// List of MatrixCells lists
+        /// </summary>
+        [DataMember]
+        public List<List<MatixCell>> MatixCells
+        {
+            get { return matixCells; }
+            set { matixCells = value; }
+        }
+
     }
 }

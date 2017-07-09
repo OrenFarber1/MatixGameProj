@@ -64,11 +64,20 @@
   <wsdl:message name="IMatixService_SelectPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectPlayerResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_SetGameAction_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetGameAction" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_SetGameAction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetGameActionResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Ping" />
   </wsdl:message>
   <wsdl:message name="IMatixService_UpdateWaitingPlayr_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateWaitingPlayr" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_UpdateGameAction_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGameAction" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IMatixService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserRegistration">
@@ -87,11 +96,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SelectPlayer" message="tns:IMatixService_SelectPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerResponse" message="tns:IMatixService_SelectPlayer_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetGameAction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SetGameAction" message="tns:IMatixService_SetGameAction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SetGameActionResponse" message="tns:IMatixService_SetGameAction_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayr">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr" message="tns:IMatixService_UpdateWaitingPlayr_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateGameAction">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateGameAction" message="tns:IMatixService_UpdateGameAction_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TcpBinding" type="tns:IMatixService">
@@ -134,6 +150,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetGameAction">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/SetGameAction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Ping">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/Ping" style="document" />
       <wsdl:output>
@@ -142,6 +167,12 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateWaitingPlayr">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateWaitingPlayr" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGameAction">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateGameAction" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
