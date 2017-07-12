@@ -482,6 +482,155 @@ namespace MatixGameClient.MatixGameServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MatixBoard", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class MatixBoard : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MatixGameClient.MatixGameServiceReference.MatixCell[][] MatixCellsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MatixGameClient.MatixGameServiceReference.MatixCell[][] MatixCells {
+            get {
+                return this.MatixCellsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MatixCellsField, value) != true)) {
+                    this.MatixCellsField = value;
+                    this.RaisePropertyChanged("MatixCells");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MatixCell", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class MatixCell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ColumnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RowField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TokenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Column {
+            get {
+                return this.ColumnField;
+            }
+            set {
+                if ((this.ColumnField.Equals(value) != true)) {
+                    this.ColumnField = value;
+                    this.RaisePropertyChanged("Column");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Row {
+            get {
+                return this.RowField;
+            }
+            set {
+                if ((this.RowField.Equals(value) != true)) {
+                    this.RowField = value;
+                    this.RaisePropertyChanged("Row");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Token {
+            get {
+                return this.TokenField;
+            }
+            set {
+                if ((this.TokenField.Equals(value) != true)) {
+                    this.TokenField = value;
+                    this.RaisePropertyChanged("Token");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameTurnTypeEnum", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
+    public enum GameTurnTypeEnum : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HorizontalPlayer = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VerticalPlayer = 1,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MatixGameServiceReference.IMatixService", CallbackContract=typeof(MatixGameClient.MatixGameServiceReference.IMatixServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IMatixService {
@@ -504,11 +653,11 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayersResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.WaitingPlayerResult> GetWaitingPlayersAsync(string excludedEmail);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayer", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerResponse")]
-        MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayer(string nickName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayerToPlay", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerToPlayResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayerToPlay(string email, string nickName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayer", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerResponse")]
-        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayerToPlay", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerToPlayResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerToPlayAsync(string email, string nickName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
         MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col);
@@ -525,6 +674,9 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr")]
         void UpdateWaitingPlayr(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/GetMatixBoard")]
+        void GetMatixBoard(MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, string horizontalNickname, string verticalNickName, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameAction")]
         void UpdateGameAction(int row, int col);
@@ -582,12 +734,12 @@ namespace MatixGameClient.MatixGameServiceReference {
             return base.Channel.GetWaitingPlayersAsync(excludedEmail);
         }
         
-        public MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayer(string nickName) {
-            return base.Channel.SelectPlayer(nickName);
+        public MatixGameClient.MatixGameServiceReference.OperationStatus SelectPlayerToPlay(string email, string nickName) {
+            return base.Channel.SelectPlayerToPlay(email, nickName);
         }
         
-        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerAsync(string nickName) {
-            return base.Channel.SelectPlayerAsync(nickName);
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerToPlayAsync(string email, string nickName) {
+            return base.Channel.SelectPlayerToPlayAsync(email, nickName);
         }
         
         public MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col) {

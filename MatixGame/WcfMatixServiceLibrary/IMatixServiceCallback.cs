@@ -20,9 +20,10 @@ namespace WcfMatixServiceLibrary
         void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers);
 
         [OperationContract(IsOneWay = true)]
-        void GetMatixBoard(MatixBoard matixBoard);
+        void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting);
 
         [OperationContract(IsOneWay = true)]
         void UpdateGameAction(int row, int col);
+        
     }
 }

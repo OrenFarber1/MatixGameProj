@@ -1,0 +1,68 @@
+﻿<Page x:Class="MatixGameClient.PlayersListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MatixGameClient"
+      mc:Ignorable="d" 
+       d:DesignHeight="500" d:DesignWidth="525"      
+      Title="PlayersListPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".3*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" x:Name="loginName" Content="hi user whats up" VerticalAlignment="Bottom" Height="32" FontSize="18" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="32" Grid.ColumnSpan="2" Margin="10,0,0,0" Width="auto" />
+        <Label Grid.Row="1" Grid.Column="1" x:Name="listTitle" Content="Select a Player to Play" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="62" />
+        <Border  Grid.Row="2" Grid.Column="1" CornerRadius="6" BorderBrush="#947500" Background="#FCD544" BorderThickness="2">
+            <StackPanel Background="#FCD544" Grid.Row="2" Grid.Column="1" MinHeight="350" VerticalAlignment="Center">
+                <ListView Margin="10" Name="lvWaitingPlayers" MouseDoubleClick="ListViewDoubleClick" BorderBrush="#480363" Foreground="#680C8C">
+                    <ListView.View >
+                        <GridView >
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <!-- Set any properties you want to set -->
+                                    <Setter Property="Background" Value="#B879D1" /> 
+                                    <Setter Property="Foreground" Value="#480363" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Height" Value="38" />
+                                    <Setter Property="BorderBrush" Value="#480363" />
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>                            
+                            <GridViewColumn Header="Nick Name" Width="80" DisplayMemberBinding="{Binding NickName}" />
+                            <GridViewColumn Header="Number of Games" Width="130" DisplayMemberBinding="{Binding TotalGames}" />
+                            <GridViewColumn Header="Winnings" Width="80" DisplayMemberBinding="{Binding NumberOfWinnings}"/>
+                            <GridViewColumn Header="Total Score" Width="80" DisplayMemberBinding="{Binding TotalScore}" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding TotalScore}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="0,12,0,12" HorizontalAlignment="Center">
+            <Button x:Name="backButton" Content="back" Width="75" Height="35"  Margin="0,0,0,0" Foreground="#FF680C8C" FontSize="16" Cursor="Hand" FontFamily="rockwell" Click="BackClicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,.65" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FFD6A900" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -43,17 +43,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectPlayer">
+  <xs:element name="SelectPlayerToPlay">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="nickName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectPlayerResponse">
+  <xs:element name="SelectPlayerToPlayResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectPlayerResult" type="q6:OperationStatus" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectPlayerToPlayResult" type="q6:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,6 +85,16 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q8:WaitingPlayerResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatixBoard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q9:MatixBoard" />
+        <xs:element minOccurs="0" name="horizontalNickname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="verticalNickName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q10:GameTurnTypeEnum" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

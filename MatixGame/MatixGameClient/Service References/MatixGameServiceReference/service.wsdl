@@ -58,11 +58,11 @@
   <wsdl:message name="IMatixService_GetWaitingPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetWaitingPlayersResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatixService_SelectPlayer_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectPlayer" />
+  <wsdl:message name="IMatixService_SelectPlayerToPlay_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPlayerToPlay" />
   </wsdl:message>
-  <wsdl:message name="IMatixService_SelectPlayer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectPlayerResponse" />
+  <wsdl:message name="IMatixService_SelectPlayerToPlay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPlayerToPlayResponse" />
   </wsdl:message>
   <wsdl:message name="IMatixService_SetGameAction_InputMessage">
     <wsdl:part name="parameters" element="tns:SetGameAction" />
@@ -75,6 +75,9 @@
   </wsdl:message>
   <wsdl:message name="IMatixService_UpdateWaitingPlayr_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateWaitingPlayr" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_GetMatixBoard_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GetMatixBoard" />
   </wsdl:message>
   <wsdl:message name="IMatixService_UpdateGameAction_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateGameAction" />
@@ -92,9 +95,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetWaitingPlayers" message="tns:IMatixService_GetWaitingPlayers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetWaitingPlayersResponse" message="tns:IMatixService_GetWaitingPlayers_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SelectPlayer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SelectPlayer" message="tns:IMatixService_SelectPlayer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerResponse" message="tns:IMatixService_SelectPlayer_OutputMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SelectPlayerToPlay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerToPlay" message="tns:IMatixService_SelectPlayerToPlay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerToPlayResponse" message="tns:IMatixService_SelectPlayerToPlay_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetGameAction">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SetGameAction" message="tns:IMatixService_SetGameAction_InputMessage" />
@@ -105,6 +108,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayr">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr" message="tns:IMatixService_UpdateWaitingPlayr_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetMatixBoard">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetMatixBoard" message="tns:IMatixService_GetMatixBoard_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateGameAction">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateGameAction" message="tns:IMatixService_UpdateGameAction_OutputCallbackMessage" />
@@ -141,8 +147,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SelectPlayer">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/SelectPlayer" style="document" />
+    <wsdl:operation name="SelectPlayerToPlay">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/SelectPlayerToPlay" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -167,6 +173,12 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateWaitingPlayr">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateWaitingPlayr" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatixBoard">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/GetMatixBoard" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

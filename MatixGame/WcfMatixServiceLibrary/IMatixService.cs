@@ -48,6 +48,15 @@ namespace WcfMatixServiceLibrary
         Rejected
     }
 
+    [DataContract]
+    public enum GameTurnTypeEnum
+    {
+        [EnumMember]
+        HorizontalPlayer,
+        [EnumMember]
+        VerticalPlayer
+    }
+
     /// <summary>
     /// Registration operation result
     /// </summary>

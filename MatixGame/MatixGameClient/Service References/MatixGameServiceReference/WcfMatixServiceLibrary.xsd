@@ -64,4 +64,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="WaitingPlayer" nillable="true" type="tns:WaitingPlayer" />
+  <xs:complexType name="MatixBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MatixCells" nillable="true" type="tns:ArrayOfArrayOfMatixCell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatixBoard" nillable="true" type="tns:MatixBoard" />
+  <xs:complexType name="ArrayOfArrayOfMatixCell">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfMatixCell" nillable="true" type="tns:ArrayOfMatixCell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArrayOfMatixCell" nillable="true" type="tns:ArrayOfArrayOfMatixCell" />
+  <xs:complexType name="ArrayOfMatixCell">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MatixCell" nillable="true" type="tns:MatixCell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMatixCell" nillable="true" type="tns:ArrayOfMatixCell" />
+  <xs:complexType name="MatixCell">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Column" type="xs:int" />
+      <xs:element minOccurs="0" name="Row" type="xs:int" />
+      <xs:element minOccurs="0" name="Token" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatixCell" nillable="true" type="tns:MatixCell" />
+  <xs:simpleType name="GameTurnTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HorizontalPlayer" />
+      <xs:enumeration value="VerticalPlayer" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GameTurnTypeEnum" nillable="true" type="tns:GameTurnTypeEnum" />
 </xs:schema>

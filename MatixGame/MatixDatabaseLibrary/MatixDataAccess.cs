@@ -205,56 +205,70 @@ namespace MatixDatabaseLibrary
         {
             PlayerScoreData playerData = new PlayerScoreData();
 
-            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            try
             {
-                var query = from PlayersHistories in matixData.PlayersHistories
-                            where
-                              PlayersHistories.Player.Email == email
-                            group new { PlayersHistories.Player, PlayersHistories } by new
-                            {
-                                PlayersHistories.Player.NickName
-                            } into g
-                            select new
-                            {
-                                g.Key.NickName,
-                                Games = g.Count(p => p.PlayersHistories.GameId != 0),
-                                Winnings = g.Count(p => p.PlayersHistories.Win == true),
-                                TotalScore = (int?)g.Sum(p => p.PlayersHistories.Score)
-                            };
 
-                foreach (var p in query)
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
-                    playerData.NickName = p.NickName;
-                    playerData.NumberOfWinnings = p.Winnings;
-                    playerData.TotalNumberOfGames = p.Games;
-                    playerData.TotalScore = (int)p.TotalScore;
+                    var query = from PlayersHistories in matixData.PlayersHistories
+                                where
+                                  PlayersHistories.Player.Email == email
+                                group new { PlayersHistories.Player, PlayersHistories } by new
+                                {
+                                    PlayersHistories.Player.NickName
+                                } into g
+                                select new
+                                {
+                                    g.Key.NickName,
+                                    Games = g.Count(p => p.PlayersHistories.GameId != 0),
+                                    Winnings = g.Count(p => p.PlayersHistories.Win == true),
+                                    TotalScore = (int?)g.Sum(p => p.PlayersHistories.Score)
+                                };
+
+                    foreach (var p in query)
+                    {
+                        playerData.NickName = p.NickName;
+                        playerData.NumberOfWinnings = p.Winnings;
+                        playerData.TotalNumberOfGames = p.Games;
+                        playerData.TotalScore = (int)p.TotalScore;
+                    }
                 }
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on GetWaitingPlayerData - {0}", ex);
+                throw new Invalid​Operation​Exception("Get Waiting Player Data operation Failed");
             }
 
             return playerData;
         }
 
-        public bool CreateNewGameTask(string horizontalEmail, string verticalEmail, string boardXml)
+        public bool CreateNewGame(string horizontalEmail, string verticalEmail, string boardXml)
         {
-            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            try
             {
-                long horizontalPlayerId = GetPlayerId(matixData, horizontalEmail);
-                long verticalPlayerId = GetPlayerId(matixData, verticalEmail);
-
-                Game game = new Game
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
-                    CreateTime = DateTime.Now,
-                    HorizontalPlayerId = horizontalPlayerId,
-                    VerticalPlayerId = verticalPlayerId,
-                    CellsMatrix = XElement.Parse(boardXml),
-                };
+                    long horizontalPlayerId = GetPlayerId(matixData, horizontalEmail);
+                    long verticalPlayerId = GetPlayerId(matixData, verticalEmail);
 
-                matixData.Games.InsertOnSubmit(game);
-                matixData.SubmitChanges();
+                    Game game = new Game
+                    {
+                        CreateTime = DateTime.Now,
+                        HorizontalPlayerId = horizontalPlayerId,
+                        VerticalPlayerId = verticalPlayerId,
+                        CellsMatrix = XElement.Parse(boardXml),
+                    };
+
+                    matixData.Games.InsertOnSubmit(game);
+                    matixData.SubmitChanges();
+                }
             }
-
-
-        
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on CreateNewGame - {0}", ex);
+                throw new Invalid​Operation​Exception("Create New Game operation Failed");
+            }
 
             return true;
         }

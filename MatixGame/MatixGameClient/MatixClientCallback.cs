@@ -24,6 +24,15 @@ namespace MatixGameClient
             uiSyncContext = syncContext;
         }
 
+        public void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        {
+            SendOrPostCallback callback = state => SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
+
+
+            SetMatixBoard
+          //  matixBoard.MatixCells
+        }
+
         public void Ping(int value)
         {
             MessageBox.Show("Ping: " + value);

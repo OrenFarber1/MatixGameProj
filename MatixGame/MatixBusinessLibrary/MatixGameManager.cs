@@ -35,6 +35,12 @@ namespace MatixBusinessLibrary
         MatixServiceHost matixHost = null;
 
         /// <summary>
+        /// Reference to the WCF service. Needed to send messages to the players.
+        /// </summary>
+        MatixWcfService matixWcfService = null;
+
+
+        /// <summary>
         /// A list of active users with their emails and nick names 
         /// </summary>
         Dictionary<string, string> userEmailToNickname = null;
@@ -255,8 +261,7 @@ namespace MatixBusinessLibrary
         private void CreateNewGameTask(string firstEmail, string firstNickname, string secondEmail, string secondNickname)
         {
             logger.InfoFormat("CreateNewGameTask firstEmail: {0}, firstNickname: {1}, secondEmail: {2}, secondNickname: {3}", firstEmail, firstNickname, secondEmail, secondNickname);
-
-
+            
             Game game = new Game(firstEmail, firstNickname, secondEmail, secondNickname);
             
             // Add both email addresses as keys for the same game 
@@ -268,22 +273,11 @@ namespace MatixBusinessLibrary
             string horizontalEmail = game.GetHorizontalPlayerEmail();
             string verticalEmail = game.GetVerticalPlayerEmail();
 
-            matixData.CreateNewGameTask(horizontalEmail, verticalEmail, xmlBoard);
-
-            /// Create a task when needed and run the change 
-            /// save the Game in a list and pass it to the task with the change 
-
-            //while (playing)
-            //{
-            //    /// 
+            matixData.CreateNewGame(horizontalEmail, verticalEmail, xmlBoard);
 
 
+     /////       matixWcfService.GetWaitingPlayers()
 
-
-            //    // when game ended set playing flag to false
-            //    // playing = fale;
-
-            //}
 
             logger.Info("CreateNewGameTask - Task ended");
 
@@ -294,6 +288,11 @@ namespace MatixBusinessLibrary
             throw new NotImplementedException();
         }
 
+
+        public void SetMatixWcfService(MatixWcfService matixService)
+        {
+            matixWcfService = matixService;
+        }
 
 
         /// <summary>

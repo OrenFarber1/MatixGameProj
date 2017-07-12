@@ -37,7 +37,7 @@ namespace WcfMatixServiceLibrary
         {
             matixBuisnessInterface = buisnessInterface;
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
-           
+            matixBuisnessInterface.SetMatixWcfService(this);
         }
     
         private string GetUserIpAddress()

@@ -97,5 +97,11 @@ namespace MatixGameClient
                 mainFrame.NavigationService.Navigate(errorPage);
             }
         }
-    }  
+
+        public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        {
+            logger.Info("SetMatixBoard");
+
+        }
+   }  
 }
