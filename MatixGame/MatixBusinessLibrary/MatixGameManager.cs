@@ -87,7 +87,7 @@ namespace MatixBusinessLibrary
             logger.Info("AddPlayer");
             
             // Generate password hash  based on the user password and some salt.           
-            string passwordHash = GetHashString(password + salt);
+            string passwordHash = GetHashString(email + password + salt);
 
             RegistrationResult result = new RegistrationResult();
 
@@ -127,8 +127,8 @@ namespace MatixBusinessLibrary
 
             LoginResult result = new LoginResult();
                       
-            // Generate password hash  based on the user password and some salt.           
-            string passwordHash = GetHashString(password + salt);
+            // Generate password hash based on the user password and some salt.           
+            string passwordHash = GetHashString(email + password + salt);
                        
             // checked the database that user email and password exists 
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))

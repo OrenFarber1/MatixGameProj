@@ -1,4 +1,5 @@
 ﻿using log4net;
+using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,14 @@ namespace MatixGameClient
         {
             WelcomePage welcome = new WelcomePage(service, nickName, email);
             NavigationService.Navigate(welcome);
+        }
+
+        public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        {
+            logger.Info("SetMatixBoard");
+
+          
+
         }
     }
 }

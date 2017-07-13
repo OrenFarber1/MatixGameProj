@@ -9,9 +9,9 @@ IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[
 ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK__GAMES_V_PLAYERID]
 GO
 
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__Games__CreateTim__3B75D760]') AND type = 'D')
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__Games__CreateTim__5629CD9C]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[Games] DROP CONSTRAINT [DF__Games__CreateTim__3B75D760]
+ALTER TABLE [dbo].[Games] DROP CONSTRAINT [DF__Games__CreateTim__5629CD9C]
 END
 
 GO
@@ -19,7 +19,7 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[Games]    Script Date: 05/31/2017 21:28:35 ******/
+/****** Object:  Table [dbo].[Games]    Script Date: 07/12/2017 19:02:40 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Games]') AND type in (N'U'))
 DROP TABLE [dbo].[Games]
 GO
@@ -27,7 +27,7 @@ GO
 USE [MATIX_GAME]
 GO
 
-/****** Object:  Table [dbo].[Games]    Script Date: 05/31/2017 21:28:35 ******/
+/****** Object:  Table [dbo].[Games]    Script Date: 07/12/2017 19:02:40 ******/
 SET ANSI_NULLS ON
 GO
 

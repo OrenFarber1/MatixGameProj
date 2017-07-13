@@ -100,8 +100,13 @@ namespace MatixGameClient
 
         public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
-            logger.Info("SetMatixBoard");
+            logger.InfoFormat("SetMatixBoard horizontalNickname: {0}, verticalNickName: {1}, whoIsStarting: {2} ", horizontalNickname, verticalNickName, whoIsStarting);
 
+            string name = mainFrame.NavigationService.Content.GetType().Name;
+            if (name == "GamePage")
+            {
+                ((GamePage)mainFrame.NavigationService.Content).SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
+            }
         }
    }  
 }
