@@ -19,6 +19,7 @@ namespace MatixBusinessLibrary
         VerticalPlayer
     }
 
+
     /// <summary>
     /// The class Game encapsulates a game properties 
     /// </summary>
@@ -61,17 +62,17 @@ namespace MatixBusinessLibrary
         /// <param name="firstNickname"></param>
         /// <param name="secondEmail"></param>
         /// <param name="secondNickname"></param>
-        public Game(string firstEmail, string firstNickname, string secondEmail, string secondNickname)
+        public Game(string firstEmail, string firstNickname,  PlayerType firstType, string secondEmail, string secondNickname, PlayerType secondType)
         {
             if(GenerateRandomTurn() == GameTurnType.HorizontalPlayer)
             {
-                horisontalPlayer = new Player(firstEmail, firstNickname);
-                verticalPlayer = new Player(secondEmail, secondNickname);
+                horisontalPlayer = new Player(firstEmail, firstNickname, firstType);
+                verticalPlayer = new Player(secondEmail, secondNickname, secondType);
             }
             else
             {
-                horisontalPlayer = new Player(secondEmail, secondNickname);
-                verticalPlayer = new Player(firstEmail, firstNickname);               
+                horisontalPlayer = new Player(secondEmail, secondNickname, secondType);
+                verticalPlayer = new Player(firstEmail, firstNickname, firstType);               
             }
                 
             // Generate a new board
@@ -110,6 +111,16 @@ namespace MatixBusinessLibrary
             return horisontalPlayer.GetEmail();
         }
 
+        public string GetHorizontalNickname()
+        {
+            return horisontalPlayer.GetNickname();
+        }
+
+        public PlayerType GetHorizontalPlayerType()
+        {
+            return horisontalPlayer.GetPlayerType();
+        }
+
         /// <summary>
         /// Get vertical player email
         /// </summary>
@@ -117,6 +128,29 @@ namespace MatixBusinessLibrary
         public string GetVerticalPlayerEmail()
         {
             return verticalPlayer.GetEmail();
+        }
+
+        /// <summary>
+        /// Get vertical players nickname
+        /// </summary>
+        /// <returns></returns>
+        public string GetVerticalPlayerNickname()
+        {
+            return verticalPlayer.GetNickname();
+        }
+
+        public PlayerType GetVerticalPlayerType()
+        {
+            return verticalPlayer.GetPlayerType();
+        }
+
+        /// <summary>
+        /// Get game board
+        /// </summary>
+        /// <returns></returns>
+        public MatixBoard GetMatixBoard()
+        {   
+            return board;
         }
 
         /// <summary>

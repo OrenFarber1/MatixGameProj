@@ -39,15 +39,7 @@ namespace WcfMatixServiceLibrary
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
             matixBuisnessInterface.SetMatixWcfService(this);
         }
-    
-        private string GetUserIpAddress()
-        {
-            OperationContext oOperationContext = OperationContext.Current;
-            MessageProperties oMessageProperties = oOperationContext.IncomingMessageProperties;
-            RemoteEndpointMessageProperty oRemoteEndpointMessageProperty = (RemoteEndpointMessageProperty)oMessageProperties[RemoteEndpointMessageProperty.Name];
-
-             return oRemoteEndpointMessageProperty.Address;
-        }
+        
 
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
@@ -94,6 +86,15 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
+        public OperationStatusnEnum SelectRobotToPlay(string email)
+        {
+            logger.InfoFormat("SelectRobotToPlay email: {0}", email);
+
+            OperationStatusnEnum result = matixBuisnessInterface.StartPlayingWithRobot(email);
+
+            return result;
+        }
+
         public OperationStatusnEnum SetGameAction(string email, int row, int col)
         {
             logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to col: {2}", email, row, col);
@@ -101,6 +102,30 @@ namespace WcfMatixServiceLibrary
             OperationStatusnEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
 
             return OperationStatusnEnum.Success;
+        }
+
+        public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
+        {
+
+            // Get the callback instance
+            IMatixServiceCallback callback = usersCallbackes[playerEmail];
+
+            callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
+
+
+        }
+
+        /// <summary>
+        /// Get player IP address 
+        /// </summary>
+        /// <returns></returns>
+        private string GetUserIpAddress()
+        {
+            OperationContext oOperationContext = OperationContext.Current;
+            MessageProperties oMessageProperties = oOperationContext.IncomingMessageProperties;
+            RemoteEndpointMessageProperty oRemoteEndpointMessageProperty = (RemoteEndpointMessageProperty)oMessageProperties[RemoteEndpointMessageProperty.Name];
+
+            return oRemoteEndpointMessageProperty.Address;
         }
     }
 }

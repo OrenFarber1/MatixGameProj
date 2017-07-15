@@ -18,6 +18,10 @@ namespace WcfMatixServiceLibrary
 
         OperationStatusnEnum StartPlayingWithPlayer(string firstEmail, string nickName);
 
+        OperationStatusnEnum StartPlayingWithRobot(string firstEmail);
+
         OperationStatusnEnum SetGameAction(string email, int row, int col);
+
+      
     }
 }

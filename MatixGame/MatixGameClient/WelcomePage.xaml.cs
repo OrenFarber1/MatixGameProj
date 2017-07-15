@@ -1,4 +1,5 @@
 ﻿using log4net;
+using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,7 +95,11 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void singlePlayerButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("User clicked game");
+            logger.Info("User clicked on singlePlayerButton_Click");
+
+            // Start a new game with the server
+            OperationStatus result = service.SelectRobotToPlay(email);
+
             GamePage page = new GamePage(service, nickName, email);
             NavigationService.Navigate(page);
         }

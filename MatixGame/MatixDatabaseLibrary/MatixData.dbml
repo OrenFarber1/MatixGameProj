@@ -9,20 +9,8 @@
       <Column Name="CellsMatrix" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Game_PlayersHistory" Member="PlayersHistories" ThisKey="GameId" OtherKey="GameId" Type="PlayersHistory" />
       <Association Name="Game_GameActivity" Member="GameActivities" ThisKey="GameId" OtherKey="GameId" Type="GameActivity" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Players" Member="Players">
-    <Type Name="Player">
-      <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NickName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Player_PlayersLogin" Member="PlayersLogins" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersLogin" />
-      <Association Name="Player_PlayersHistory" Member="PlayersHistories" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersHistory" />
-      <Association Name="Player_GameActivity" Member="GameActivities" ThisKey="PlayerId" OtherKey="PlayerId" Type="GameActivity" />
+      <Association Name="Player_Game" Member="Player" ThisKey="HorizontalPlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+      <Association Name="Player_Game1" Member="Player1" ThisKey="VerticalPlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PlayersLogin" Member="PlayersLogins">
@@ -59,6 +47,23 @@
       <Column Name="CellValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Game_GameActivity" Member="Game" ThisKey="GameId" OtherKey="GameId" Type="Game" IsForeignKey="true" />
       <Association Name="Player_GameActivity" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Players" Member="Players">
+    <Type Name="Player">
+      <Column Name="PlayerId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Player_Game" Member="Games" ThisKey="PlayerId" OtherKey="HorizontalPlayerId" Type="Game" />
+      <Association Name="Player_Game1" Member="Games1" ThisKey="PlayerId" OtherKey="VerticalPlayerId" Type="Game" />
+      <Association Name="Player_PlayersLogin" Member="PlayersLogins" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersLogin" />
+      <Association Name="Player_PlayersHistory" Member="PlayersHistories" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayersHistory" />
+      <Association Name="Player_GameActivity" Member="GameActivities" ThisKey="PlayerId" OtherKey="PlayerId" Type="GameActivity" />
     </Type>
   </Table>
 </Database>

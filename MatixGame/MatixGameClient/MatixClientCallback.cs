@@ -1,4 +1,5 @@
-﻿using MatixGameClient.MatixGameServiceReference;
+﻿using log4net;
+using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +16,24 @@ namespace MatixGameClient
        UseSynchronizationContext = false)]
     public  class MatixClientCallback : IMatixServiceCallback
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         // Saves the UI synchronization context
         private SynchronizationContext uiSyncContext = null;
+        private MainWindow ownerWindow = null;
 
 
         public MatixClientCallback(SynchronizationContext syncContext)             
         {
             uiSyncContext = syncContext;
+          //  ownerWindow = owner;
         }
 
         public void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
-
-            MainWindow form = Application.Current.MainWindow as MainWindow;
-
-            SendOrPostCallback callback = (x => form.SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting));
+            logger.InfoFormat("GetMatixBoard horizontalNickname: {0}, verticalNickName: [1}", horizontalNickname, verticalNickName);
+            
+            SendOrPostCallback callback = (x => ownerWindow.SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting));
 
             uiSyncContext.Post(callback, null);
             

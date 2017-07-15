@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace MatixBusinessLibrary
 {
+
+    enum PlayerType
+    {
+        Human,
+        Robot
+    }
+
     class Player
     {
         /// <summary>
@@ -29,12 +36,18 @@ namespace MatixBusinessLibrary
         /// </summary>
         int score;
 
+        /// <summary>
+        /// The player type human or robot
+        /// </summary>
+        PlayerType playerType;
 
-        public Player(string _email, string _nickname)
+
+        public Player(string _email, string _nickname, PlayerType _type)
         {
             email = _email;
             nickname = _nickname;
             score = 0;
+            playerType = _type;
         }
 
         /// <summary>
@@ -64,5 +77,11 @@ namespace MatixBusinessLibrary
         {
             return score;
         }
+
+        public PlayerType GetPlayerType()
+        {
+            return playerType;
+        }
+                
     }
 }

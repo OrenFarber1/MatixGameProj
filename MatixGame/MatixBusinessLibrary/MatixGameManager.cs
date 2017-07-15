@@ -237,13 +237,13 @@ namespace MatixBusinessLibrary
         {
             //  Get second player email         
             string secondEmail;
-            if(usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
+            if(!usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
             {
                 return OperationStatusnEnum.Failure;
             }
 
             string firstNickname;
-            if (userEmailToNickname.TryGetValue(firstEmail, out firstNickname))
+            if (!userEmailToNickname.TryGetValue(firstEmail, out firstNickname))
             {
                 return OperationStatusnEnum.Failure;
             }
@@ -252,32 +252,70 @@ namespace MatixBusinessLibrary
             waitingPlayers.Remove(firstEmail);
             waitingPlayers.Remove(secondEmail);
             
-            Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, secondEmail, secondNickname));
+            Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, secondEmail, secondNickname, PlayerType.Human));
             
-            return OperationStatusnEnum.Success; ;
+            return OperationStatusnEnum.Success; 
         }
-        
 
-        private void CreateNewGameTask(string firstEmail, string firstNickname, string secondEmail, string secondNickname)
+
+        public OperationStatusnEnum StartPlayingWithRobot(string firstEmail)
+        {
+            string firstNickname;
+            if (!userEmailToNickname.TryGetValue(firstEmail, out firstNickname))
+            {
+                return OperationStatusnEnum.Failure;
+            }
+
+            // Remove players from waiting list 
+            waitingPlayers.Remove(firstEmail);
+
+            string botEmail;
+            string botNickname;
+            GetBotDetails(out botEmail, out botNickname);
+
+            Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, botEmail, botNickname, PlayerType.Robot));
+            
+            return OperationStatusnEnum.Success;
+        }
+
+        private void CreateNewGameTask(string firstEmail, string firstNickname, string secondEmail, string secondNickname, PlayerType secondType)
         {
             logger.InfoFormat("CreateNewGameTask firstEmail: {0}, firstNickname: {1}, secondEmail: {2}, secondNickname: {3}", firstEmail, firstNickname, secondEmail, secondNickname);
             
-            Game game = new Game(firstEmail, firstNickname, secondEmail, secondNickname);
+            // Currently the first player is always human 
+            Game game = new Game(firstEmail, firstNickname, PlayerType.Human, secondEmail, secondNickname, secondType);
             
             // Add both email addresses as keys for the same game 
             userEmailToGamel[firstEmail] = game;
-            userEmailToGamel[secondEmail] = game;
+
+            // Add second player only if he is a human 
+            if(secondType == PlayerType.Human)
+                userEmailToGamel[secondEmail] = game;
             
-            // Update the database 
             string xmlBoard = game.GetBoardXml();
             string horizontalEmail = game.GetHorizontalPlayerEmail();
             string verticalEmail = game.GetVerticalPlayerEmail();
-
+           
+            // Save the new created game in the database
             matixData.CreateNewGame(horizontalEmail, verticalEmail, xmlBoard);
 
+            string verticalNickname = game.GetVerticalPlayerNickname();
+            string horizontalNickname = game.GetHorizontalNickname();
 
-     /////       matixWcfService.GetWaitingPlayers()
+            // if players are human they be notify for the game 
+            if (game.GetHorizontalPlayerType() == PlayerType.Human)
+            {
+                matixWcfService.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname, verticalEmail,
+                                                verticalNickname, game.GetMatixBoard(),
+                                                (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
+            }
 
+            if(game.GetVerticalPlayerType() == PlayerType.Human)
+            {
+                matixWcfService.NotifyPlayerOfNewGame(verticalEmail, horizontalNickname, verticalEmail,
+                                               verticalNickname, game.GetMatixBoard(),
+                                               (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
+            }
 
             logger.Info("CreateNewGameTask - Task ended");
 
@@ -320,7 +358,11 @@ namespace MatixBusinessLibrary
             return sb.ToString();
         }
 
-     
-      
+        private void GetBotDetails(out string botEmail, out string botNickname)
+        {
+            botEmail = "m1@matix.com";
+            botNickname = "Matix - 1";
+        }
+
     }
 }

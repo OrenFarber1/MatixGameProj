@@ -28,7 +28,7 @@
                     <Button x:Name="loginButton" Content="Login" Height="45" Width="220" Cursor="Hand" Foreground="#860C8C" Background="#B879D1" FontSize="20" FontFamily="rockwell" Click="loginButton_Click"/>
                 </StackPanel>
                 <StackPanel  Orientation="Vertical" Margin="0, 20, 0, 0" HorizontalAlignment="Center">
-                    <Button x:Name="multyPlayersButton" Content="Multi Players Game" Height="45" Width="220" Cursor="Hand" Foreground="#860C8C" Background="#B879D1" FontSize="20" FontFamily="rockwell"   Click="multiPlayersButton_Click"/>
+                    <Button x:Name="multyPlayersButton" Content="Multi Player Game" Height="45" Width="220" Cursor="Hand" Foreground="#860C8C" Background="#B879D1" FontSize="20" FontFamily="rockwell"   Click="multiPlayersButton_Click"/>
                 </StackPanel>
                 <StackPanel  Orientation="Vertical" Margin="0, 20, 0, 0" HorizontalAlignment="Center">
                     <Button x:Name="singlePlayerButton" Content="Single Player Game" Height="45" Width="220" Cursor="Hand" Foreground="#860C8C" Background="#B879D1" FontSize="20" FontFamily="rockwell" Click="singlePlayerButton_Click"/>

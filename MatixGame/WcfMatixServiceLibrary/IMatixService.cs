@@ -25,7 +25,14 @@ namespace WcfMatixServiceLibrary
         OperationStatusnEnum SelectPlayerToPlay(string email, string nickName);
 
         [OperationContract]
+        OperationStatusnEnum SelectRobotToPlay(string email);
+        
+        [OperationContract]
         OperationStatusnEnum SetGameAction(string email, int row, int col);
+
+        [OperationContract]
+        void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting);
+
     }
 
     /// <summary>

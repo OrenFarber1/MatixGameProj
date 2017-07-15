@@ -659,11 +659,23 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectPlayerToPlay", ReplyAction="http://tempuri.org/IMatixService/SelectPlayerToPlayResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectPlayerToPlayAsync(string email, string nickName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectRobotToPlay", ReplyAction="http://tempuri.org/IMatixService/SelectRobotToPlayResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus SelectRobotToPlay(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SelectRobotToPlay", ReplyAction="http://tempuri.org/IMatixService/SelectRobotToPlayResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectRobotToPlayAsync(string email);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
         MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame", ReplyAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse")]
+        void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame", ReplyAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse")]
+        System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -742,12 +754,28 @@ namespace MatixGameClient.MatixGameServiceReference {
             return base.Channel.SelectPlayerToPlayAsync(email, nickName);
         }
         
+        public MatixGameClient.MatixGameServiceReference.OperationStatus SelectRobotToPlay(string email) {
+            return base.Channel.SelectRobotToPlay(email);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SelectRobotToPlayAsync(string email) {
+            return base.Channel.SelectRobotToPlayAsync(email);
+        }
+        
         public MatixGameClient.MatixGameServiceReference.OperationStatus SetGameAction(string email, int row, int col) {
             return base.Channel.SetGameAction(email, row, col);
         }
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col) {
             return base.Channel.SetGameActionAsync(email, row, col);
+        }
+        
+        public void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting) {
+            base.Channel.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname, verticalEmail, verticalNickname, matixBoard, whoIsStarting);
+        }
+        
+        public System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting) {
+            return base.Channel.NotifyPlayerOfNewGameAsync(horizontalEmail, horizontalNickname, verticalEmail, verticalNickname, matixBoard, whoIsStarting);
         }
     }
 }

@@ -64,11 +64,23 @@
   <wsdl:message name="IMatixService_SelectPlayerToPlay_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectPlayerToPlayResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_SelectRobotToPlay_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectRobotToPlay" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_SelectRobotToPlay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectRobotToPlayResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_SetGameAction_InputMessage">
     <wsdl:part name="parameters" element="tns:SetGameAction" />
   </wsdl:message>
   <wsdl:message name="IMatixService_SetGameAction_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetGameActionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_NotifyPlayerOfNewGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerOfNewGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_NotifyPlayerOfNewGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerOfNewGameResponse" />
   </wsdl:message>
   <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Ping" />
@@ -99,9 +111,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerToPlay" message="tns:IMatixService_SelectPlayerToPlay_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SelectPlayerToPlayResponse" message="tns:IMatixService_SelectPlayerToPlay_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SelectRobotToPlay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SelectRobotToPlay" message="tns:IMatixService_SelectRobotToPlay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SelectRobotToPlayResponse" message="tns:IMatixService_SelectRobotToPlay_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetGameAction">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/SetGameAction" message="tns:IMatixService_SetGameAction_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/SetGameActionResponse" message="tns:IMatixService_SetGameAction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerOfNewGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame" message="tns:IMatixService_NotifyPlayerOfNewGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse" message="tns:IMatixService_NotifyPlayerOfNewGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
@@ -156,8 +176,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectRobotToPlay">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/SelectRobotToPlay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetGameAction">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/SetGameAction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerOfNewGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
