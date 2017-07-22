@@ -31,7 +31,7 @@ namespace WcfMatixServiceLibrary
         OperationStatusnEnum SetGameAction(string email, int row, int col);
 
         [OperationContract]
-        void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting);
+        void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting);
 
     }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MatixGameClient
 {
-    class Cell : INotifyPropertyChanged
+    public class Cell : INotifyPropertyChanged
     {
         /// <summary>
         /// The current cell value 
@@ -33,6 +33,7 @@ namespace MatixGameClient
             set
             {
                 cellValue = value;
+                NotifyPropertyChanged("Value");
             }
         }
 
@@ -45,8 +46,7 @@ namespace MatixGameClient
             set
             {
                 token = value;
-                if (PropertyChanged != null) PropertyChanged(this,
-                  new PropertyChangedEventArgs("Token"));
+                NotifyPropertyChanged("Token");
             }
         }
                
@@ -60,20 +60,26 @@ namespace MatixGameClient
             set
             {
                 used = value;
-                if (PropertyChanged != null) PropertyChanged(this,
-                   new PropertyChangedEventArgs("Used"));
+                NotifyPropertyChanged("Used");
             }
         }
 
-        public Cell(int value)
+        public Cell(int value, bool token)
         {
             this.Value = value;
-            this.Token = false;
+            this.Token = token;
             this.Used = false;
         }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
+
+        protected void NotifyPropertyChanged(string info)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+        }
+
     }
 }

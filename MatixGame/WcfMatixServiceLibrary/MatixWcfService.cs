@@ -101,18 +101,25 @@ namespace WcfMatixServiceLibrary
 
             OperationStatusnEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
 
-            return OperationStatusnEnum.Success;
+            return result;
         }
 
-        public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalEmail, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerEmail"></param>
+        /// <param name="horizontalNickname"></param>
+        /// <param name="verticalEmail"></param>
+        /// <param name="verticalNickname"></param>
+        /// <param name="matixBoard"></param>
+        /// <param name="whoIsStarting"></param>
+        public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
         {
-
             // Get the callback instance
             IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
+            // Send information to the client 
             callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
-
-
         }
 
         /// <summary>

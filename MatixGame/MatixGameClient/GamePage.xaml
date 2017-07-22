@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="525"
       Title="GamePage">
-
     <Grid Background="White">
         <Border >
             <DockPanel >
@@ -35,7 +34,7 @@
                         </Button.Background>
                     </Button>
                 </StackPanel>
-                <xBoard:Board HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
+                <xBoard:Board x:Name="gameBoard"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
             </DockPanel>
         </Border>
     </Grid>

@@ -70,7 +70,7 @@ namespace MatixBusinessLibrary
             userEmailToGamel = new Dictionary<string, Game>();
 
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
-            matixHost.Open();                       
+            matixHost.Open();
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace MatixBusinessLibrary
         public RegistrationResult AddPlayer(string firstName, string lastName, string nickName, string email, string password)
         {
             logger.Info("AddPlayer");
-            
+
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString(email + password + salt);
 
@@ -112,7 +112,7 @@ namespace MatixBusinessLibrary
                 result.Status = OperationStatusnEnum.Failure;
             }
 
-            return result; 
+            return result;
         }
 
         /// <summary>
@@ -126,10 +126,10 @@ namespace MatixBusinessLibrary
             logger.InfoFormat("UserLogin Email: {0}, Pass: {1}, Ip: {2}", email, password, ipAddress);
 
             LoginResult result = new LoginResult();
-                      
+
             // Generate password hash based on the user password and some salt.           
             string passwordHash = GetHashString(email + password + salt);
-                       
+
             // checked the database that user email and password exists 
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
@@ -147,7 +147,7 @@ namespace MatixBusinessLibrary
                     }
 
                     string checkEmail;
-                    if(!usernNiknameToEmail.TryGetValue(nickName, out checkEmail))
+                    if (!usernNiknameToEmail.TryGetValue(nickName, out checkEmail))
                     {
                         usernNiknameToEmail[nickName] = email;
                     }
@@ -155,7 +155,7 @@ namespace MatixBusinessLibrary
                     result.NickName = nickName;
 
                     // Add the player to the waiting list
-                    if(waitingPlayers.Add(email))
+                    if (waitingPlayers.Add(email))
                     {
                         logger.InfoFormat("UserLogin Email: {0} Added to the waiting list.", email);
                     }
@@ -172,16 +172,16 @@ namespace MatixBusinessLibrary
             }
             else
             {
-                if(matixData.IsPlayerEmailExist(email))
+                if (matixData.IsPlayerEmailExist(email))
                 {
-                    result.Status = OperationStatusnEnum.InvalidPassword;                    
+                    result.Status = OperationStatusnEnum.InvalidPassword;
                 }
                 else
                 {
                     result.Status = OperationStatusnEnum.InvalidEmail;
                 }
             }
-                    
+
             return result;
         }
 
@@ -191,7 +191,7 @@ namespace MatixBusinessLibrary
 
             WaitingPlayerResult result = new WaitingPlayerResult();
 
-            foreach(string email in waitingPlayers)
+            foreach (string email in waitingPlayers)
             {
                 if (email == excludedEmail)
                     continue;
@@ -207,7 +207,7 @@ namespace MatixBusinessLibrary
                 result.WaitingPlayerslist.Add(waitingPlayer);
             }
 
-            WaitingPlayer waitingPlayer1 = new WaitingPlayer();          
+            WaitingPlayer waitingPlayer1 = new WaitingPlayer();
             waitingPlayer1.NickName = "Player1";
             waitingPlayer1.TotalGames = 15;
             waitingPlayer1.TotalScore = 85;
@@ -220,7 +220,7 @@ namespace MatixBusinessLibrary
             waitingPlayer1.TotalScore = -6585;
             waitingPlayer1.NumberOfWinnings = 87;
             result.WaitingPlayerslist.Add(waitingPlayer1);
-            
+
             waitingPlayer1 = new WaitingPlayer();
             waitingPlayer1.NickName = "Player__3";
             waitingPlayer1.TotalGames = 25;
@@ -237,7 +237,7 @@ namespace MatixBusinessLibrary
         {
             //  Get second player email         
             string secondEmail;
-            if(!usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
+            if (!usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
             {
                 return OperationStatusnEnum.Failure;
             }
@@ -251,10 +251,10 @@ namespace MatixBusinessLibrary
             // Remove players from waiting list 
             waitingPlayers.Remove(firstEmail);
             waitingPlayers.Remove(secondEmail);
-            
+
             Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, secondEmail, secondNickname, PlayerType.Human));
-            
-            return OperationStatusnEnum.Success; 
+
+            return OperationStatusnEnum.Success;
         }
 
 
@@ -274,28 +274,28 @@ namespace MatixBusinessLibrary
             GetBotDetails(out botEmail, out botNickname);
 
             Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, botEmail, botNickname, PlayerType.Robot));
-            
+
             return OperationStatusnEnum.Success;
         }
 
         private void CreateNewGameTask(string firstEmail, string firstNickname, string secondEmail, string secondNickname, PlayerType secondType)
         {
             logger.InfoFormat("CreateNewGameTask firstEmail: {0}, firstNickname: {1}, secondEmail: {2}, secondNickname: {3}", firstEmail, firstNickname, secondEmail, secondNickname);
-            
+
             // Currently the first player is always human 
             Game game = new Game(firstEmail, firstNickname, PlayerType.Human, secondEmail, secondNickname, secondType);
-            
+
             // Add both email addresses as keys for the same game 
             userEmailToGamel[firstEmail] = game;
 
             // Add second player only if he is a human 
-            if(secondType == PlayerType.Human)
+            if (secondType == PlayerType.Human)
                 userEmailToGamel[secondEmail] = game;
-            
+
             string xmlBoard = game.GetBoardXml();
             string horizontalEmail = game.GetHorizontalPlayerEmail();
             string verticalEmail = game.GetVerticalPlayerEmail();
-           
+
             // Save the new created game in the database
             matixData.CreateNewGame(horizontalEmail, verticalEmail, xmlBoard);
 
@@ -305,14 +305,14 @@ namespace MatixBusinessLibrary
             // if players are human they be notify for the game 
             if (game.GetHorizontalPlayerType() == PlayerType.Human)
             {
-                matixWcfService.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname, verticalEmail,
+                matixWcfService.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname,
                                                 verticalNickname, game.GetMatixBoard(),
                                                 (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
             }
 
-            if(game.GetVerticalPlayerType() == PlayerType.Human)
+            if (game.GetVerticalPlayerType() == PlayerType.Human)
             {
-                matixWcfService.NotifyPlayerOfNewGame(verticalEmail, horizontalNickname, verticalEmail,
+                matixWcfService.NotifyPlayerOfNewGame(verticalEmail, horizontalNickname,
                                                verticalNickname, game.GetMatixBoard(),
                                                (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
             }
@@ -323,7 +323,26 @@ namespace MatixBusinessLibrary
 
         public OperationStatusnEnum SetGameAction(string email, int row, int col)
         {
-            throw new NotImplementedException();
+            Game game;
+
+            if (userEmailToGamel.TryGetValue(email, out game))
+            {
+                try
+                {
+                    int value = game.SetGameAction(row, col);
+
+                    // Update the database 
+
+                    return OperationStatusnEnum.Success;
+                }
+                catch (System.Exception ex)
+                {
+                    logger.ErrorFormat("SetGameAction - Error: {0}", ex);
+                    return OperationStatusnEnum.Failure;
+                }
+            }
+
+            return OperationStatusnEnum.InvalidEmail;
         }
 
 

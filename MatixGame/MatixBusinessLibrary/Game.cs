@@ -153,6 +153,13 @@ namespace MatixBusinessLibrary
             return board;
         }
 
+        public int SetGameAction(int row, int column)
+        {
+            MatixCell c = board.MatixCells[row][column];
+
+            return 0;
+        }
+
         /// <summary>
         /// Get randomly a turn type
         /// </summary>
@@ -173,6 +180,8 @@ namespace MatixBusinessLibrary
             }
         }
 
+
+
         /// <summary>
         /// Generate how's player start the game  
         /// </summary>
@@ -190,6 +199,20 @@ namespace MatixBusinessLibrary
             {
                 currentTurn = GameTurnType.VerticalPlayer;
             }
+        }
+
+        private GameTurnType ChangeCurrentTurn()
+        {
+            if (currentTurn == GameTurnType.VerticalPlayer)
+            {
+                currentTurn = GameTurnType.HorizontalPlayer;
+            }
+            else
+            {
+                currentTurn = GameTurnType.VerticalPlayer;
+            }
+
+            return currentTurn;
         }
 
         /// <summary>

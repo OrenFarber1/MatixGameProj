@@ -22,7 +22,10 @@ namespace MatixGameClient
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    [CallbackBehavior(
+      ConcurrencyMode = ConcurrencyMode.Single,
+      UseSynchronizationContext = true)]
+    public partial class MainWindow : Window, IMatixServiceCallback
     {
         /// <summary>
         /// logger
@@ -32,12 +35,18 @@ namespace MatixGameClient
         /// <summary>
         /// Callback instance 
         /// </summary>
-        private static MatixClientCallback callback = new MatixClientCallback(SynchronizationContext.Current);
-        private MatixGameServiceReference.MatixServiceClient service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(callback), "NetTcpBinding_IMatixService");
+        //   private static MatixClientCallback callback = new MatixClientCallback(SynchronizationContext.Current);
+        // private MatixGameServiceReference.MatixServiceClient service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
-        public MainWindow()
-        { 
+
+        private MatixGameServiceReference.MatixServiceClient service = null;
+
+
+        public MainWindow() 
+         { 
             InitializeComponent();
+
+            service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
             bool showWelcome = false;
 
@@ -108,5 +117,32 @@ namespace MatixGameClient
                 ((GamePage)mainFrame.NavigationService.Content).SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
             }
         }
-   }  
+
+        public void Ping(int value)
+        {
+            MessageBox.Show("Ping: " + value);
+        }
+
+        public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)
+        {
+          //  ((IMatixServiceCallback)callback).UpdateWaitingPlayr(waitingPlayers);
+        }
+
+        public void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        {
+            logger.InfoFormat("GetMatixBoard horizontalNickname: {0}, verticalNickName: {1}", horizontalNickname, verticalNickName);
+
+            SendOrPostCallback callback = (x => SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting));
+
+            SynchronizationContext uiSyncContext = SynchronizationContext.Current;
+
+            uiSyncContext.Post(callback, null);
+
+        }
+
+        public void UpdateGameAction(int row, int col)
+        {
+         ////   ((IMatixServiceCallback)callback).UpdateGameAction(row, col);
+        }
+    }  
 }
