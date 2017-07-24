@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MatixGameClient"
             HorizontalAlignment ="Stretch" HorizontalContentAlignment ="Stretch"
 	VerticalAlignment ="Stretch" VerticalContentAlignment ="Stretch"    
-    MouseLeftButtonDown="BoardMouseLeftButtonDown"           
+    MouseLeftButtonDown="BoardMouseLeftButtonDown"               
 	Width="Auto"
     Height="Auto">
     <UserControl.Resources>
@@ -14,8 +14,10 @@
             <Border x:Name ="Border" BorderBrush ="SteelBlue" BorderThickness ="1" >
                 <TextBlock  Focusable ="False" HorizontalAlignment ="Center" 
                             VerticalAlignment ="Center" FontWeight ="Bold"                            
-                            FontSize ="21" 
+                            FontSize ="21"                             
                             Foreground="#FCD544"
+                            MinHeight="56"
+                            MinWidth="56"
                             Text ="{Binding Path=Value}">
                 </TextBlock>
                 <Border.Style>

@@ -2,7 +2,7 @@
 <useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="7cae9273-a812-4ea6-b27d-5b0bd3247d4d" name="UMLUseCaseDiagram1" linkedPackageId="92b01470-65f0-4b97-aa51-9ad5f999c4cf" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
-      <actor Id="0f069b82-8426-4c5f-911f-1e50ba42c639" name="Actor11" isAbstract="false" isLeaf="false">
+      <actor Id="0f069b82-8426-4c5f-911f-1e50ba42c639" name="Player" isAbstract="false" isLeaf="false">
         <elementDefinition Id="cc25efb2-fca0-468a-91a5-f81ad6523838" />
         <targetEnds>
           <association Id="34948b57-75a4-4ce7-9d79-111e5bf5656d" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Update player information" isLeaf="false" isAbstract="false">
@@ -21,22 +21,6 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="921e1486-a2eb-414b-953a-c79d0ee4357d" />
           </association>
-          <association Id="6c3c4b1f-91b5-4738-b96f-29515021a3d2" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Log in to the game server1" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="d611eb99-c052-47a6-b157-b603a20763d9" LastKnownName="Logged in to the game server" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="6fe96702-1f71-4524-ba31-9db249f8e32e" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="f43dfcef-dd6c-4ba3-8320-f3e6fbd2c451" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="3feff07f-a9dc-458d-8ce0-182846a08250" name="Log in to the game server1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="092d397f-880d-4b4f-bd9b-5753e00b007b" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="f6155e6a-db7f-4bd4-bd35-affa28806848" />
-          </association>
         </targetEnds>
       </actor>
     </useCaseModelRootHasTypes>
@@ -54,14 +38,6 @@
             <elementDefinition Id="9d7122f7-a3b7-4ae6-94bd-8c5094e64a02" />
           </include>
         </additions>
-        <subjects>
-          <subsystemMoniker Id="93e7cc80-523b-4f78-8c42-09456a6ae2fc" LastKnownName="Matix Game1" />
-        </subjects>
-      </useCase>
-    </useCaseModelRootHasTypes>
-    <useCaseModelRootHasTypes>
-      <useCase Id="d611eb99-c052-47a6-b157-b603a20763d9" name="Logged in to the game server" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="28d2a29a-a7d9-48fd-a734-a8b1ac0cf3c1" />
         <subjects>
           <subsystemMoniker Id="93e7cc80-523b-4f78-8c42-09456a6ae2fc" LastKnownName="Matix Game1" />
         </subjects>

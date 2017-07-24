@@ -85,8 +85,8 @@
   <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Ping" />
   </wsdl:message>
-  <wsdl:message name="IMatixService_UpdateWaitingPlayr_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateWaitingPlayr" />
+  <wsdl:message name="IMatixService_UpdateWaitingPlayer_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWaitingPlayer" />
   </wsdl:message>
   <wsdl:message name="IMatixService_GetMatixBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMatixBoard" />
@@ -126,8 +126,8 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayr">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr" message="tns:IMatixService_UpdateWaitingPlayr_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayer">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayer" message="tns:IMatixService_UpdateWaitingPlayer_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetMatixBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetMatixBoard" message="tns:IMatixService_GetMatixBoard_OutputCallbackMessage" />
@@ -209,8 +209,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateWaitingPlayr">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateWaitingPlayr" style="document" />
+    <wsdl:operation name="UpdateWaitingPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateWaitingPlayer" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -34,32 +34,38 @@ namespace MatixGameClient
         /// Use to accumulated the user selected cell values  
         /// </summary>
         private int firstPlayerScoreValue = 0;
-             
-     
+
+
         public delegate void SetBoardDelegate(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirection);
 
         /// <summary>
         /// Delegate to user control
         /// </summary>
         public SetBoardDelegate setBoard = null;
-        
+
         public delegate void SetTokenDelegate(int row, int column);
-        
+
         /// <summary>
         /// Delegate to user control
         /// </summary>
         public SetTokenDelegate setToken = null;
 
-        
+        string myContentMessage;
+        string othercontentMessage;
+
+        PlayingDirectionEnum currentTurn = PlayingDirectionEnum.Vertical;
+        PlayingDirectionEnum myDirection = PlayingDirectionEnum.Vertical;
+
+
         public GamePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             nickName = _nickName;
             email = _email;
             service = _service;
-            loginName.Content = "Hi " + _nickName;            
+            loginName.Content = "Hi " + _nickName;
         }
-        
+
         /// <summary>
         /// Back to the Welcome page
         /// </summary>
@@ -75,9 +81,17 @@ namespace MatixGameClient
         {
             logger.Info("SetMatixBoard");
 
-            PlayingDirectionEnum direction = PlayingDirectionEnum.Vertical;
-            PlayingDirectionEnum myDirection = PlayingDirectionEnum.Vertical;
-            
+            StringBuilder myContent = new StringBuilder();
+            StringBuilder otherContent = new StringBuilder();
+
+            myContent.Append("Hi ");
+            myContent.Append(nickName);
+            myContent.Append(": Its your turn to play ");
+
+            otherContent.Append("Hi ");
+            otherContent.Append(nickName);
+
+
             // Nickname is the name of the current client player
             if (nickName == horizontalNickname)
             {
@@ -85,30 +99,56 @@ namespace MatixGameClient
                 secondPlayer.Content = verticalNickName;
 
                 myDirection = PlayingDirectionEnum.Horizontal;
+                myContent.Append("horizontally");
+
+                otherContent.Append(": Its ");
+                otherContent.Append(verticalNickName);
+                otherContent.Append(" turn to play vertically");
 
                 if (whoIsStarting == GameTurnTypeEnum.HorizontalPlayer)
                 {
-                    direction = PlayingDirectionEnum.Horizontal;                    
+                    currentTurn = PlayingDirectionEnum.Horizontal;
                 }
             }
             else
             {
                 firstPlayer.Content = verticalNickName;
                 secondPlayer.Content = horizontalNickname;
-                
+                myContent.Append("vertically");
+
+                otherContent.Append(": Its ");
+                otherContent.Append(horizontalNickname);
+                otherContent.Append(" turn to play horizontally");
+
                 if (whoIsStarting == GameTurnTypeEnum.HorizontalPlayer)
                 {
-                    direction = PlayingDirectionEnum.Horizontal;                  
+                    currentTurn = PlayingDirectionEnum.Horizontal;
                 }
+            }
+
+            // Save the messages for later use 
+            myContentMessage = myContent.ToString();
+            othercontentMessage = otherContent.ToString();
+
+            if (currentTurn == myDirection)
+            {
+                loginName.Content = myContentMessage;
+            }
+            else
+            {
+                loginName.Content = othercontentMessage;
             }
 
             firstPlayerScore.Content = 0;
             secondPlayerScore.Content = 0;
-                        
+
+            // Hide the progress control 
+            progress.Visibility = Visibility.Hidden;
+
             if (setBoard != null)
-            {   
+            {
                 // Call the delegate to update the user control
-                setBoard(matixBoard, direction, myDirection);
+                setBoard(matixBoard, currentTurn, myDirection);
             }
         }
 
@@ -133,7 +173,16 @@ namespace MatixGameClient
                 logger.Error("UpdateMatixBoard setToken delegate is null");
             }
 
+            if (currentTurn == myDirection)
+            {
+                loginName.Content = myContentMessage;
+            }
+            else
+            {
+                loginName.Content = othercontentMessage;
+            }
 
+            ChangeCurrentDirection();
         }
 
         /// <summary>
@@ -151,7 +200,33 @@ namespace MatixGameClient
             // Update the label
             firstPlayerScore.Content = firstPlayerScoreValue;
 
+            // change the current turn
+            ChangeCurrentDirection();
+
             service.SetGameAction(email, row, column);
+
         }
+
+        private void ChangeCurrentDirection()
+        {
+            if (currentTurn == PlayingDirectionEnum.Vertical)
+            {
+                currentTurn = PlayingDirectionEnum.Horizontal;
+            }
+            else
+            {
+                currentTurn = PlayingDirectionEnum.Vertical;
+            }
+
+            if (currentTurn == myDirection)
+            {
+                loginName.Content = myContentMessage;
+            }
+            else
+            {
+                loginName.Content = othercontentMessage;
+            }
+        }
+
     }
 }

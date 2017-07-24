@@ -2,12 +2,12 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"     
       xmlns:xBoard="clr-namespace:MatixGameClient"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="525"
       Title="GamePage">
-    <Grid Background="White">
+    <Grid Background="White"  Grid.ZIndex="1">
         <Border >
             <DockPanel >
                 <StackPanel DockPanel.Dock ="top">
@@ -15,11 +15,11 @@
                     <Label x:Name="welcomeTitle" Content="Playing Matix Game" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="62" />
                 </StackPanel>
                 <StackPanel DockPanel.Dock ="Left">
-                    <Label x:Name ="firstPlayer" Content="First Nick"  Margin="12,12,12,12" Height="36" MinWidth="65"  FontSize="18" FontFamily="rockwell" Foreground="#680C8C"/>
+                    <Label x:Name ="firstPlayer" Content="First Nick"  Margin="25,12,12,12" Height="36" MinWidth="95"  FontSize="18" FontFamily="rockwell" Foreground="#680C8C"/>
                     <Label x:Name ="firstPlayerScore" Content="12345" HorizontalAlignment="Center" Height="36" MinWidth="65" FontSize="18" FontFamily="rockwell" Foreground="#680C8C"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock ="right">
-                    <Label x:Name ="secondPlayer" Content="Second Nick" Margin="12,12,12,12" Height="36" MinWidth="65" FontSize="18" FontFamily="rockwell" Foreground="#680C8C" />
+                    <Label x:Name ="secondPlayer" Content="Second Nick" Margin="12,12,25,12" Height="36" MinWidth="95" FontSize="18" FontFamily="rockwell" Foreground="#680C8C" />
                     <Label x:Name ="secondPlayerScore" Content="-12345" HorizontalAlignment="Center" Height="36" MinWidth="65" FontSize="18" FontFamily="rockwell" Foreground="#680C8C" />
                 </StackPanel>
                 <StackPanel DockPanel.Dock ="Bottom">
@@ -34,7 +34,10 @@
                         </Button.Background>
                     </Button>
                 </StackPanel>
-                <xBoard:Board x:Name="gameBoard"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
+                <Grid >
+                    <xBoard:Board x:Name="gameBoard"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20"/>
+                    <xBoard:CircularProgressBar x:Name="progress" HorizontalAlignment="Center" />
+                </Grid>                
             </DockPanel>
         </Border>
     </Grid>

@@ -122,6 +122,15 @@ namespace WcfMatixServiceLibrary
             callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
         }
 
+        public void NotifyPlayerOfGameAction(string playerEmail, int row, int column, int value)
+        {
+            // Get the callback instance
+            IMatixServiceCallback callback = usersCallbackes[playerEmail];
+
+            // Send information to the client 
+            callback.UpdateGameAction(row, column, value);
+        }
+
         /// <summary>
         /// Get player IP address 
         /// </summary>

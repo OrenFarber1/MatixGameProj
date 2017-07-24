@@ -17,13 +17,13 @@ namespace WcfMatixServiceLibrary
         void Ping(int value);
 
         [OperationContract(IsOneWay = true)]
-        void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers);
+        void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers);
 
         [OperationContract(IsOneWay = true)]
         void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting);
 
         [OperationContract(IsOneWay = true)]
-        void UpdateGameAction(int row, int col);
+        void UpdateGameAction(int row, int col, int score);
         
     }
 }

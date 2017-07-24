@@ -165,35 +165,38 @@ namespace MatixGameClient
             logger.InfoFormat("BoardMouseLeftButtonDown ClickCount: {0}", e.ClickCount);
             
             // Check if the user double clicked and its turn  
-            if (e.ClickCount == 2 && currentPlayingDirection == myPlayingDirection)
+            if (e.ClickCount == 2)
             {
-                logger.Info("BoardMouseLeftButtonDown DoubleClickCount");
+                if (currentPlayingDirection == myPlayingDirection)
+                {
+                    logger.Info("BoardMouseLeftButtonDown DoubleClickCount");
 
-                Point p = e.GetPosition(BoardControl);
+                    Point p = e.GetPosition(BoardControl);
 
-                double rowH = ActualHeight / 8;
-                double colW = ActualWidth / 8;
+                    double rowH = ActualHeight / 8;
+                    double colW = ActualWidth / 8;
 
-                int col = (int)(p.X / colW);
-                int row = (int)(p.Y / rowH);
+                    int col = (int)(p.X / colW);
+                    int row = (int)(p.Y / rowH);
 
-                logger.InfoFormat("BoardMouseLeftButtonDown on col: {0}, row: {1}", col, row);
+                    logger.InfoFormat("BoardMouseLeftButtonDown on col: {0}, row: {1}", col, row);
 
-                Cell cCurrent = boardCells.GetCell(currentTokenRow, currentTokenCol);
-                cCurrent.Used = true;
-                cCurrent.Token = false;
+                    Cell cCurrent = boardCells.GetCell(currentTokenRow, currentTokenCol);
+                    cCurrent.Used = true;
+                    cCurrent.Token = false;
 
-                Cell c = boardCells.GetCell(row, col);
-                c.Token = true;
+                    Cell c = boardCells.GetCell(row, col);
+                    c.Token = true;
 
-                currentTokenRow = row;
-                currentTokenCol = col;
+                    currentTokenRow = row;
+                    currentTokenCol = col;
 
-                // Change the direction so we block the user from clicking
-                CahngeCurrentTurn();
+                    // Change the direction so we block the user from clicking
+                    CahngeCurrentTurn();
 
-                // Update the server of the change 
-                parentPage.UpdateMatixServer(row, col, c.Value);
+                    // Update the server of the change 
+                    parentPage.UpdateMatixServer(row, col, c.Value);
+                }
             }
         }
 

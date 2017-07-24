@@ -68,9 +68,15 @@ namespace MatixBusinessLibrary
             return nickname;
         }
 
-        public void UpdateScore(int value)
+        /// <summary>
+        /// Update the player score 
+        /// </summary>
+        /// <param name="value">The value to add (can be negativ)</param>
+        /// <returns>The new player score </returns>
+        public int UpdateScore(int value)
         {
             score += value;
+            return score;
         }
 
         public int GetScore()

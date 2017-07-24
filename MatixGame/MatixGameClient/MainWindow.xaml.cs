@@ -28,7 +28,7 @@ namespace MatixGameClient
     public partial class MainWindow : Window, IMatixServiceCallback
     {
         /// <summary>
-        /// logger
+        /// logger instance of the class 
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -38,7 +38,7 @@ namespace MatixGameClient
         //   private static MatixClientCallback callback = new MatixClientCallback(SynchronizationContext.Current);
         // private MatixGameServiceReference.MatixServiceClient service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
-
+                  
         private MatixGameServiceReference.MatixServiceClient service = null;
 
 
@@ -103,7 +103,7 @@ namespace MatixGameClient
             {
                 string message = "Failed to connect to server!" + Environment.NewLine + "Try to connect later.";
                 ErrorPage errorPage = new ErrorPage(message);
-                mainFrame.NavigationService.Navigate(errorPage);
+                mainFrame.NavigationService.Navigate(errorPage);                
             }
         }
 
@@ -123,7 +123,7 @@ namespace MatixGameClient
             MessageBox.Show("Ping: " + value);
         }
 
-        public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)
+        public void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers)
         {
           //  ((IMatixServiceCallback)callback).UpdateWaitingPlayr(waitingPlayers);
         }
@@ -140,9 +140,15 @@ namespace MatixGameClient
 
         }
 
-        public void UpdateGameAction(int row, int col)
+        public void UpdateGameAction(int row, int col, int score)
         {
-         ////   ((IMatixServiceCallback)callback).UpdateGameAction(row, col);
+            logger.InfoFormat("UpdateGameAction - row: {0}, col: {1}, score: {2}", row, col, score);
+
+            string name = mainFrame.NavigationService.Content.GetType().Name;
+            if (name == "GamePage")
+            {
+                ((GamePage)mainFrame.NavigationService.Content).UpdateMatixBoard(row, col, score);
+            }            
         }
     }  
 }

@@ -278,6 +278,14 @@ namespace MatixBusinessLibrary
             return OperationStatusnEnum.Success;
         }
 
+        /// <summary>
+        /// Create a new game as a separate task
+        /// </summary>
+        /// <param name="firstEmail"></param>
+        /// <param name="firstNickname"></param>
+        /// <param name="secondEmail"></param>
+        /// <param name="secondNickname"></param>
+        /// <param name="secondType"></param>
         private void CreateNewGameTask(string firstEmail, string firstNickname, string secondEmail, string secondNickname, PlayerType secondType)
         {
             logger.InfoFormat("CreateNewGameTask firstEmail: {0}, firstNickname: {1}, secondEmail: {2}, secondNickname: {3}", firstEmail, firstNickname, secondEmail, secondNickname);
@@ -302,7 +310,7 @@ namespace MatixBusinessLibrary
             string verticalNickname = game.GetVerticalPlayerNickname();
             string horizontalNickname = game.GetHorizontalNickname();
 
-            // if players are human they be notify for the game 
+            // if players are human they should be notify 
             if (game.GetHorizontalPlayerType() == PlayerType.Human)
             {
                 matixWcfService.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname,
@@ -323,15 +331,19 @@ namespace MatixBusinessLibrary
 
         public OperationStatusnEnum SetGameAction(string email, int row, int col)
         {
-            Game game;
+            logger.InfoFormat("SetGameAction email: {0}, row: {1}, col: {2}", email, row, col);
 
+            Game game;
             if (userEmailToGamel.TryGetValue(email, out game))
             {
                 try
                 {
-                    int value = game.SetGameAction(row, col);
+                    int score = game.SetGameAction(email, row, col);
 
-                    // Update the database 
+                    // After update change the turn to the other player
+                    GameTurnType turn = game.ChangeCurrentTurn();
+                    
+                    Task.Run(() => SetGameActionTask(email, game, turn, row, col, score));                    
 
                     return OperationStatusnEnum.Success;
                 }
@@ -350,6 +362,39 @@ namespace MatixBusinessLibrary
         {
             matixWcfService = matixService;
         }
+
+
+        private void SetGameActionTask(string firstEmail, Game game, GameTurnType turn, int row, int col, int score)
+        {
+            // Update database - use the firstEmail for that update ....
+            /// .....
+            /// 
+
+            PlayerType playerType;
+            string otherEmail;
+            if (turn == GameTurnType.HorizontalPlayer)
+            {
+                otherEmail = game.GetHorizontalPlayerEmail();
+                playerType = game.GetHorizontalPlayerType();
+            }
+            else
+            {
+                otherEmail = game.GetVerticalPlayerEmail();
+                playerType = game.GetVerticalPlayerType();
+            }
+
+            if (playerType == PlayerType.Human)
+            {
+                // Notify the second player 
+                matixWcfService.NotifyPlayerOfGameAction(otherEmail, row, col, score);
+            }
+            else
+            {
+                // Generate game action !!!
+            }
+
+        }
+
 
 
         /// <summary>

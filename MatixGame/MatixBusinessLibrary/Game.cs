@@ -51,12 +51,18 @@ namespace MatixBusinessLibrary
         MatixBoard board;
 
         /// <summary>
+        /// Reference to the current token cell.  
+        /// </summary>
+        MatixCell currentToken;
+
+        /// <summary>
         /// 
         /// </summary>
         Random random = new Random();
 
         /// <summary>
-        /// Construct a game
+        /// Construct a game and choose randomly who is the horizontal and vertical players and who should start the game 
+        /// in case the second player is a robot the first one will start the game
         /// </summary>
         /// <param name="firstEmail"></param>
         /// <param name="firstNickname"></param>
@@ -68,18 +74,31 @@ namespace MatixBusinessLibrary
             {
                 horisontalPlayer = new Player(firstEmail, firstNickname, firstType);
                 verticalPlayer = new Player(secondEmail, secondNickname, secondType);
+                
+                if(secondType == PlayerType.Robot)
+                {
+                    currentTurn = GameTurnType.HorizontalPlayer;
+                }
             }
             else
             {
                 horisontalPlayer = new Player(secondEmail, secondNickname, secondType);
-                verticalPlayer = new Player(firstEmail, firstNickname, firstType);               
-            }
-                
-            // Generate a new board
-            board = GenerateNewBoard();
+                verticalPlayer = new Player(firstEmail, firstNickname, firstType);
 
-            // Set who starts the game
-            SetGenerateedRandomTurn();
+                if (secondType == PlayerType.Robot)
+                {
+                    currentTurn = GameTurnType.VerticalPlayer;
+                }
+            }
+            
+            // Generate a new board
+            board = GenerateNewBoard(out currentToken);
+
+            if (secondType == PlayerType.Human)
+            {
+                // Set who starts the game
+                SetWhoStartsTheGameRandomly();
+            }
         }
 
         /// <summary>
@@ -153,11 +172,49 @@ namespace MatixBusinessLibrary
             return board;
         }
 
-        public int SetGameAction(int row, int column)
-        {
+        public int SetGameAction(string email, int row, int column)
+        {        
+
+            // Validate user and directions 
+            if(currentTurn == GameTurnType.HorizontalPlayer)
+            {
+                if(GetHorizontalPlayerEmail() != email || currentToken.Row != row)
+                {
+                    logger.ErrorFormat("SetGameAction Error - email: {0}, row: {1}, column: {2}", email, row, column);
+                    throw new Invalid​Operation​Exception("invalid Set Game Action");
+                }
+
+                
+            }
+            else if (currentTurn == GameTurnType.VerticalPlayer)
+            {                
+                if (GetVerticalPlayerEmail() != email || currentToken.Column != column)
+                {
+                    logger.ErrorFormat("SetGameAction Error - email: {0}, row: {1}, column: {2}", email, row, column);
+                    throw new Invalid​Operation​Exception("invalid Set Game Action");
+                }
+            }
+
+            // It is valid so get the cell
             MatixCell c = board.MatixCells[row][column];
 
-            return 0;
+            // Set the new token
+            currentToken.Token = false;
+            c.Token = true;
+            currentToken = c;
+
+            int score = 0;
+            if (currentTurn == GameTurnType.HorizontalPlayer)
+            {
+                score = horisontalPlayer.UpdateScore(currentToken.Value);
+            }
+            else if (currentTurn == GameTurnType.VerticalPlayer)
+            {
+                score = verticalPlayer.UpdateScore(currentToken.Value);
+            }
+
+            // Return the cell value
+            return score;
         }
 
         /// <summary>
@@ -185,11 +242,11 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Generate how's player start the game  
         /// </summary>
-        private void SetGenerateedRandomTurn()
-        {          
+        private void SetWhoStartsTheGameRandomly()
+        {         
             int value = random.Next(0, 10);
 
-            logger.InfoFormat("SetGenerateedRandomTurn generated value: {0}", value);
+            logger.InfoFormat("SetWhoStartsTheGameRandomly generated value: {0}", value);
 
             if (value % 2 != 0)
             {
@@ -201,7 +258,7 @@ namespace MatixBusinessLibrary
             }
         }
 
-        private GameTurnType ChangeCurrentTurn()
+        public GameTurnType ChangeCurrentTurn()
         {
             if (currentTurn == GameTurnType.VerticalPlayer)
             {
@@ -219,11 +276,14 @@ namespace MatixBusinessLibrary
         /// Generate a random board
         /// </summary>
         /// <returns>The new generated board</returns>
-        private MatixBoard GenerateNewBoard()
+        private MatixBoard GenerateNewBoard(out MatixCell currentToken)
         {
             const int BOARD_SIZE = 8;
             MatixBoard board = new MatixBoard();
             Random randNum = new Random();
+
+            // Clear it 
+            currentToken = null;
 
             int tokenIndex = randNum.Next(0, BOARD_SIZE * BOARD_SIZE);
             int cellCounter = 0;
@@ -240,9 +300,16 @@ namespace MatixBusinessLibrary
                     c.Value = randNum.Next(-15, 15 + 1);
 
                     if (cellCounter == tokenIndex)
+                    {
                         c.Token = true;
+
+                        // Save the current token 
+                        currentToken = c;
+                    }
                     else
+                    {
                         c.Token = false;
+                    }
 
                     cellCounter++;
                     columns.Add(c);

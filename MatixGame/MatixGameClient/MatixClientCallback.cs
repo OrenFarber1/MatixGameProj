@@ -44,12 +44,16 @@ namespace MatixGameClient
             MessageBox.Show("Ping: " + value);
         }
 
-        public void UpdateGameAction(int row, int col)
+        public void UpdateGameAction(int row, int col, int score)
         {
-            throw new NotImplementedException();
+            logger.InfoFormat("UpdateGameAction - row: {0}, col: {1}, score: {2}", row, col, score);
+
+            SendOrPostCallback callback = (x => ownerWindow.UpdateGameAction(row, col, score));
+
+            uiSyncContext.Post(callback, null);            
         }
 
-        public void UpdateWaitingPlayr(WaitingPlayerResult waitingPlayers)
+        public void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers)
         {
             // The UI thread won't be handling the callback, but it is the only one allowed to update the controls.  
             // So, we will dispatch the UI update back to the UI sync context.

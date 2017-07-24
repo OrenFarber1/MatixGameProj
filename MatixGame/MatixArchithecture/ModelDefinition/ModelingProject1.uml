@@ -6,7 +6,7 @@
   <ownedCommentsInternal>
     <comment
       Id="f6436b5e-e0d7-450b-8b54-e4e7b71815c4">
-      <body>On first time the player enter the system</body>
+      <body>On the first time the player enter the system</body>
       <annotatedElements>
         <useCaseMoniker
           Id="81a17a98-a455-4236-ae61-624e0f49acf8"
@@ -2850,7 +2850,7 @@
     <packageHasNamedElement>
       <actor
         Id="95527fea-228e-4b03-b994-5e9062993b16"
-        name="Actor1"
+        name="Player"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -2941,6 +2941,15 @@
         name="Update player information"
         isAbstract="false"
         isLeaf="false">
+        <additions>
+          <include
+            Id="9939aba0-558c-4bed-a209-5743a09641f6">
+            <useCaseMoniker
+              Id="c7a97324-dcde-4237-9c73-3733275181fd"
+              LastKnownName="Update Database"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
         <subjects>
           <subsystemMoniker
             Id="3ffedec0-4ad6-44f7-8c41-6453d4015a7a"
@@ -3298,14 +3307,7 @@
         Id="a85be308-1d7c-44bd-9094-c3e982da9280"
         name="Log in to the game server"
         isAbstract="false"
-        isLeaf="false">
-        <subjects>
-          <subsystemMoniker
-            Id="3ffedec0-4ad6-44f7-8c41-6453d4015a7a"
-            LastKnownName="Matix Game"
-            LastKnownLocation="ModelingProject1.uml" />
-        </subjects>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <actor
@@ -3317,7 +3319,7 @@
     <packageHasNamedElement>
       <actor
         Id="cc25efb2-fca0-468a-91a5-f81ad6523838"
-        name="Actor11"
+        name="Player"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -3438,14 +3440,7 @@
         Id="28d2a29a-a7d9-48fd-a734-a8b1ac0cf3c1"
         name="Logged in to the game server"
         isAbstract="false"
-        isLeaf="false">
-        <subjects>
-          <subsystemMoniker
-            Id="95a31c0f-5ea9-4e52-be43-5873ef82374c"
-            LastKnownName="Matix Game1"
-            LastKnownLocation="ModelingProject1.uml" />
-        </subjects>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -3477,7 +3472,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="e28e0ff6-ab2c-4f75-89c4-4896c67a73ce"
-              LastKnownName="Move Chip  Hirizentally"
+              LastKnownName="Move token"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -3570,7 +3565,7 @@
     <packageHasNamedElement>
       <useCase
         Id="e28e0ff6-ab2c-4f75-89c4-4896c67a73ce"
-        name="Move Chip  Hirizentally"
+        name="Move token"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -3578,7 +3573,7 @@
             Id="73323d8a-2839-493d-88ca-501075033d9e">
             <useCaseMoniker
               Id="7e6a2ec0-83ee-4c1e-bb22-9df4a41c4941"
-              LastKnownName="Update Board &amp; Score1"
+              LastKnownName="Update Board &amp; Score"
               LastKnownLocation="ModelingProject1.uml" />
           </include>
         </additions>
@@ -3601,7 +3596,7 @@
             Id="bfd1906c-1347-48c7-addb-2c2498f25ee6">
             <useCaseMoniker
               Id="7e6a2ec0-83ee-4c1e-bb22-9df4a41c4941"
-              LastKnownName="Update Board &amp; Score1"
+              LastKnownName="Update Board &amp; Score"
               LastKnownLocation="ModelingProject1.uml" />
           </include>
         </additions>
@@ -3616,7 +3611,7 @@
     <packageHasNamedElement>
       <useCase
         Id="7e6a2ec0-83ee-4c1e-bb22-9df4a41c4941"
-        name="Update Board &amp; Score1"
+        name="Update Board &amp; Score"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -3624,14 +3619,14 @@
             Id="79971ba1-0bfb-4bdc-b573-2f83c41735c2">
             <useCaseMoniker
               Id="5eebe89d-b61b-46d5-bca2-c0bd348fb6ef"
-              LastKnownName="Update Database1"
+              LastKnownName="Update Database"
               LastKnownLocation="ModelingProject1.uml" />
           </include>
           <include
-            Id="48620fcd-4625-4782-be21-fd94bf21ddb5">
+            Id="d8ab96a0-d372-42e7-abde-dfa659c1fe28">
             <useCaseMoniker
               Id="daa964b6-a8fe-4753-8bea-21490ac5587a"
-              LastKnownName="Update Clients1"
+              LastKnownName="Update Client"
               LastKnownLocation="ModelingProject1.uml" />
           </include>
         </additions>
@@ -3646,7 +3641,7 @@
     <packageHasNamedElement>
       <useCase
         Id="5eebe89d-b61b-46d5-bca2-c0bd348fb6ef"
-        name="Update Database1"
+        name="Update Database"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -3660,7 +3655,7 @@
     <packageHasNamedElement>
       <useCase
         Id="daa964b6-a8fe-4753-8bea-21490ac5587a"
-        name="Update Clients1"
+        name="Update Client"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -8832,6 +8827,20 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c7a97324-dcde-4237-9c73-3733275181fd"
+        name="Update Database"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="3ffedec0-4ad6-44f7-8c41-6453d4015a7a"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

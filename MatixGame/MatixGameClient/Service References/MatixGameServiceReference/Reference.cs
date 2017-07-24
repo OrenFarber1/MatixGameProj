@@ -684,14 +684,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/Ping")]
         void Ping(int value);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayr")]
-        void UpdateWaitingPlayr(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayer")]
+        void UpdateWaitingPlayer(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/GetMatixBoard")]
         void GetMatixBoard(MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, string horizontalNickname, string verticalNickName, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameAction")]
-        void UpdateGameAction(int row, int col);
+        void UpdateGameAction(int row, int col, int score);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

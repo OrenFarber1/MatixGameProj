@@ -111,7 +111,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateWaitingPlayr">
+  <xs:element name="UpdateWaitingPlayer">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q11:WaitingPlayerResult" />
@@ -133,6 +133,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="row" type="xs:int" />
         <xs:element minOccurs="0" name="col" type="xs:int" />
+        <xs:element minOccurs="0" name="score" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
