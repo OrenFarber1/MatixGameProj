@@ -52,7 +52,9 @@ namespace WcfMatixServiceLibrary
         [EnumMember]
         OperationtimeOut,
         [EnumMember]
-        Rejected
+        Rejected,
+        [EnumMember]
+        InvalidAction
     }
 
     [DataContract]
@@ -307,6 +309,26 @@ namespace WcfMatixServiceLibrary
         int column;
         int value;
         bool token;
+        bool used;
+
+
+        public MatixCell()
+        {
+            row = -1;
+            column = -1;
+            value = 0;
+            token = false;
+            used = false;
+        }
+
+        public MatixCell(MatixCell other)
+        {
+            row = other.row;
+            column = other.column;
+            value = other.value;
+            token = other.token;
+            used = other.used;
+        }
 
         /// <summary>
         /// Cell row index
@@ -348,6 +370,15 @@ namespace WcfMatixServiceLibrary
             set { token = value; }
         }
 
+        /// <summary>
+        /// A flag indicate whether the cell is already used
+        /// </summary>
+        [DataMember]
+        public bool Used
+        {
+            get { return used; }
+            set { used = value; }
+        }
     }
 
     /// <summary>

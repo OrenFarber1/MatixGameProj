@@ -31,6 +31,11 @@ namespace MatixBusinessLibrary
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
+        /// The size ...
+        /// </summary>
+        const int BOARD_SIZE = 8;
+
+        /// <summary>
         /// The horizontal player
         /// </summary>
         private Player horisontalPlayer;
@@ -59,6 +64,11 @@ namespace MatixBusinessLibrary
         /// 
         /// </summary>
         Random random = new Random();
+
+        /// <summary>
+        /// The id of the game in the database so we can use it for updates
+        /// </summary>
+        long gameDatabaseId = -1;
 
         /// <summary>
         /// Construct a game and choose randomly who is the horizontal and vertical players and who should start the game 
@@ -121,6 +131,11 @@ namespace MatixBusinessLibrary
             return currentTurn;
         }
 
+        public MatixCell GetCurrentToken()
+        {
+            return currentToken;
+        }
+
         /// <summary>
         /// Get horizontal player email
         /// </summary>
@@ -172,27 +187,51 @@ namespace MatixBusinessLibrary
             return board;
         }
 
+        public long GameId
+        {
+            get
+            {
+                return gameDatabaseId;
+            }
+            set
+            {
+                gameDatabaseId = value;              
+            }
+        }
+        
+        /// <summary>
+        /// Update the game with the player move on the board 
+        /// </summary>
+        /// <param name="email">The player's email</param>
+        /// <param name="row">The selected token row index</param>
+        /// <param name="column">the selected token column index</param>
+        /// <returns>The player updated score</returns>
         public int SetGameAction(string email, int row, int column)
-        {        
+        {
+            logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2}", email, row, column);
 
             // Validate user and directions 
-            if(currentTurn == GameTurnType.HorizontalPlayer)
+            if (currentTurn == GameTurnType.HorizontalPlayer)
             {
                 if(GetHorizontalPlayerEmail() != email || currentToken.Row != row)
                 {
-                    logger.ErrorFormat("SetGameAction Error - email: {0}, row: {1}, column: {2}", email, row, column);
-                    throw new Invalid​Operation​Exception("invalid Set Game Action");
+                    logger.ErrorFormat("SetGameAction Error Invalid Set Game Action - email: {0}, row: {1}, column: {2}", email, row, column);
+                    throw new Invalid​Operation​Exception("Invalid Set Game Action");
                 }
 
-                
+                logger.InfoFormat("SetGameAction email: {0} - HorizontalPlayer ", email);
+
             }
             else if (currentTurn == GameTurnType.VerticalPlayer)
             {                
                 if (GetVerticalPlayerEmail() != email || currentToken.Column != column)
                 {
-                    logger.ErrorFormat("SetGameAction Error - email: {0}, row: {1}, column: {2}", email, row, column);
-                    throw new Invalid​Operation​Exception("invalid Set Game Action");
+                    logger.ErrorFormat("SetGameAction Error Invalid Set Game Action - email: {0}, row: {1}, column: {2}", email, row, column);
+                    throw new Invalid​Operation​Exception("Invalid Set Game Action");
                 }
+
+                logger.InfoFormat("SetGameAction email: {0} - VerticalPlayer ", email);
+
             }
 
             // It is valid so get the cell
@@ -201,6 +240,7 @@ namespace MatixBusinessLibrary
             // Set the new token
             currentToken.Token = false;
             c.Token = true;
+            c.Used = true;
             currentToken = c;
 
             int score = 0;
@@ -213,7 +253,7 @@ namespace MatixBusinessLibrary
                 score = verticalPlayer.UpdateScore(currentToken.Value);
             }
 
-            // Return the cell value
+            // Return the player score 
             return score;
         }
 
@@ -278,7 +318,7 @@ namespace MatixBusinessLibrary
         /// <returns>The new generated board</returns>
         private MatixBoard GenerateNewBoard(out MatixCell currentToken)
         {
-            const int BOARD_SIZE = 8;
+     
             MatixBoard board = new MatixBoard();
             Random randNum = new Random();
 
@@ -297,11 +337,12 @@ namespace MatixBusinessLibrary
                     MatixCell c = new MatixCell();
                     c.Row = i;
                     c.Column = j;
-                    c.Value = randNum.Next(-15, 15 + 1);
+                    c.Value = randNum.Next(-15, 15 + 1); 
 
                     if (cellCounter == tokenIndex)
                     {
                         c.Token = true;
+                        c.Used = true;
 
                         // Save the current token 
                         currentToken = c;
@@ -336,5 +377,44 @@ namespace MatixBusinessLibrary
             return sb.ToString();
         }
 
+
+        public List<MatixCell> GetRowOfCells(int row)
+        {
+            List<MatixCell> list = new List<MatixCell>();
+
+            for (int i = 0; i < BOARD_SIZE; i++)
+            {
+                MatixCell c = board.MatixCells[row][i];
+                if (!c.Used && !c.Token)
+                {
+                    MatixCell clone = new MatixCell(c);
+                    list.Add(clone);
+                }
+            }
+            
+            return list;
+        }
+
+        /// <summary>
+        /// Get a list of MatixCells from the game board 
+        /// </summary>
+        /// <param name="column">The column of the requested cells</param>
+        /// <returns></returns>
+        public List<MatixCell> GetColumnOfCells(int column)
+        {
+            List<MatixCell> list = new List<MatixCell>();
+
+            for (int i = 0; i < BOARD_SIZE; i++)
+            {
+                MatixCell c = board.MatixCells[i][column];
+                if (!c.Used && !c.Token)
+                {
+                    MatixCell clone = new MatixCell(c);
+                    list.Add(clone);
+                }
+            }
+            
+            return list;
+        }
     }
 }

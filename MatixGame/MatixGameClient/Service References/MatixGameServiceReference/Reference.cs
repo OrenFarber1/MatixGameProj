@@ -204,6 +204,9 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Rejected = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InvalidAction = 6,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -546,6 +549,9 @@ namespace MatixGameClient.MatixGameServiceReference {
         private bool TokenField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool UsedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ValueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -593,6 +599,19 @@ namespace MatixGameClient.MatixGameServiceReference {
                 if ((this.TokenField.Equals(value) != true)) {
                     this.TokenField = value;
                     this.RaisePropertyChanged("Token");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Used {
+            get {
+                return this.UsedField;
+            }
+            set {
+                if ((this.UsedField.Equals(value) != true)) {
+                    this.UsedField = value;
+                    this.RaisePropertyChanged("Used");
                 }
             }
         }

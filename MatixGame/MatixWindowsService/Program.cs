@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace MatixWindowsService
 {
+    /// <summary>
+    /// Server application entry point 
+    /// </summary>
     static class Program
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// The main entry point for the application.
+        /// The main entry point for the application. Starts the application as a console or as a service 
         /// </summary>
         static void Main()
         {

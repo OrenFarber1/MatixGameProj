@@ -19,6 +19,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatixBusinessLibrary", "MatixBusinessLibrary\MatixBusinessLibrary.csproj", "{519F406B-439A-4C70-9A98-384F232B2345}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26A93E0D-331D-4690-AD7F-E02BC02AA8C4}"
+	ProjectSection(SolutionItems) = preProject
+		mainpage.dox = mainpage.dox
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

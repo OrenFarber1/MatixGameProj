@@ -38,8 +38,7 @@ namespace MatixBusinessLibrary
         /// Reference to the WCF service. Needed to send messages to the players.
         /// </summary>
         MatixWcfService matixWcfService = null;
-
-
+        
         /// <summary>
         /// A list of active users with their emails and nick names 
         /// </summary>
@@ -257,7 +256,11 @@ namespace MatixBusinessLibrary
             return OperationStatusnEnum.Success;
         }
 
-
+        /// <summary>
+        /// Start a new game with the server 
+        /// </summary>
+        /// <param name="firstEmail"></param>
+        /// <returns></returns>
         public OperationStatusnEnum StartPlayingWithRobot(string firstEmail)
         {
             string firstNickname;
@@ -305,7 +308,7 @@ namespace MatixBusinessLibrary
             string verticalEmail = game.GetVerticalPlayerEmail();
 
             // Save the new created game in the database
-            matixData.CreateNewGame(horizontalEmail, verticalEmail, xmlBoard);
+            game.GameId = matixData.CreateNewGame(horizontalEmail, verticalEmail, xmlBoard);
 
             string verticalNickname = game.GetVerticalPlayerNickname();
             string horizontalNickname = game.GetHorizontalNickname();
@@ -325,39 +328,82 @@ namespace MatixBusinessLibrary
                                                (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
             }
 
-            logger.Info("CreateNewGameTask - Task ended");
+            logger.InfoFormat("CreateNewGameTask - Task ended token set at row: {0}, column: {1}", game.GetCurrentToken().Row, game.GetCurrentToken().Column);
 
         }
 
-        public OperationStatusnEnum SetGameAction(string email, int row, int col)
+        /// <summary>
+        /// Update the server with the change a user did
+        /// </summary>
+        /// <param name="email">the player email</param>
+        /// <param name="row">The new selected row</param>
+        /// <param name="column">The new selected column</param>
+        /// <returns></returns>
+        public OperationStatusnEnum SetGameAction(string email, int row, int column)
         {
-            logger.InfoFormat("SetGameAction email: {0}, row: {1}, col: {2}", email, row, col);
+            logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2}", email, row, column);
 
             Game game;
             if (userEmailToGamel.TryGetValue(email, out game))
             {
                 try
                 {
-                    int score = game.SetGameAction(email, row, col);
+                    // Update the game instance 
+                    int score = game.SetGameAction(email, row, column);
+                    
+                    // Update the database 
+                    matixData.AddGameAction( email, game.GameId, row,  column, score);
 
                     // After update change the turn to the other player
                     GameTurnType turn = game.ChangeCurrentTurn();
                     
-                    Task.Run(() => SetGameActionTask(email, game, turn, row, col, score));                    
+                    Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));                    
 
                     return OperationStatusnEnum.Success;
                 }
                 catch (System.Exception ex)
                 {
                     logger.ErrorFormat("SetGameAction - Error: {0}", ex);
-                    return OperationStatusnEnum.Failure;
+                    return OperationStatusnEnum.InvalidAction;
                 }
             }
 
             return OperationStatusnEnum.InvalidEmail;
         }
 
+        private OperationStatusnEnum SetGameAction(string email, int row, int column, string firstEmail, Game game)
+        {
+            logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2} firstEmail: {3}, GameId: {4}", email, row, column, firstEmail, game.GameId);
+            try
+            {
+                // Update the game instance 
+                int score = game.SetGameAction(email, row, column);
 
+                // Update the database 
+                matixData.AddGameAction(email, game.GameId, row, column, score);
+
+                // After update change the turn to the other player
+                GameTurnType turn = game.ChangeCurrentTurn();
+
+             //   Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));
+
+                // Notify the other player 
+                matixWcfService.NotifyPlayerOfGameAction(firstEmail, row, column, score);
+
+                return OperationStatusnEnum.Success;
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("SetGameAction - Error: {0}", ex);               
+            }
+
+            return OperationStatusnEnum.InvalidAction;
+        }
+
+        /// <summary>
+        /// Set wcf service instance 
+        /// </summary>
+        /// <param name="matixService"></param>
         public void SetMatixWcfService(MatixWcfService matixService)
         {
             matixWcfService = matixService;
@@ -366,9 +412,7 @@ namespace MatixBusinessLibrary
 
         private void SetGameActionTask(string firstEmail, Game game, GameTurnType turn, int row, int col, int score)
         {
-            // Update database - use the firstEmail for that update ....
-            /// .....
-            /// 
+            logger.InfoFormat("SetGameActionTask email: {0}, row: {1}, col: {2} score: {3}", firstEmail, row, col, score);
 
             PlayerType playerType;
             string otherEmail;
@@ -383,16 +427,61 @@ namespace MatixBusinessLibrary
                 playerType = game.GetVerticalPlayerType();
             }
 
-            if (playerType == PlayerType.Human)
+            List<MatixCell> list;
+            if (turn == GameTurnType.HorizontalPlayer)
             {
-                // Notify the second player 
-                matixWcfService.NotifyPlayerOfGameAction(otherEmail, row, col, score);
+                list = game.GetRowOfCells(row);
             }
             else
             {
-                // Generate game action !!!
+                list = game.GetColumnOfCells(col);
             }
 
+            // Check if we can continue the game 
+
+            if (list.Count == 0)
+            {
+                // The is ended and we should notify the winner 
+
+
+            }
+            else
+            {
+
+                if (playerType == PlayerType.Human)
+                {
+                    // Notify the second player 
+                    matixWcfService.NotifyPlayerOfGameAction(otherEmail, row, col, score);
+                }
+                else
+                {
+                    // Generate game action !!!
+                    
+                    MatixCell maxCell = null;
+                    // for the first phase get the high value 
+                    foreach (var c in list)
+                    {
+                        if (c.Used == false)
+                        {
+                            if (maxCell == null)
+                            {
+                                maxCell = c;
+                            }
+                            else
+                            {
+                                if (c.Value > maxCell.Value)
+                                {
+                                    maxCell = c;
+                                }
+                            }
+                        }
+                    }
+
+                    // use the max cell as the selected cell
+                    SetGameAction(otherEmail, maxCell.Row, maxCell.Column, firstEmail, game);
+
+                }
+            }
         }
 
 

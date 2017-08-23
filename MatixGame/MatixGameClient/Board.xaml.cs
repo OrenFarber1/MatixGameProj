@@ -24,7 +24,21 @@ namespace MatixGameClient
     /// </summary>
     public enum PlayingDirectionEnum
     {
+        /// <summary>
+        /// Not set yet 
+        /// </summary>
+        None,
+        /// <summary>
+        /// The first token 
+        /// </summary>
+        InitializeToken,
+        /// <summary>
+        /// Horizontal Playing Direction 
+        /// </summary>
         Horizontal,
+        /// <summary>
+        /// Vertical Playing Direction 
+        /// </summary>
         Vertical
     }
 
@@ -42,7 +56,7 @@ namespace MatixGameClient
         /// <summary>
         /// Board size definition 
         /// </summary>
-       private static readonly int BOARD_SIZE = 8;
+        private static readonly int BOARD_SIZE = 8;
 
         /// <summary>
         /// UI board data context 
@@ -68,11 +82,11 @@ namespace MatixGameClient
         /// Save the 
         /// </summary>
         PlayingDirectionEnum myPlayingDirection;
-        
+
         /// <summary>
         /// Reference to the parent page use to update changes the player made on the board 
         /// </summary>
-        GamePage parentPage = null; 
+        GamePage parentPage = null;
 
 
         /// <summary>
@@ -81,13 +95,23 @@ namespace MatixGameClient
         public Board()
         {
             InitializeComponent();
-            
+
             boardCells = new CellCollection(BOARD_SIZE);
             this.DataContext = boardCells;
             currentTokenRow = 3;
             currentTokenCol = 3;
-            
+
             this.Loaded += new RoutedEventHandler(Page_Loaded);
+        }
+
+        public int GetTokenRow()
+        {
+            return currentTokenRow;
+        }
+
+        public int GetTokenColumn()
+        {
+            return currentTokenCol;
         }
 
         /// <summary>
@@ -115,10 +139,12 @@ namespace MatixGameClient
 
         public void UpdateMatixBoard(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirectionn)
         {
+            logger.InfoFormat("UpdateMatixBoard");
+
             // Set current playing direction and current player direction
             currentPlayingDirection = direction;
             myPlayingDirection = myDirectionn;
-           
+
             for (int i = 0; i < BOARD_SIZE; i++)
             {
                 var row = matixBoard.MatixCells[i];
@@ -134,24 +160,36 @@ namespace MatixGameClient
                     {
                         currentTokenRow = i;
                         currentTokenCol = j;
+                        cCurrent.UsedBy = PlayingDirectionEnum.InitializeToken;
+                        UpdateColorValue(cCurrent, i, j);
+
+                        logger.InfoFormat("UpdateMatixBoard set Token to Row: {0}, Column:{1}", currentTokenRow, currentTokenCol);
                     }
                 }
-            }    
+            }
         }
 
         public void UpdateBoardToken(int row, int column)
         {
-            // Receive notification from the server so change to my turn 
-            currentPlayingDirection = myPlayingDirection;
+            logger.InfoFormat("UpdateBoardToken row: {0}, column: {1} currentPlayingDirection: {2}", row, column, currentPlayingDirection);
 
             // Set the previous token cell as not token and used 
             Cell cCurrent = boardCells.GetCell(currentTokenRow, currentTokenCol);
-            cCurrent.Token = false;
             cCurrent.Used = true;
+            cCurrent.Token = false;
+            UpdateColorValue(cCurrent, currentTokenRow, currentTokenCol);
 
             // Set the current token
             cCurrent = boardCells.GetCell(row, column);
             cCurrent.Token = true;
+            cCurrent.UsedBy = currentPlayingDirection;
+            UpdateColorValue(cCurrent, row, column);
+
+            currentTokenRow = row;
+            currentTokenCol = column;
+
+            // Receive notification from the server so change to my turn 
+            currentPlayingDirection = myPlayingDirection;
         }
 
         /// <summary>
@@ -162,42 +200,73 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void BoardMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            logger.InfoFormat("BoardMouseLeftButtonDown ClickCount: {0}", e.ClickCount);
-            
             // Check if the user double clicked and its turn  
             if (e.ClickCount == 2)
             {
                 if (currentPlayingDirection == myPlayingDirection)
                 {
-                    logger.Info("BoardMouseLeftButtonDown DoubleClickCount");
-
                     Point p = e.GetPosition(BoardControl);
 
                     double rowH = ActualHeight / 8;
                     double colW = ActualWidth / 8;
 
-                    int col = (int)(p.X / colW);
+                    int column = (int)(p.X / colW);
                     int row = (int)(p.Y / rowH);
 
-                    logger.InfoFormat("BoardMouseLeftButtonDown on col: {0}, row: {1}", col, row);
+                    logger.InfoFormat("BoardMouseLeftButtonDown DoubleClick on row: {0}, col: {1}, PlayingDirection: {2}", row, column, currentPlayingDirection);
 
-                    Cell cCurrent = boardCells.GetCell(currentTokenRow, currentTokenCol);
-                    cCurrent.Used = true;
-                    cCurrent.Token = false;
+                    Cell c = boardCells.GetCell(row, column);
+                    if (!c.Used && !c.Token)
+                    {
+                        // Update the server of the change 
+                        OperationStatus status = parentPage.UpdateMatixServer(row, column, c.Value);
 
-                    Cell c = boardCells.GetCell(row, col);
-                    c.Token = true;
+                        if (status == OperationStatus.Success)
+                        {
+                            Cell cCurrent = boardCells.GetCell(currentTokenRow, currentTokenCol);
+                            cCurrent.Used = true;
+                            cCurrent.Token = false;
+                            UpdateColorValue(cCurrent, currentTokenRow, currentTokenCol);
 
-                    currentTokenRow = row;
-                    currentTokenCol = col;
+                            // Set the new token
+                            c.Token = true;
+                            c.UsedBy = currentPlayingDirection;
+                            UpdateColorValue(c, row, column);
 
-                    // Change the direction so we block the user from clicking
-                    CahngeCurrentTurn();
+                            currentTokenRow = row;
+                            currentTokenCol = column;
 
-                    // Update the server of the change 
-                    parentPage.UpdateMatixServer(row, col, c.Value);
+                            // Change the direction so we block the user from clicking
+                            CahngeCurrentTurn();
+                        }
+                    }
                 }
             }
+        }
+
+        private void UpdateColorValue(Cell c, int row, int column)
+        {
+            if (c.Token)
+            {
+                c.ColorValue = 1;
+            }
+            else
+            {
+                switch (c.UsedBy)
+                {
+                    case PlayingDirectionEnum.Horizontal:
+                        c.ColorValue = 2;
+                        break;
+                    case PlayingDirectionEnum.Vertical:
+                        c.ColorValue = 3;
+                        break;
+                    case PlayingDirectionEnum.InitializeToken:
+                        c.ColorValue = 4;
+                        break;
+                }
+            }
+
+            logger.InfoFormat("UpdateColorValue row: {0}, column: {1}, token: {2}, used by:{3},  ColorVale: {4}", row, column, c.Token, c.UsedBy, c.ColorValue);
         }
 
         /// <summary>
@@ -205,6 +274,8 @@ namespace MatixGameClient
         /// </summary>
         private void CahngeCurrentTurn()
         {
+            logger.InfoFormat("CahngeCurrentTurn: {0}", currentPlayingDirection);
+
             if (currentPlayingDirection == PlayingDirectionEnum.Horizontal)
             {
                 currentPlayingDirection = PlayingDirectionEnum.Vertical;
@@ -217,7 +288,7 @@ namespace MatixGameClient
 
         #region INotifyPropertyChanged Members & Handlers
         public event PropertyChangedEventHandler PropertyChanged;
-      
+
         protected void NotifyPropertyChanged(string info)
         {
             if (PropertyChanged != null)

@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace MatixBusinessLibrary
 {
-
-    enum PlayerType
+    /// <summary>
+    /// Enumerate the player types
+    /// </summary>
+    public enum PlayerType
     {
         Human,
         Robot
     }
 
-    class Player
+    /// <summary>
+    /// Encapsulates player details 
+    /// </summary>
+    public class Player
     {
         /// <summary>
         /// Class internal logger 

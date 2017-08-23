@@ -86,11 +86,10 @@ namespace MatixGameClient
 
             myContent.Append("Hi ");
             myContent.Append(nickName);
-            myContent.Append(": Its your turn to play ");
+            myContent.Append(", It's your turn to play ");
 
             otherContent.Append("Hi ");
             otherContent.Append(nickName);
-
 
             // Nickname is the name of the current client player
             if (nickName == horizontalNickname)
@@ -116,7 +115,7 @@ namespace MatixGameClient
                 secondPlayer.Content = horizontalNickname;
                 myContent.Append("vertically");
 
-                otherContent.Append(": Its ");
+                otherContent.Append(", It's ");
                 otherContent.Append(horizontalNickname);
                 otherContent.Append(" turn to play horizontally");
 
@@ -172,17 +171,9 @@ namespace MatixGameClient
             {
                 logger.Error("UpdateMatixBoard setToken delegate is null");
             }
+                    
+            ChangeCurrentDirection();       
 
-            if (currentTurn == myDirection)
-            {
-                loginName.Content = myContentMessage;
-            }
-            else
-            {
-                loginName.Content = othercontentMessage;
-            }
-
-            ChangeCurrentDirection();
         }
 
         /// <summary>
@@ -190,21 +181,39 @@ namespace MatixGameClient
         /// </summary>
         /// <param name="row"></param>
         /// <param name="column"></param>
-        public void UpdateMatixServer(int row, int column, int value)
+        public OperationStatus UpdateMatixServer(int row, int column, int value)
         {
             logger.InfoFormat("UpdateMatixServer row: {0},  column: {1}, value: {2}", row, column, value);
 
-            // Accumulate the values
-            firstPlayerScoreValue += value;
+            OperationStatus status = OperationStatus.Success;
+            try
+            {
+                status = service.SetGameAction(email, row, column);
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("UpdateMatixServe Error: {0}", ex);
+                status = OperationStatus.Failure;
 
-            // Update the label
-            firstPlayerScore.Content = firstPlayerScoreValue;
+                service.Abort();
+                service.Open();
+            }
 
-            // change the current turn
-            ChangeCurrentDirection();
+            if (status == OperationStatus.Success)
+            { 
+                // Accumulate the values
+                firstPlayerScoreValue += value;
 
-            service.SetGameAction(email, row, column);
+                // Update the label
+                firstPlayerScore.Content = firstPlayerScoreValue;
 
+                // change the current turn
+                ChangeCurrentDirection();
+            }
+
+            logger.InfoFormat("UpdateMatixServe return status: {0}", status);
+
+            return status;
         }
 
         private void ChangeCurrentDirection()
@@ -218,6 +227,7 @@ namespace MatixGameClient
                 currentTurn = PlayingDirectionEnum.Vertical;
             }
 
+            // Change instruction message 
             if (currentTurn == myDirection)
             {
                 loginName.Content = myContentMessage;

@@ -11,35 +11,71 @@
     Height="Auto">
     <UserControl.Resources>
         <DataTemplate x:Key ="CellTemplate" >
-            <Border x:Name ="Border" BorderBrush ="SteelBlue" BorderThickness ="1" >
-                <TextBlock  Focusable ="False" HorizontalAlignment ="Center" 
+            <Border x:Name ="Border" BorderBrush ="#947500" BorderThickness ="1" >
+                <TextBlock  x:Name="textBlock" Focusable ="False" HorizontalAlignment ="center" 
                             VerticalAlignment ="Center" FontWeight ="Bold"                            
-                            FontSize ="21"                             
-                            Foreground="#FCD544"
+                            FontSize ="21"               
                             MinHeight="56"
+                            Margin="30 25 8 0"
                             MinWidth="56"
                             Text ="{Binding Path=Value}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#FCD544" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=ColorValue}" Value="1">
+                                    <Setter Property="Foreground" Value="#D3A809" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ColorValue}" Value="2">
+                                    <Setter Property="Foreground" Value="#04425D" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ColorValue}" Value="3">
+                                    <Setter Property="Foreground" Value="#04425D" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ColorValue}" Value="4">
+                                    <Setter Property="Foreground" Value="#B879D1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
                 </TextBlock>
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="Background" >
                             <Setter.Value>
-                                <LinearGradientBrush StartPoint ="0,0" EndPoint ="0,1">
-                                    <GradientStop Color="#FF4F0891" Offset ="0"/>
-                                    <GradientStop Color="#FF8749C0" Offset ="0.5"/>
-                                    <GradientStop Color="#FF3D056F" Offset ="0.75"/>
-                                    <GradientStop Color="#FF4F0891" Offset ="1"/>
+                                <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                    <GradientStop Color="#480363" Offset="0"/>
+                                    <GradientStop Color="#B879D1" Offset="0.567"/>
                                 </LinearGradientBrush>
                             </Setter.Value>
                         </Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=Used}" Value="True">
-                                <Setter Property="Background" Value="Orange"/>
+                        <Style.Triggers>                            
+                            <DataTrigger Binding="{Binding Path=ColorValue}" Value="1">
+                                <Setter Property="Background" Value="#D3A809" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=Token}" Value="True">
-                                <Setter Property="Background" Value="#FF112233"/>
-                                <Setter Property="TextBlock.Foreground" Value="#FF112233" />
+                            <DataTrigger Binding="{Binding Path=ColorValue}" Value="2">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                            <GradientStop Color="#060228" Offset="0"/>
+                                            <GradientStop Color="#8D83D5" Offset="0.567"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ColorValue}" Value="3">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                            <GradientStop Color="#060228" Offset="0"/>
+                                            <GradientStop Color="#8D83D5" Offset="0.567"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ColorValue}" Value="4">
+                                <Setter Property="Background" Value="#B879D1" />
+                            </DataTrigger>                           
                         </Style.Triggers>
                     </Style>
                 </Border.Style>

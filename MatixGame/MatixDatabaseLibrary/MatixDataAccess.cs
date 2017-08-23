@@ -243,7 +243,7 @@ namespace MatixDatabaseLibrary
             return playerData;
         }
 
-        public bool CreateNewGame(string horizontalEmail, string verticalEmail, string boardXml)
+        public long CreateNewGame(string horizontalEmail, string verticalEmail, string boardXml)
         {
             try
             {
@@ -262,6 +262,38 @@ namespace MatixDatabaseLibrary
 
                     matixData.Games.InsertOnSubmit(game);
                     matixData.SubmitChanges();
+
+                    return game.GameId;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on CreateNewGame - {0}", ex);
+                throw new Invalid​Operation​Exception("Create New Game operation Failed");
+            }
+            
+        }
+
+        public bool AddGameAction(string email, long gameId, int row, int column, int value)
+        {
+            try
+            {
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    long playerId = GetPlayerId(matixData, email);
+
+                    GameActivity activity = new GameActivity
+                    {
+                        GameId = gameId,
+                        PlayerId = playerId,
+                        ActivityTime = DateTime.Now,
+                        CellRow = row,
+                        CellColumn = column,
+                        CellValue = value
+                    };
+
+                    matixData.GameActivities.InsertOnSubmit(activity);
+                    matixData.SubmitChanges();
                 }
             }
             catch (System.Exception ex)
@@ -272,7 +304,6 @@ namespace MatixDatabaseLibrary
 
             return true;
         }
-
 
         /// <summary>
         /// Query the Players table and get the record id for the requested email

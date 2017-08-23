@@ -24,6 +24,26 @@ namespace MatixGameClient
         /// </summary>
         private bool used;
 
+
+        private PlayingDirectionEnum usedBy = PlayingDirectionEnum.None;
+
+
+        private int colorValue = 0;
+
+
+        public int ColorValue
+        {
+            get
+            {                
+                return colorValue;
+            }
+            set
+            {
+                colorValue = value;
+                NotifyPropertyChanged("ColorValue");
+            }
+        }
+
         public int Value
         {
             get
@@ -61,6 +81,20 @@ namespace MatixGameClient
             {
                 used = value;
                 NotifyPropertyChanged("Used");
+            }
+        }
+
+        public PlayingDirectionEnum UsedBy
+        {
+            get
+            {
+                return usedBy;
+            }
+
+            set
+            {               
+                usedBy = value;
+                NotifyPropertyChanged("Used");               
             }
         }
 

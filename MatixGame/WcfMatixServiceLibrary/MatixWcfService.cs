@@ -115,6 +115,8 @@ namespace WcfMatixServiceLibrary
         /// <param name="whoIsStarting"></param>
         public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
         {
+            logger.InfoFormat("NotifyPlayerOfNewGame - playerEmail: {0},  horizontalNickname:{1},  verticalNickname: {2}", playerEmail,  horizontalNickname, verticalNickname);
+           
             // Get the callback instance
             IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
@@ -124,10 +126,12 @@ namespace WcfMatixServiceLibrary
 
         public void NotifyPlayerOfGameAction(string playerEmail, int row, int column, int value)
         {
+            logger.InfoFormat("NotifyPlayerOfGameAction  playerEmail: {0}, row: {1}, column: {2}, value: {3})", playerEmail, row,  column,  value);
+            
             // Get the callback instance
             IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
-            // Send information to the client 
+            // Send information to the client using the callback 
             callback.UpdateGameAction(row, column, value);
         }
 
