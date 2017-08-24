@@ -86,7 +86,7 @@
     </comment>
     <comment
       Id="d9f40390-a6de-48f7-8971-9628e9c8fa69">
-      <body>Registrationsucceeded</body>
+      <body>Registration succeeded</body>
       <annotatedElements>
         <decisionNodeMoniker
           Id="5a01cae1-c160-45cb-bb5f-d2d4450cdb52"
@@ -152,6 +152,10 @@
           LastKnownName="Decision1"
           LastKnownLocation="ModelingProject1.uml" />
       </annotatedElements>
+    </comment>
+    <comment
+      Id="61b3faf2-f258-42bf-9cf0-daaa7e6b5924">
+      <body>Database</body>
     </comment>
   </ownedCommentsInternal>
   <profileInstances>
@@ -8360,7 +8364,7 @@
     <packageHasNamedElement>
       <activity
         Id="0378f16e-35ae-4a1d-820f-e61cb690b1bd"
-        name="Registration"
+        name="Login And Registration "
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false"
@@ -8378,7 +8382,7 @@
                 isLeaf="false">
                 <opaqueActionMoniker
                   Id="7394860a-b4af-4b5a-8145-b4f2bba004f7"
-                  LastKnownName="Registraipn Process"
+                  LastKnownName="Registration Process"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -8393,7 +8397,7 @@
                 isLeaf="false">
                 <opaqueActionMoniker
                   Id="12fd1b44-6d58-4150-a3ec-97781afc1b2a"
-                  LastKnownName="Ask for login or registration"
+                  LastKnownName="Ask for Login or Registration"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -8440,7 +8444,7 @@
           </decisionNode>
           <opaqueAction
             Id="7394860a-b4af-4b5a-8145-b4f2bba004f7"
-            name="Registraipn Process"
+            name="Registration Process"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
@@ -8449,6 +8453,14 @@
                 <decisionNodeMoniker
                   Id="5a01cae1-c160-45cb-bb5f-d2d4450cdb52"
                   LastKnownName="Decision2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="16ebbdc0-083d-424b-bcac-359ecd28e5d8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="98a5024d-eaf4-47cb-a568-b4f80f9e8c28"
+                  LastKnownName="AddPlayer informatiion"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -8464,6 +8476,14 @@
                 <decisionNodeMoniker
                   Id="ce6e4ddc-5566-4200-af80-9759681456cf"
                   LastKnownName="Decision3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="d220b4b2-331c-41de-8d18-734360b9f6fe"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="49c51537-7505-4889-8f18-9783d4caef29"
+                  LastKnownName="Player Login Information"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -8492,14 +8512,14 @@
                 isLeaf="false">
                 <opaqueActionMoniker
                   Id="12fd1b44-6d58-4150-a3ec-97781afc1b2a"
-                  LastKnownName="Ask for login or registration"
+                  LastKnownName="Ask for Login or Registration"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
           <opaqueAction
             Id="12fd1b44-6d58-4150-a3ec-97781afc1b2a"
-            name="Ask for login or registration"
+            name="Ask for Login or Registration"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
@@ -8530,11 +8550,41 @@
                 isLeaf="false">
                 <opaqueActionMoniker
                   Id="12fd1b44-6d58-4150-a3ec-97781afc1b2a"
-                  LastKnownName="Ask for login or registration"
+                  LastKnownName="Ask for Login or Registration"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
+          <opaqueAction
+            Id="98a5024d-eaf4-47cb-a568-b4f80f9e8c28"
+            name="AddPlayer informatiion"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="da06f4c9-f192-4a05-b219-71e5481dd5ac"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7394860a-b4af-4b5a-8145-b4f2bba004f7"
+                  LastKnownName="Registration Process"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="49c51537-7505-4889-8f18-9783d4caef29"
+            name="Player Login Information"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="42b16fb9-3857-4d52-9e3b-af6290a969a7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3e6ee32c-b9a3-4e09-8de1-635da418761b"
+                  LastKnownName="Login process"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
         </nodes>
       </activity>
     </packageHasNamedElement>

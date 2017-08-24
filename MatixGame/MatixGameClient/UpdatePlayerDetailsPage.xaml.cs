@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WcfMatixServiceLibrary;
 
 namespace MatixGameClient
 {
@@ -22,6 +23,9 @@ namespace MatixGameClient
     /// </summary>
     public partial class UpdatePlayerDetailsPage : Page
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -66,7 +70,22 @@ namespace MatixGameClient
             }
             else
             {
-                // Send new information to server 
+                MatixGameServiceReference.UserInformationData userData = new MatixGameServiceReference.UserInformationData();
+                userData.EmailAddress = (string)emailAddr.Content;
+                userData.FirstName = firstNameTextBox.Text;
+                userData.LastName = lastNameTextBox.Text;
+                userData.NickName = nickNameTextBox.Text;
+
+                if(service.UpdateUserDetailes(userData) == OperationStatus.Success)
+                {
+                    MessageBox.Show("User details updated successfully");
+                    WelcomePage page = new WelcomePage(service, userData.NickName, emailAddr.Content.ToString());
+                    NavigationService.Navigate(page);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update User details!");
+                }
             }
 
         }

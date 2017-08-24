@@ -23,6 +23,9 @@ namespace MatixGameClient
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary> 
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>

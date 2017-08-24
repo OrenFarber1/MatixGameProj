@@ -18,7 +18,7 @@ namespace WcfMatixServiceLibrary
     public class MatixWcfService : IMatixService
     {
         /// <summary>
-        /// logger 
+        /// A class logger instance  
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -48,6 +48,15 @@ namespace WcfMatixServiceLibrary
             RegistrationResult result = matixBuisnessInterface.AddPlayer(userData.FirstName, userData.LastName, userData.NickName, userData.EmailAddress, userData.Password);
 
             return result;
+        }
+
+        public OperationStatusnEnum UpdateUserDetailes(UserInformationData userData)
+        {
+            logger.InfoFormat("UpdateUserDetailes email: {0}", userData.EmailAddress);
+
+            OperationStatusnEnum result = matixBuisnessInterface.UpdatePlayer(userData.EmailAddress, userData.FirstName, userData.LastName, userData.NickName);
+
+            return OperationStatusnEnum.Success;
         }
 
         public LoginResult UserLogin(LoginData loginData)
@@ -123,16 +132,27 @@ namespace WcfMatixServiceLibrary
             // Send information to the client 
             callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
         }
-
+        
         public void NotifyPlayerOfGameAction(string playerEmail, int row, int column, int value)
         {
-            logger.InfoFormat("NotifyPlayerOfGameAction  playerEmail: {0}, row: {1}, column: {2}, value: {3})", playerEmail, row,  column,  value);
+            logger.InfoFormat("NotifyPlayerOfGameAction  playerEmail: {0}, row: {1}, column: {2}, value: {3}", playerEmail, row,  column,  value);
             
             // Get the callback instance
             IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
             // Send information to the client using the callback 
             callback.UpdateGameAction(row, column, value);
+        }
+
+        public void NotifyPlayerOfGameEnded(string playerEmail, string winnerNickname, int score)
+        {
+            logger.InfoFormat("NotifyPlayerOfGameEnded  playerEmail: {0}, winnerNickname: {1}, score: {2}", playerEmail, winnerNickname, score);
+
+            // Get the callback instance
+            IMatixServiceCallback callback = usersCallbackes[playerEmail];
+
+            // Send end of the game to the client using the callback 
+            callback.UpdateGameEnded(winnerNickname, score);
         }
 
         /// <summary>

@@ -16,6 +16,9 @@ namespace WcfMatixServiceLibrary
         RegistrationResult UserRegistration(UserInformationData userData);
 
         [OperationContract]
+        OperationStatusnEnum UpdateUserDetailes(UserInformationData userData);
+
+        [OperationContract]
         LoginResult UserLogin(LoginData loginData);
 
         [OperationContract]

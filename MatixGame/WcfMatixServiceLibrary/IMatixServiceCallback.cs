@@ -24,6 +24,9 @@ namespace WcfMatixServiceLibrary
 
         [OperationContract(IsOneWay = true)]
         void UpdateGameAction(int row, int col, int score);
-        
+
+        [OperationContract(IsOneWay = true)]
+        void UpdateGameEnded(string winnerNickname, int score);
+
     }
 }

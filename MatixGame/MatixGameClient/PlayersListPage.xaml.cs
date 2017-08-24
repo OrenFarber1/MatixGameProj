@@ -23,6 +23,9 @@ namespace MatixGameClient
     /// </summary>
     public partial class PlayersListPage : Page
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private MatixGameServiceReference.MatixServiceClient service = null;
@@ -64,9 +67,14 @@ namespace MatixGameClient
             if (originalSource != null)
             {
                 WaitingPlayer selectedPlayer = ((ListViewItem)originalSource).Content as WaitingPlayer;
-                string nnn = selectedPlayer.NickName;
+                                
+                if(service.SelectPlayerToPlay(email, selectedPlayer.NickName) == OperationStatus.Success)
+                {
+
+                }
             }
         }
+             
 
         /// <summary>
         /// Back to the Welcome page

@@ -16,6 +16,9 @@ namespace MatixGameClient
        UseSynchronizationContext = false)]
     public  class MatixClientCallback : IMatixServiceCallback
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         // Saves the UI synchronization context
@@ -62,6 +65,11 @@ namespace MatixGameClient
             //    { this.WritePartyLogMessage(String.Format("{0} has joined the party.", state.ToString())); };
 
             //uiSyncContext.Post(callback, guestName);
+        }
+
+        public void UpdateGameEnded(string winnerNickname, int score)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -107,6 +107,9 @@
     <Compile Include="PlayersListPage.xaml.cs">
       <DependentUpon>PlayersListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlayerStatisticsPage.xaml.cs">
+      <DependentUpon>PlayerStatisticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PlayersListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayerStatisticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,6 +265,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WcfMatixServiceLibrary\WcfMatixServiceLibrary.csproj">
+      <Project>{CBF194D8-274F-4449-8155-C1BA3BA0E0C9}</Project>
+      <Name>WcfMatixServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

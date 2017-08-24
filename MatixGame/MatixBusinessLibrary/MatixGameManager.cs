@@ -38,7 +38,7 @@ namespace MatixBusinessLibrary
         /// Reference to the WCF service. Needed to send messages to the players.
         /// </summary>
         MatixWcfService matixWcfService = null;
-        
+
         /// <summary>
         /// A list of active users with their emails and nick names 
         /// </summary>
@@ -112,6 +112,23 @@ namespace MatixBusinessLibrary
             }
 
             return result;
+        }
+
+        public OperationStatusnEnum UpdatePlayer(string email, string firstName, string lastName, string nickName)
+        {
+            logger.InfoFormat("UpdatePlayer email: {0}", email);
+
+            try
+            {
+                matixData.UpdatePlayerInformation(email, firstName, lastName, nickName);
+            }
+            catch (System.Invalid​Operation​Exception ex)
+            {
+                logger.ErrorFormat("UpdatePlayer - Exception: {0}", ex);
+                return OperationStatusnEnum.Failure;
+            }
+
+            return OperationStatusnEnum.Success;
         }
 
         /// <summary>
@@ -234,6 +251,8 @@ namespace MatixBusinessLibrary
 
         public OperationStatusnEnum StartPlayingWithPlayer(string firstEmail, string secondNickname)
         {
+            logger.InfoFormat("StartPlayingWithPlayer - firstEmail: {0}, secondNickname: {1}", firstEmail, secondNickname);
+
             //  Get second player email         
             string secondEmail;
             if (!usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
@@ -385,7 +404,16 @@ namespace MatixBusinessLibrary
                 // After update change the turn to the other player
                 GameTurnType turn = game.ChangeCurrentTurn();
 
-             //   Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));
+                // Check if the game is ended !!
+                List<MatixCell> list;
+                if (turn == GameTurnType.HorizontalPlayer)
+                {
+                    list = game.GetRowOfCells(row);
+                }
+                else
+                {
+                    list = game.GetColumnOfCells(column);
+                }
 
                 // Notify the other player 
                 matixWcfService.NotifyPlayerOfGameAction(firstEmail, row, column, score);
@@ -401,7 +429,7 @@ namespace MatixBusinessLibrary
         }
 
         /// <summary>
-        /// Set wcf service instance 
+        /// Set WCF service instance 
         /// </summary>
         /// <param name="matixService"></param>
         public void SetMatixWcfService(MatixWcfService matixService)
@@ -441,8 +469,44 @@ namespace MatixBusinessLibrary
 
             if (list.Count == 0)
             {
-                // The is ended and we should notify the winner 
+                
+                int horScore = game.GetHorizontalScore();
+                int vertScore = game.GetVerticalScore();
 
+                int winnerScore;
+                string winnerNickname;
+                if (horScore > vertScore)
+                {
+                    winnerNickname = game.GetHorizontalNickname();
+                    winnerScore = horScore;
+                }
+                else
+                {
+                    winnerNickname = game.GetVerticalPlayerNickname();
+                    winnerScore = vertScore;
+                }
+
+
+                if (game.GetHorizontalPlayerType() == PlayerType.Human)
+                {
+                    string horEmail = game.GetHorizontalPlayerEmail();
+
+                    userEmailToGamel.Remove(horEmail);
+
+                    // The game is ended and we should notify the players  
+                    matixWcfService.NotifyPlayerOfGameEnded(horEmail, winnerNickname, winnerScore);
+                }
+
+                if (game.GetVerticalPlayerType() == PlayerType.Human)
+                {
+                    string vertEmail = game.GetVerticalPlayerEmail();
+                    userEmailToGamel.Remove(vertEmail);
+
+                    // The game is ended and we should notify the players  
+                    matixWcfService.NotifyPlayerOfGameEnded(vertEmail, winnerNickname, winnerScore);
+                }
+
+                // Update database 
 
             }
             else
@@ -456,7 +520,7 @@ namespace MatixBusinessLibrary
                 else
                 {
                     // Generate game action !!!
-                    
+
                     MatixCell maxCell = null;
                     // for the first phase get the high value 
                     foreach (var c in list)
@@ -479,6 +543,7 @@ namespace MatixBusinessLibrary
 
                     // use the max cell as the selected cell
                     SetGameAction(otherEmail, maxCell.Row, maxCell.Column, firstEmail, game);
+
 
                 }
             }

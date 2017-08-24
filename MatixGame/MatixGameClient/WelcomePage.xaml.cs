@@ -22,6 +22,9 @@ namespace MatixGameClient
     /// </summary>
     public partial class WelcomePage : Page
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private MatixGameServiceReference.MatixServiceClient service = null;
@@ -125,6 +128,9 @@ namespace MatixGameClient
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click on player statistics");
+
+            PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickName, email);
+            NavigationService.Navigate(page);
 
         }
 

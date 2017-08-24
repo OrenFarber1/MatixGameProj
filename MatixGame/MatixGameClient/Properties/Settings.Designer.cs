@@ -46,5 +46,17 @@ namespace MatixGameClient.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nickname {
+            get {
+                return ((string)(this["nickname"]));
+            }
+            set {
+                this["nickname"] = value;
+            }
+        }
     }
 }

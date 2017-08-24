@@ -61,7 +61,7 @@ namespace MatixBusinessLibrary
         MatixCell currentToken;
 
         /// <summary>
-        /// 
+        /// Use to generate random board and to choose direction and more 
         /// </summary>
         Random random = new Random();
 
@@ -155,6 +155,11 @@ namespace MatixBusinessLibrary
             return horisontalPlayer.GetPlayerType();
         }
 
+        public int GetHorizontalScore()
+        {
+            return horisontalPlayer.GetScore();
+        }
+
         /// <summary>
         /// Get vertical player email
         /// </summary>
@@ -176,6 +181,11 @@ namespace MatixBusinessLibrary
         public PlayerType GetVerticalPlayerType()
         {
             return verticalPlayer.GetPlayerType();
+        }
+
+        public int GetVerticalScore()
+        {
+            return verticalPlayer.GetScore();
         }
 
         /// <summary>

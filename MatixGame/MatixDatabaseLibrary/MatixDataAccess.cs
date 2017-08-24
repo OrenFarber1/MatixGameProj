@@ -11,6 +11,9 @@ namespace MatixDatabaseLibrary
 {
     public class MatixDataAccess
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -120,32 +123,44 @@ namespace MatixDatabaseLibrary
         /// <summary>
         /// Update user information in the database 
         /// </summary>
+        /// <param name="email">The user email address</param>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
         /// <param name="nickName"></param>
         /// <returns></returns>
-        public bool UpdatePlayerInformation(string firstName, string lastName, string nickName)
+        public bool UpdatePlayerInformation(string email, string firstName, string lastName, string nickName)
         {
-            using (MatixDataDataContext matixData = new MatixDataDataContext())
+            logger.InfoFormat("UpdatePlayerInformation email: {0}", email);
+
+            try
             {
-                var query = from player in matixData.Players
-                            where player.PlayerId == 11000
-                            select player;
-
-                foreach (Player p in query)
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
+                    var query = from player in matixData.Players
+                                where player.Email == email
+                                select player;
+
+                    // Update the available values 
+                    foreach (Player p in query)
+                    {
+                        if (!string.IsNullOrEmpty(firstName))
+                            p.FirstName = firstName;
+
+                        if (!string.IsNullOrEmpty(lastName))
+                            p.LastName = lastName;
+
+                        if (!string.IsNullOrEmpty(nickName))
+                            p.NickName = nickName;
+                    }
+
+                    matixData.SubmitChanges();                   
 
                 }
-
-                try
-                {
-                    matixData.SubmitChanges();
-                }
-                catch (System.Exception ex)
-                {
-                    logger.ErrorFormat("Exception on UpdatePlayerInformation - {0}", ex);
-                }
-
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("Exception on UpdatePlayerInformation - {0}", ex);
+                throw new Invalid​Operation​Exception("Update Player operation Failed");            
             }
 
             return true;

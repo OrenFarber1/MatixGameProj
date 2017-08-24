@@ -660,6 +660,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserRegistration", ReplyAction="http://tempuri.org/IMatixService/UserRegistrationResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.RegistrationResult> UserRegistrationAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UpdateUserDetailes", ReplyAction="http://tempuri.org/IMatixService/UpdateUserDetailesResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus UpdateUserDetailes(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UpdateUserDetailes", ReplyAction="http://tempuri.org/IMatixService/UpdateUserDetailesResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UpdateUserDetailesAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
         MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
@@ -711,6 +717,9 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameAction")]
         void UpdateGameAction(int row, int col, int score);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameEnded")]
+        void UpdateGameEnded(string winnerNickname, int score);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -747,6 +756,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.RegistrationResult> UserRegistrationAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData) {
             return base.Channel.UserRegistrationAsync(userData);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.OperationStatus UpdateUserDetailes(MatixGameClient.MatixGameServiceReference.UserInformationData userData) {
+            return base.Channel.UpdateUserDetailes(userData);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UpdateUserDetailesAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData) {
+            return base.Channel.UpdateUserDetailesAsync(userData);
         }
         
         public MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData) {

@@ -22,100 +22,104 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="cell.classdiagram">
+    <Content Include="activity\LoginAndRegistration.activitydiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="cell.classdiagram.layout">
+    <Content Include="activity\LoginAndRegistration.activitydiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>cell.classdiagram</DependentUpon>
+      <DependentUpon>activity\LoginAndRegistration.activitydiagram</DependentUpon>
     </Content>
-    <Content Include="Playing the gamme.sequencediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Playing the gamme.sequencediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>Playing the gamme.sequencediagram</DependentUpon>
-    </Content>
-    <Content Include="PlayWithserver.usecasediagram">
+    <Content Include="activity\UpdateUser.activitydiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="PlayWithserver.usecasediagram.layout">
+    <Content Include="activity\UpdateUser.activitydiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>PlayWithserver.usecasediagram</DependentUpon>
+      <DependentUpon>activity\UpdateUser.activitydiagram</DependentUpon>
     </Content>
-    <Content Include="Registration.activitydiagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Registration.activitydiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>Registration.activitydiagram</DependentUpon>
-    </Content>
-    <Content Include="Registration.sequencediagram">
+    <Content Include="class\cell.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Registration.sequencediagram.layout">
+    <Content Include="class\cell.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Registration.sequencediagram</DependentUpon>
+      <DependentUpon>class\cell.classdiagram</DependentUpon>
     </Content>
-    <Content Include="StartGame.usecasediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="StartGame.usecasediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>StartGame.usecasediagram</DependentUpon>
-    </Content>
-    <Content Include="Playing use case.usecasediagram">
+    <Content Include="sequence\Playing the gamme.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Playing use case.usecasediagram.layout">
+    <Content Include="sequence\Playing the gamme.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Playing use case.usecasediagram</DependentUpon>
+      <DependentUpon>sequence\Playing the gamme.sequencediagram</DependentUpon>
     </Content>
-    <Content Include="LoginAnd Registration.usecasediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="LoginAnd Registration.usecasediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>LoginAnd Registration.usecasediagram</DependentUpon>
-    </Content>
-    <Content Include="GetPlayerStatistics.usecasediagram">
+    <Content Include="sequence\Registration.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="GetPlayerStatistics.usecasediagram.layout">
+    <Content Include="sequence\Registration.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>GetPlayerStatistics.usecasediagram</DependentUpon>
+      <DependentUpon>sequence\Registration.sequencediagram</DependentUpon>
     </Content>
-    <Content Include="Login and registration.sequencediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Login and registration.sequencediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>Login and registration.sequencediagram</DependentUpon>
-    </Content>
-    <Content Include="Update Player info.usecasediagram">
+    <Content Include="use case\GetPlayerStatistics.usecasediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Update Player info.usecasediagram.layout">
+    <Content Include="use case\GetPlayerStatistics.usecasediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Update Player info.usecasediagram</DependentUpon>
+      <DependentUpon>use case\GetPlayerStatistics.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="UpdateUser.activitydiagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="UpdateUser.activitydiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>UpdateUser.activitydiagram</DependentUpon>
-    </Content>
-    <Content Include="waiting for new game.usecasediagram">
+    <Content Include="use case\Login and registration.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="waiting for new game.usecasediagram.layout">
+    <Content Include="use case\Login and registration.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>waiting for new game.usecasediagram</DependentUpon>
+      <DependentUpon>use case\Login and registration.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\LoginAnd Registration.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\LoginAnd Registration.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\LoginAnd Registration.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\Playing use case.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\Playing use case.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\Playing use case.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\PlayWithserver.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\PlayWithserver.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\PlayWithserver.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\StartGame.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\StartGame.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\StartGame.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\Update Player info.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\Update Player info.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\Update Player info.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\waiting for new game.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\waiting for new game.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\waiting for new game.usecasediagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\ModelingProject1.uml">
       <SubType>Content</SubType>
     </Content>
+    <Folder Include="activity" />
+    <Folder Include="class" />
+    <Folder Include="sequence" />
+    <Folder Include="use case" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,8 @@ namespace WcfMatixServiceLibrary
 
         RegistrationResult AddPlayer(string firstName, string lastName, string nickName, string email, string password);
 
+        OperationStatusnEnum UpdatePlayer(string email, string firstName, string lastName, string nickName);
+
         LoginResult UserLogin(string email, string password, string ipAddress);
 
         WaitingPlayerResult GetWaitingPlayersList(string excludedEmail);

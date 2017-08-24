@@ -16,10 +16,14 @@ using MatixBusinessLibrary;
 namespace MatixWindowsService
 {
     public partial class MatixWindowsService : ServiceBase
-    {
+    {        
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private ManualResetEvent shutdownEvent = new ManualResetEvent(false);
         private Thread thread;
-        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private MatixGameManager matixGameManager = null;
 

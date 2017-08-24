@@ -49,7 +49,7 @@ namespace MatixGameClient
     public partial class Board : UserControl
     {
         /// <summary>
-        /// Class logger instance 
+        /// A class logger instance  
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

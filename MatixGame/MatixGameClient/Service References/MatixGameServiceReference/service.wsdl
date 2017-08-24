@@ -46,6 +46,12 @@
   <wsdl:message name="IMatixService_UserRegistration_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserRegistrationResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_UpdateUserDetailes_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserDetailes" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_UpdateUserDetailes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserDetailesResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_UserLogin_InputMessage">
     <wsdl:part name="parameters" element="tns:UserLogin" />
   </wsdl:message>
@@ -94,10 +100,17 @@
   <wsdl:message name="IMatixService_UpdateGameAction_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateGameAction" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_UpdateGameEnded_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGameEnded" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IMatixService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserRegistration">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserRegistration" message="tns:IMatixService_UserRegistration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UserRegistrationResponse" message="tns:IMatixService_UserRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateUserDetailes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UpdateUserDetailes" message="tns:IMatixService_UpdateUserDetailes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateUserDetailesResponse" message="tns:IMatixService_UpdateUserDetailes_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserLogin" message="tns:IMatixService_UserLogin_InputMessage" />
@@ -135,6 +148,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateGameAction">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateGameAction" message="tns:IMatixService_UpdateGameAction_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateGameEnded">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateGameEnded" message="tns:IMatixService_UpdateGameEnded_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TcpBinding" type="tns:IMatixService">
     <wsp:PolicyReference URI="#TcpBinding_policy">
@@ -142,6 +158,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="UserRegistration">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UserRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserDetailes">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateUserDetailes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -223,6 +248,12 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateGameAction">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateGameAction" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGameEnded">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateGameEnded" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

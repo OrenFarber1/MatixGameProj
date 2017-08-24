@@ -23,6 +23,9 @@ namespace MatixGameClient
     /// </summary>
     public partial class LoginPage : Page
     {
+        /// <summary>
+        /// A class logger instance  
+        /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -79,6 +82,7 @@ namespace MatixGameClient
                             {
                                 Properties.Settings.Default.email = emailAddrTextBox.Text;
                                 Properties.Settings.Default.password = PassTextBox.Password;
+                                Properties.Settings.Default.nickname = result.NickName;
 
                                 Properties.Settings.Default.Save();
 

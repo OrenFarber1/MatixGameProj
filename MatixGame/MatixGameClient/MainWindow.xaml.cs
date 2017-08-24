@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 
 namespace MatixGameClient
 {
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -28,83 +29,87 @@ namespace MatixGameClient
     public partial class MainWindow : Window, IMatixServiceCallback
     {
         /// <summary>
-        /// logger instance of the class 
+        /// A class logger instance  
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        /// <summary>
-        /// Callback instance 
-        /// </summary>
-        //   private static MatixClientCallback callback = new MatixClientCallback(SynchronizationContext.Current);
-        // private MatixGameServiceReference.MatixServiceClient service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
-
-                  
+        
+                      
         private MatixGameServiceReference.MatixServiceClient service = null;
 
 
         public MainWindow() 
          { 
             InitializeComponent();
-
-            service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
-
-            bool showWelcome = false;
-
+            
             try
             {
-                //Open connection to the server 
-                service.Open();
-
-                ((ICommunicationObject)service).Faulted += new EventHandler(delegate
-                {
-                    MessageBox.Show("Service faulted!");
-                });
-
-                showWelcome = true;
+                OpenServiceConnection();
+                ShowWelcomePage();
             }
             catch (Exception e)
             {
                logger.ErrorFormat("Main Window - Exception: {0}", e.Message);
-               showWelcome = false;
+              
+                string message = "Failed to connect to server!" + Environment.NewLine + "Try to connect later.";
+                ErrorPage errorPage = new ErrorPage(message);
+                mainFrame.NavigationService.Navigate(errorPage);
             }
+        }
+        
+        /// <summary>
+        /// Open a connection to the server 
+        /// </summary>
+        private void OpenServiceConnection()
+        {
+            service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
-            if (showWelcome)
+            //Open connection to the server 
+            service.Open();
+
+            ((ICommunicationObject)service).Faulted += new EventHandler(delegate
             {
-                string email = Properties.Settings.Default.email;
-                string pass = Properties.Settings.Default.password;
+                logger.Error("Main Window - Service faulted!");
+                service.Abort();
+                service = null;
 
-                WelcomePage welcome;
-                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
-                {
-                    welcome = new WelcomePage(service);
-                }
-                else
-                {
-                    LoginData loginData = new LoginData();
+                // Reopen connection 
+                OpenServiceConnection();
+            });
+        }
 
-                    loginData.EmailAddress = email;
-                    loginData.Password = pass;
+        /// <summary>
+        /// Show the welcome page 
+        /// </summary>
+        private void ShowWelcomePage()
+        {
+            string email = Properties.Settings.Default.email;
+            string pass = Properties.Settings.Default.password;
 
-                    LoginResult result = service.UserLogin(loginData);
-                 
-                    if (result.Status == OperationStatus.Success)
-                    {
-                        welcome = new WelcomePage(service, result.NickName, email);
-                    }
-                    else
-                    {
-                        welcome = new WelcomePage(service);
-                    }
-                }
-
-                mainFrame.NavigationService.Navigate(welcome);
+            WelcomePage welcome;
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+            {
+                welcome = new WelcomePage(service);
             }
             else
             {
-                string message = "Failed to connect to server!" + Environment.NewLine + "Try to connect later.";
-                ErrorPage errorPage = new ErrorPage(message);
-                mainFrame.NavigationService.Navigate(errorPage);                
+                LoginData loginData = new LoginData();
+
+                loginData.EmailAddress = email;
+                loginData.Password = pass;
+
+                LoginResult result = service.UserLogin(loginData);
+
+                if (result.Status == OperationStatus.Success)
+                {
+                    welcome = new WelcomePage(service, result.NickName, email);
+                }
+                else
+                {
+                    welcome = new WelcomePage(service);
+                }
             }
+
+            mainFrame.NavigationService.Navigate(welcome);
         }
 
         public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
@@ -116,6 +121,20 @@ namespace MatixGameClient
             {
                 ((GamePage)mainFrame.NavigationService.Content).SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
             }
+            else 
+            {
+                StartNewGame(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
+            }
+        }
+
+        public void StartNewGame(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        {
+            string email = Properties.Settings.Default.email;
+            string nickname = Properties.Settings.Default.nickname;
+
+            GamePage page = new GamePage(service, nickname, email);
+            page.SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
+            mainFrame.NavigationService.Navigate(page);            
         }
 
         public void Ping(int value)
@@ -125,7 +144,13 @@ namespace MatixGameClient
 
         public void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers)
         {
-          //  ((IMatixServiceCallback)callback).UpdateWaitingPlayr(waitingPlayers);
+            logger.InfoFormat("WaitingPlayerResult Status: {0}", waitingPlayers.Status);
+
+            string name = mainFrame.NavigationService.Content.GetType().Name;
+            if (name == "PlayersListPage")
+            {
+
+            }
         }
 
         public void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
@@ -149,6 +174,18 @@ namespace MatixGameClient
             {
                 ((GamePage)mainFrame.NavigationService.Content).UpdateMatixBoard(row, col, score);
             }            
+        }
+
+        public void UpdateGameEnded(string winnerNickname, int score)
+        {
+            logger.InfoFormat("UpdateGameEnded - winnerNickname: {0}, score: {1}", winnerNickname, score);
+
+            string email = Properties.Settings.Default.email;
+            string nickname = Properties.Settings.Default.nickname;
+
+            PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickname, email, winnerNickname, score);
+            mainFrame.NavigationService.Navigate(page);
+
         }
     }  
 }
