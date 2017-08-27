@@ -52,7 +52,7 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// A list of waiting players
         /// </summary>
-        HashSet<string> waitingPlayers = null;
+        HashSet<string> waitingPlayersList = null;
 
         /// <summary>
         /// A list of active games found by users email
@@ -64,13 +64,37 @@ namespace MatixBusinessLibrary
         {
             userEmailToNickname = new Dictionary<string, string>();
             usernNiknameToEmail = new Dictionary<string, string>();
-            waitingPlayers = new HashSet<string>();
+            waitingPlayersList = new HashSet<string>();
             matixData = new MatixDataAccess();
             userEmailToGamel = new Dictionary<string, Game>();
 
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
             matixHost.Open();
         }
+
+        public void ClientDisconnected(string email)
+        {
+            logger.InfoFormat("ClientDisconnected - {0}", email);
+
+            if (userEmailToNickname.Remove(email))
+            {
+                logger.InfoFormat("ClientDisconnected - {0} removed from userEmailToNickname", email);
+            }
+
+            if (waitingPlayersList.Remove(email))
+            {
+                logger.InfoFormat("ClientDisconnected - {0} removed from waitingPlayers", email);
+            }
+
+            if (waitingPlayersList.Remove(email))
+            {
+                logger.InfoFormat("ClientDisconnected - {0} removed from userEmailToGamel", email);
+            }
+
+            // Handle closing a running game !!!
+        }
+
+
 
         /// <summary>
         /// Add a new player to the database 
@@ -96,25 +120,25 @@ namespace MatixBusinessLibrary
                 if (matixData.IsPlayerEmailExist(email))
                 {
                     // Error 
-                    result.Status = OperationStatusnEnum.InvalidEmail;
+                    result.Status = OperationStatusEnum.InvalidEmail;
                 }
 
                 // Add user credentials to the database
                 matixData.AddPlayer(firstName, lastName, nickName, email, passwordHash);
 
-                result.Status = OperationStatusnEnum.Success;
+                result.Status = OperationStatusEnum.Success;
 
             }
             catch (System.Invalid​Operation​Exception ex)
             {
                 logger.ErrorFormat("AddPlayer - Exception: {0}", ex);
-                result.Status = OperationStatusnEnum.Failure;
+                result.Status = OperationStatusEnum.Failure;
             }
 
             return result;
         }
 
-        public OperationStatusnEnum UpdatePlayer(string email, string firstName, string lastName, string nickName)
+        public OperationStatusEnum UpdatePlayer(string email, string firstName, string lastName, string nickName)
         {
             logger.InfoFormat("UpdatePlayer email: {0}", email);
 
@@ -125,10 +149,10 @@ namespace MatixBusinessLibrary
             catch (System.Invalid​Operation​Exception ex)
             {
                 logger.ErrorFormat("UpdatePlayer - Exception: {0}", ex);
-                return OperationStatusnEnum.Failure;
+                return OperationStatusEnum.Failure;
             }
 
-            return OperationStatusnEnum.Success;
+            return OperationStatusEnum.Success;
         }
 
         /// <summary>
@@ -152,7 +176,7 @@ namespace MatixBusinessLibrary
                 // Add a login record
                 if (matixData.PlayerLogin(email, passwordHash, ipAddress))
                 {
-                    result.Status = OperationStatusnEnum.Success;
+                    result.Status = OperationStatusEnum.Success;
 
                     string nickName;
                     if (!userEmailToNickname.TryGetValue(email, out nickName))
@@ -168,33 +192,23 @@ namespace MatixBusinessLibrary
                         usernNiknameToEmail[nickName] = email;
                     }
 
-                    result.NickName = nickName;
-
-                    // Add the player to the waiting list
-                    if (waitingPlayers.Add(email))
-                    {
-                        logger.InfoFormat("UserLogin Email: {0} Added to the waiting list.", email);
-                    }
-                    else
-                    {
-                        logger.ErrorFormat("UserLogin Email: {0} Faile to add to the waiting list or email already there.", email);
-                    }
+                    result.NickName = nickName;          
 
                 }
                 else
                 {
-                    result.Status = OperationStatusnEnum.Failure;
+                    result.Status = OperationStatusEnum.Failure;
                 }
             }
             else
             {
                 if (matixData.IsPlayerEmailExist(email))
                 {
-                    result.Status = OperationStatusnEnum.InvalidPassword;
+                    result.Status = OperationStatusEnum.InvalidPassword;
                 }
                 else
                 {
-                    result.Status = OperationStatusnEnum.InvalidEmail;
+                    result.Status = OperationStatusEnum.InvalidEmail;
                 }
             }
 
@@ -207,7 +221,18 @@ namespace MatixBusinessLibrary
 
             WaitingPlayerResult result = new WaitingPlayerResult();
 
-            foreach (string email in waitingPlayers)
+            // Add the player to the waiting list
+            if (waitingPlayersList.Add(excludedEmail))
+            {
+                logger.InfoFormat("GetWaitingPlayersList Email: {0} Added to the waiting list.", excludedEmail);
+            }
+            else
+            {
+                logger.ErrorFormat("GetWaitingPlayersList Email: {0} Faile to add to the waiting list or email already there.", excludedEmail);
+            }
+
+
+            foreach (string email in waitingPlayersList)
             {
                 if (email == excludedEmail)
                     continue;
@@ -223,33 +248,46 @@ namespace MatixBusinessLibrary
                 result.WaitingPlayerslist.Add(waitingPlayer);
             }
 
-            WaitingPlayer waitingPlayer1 = new WaitingPlayer();
-            waitingPlayer1.NickName = "Player1";
-            waitingPlayer1.TotalGames = 15;
-            waitingPlayer1.TotalScore = 85;
-            waitingPlayer1.NumberOfWinnings = 7;
-            result.WaitingPlayerslist.Add(waitingPlayer1);
+            result.Status = OperationStatusEnum.Success;
 
-            waitingPlayer1 = new WaitingPlayer();
-            waitingPlayer1.NickName = "Player2";
-            waitingPlayer1.TotalGames = 150;
-            waitingPlayer1.TotalScore = -6585;
-            waitingPlayer1.NumberOfWinnings = 87;
-            result.WaitingPlayerslist.Add(waitingPlayer1);
-
-            waitingPlayer1 = new WaitingPlayer();
-            waitingPlayer1.NickName = "Player__3";
-            waitingPlayer1.TotalGames = 25;
-            waitingPlayer1.TotalScore = 45;
-            waitingPlayer1.NumberOfWinnings = 17;
-            result.WaitingPlayerslist.Add(waitingPlayer1);
-
-            result.Status = OperationStatusnEnum.Success;
-
+            Task.Run(() => NotifyPlayersWithWaitingPlayersTask(excludedEmail));
+            
             return result;
         }
 
-        public OperationStatusnEnum StartPlayingWithPlayer(string firstEmail, string secondNickname)
+        private void NotifyPlayersWithWaitingPlayersTask(string excudedEmail)
+        {
+
+            foreach (string notifyPlayer in waitingPlayersList)
+            {
+                // Skip, just notify
+                if (notifyPlayer == excudedEmail)
+                    continue;
+
+                WaitingPlayerResult result = new WaitingPlayerResult();
+
+                foreach (string email in waitingPlayersList)
+                {
+                    if (email == notifyPlayer)
+                        continue;
+
+                    WaitingPlayer waitingPlayer = new WaitingPlayer();
+                    PlayerScoreData playerData = matixData.GetWaitingPlayerData(email);
+
+                    waitingPlayer.NickName = userEmailToNickname[email];
+                    waitingPlayer.TotalGames = playerData.TotalNumberOfGames;
+                    waitingPlayer.TotalScore = playerData.TotalScore;
+                    waitingPlayer.NumberOfWinnings = playerData.NumberOfWinnings;
+
+                    result.WaitingPlayerslist.Add(waitingPlayer);
+                }
+
+                matixWcfService.NotifyWatingPlars(notifyPlayer, result);
+
+            }
+        }
+
+        public OperationStatusEnum StartPlayingWithPlayer(string firstEmail, string secondNickname)
         {
             logger.InfoFormat("StartPlayingWithPlayer - firstEmail: {0}, secondNickname: {1}", firstEmail, secondNickname);
 
@@ -257,22 +295,22 @@ namespace MatixBusinessLibrary
             string secondEmail;
             if (!usernNiknameToEmail.TryGetValue(secondNickname, out secondEmail))
             {
-                return OperationStatusnEnum.Failure;
+                return OperationStatusEnum.Failure;
             }
 
             string firstNickname;
             if (!userEmailToNickname.TryGetValue(firstEmail, out firstNickname))
             {
-                return OperationStatusnEnum.Failure;
+                return OperationStatusEnum.Failure;
             }
 
             // Remove players from waiting list 
-            waitingPlayers.Remove(firstEmail);
-            waitingPlayers.Remove(secondEmail);
+            waitingPlayersList.Remove(firstEmail);
+            waitingPlayersList.Remove(secondEmail);
 
             Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, secondEmail, secondNickname, PlayerType.Human));
 
-            return OperationStatusnEnum.Success;
+            return OperationStatusEnum.Success;
         }
 
         /// <summary>
@@ -280,16 +318,16 @@ namespace MatixBusinessLibrary
         /// </summary>
         /// <param name="firstEmail"></param>
         /// <returns></returns>
-        public OperationStatusnEnum StartPlayingWithRobot(string firstEmail)
+        public OperationStatusEnum StartPlayingWithRobot(string firstEmail)
         {
             string firstNickname;
             if (!userEmailToNickname.TryGetValue(firstEmail, out firstNickname))
             {
-                return OperationStatusnEnum.Failure;
+                return OperationStatusEnum.Failure;
             }
 
             // Remove players from waiting list 
-            waitingPlayers.Remove(firstEmail);
+            waitingPlayersList.Remove(firstEmail);
 
             string botEmail;
             string botNickname;
@@ -297,7 +335,7 @@ namespace MatixBusinessLibrary
 
             Task.Run(() => CreateNewGameTask(firstEmail, firstNickname, botEmail, botNickname, PlayerType.Robot));
 
-            return OperationStatusnEnum.Success;
+            return OperationStatusEnum.Success;
         }
 
         /// <summary>
@@ -358,7 +396,7 @@ namespace MatixBusinessLibrary
         /// <param name="row">The new selected row</param>
         /// <param name="column">The new selected column</param>
         /// <returns></returns>
-        public OperationStatusnEnum SetGameAction(string email, int row, int column)
+        public OperationStatusEnum SetGameAction(string email, int row, int column)
         {
             logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2}", email, row, column);
 
@@ -369,28 +407,28 @@ namespace MatixBusinessLibrary
                 {
                     // Update the game instance 
                     int score = game.SetGameAction(email, row, column);
-                    
+
                     // Update the database 
-                    matixData.AddGameAction( email, game.GameId, row,  column, score);
+                    matixData.AddGameAction(email, game.GameId, row, column, score);
 
                     // After update change the turn to the other player
                     GameTurnType turn = game.ChangeCurrentTurn();
-                    
-                    Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));                    
 
-                    return OperationStatusnEnum.Success;
+                    Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));
+
+                    return OperationStatusEnum.Success;
                 }
                 catch (System.Exception ex)
                 {
                     logger.ErrorFormat("SetGameAction - Error: {0}", ex);
-                    return OperationStatusnEnum.InvalidAction;
+                    return OperationStatusEnum.InvalidAction;
                 }
             }
 
-            return OperationStatusnEnum.InvalidEmail;
+            return OperationStatusEnum.InvalidEmail;
         }
 
-        private OperationStatusnEnum SetGameAction(string email, int row, int column, string firstEmail, Game game)
+        private OperationStatusEnum SetGameAction(string email, int row, int column, string firstEmail, Game game)
         {
             logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2} firstEmail: {3}, GameId: {4}", email, row, column, firstEmail, game.GameId);
             try
@@ -418,14 +456,14 @@ namespace MatixBusinessLibrary
                 // Notify the other player 
                 matixWcfService.NotifyPlayerOfGameAction(firstEmail, row, column, score);
 
-                return OperationStatusnEnum.Success;
+                return OperationStatusEnum.Success;
             }
             catch (System.Exception ex)
             {
-                logger.ErrorFormat("SetGameAction - Error: {0}", ex);               
+                logger.ErrorFormat("SetGameAction - Error: {0}", ex);
             }
 
-            return OperationStatusnEnum.InvalidAction;
+            return OperationStatusEnum.InvalidAction;
         }
 
         /// <summary>
@@ -469,7 +507,7 @@ namespace MatixBusinessLibrary
 
             if (list.Count == 0)
             {
-                
+
                 int horScore = game.GetHorizontalScore();
                 int vertScore = game.GetVerticalScore();
 
@@ -543,13 +581,61 @@ namespace MatixBusinessLibrary
 
                     // use the max cell as the selected cell
                     SetGameAction(otherEmail, maxCell.Row, maxCell.Column, firstEmail, game);
-
-
                 }
             }
         }
 
+        public void RemoveFromWaitingPlayers(string email)
+        {            
+            if (waitingPlayersList.Remove(email))
+            {
+                logger.InfoFormat("RemoveFromWaitingPlayers - {0} removed from waitingPlayers", email);
+            }
+            
+            Task.Run(() => NotifyPlayersWithWaitingPlayersTask(email));
+        }
 
+        public void QuitTheGame(string email)
+        {
+            logger.InfoFormat("QuitTheGame email: {0}", email);
+
+            Game game;
+            if (userEmailToGamel.TryGetValue(email, out game))
+            {
+                PlayerType playerType;
+                string otherEmail;
+                string othernickname;
+                int playerScore;
+
+                otherEmail = game.GetHorizontalPlayerEmail();
+                if (email != otherEmail)
+                {
+                    playerType = game.GetHorizontalPlayerType();
+                    playerScore = game.GetHorizontalScore();
+                    othernickname = game.GetHorizontalNickname();
+                }
+                else
+                {
+                    otherEmail = game.GetVerticalPlayerEmail();
+                    playerType = game.GetVerticalPlayerType();
+                    playerScore = game.GetVerticalScore();
+                    othernickname = game.GetVerticalPlayerNickname();
+                }
+
+                userEmailToGamel.Remove(email);
+                userEmailToGamel.Remove(otherEmail);
+
+                // Update database 
+
+                if (playerType == PlayerType.Human)
+                {
+                    // Notify the other player that he wins the game   
+                    matixWcfService.NotifyPlayerOfGameEnded(otherEmail, othernickname, playerScore);
+                }
+
+            }
+
+        }
 
         /// <summary>
         /// Generate hash array based on the input string using SHA256
@@ -582,5 +668,7 @@ namespace MatixBusinessLibrary
             botNickname = "Matix - 1";
         }
 
+
     }
+
 }

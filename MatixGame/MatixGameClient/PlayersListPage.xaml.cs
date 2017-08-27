@@ -43,8 +43,13 @@ namespace MatixGameClient
             // Get waiting players from server 
             WaitingPlayerResult results = service.GetWaitingPlayers(email);
 
-            lvWaitingPlayers.ItemsSource = results.WaitingPlayerslist;
+          //  UpdateWaitingPlayerslistView(results.WaitingPlayerslist);
             
+        }
+
+        public void UpdateWaitingPlayerslistView(List<WaitingPlayer> list)
+        {
+            waitingPlayerslistView.ItemsSource = list;
         }
 
         /// <summary>
@@ -83,6 +88,9 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void BackClicked(object sender, RoutedEventArgs e)
         {
+            // Remove the player from waiting list 
+            service.RemoveFromWaitingPlayers(email);
+
             WelcomePage welcome = new WelcomePage(service, nickName, email);
             NavigationService.Navigate(welcome);
         }

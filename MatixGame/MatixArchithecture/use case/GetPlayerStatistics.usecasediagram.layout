@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLUseCaseDiagram1">
+  <useCaseModelRootMoniker Id="7cae9273-a812-4ea6-b27d-5b0bd3247d4d" />
+  <nestedChildShapes>
+    <actorShape Id="b8c284c3-5d23-4372-9e89-008936aed0c3" absoluteBounds="2.875, 1.625, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="0f069b82-8426-4c5f-911f-1e50ba42c639" LastKnownName="Player" />
+      <relativeChildShapes />
+    </actorShape>
+    <SubsystemShape Id="1b7d3818-d469-44d8-81e5-84779ffb1030" absoluteBounds="4.375, 0.5, 4.375, 3" customColor="Transparent">
+      <subsystemMoniker Id="93e7cc80-523b-4f78-8c42-09456a6ae2fc" LastKnownName="Matix Game1" />
+      <nestedChildShapes>
+        <useCaseShape Id="00e4abb4-644c-43f9-9ede-d324be74a60c" absoluteBounds="4.875, 1, 1.25, 0.875" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="bc2ec772-fb5c-4446-9a36-7713c1567b5b" LastKnownName="Get player statisitcs" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="f2cce6e2-cc82-42d8-bbce-96ce5140d568" absoluteBounds="6.875, 2.125, 1.25, 0.875" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="fd3ce549-aab5-40c4-9a99-4cb21d94a544" LastKnownName="Get player information from database" />
+          <relativeChildShapes />
+        </useCaseShape>
+      </nestedChildShapes>
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(3.375 : 1.82894736842105); (4.89557841421085 : 1.54884081843484)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="34948b57-75a4-4ce7-9d79-111e5bf5656d" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="b8c284c3-5d23-4372-9e89-008936aed0c3" />
+        <useCaseShapeMoniker Id="00e4abb4-644c-43f9-9ede-d324be74a60c" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <includeConnector edgePoints="[(5.98719308424582 : 1.71154610988827); (7.01280691575418 : 2.28845389011173)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="8837c887-8384-437f-b5fd-3c2001949cb5" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="00e4abb4-644c-43f9-9ede-d324be74a60c" />
+        <useCaseShapeMoniker Id="f2cce6e2-cc82-42d8-bbce-96ce5140d568" />
+      </nodes>
+    </includeConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

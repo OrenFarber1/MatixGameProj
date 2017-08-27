@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WcfMatixServiceLibrary;
 
 namespace MatixGameClient
 {
@@ -70,7 +69,7 @@ namespace MatixGameClient
             }
             else
             {
-                MatixGameServiceReference.UserInformationData userData = new MatixGameServiceReference.UserInformationData();
+                UserInformationData userData = new UserInformationData();
                 userData.EmailAddress = (string)emailAddr.Content;
                 userData.FirstName = firstNameTextBox.Text;
                 userData.LastName = lastNameTextBox.Text;

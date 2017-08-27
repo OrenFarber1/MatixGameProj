@@ -88,6 +88,18 @@
   <wsdl:message name="IMatixService_NotifyPlayerOfNewGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:NotifyPlayerOfNewGameResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_RemoveFromWaitingPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromWaitingPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_RemoveFromWaitingPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromWaitingPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_QuitTheGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:QuitTheGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_QuitTheGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuitTheGameResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Ping" />
   </wsdl:message>
@@ -135,6 +147,14 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerOfNewGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame" message="tns:IMatixService_NotifyPlayerOfNewGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse" message="tns:IMatixService_NotifyPlayerOfNewGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveFromWaitingPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers" message="tns:IMatixService_RemoveFromWaitingPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse" message="tns:IMatixService_RemoveFromWaitingPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="QuitTheGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/QuitTheGame" message="tns:IMatixService_QuitTheGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/QuitTheGameResponse" message="tns:IMatixService_QuitTheGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
@@ -228,6 +248,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RemoveFromWaitingPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuitTheGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/QuitTheGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Ping">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/Ping" style="document" />
       <wsdl:output>
@@ -261,11 +299,11 @@
   </wsdl:binding>
   <wsdl:service name="MatixWcfService">
     <wsdl:port name="TcpBinding" binding="tns:TcpBinding">
-      <soap12:address location="net.tcp://localhost:23370/MatixWcfService" />
+      <soap12:address location="net.tcp://orenf:23370/MatixWcfService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:23370/MatixWcfService</wsa10:Address>
+        <wsa10:Address>net.tcp://orenf:23370/MatixWcfService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Dns>localhost</Dns>
+          <Dns>OrenF</Dns>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

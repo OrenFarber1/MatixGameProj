@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace MatixGameClient
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace MatixGameClient
         PlayingDirectionEnum myDirection = PlayingDirectionEnum.Vertical;
 
 
-        public GamePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
+        public GamePage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             nickName = _nickName;
@@ -76,6 +77,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            service.QuitTheGame(email);
             WelcomePage welcome = new WelcomePage(service, nickName, email);
             NavigationService.Navigate(welcome);
         }

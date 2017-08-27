@@ -200,23 +200,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WcfMatixServiceLibrary.LoginResult.datasource" />
+    <None Include="Properties\DataSources\WcfMatixServiceLibrary.RegistrationResult.datasource" />
+    <None Include="Properties\DataSources\WcfMatixServiceLibrary.WaitingPlayerResult.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.OperationStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.RegistrationResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.WaitingPlayerResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\MatixGameServiceReference\service.wsdl" />
     <None Include="Service References\MatixGameServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -240,21 +231,6 @@
     <Resource Include="matix.ico" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\MatixGameServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MatixGameServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MatixGameServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MatixGameServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -271,6 +247,21 @@
       <Project>{CBF194D8-274F-4449-8155-C1BA3BA0E0C9}</Project>
       <Name>WcfMatixServiceLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MatixGameServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MatixGameServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MatixGameServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MatixGameServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

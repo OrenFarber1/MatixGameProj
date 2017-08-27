@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="1e9cd1d9-46df-4607-9508-7201c2bcde28" name="waiting for new game" linkedPackageId="0b3402b4-9049-4dc9-b19e-79f4d97e9a0b" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="7d2ccc3c-7401-478a-8f34-6509de00cbef" name="Player11" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bf7de1a3-2646-4b5c-a3b3-886c9c39f09b" />
+        <targetEnds>
+          <association Id="6eb54a6d-2165-4e58-8001-83fee0a14f7f" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Connect to Game Server" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f58de5b3-8a79-4246-9a1b-f3556265a077" LastKnownName="Connect to Game Server1" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3ae02a7d-e8d3-4fdc-a258-00b43f34a75b" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6aad0670-cc81-47d4-8e6d-402d435d1d45" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8e332ef9-98bb-4139-9875-a6099ff839f2" name="Connect to Game Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3f7402cc-50e0-4038-80ab-562b775ddf60" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e5b4a854-db18-4e0c-af4c-ed2a8a58a0da" />
+          </association>
+          <association Id="284b0aff-6bf7-4655-8e74-9aedda831d28" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Check avaiable games" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" LastKnownName="Get available players" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a6c51e72-769a-436c-81c8-309a981b09ed" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="879f762a-39b7-491d-b50c-fadf7d983559" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fc6f2a80-d4a9-48c5-af25-83512e9a6137" name="Check avaiable games" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="90c38948-6fec-46f9-a81d-7521a0cde060" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ea837e06-cff9-4c09-8fb0-faec3f7f2afe" />
+          </association>
+          <association Id="cee663ec-3b66-40ae-9b78-a26d2f177902" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Wait for player" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="378d36fa-4475-48da-bc41-82be650b3836" LastKnownName="Wait for player1" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="db9a8b4d-6e77-4d8f-a7ac-e33a14e4c23f" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bb2f47b9-771f-4e7b-9033-49356867fb15" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dbe78c0f-09b9-4082-beaa-53bea609fee3" name="Wait for player" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="61be0816-a4e1-4c2c-99e3-eb772052415c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b9d4b324-49a1-479c-930a-952c41ec2ebe" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" name="Game Client1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ed692e44-bc6f-4082-af2e-3ce865ed0399" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f58de5b3-8a79-4246-9a1b-f3556265a077" name="Connect to Game Server1" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3c33bb16-c353-4b15-a33e-b97363b3da62" />
+        <subjects>
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" name="Get available players" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3cc5fc51-87ab-4302-8f0f-cad8227d604c" />
+        <subjects>
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="378d36fa-4475-48da-bc41-82be650b3836" name="Wait for player1" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f36f9fae-d94f-430b-9bfc-f3e268349c9e" />
+        <subjects>
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="0b3402b4-9049-4dc9-b19e-79f4d97e9a0b" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="44c1a338-fc28-468b-857c-12fbe0b454bd">
+        <profileInstance Id="113c849e-b91b-4833-ad8e-02fe35577348" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="906b1bcd-dd36-457d-9be8-b82659368e7e">
+        <profileInstance Id="a7b0177b-4537-4189-b786-e1dca03b5c7e" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

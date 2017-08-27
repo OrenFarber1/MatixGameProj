@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="1204863e-70e0-4236-99ec-bbe6147e3dea" name="Update Player info" linkedPackageId="2587ec42-ac66-41e9-8fba-b51f0fbecd94" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="94083ba1-e50a-4984-a118-a71567e230b8" name="Matix Game" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <ownedCommentsInternal>
+          <comment Id="bd6d7f4d-229c-4cc2-8146-28e61e85156a">
+            <elementDefinition Id="085bc80d-81e3-49ee-a002-478a380bec13" />
+            <body>Player muset be logged in to the server</body>
+            <annotatedElements>
+              <useCaseMoniker Id="8099320d-9cd7-406a-9b3b-18579966ef91" LastKnownName="Update player information" />
+            </annotatedElements>
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="3ffedec0-4ad6-44f7-8c41-6453d4015a7a" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="898faa57-ea8a-4301-988f-eac8f4226ec2" name="Player" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="95527fea-228e-4b03-b994-5e9062993b16" />
+        <targetEnds>
+          <association Id="bad0ac6d-a113-47f1-b0d9-d16cb0388014" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Update player information" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8099320d-9cd7-406a-9b3b-18579966ef91" LastKnownName="Update player information" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a8f6a55b-73d3-4f07-b46f-3438c2f468bf" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a14f5020-5afc-4dca-a522-a295225804c8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="77eb68c3-45ea-4ced-9d9b-4dd08ced6bc3" name="Update player information" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="24cde261-047f-4d69-8100-52874c912781" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3732932d-afaf-4b6b-87e6-24add3592dab" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="8099320d-9cd7-406a-9b3b-18579966ef91" name="Update player information" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bcb36959-cf4e-4132-a083-298472315950" />
+        <additions>
+          <include Id="5304642b-53af-489a-b881-cc68b6faae43">
+            <useCaseMoniker Id="6444cac4-db38-44d1-8a0c-d18c5127108b" LastKnownName="Update Database" />
+            <elementDefinition Id="9939aba0-558c-4bed-a209-5743a09641f6" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="94083ba1-e50a-4984-a118-a71567e230b8" LastKnownName="Matix Game" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="6444cac4-db38-44d1-8a0c-d18c5127108b" name="Update Database" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c7a97324-dcde-4237-9c73-3733275181fd" />
+        <subjects>
+          <subsystemMoniker Id="94083ba1-e50a-4984-a118-a71567e230b8" LastKnownName="Matix Game" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="2587ec42-ac66-41e9-8fba-b51f0fbecd94" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="96698294-649e-4a2f-8497-417a163d542e">
+        <profileInstance Id="69c7479c-85cc-494b-8b7a-33c7d74307a7" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="4623920b-4330-4d5e-8777-6445e3ecacb1">
+        <profileInstance Id="99357b13-9023-474b-8a4c-b4b0ba195c86" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

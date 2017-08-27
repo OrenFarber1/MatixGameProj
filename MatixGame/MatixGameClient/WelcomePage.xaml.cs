@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WcfMatixServiceLibrary;
 
 namespace MatixGameClient
 {
@@ -137,6 +138,9 @@ namespace MatixGameClient
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to quit");
+
+            service.Close();
+
             System.Environment.Exit(0);
         }
     }

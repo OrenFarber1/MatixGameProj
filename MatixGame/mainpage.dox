@@ -1,0 +1,12 @@
+/*! \mainpage Matix Game Documention 
+ *
+ * \section intro_sec Introduction
+ *
+ * The Matix game is a board game for two players. 
+ * It has an 8*8 board with random integer numbers between -15 to 15 and one token. 
+ * A player plays by moving the token horizontally or vertically, one player can move the token horizontally and the second can move the token vertically, to a non-used cell on the board. 
+ * The purpose of the game is to collect the highest score which is the summary of all the cell values the payer collected. 
+ * The game ends when there is no free cell for the token to move. 
+ *
+ *
+ */

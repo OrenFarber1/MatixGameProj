@@ -16,7 +16,7 @@ namespace WcfMatixServiceLibrary
         RegistrationResult UserRegistration(UserInformationData userData);
 
         [OperationContract]
-        OperationStatusnEnum UpdateUserDetailes(UserInformationData userData);
+        OperationStatusEnum UpdateUserDetailes(UserInformationData userData);
 
         [OperationContract]
         LoginResult UserLogin(LoginData loginData);
@@ -25,24 +25,29 @@ namespace WcfMatixServiceLibrary
         WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
 
         [OperationContract]
-        OperationStatusnEnum SelectPlayerToPlay(string email, string nickName);
+        OperationStatusEnum SelectPlayerToPlay(string email, string nickName);
 
         [OperationContract]
-        OperationStatusnEnum SelectRobotToPlay(string email);
+        OperationStatusEnum SelectRobotToPlay(string email);
         
         [OperationContract]
-        OperationStatusnEnum SetGameAction(string email, int row, int col);
+        OperationStatusEnum SetGameAction(string email, int row, int col);
 
         [OperationContract]
         void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting);
 
+        [OperationContract]
+        void RemoveFromWaitingPlayers(string email);
+
+        [OperationContract]
+        void QuitTheGame(string email);
     }
 
     /// <summary>
     /// Operation stratus enumeration
     /// </summary>
     [DataContract(Name = "OperationStatus")]
-    public enum OperationStatusnEnum
+    public enum OperationStatusEnum
     {
         [EnumMember]
         Success,
@@ -75,14 +80,14 @@ namespace WcfMatixServiceLibrary
     [DataContract]
     public class RegistrationResult
     {
-        OperationStatusnEnum status;
+        OperationStatusEnum status;
         string message;
 
         /// <summary>
         /// Operation status enumeration
         /// </summary>
         [DataMember]
-        public OperationStatusnEnum Status
+        public OperationStatusEnum Status
         {
             get { return status; }
             set { status = value; }
@@ -130,7 +135,7 @@ namespace WcfMatixServiceLibrary
     public class LoginResult
     {
         string nickName;
-        OperationStatusnEnum status;
+        OperationStatusEnum status;
 
         /// <summary>
         /// The user nick name
@@ -146,7 +151,7 @@ namespace WcfMatixServiceLibrary
         /// The operation result status
         /// </summary>
         [DataMember]
-        public OperationStatusnEnum Status
+        public OperationStatusEnum Status
         {
             get { return status; }
             set { status = value; }
@@ -278,7 +283,7 @@ namespace WcfMatixServiceLibrary
     public class WaitingPlayerResult
     {
         List<WaitingPlayer> waitingPlayerslist;
-        OperationStatusnEnum status;
+        OperationStatusEnum status;
 
         public WaitingPlayerResult()
         {
@@ -298,7 +303,7 @@ namespace WcfMatixServiceLibrary
         /// The operation result status
         /// </summary>
         [DataMember]
-        public OperationStatusnEnum Status
+        public OperationStatusEnum Status
         {
             get { return status; }
             set { status = value; }

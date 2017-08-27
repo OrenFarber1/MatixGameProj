@@ -701,6 +701,18 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame", ReplyAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse")]
         System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse")]
+        void RemoveFromWaitingPlayers(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse")]
+        System.Threading.Tasks.Task RemoveFromWaitingPlayersAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/QuitTheGame", ReplyAction="http://tempuri.org/IMatixService/QuitTheGameResponse")]
+        void QuitTheGame(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/QuitTheGame", ReplyAction="http://tempuri.org/IMatixService/QuitTheGameResponse")]
+        System.Threading.Tasks.Task QuitTheGameAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -812,6 +824,22 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting) {
             return base.Channel.NotifyPlayerOfNewGameAsync(horizontalEmail, horizontalNickname, verticalNickname, matixBoard, whoIsStarting);
+        }
+        
+        public void RemoveFromWaitingPlayers(string email) {
+            base.Channel.RemoveFromWaitingPlayers(email);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFromWaitingPlayersAsync(string email) {
+            return base.Channel.RemoveFromWaitingPlayersAsync(email);
+        }
+        
+        public void QuitTheGame(string email) {
+            base.Channel.QuitTheGame(email);
+        }
+        
+        public System.Threading.Tasks.Task QuitTheGameAsync(string email) {
+            return base.Channel.QuitTheGameAsync(email);
         }
     }
 }

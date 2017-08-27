@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="f8113b07-3d4a-4eae-8dd5-aa26c3f118c4" name="cell" linkedPackageId="30b234f7-7bf0-44b5-821e-4c8d1a86a3ee" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="38bc1745-e2b4-4f21-95d1-a2a7807ddcfb" name="Cell" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="32f7dcd2-d794-4132-b069-dc82d798efa1" />
+        <ownedAttributesInternal>
+          <property Id="30845144-7c41-4dd3-99cf-8f9f3683deb4" name="Value" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2878987c-e79d-4018-95c7-17653c26ee5f" />
+          </property>
+          <property Id="6d1f9fcd-4f99-4569-bfa1-46de3577c2a1" name="IsToken" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a4ae3557-0dfe-42b2-9e5c-73ea9a684931" />
+          </property>
+          <property Id="f1e88a5b-4f4a-4c85-beed-32be48079f34" name="Used" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="044a3117-4c1f-44bc-883b-57524e1e306c" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a055ed5a-e91f-481a-a64e-2a14f78c472b" name="Board" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="db9b4cd9-c4be-4c9b-b2ff-fc697e1c8f88" />
+        <targetEnds>
+          <association Id="44c51cb5-9520-41f4-b519-006b03bcdd2b" isDerived="false" sourceEndRoleName="Board" targetEndRoleName="Cell" isLeaf="false" isAbstract="false">
+            <classMoniker Id="38bc1745-e2b4-4f21-95d1-a2a7807ddcfb" LastKnownName="Cell" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4bfc28b6-b3e4-4a84-b1e9-5bc987b3dff8" name="Board" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="eb15815e-321e-4470-b4c1-01ab440caa6c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e9cc11db-88a5-4316-8464-48a281f528f8" name="Cell" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="2265de64-0a30-46f3-965e-bd4be547efc7" name="Lower" value="64">
+                      <elementDefinition Id="f2dd5400-0efa-4114-b2d3-9f948c6818ad" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="7c1da865-f902-47ea-85eb-26600bb26892" name="Upper" value="64">
+                      <elementDefinition Id="00bec95c-02e2-487e-9e47-69054f636dd6" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="15d8ed78-e170-4bbd-b8de-0686ea3d3ed4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3623d96a-ddcf-4811-9be7-33ef80b16b34" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="b2c8ff77-5a47-4276-9876-8adc6fb62ea1" name="Cells" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1f9f2762-39cd-44d3-a71b-e0b0486081c0" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="30b234f7-7bf0-44b5-821e-4c8d1a86a3ee" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+    <profileInstances>
+      <packageHasProfileInstances Id="37ef78b8-c1a0-47fd-a6fa-9edd61d3b603">
+        <profileInstance Id="bb77c02e-1b01-4ebd-bd04-617ce63aed5f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="df2684d3-0e80-467e-b2bd-9ae912c0f49d">
+        <profileInstance Id="33d8b9c1-16ab-4e4b-9d58-0e174ef11f7e" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

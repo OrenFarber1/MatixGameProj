@@ -50,13 +50,13 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
-        public OperationStatusnEnum UpdateUserDetailes(UserInformationData userData)
+        public OperationStatusEnum UpdateUserDetailes(UserInformationData userData)
         {
             logger.InfoFormat("UpdateUserDetailes email: {0}", userData.EmailAddress);
 
-            OperationStatusnEnum result = matixBuisnessInterface.UpdatePlayer(userData.EmailAddress, userData.FirstName, userData.LastName, userData.NickName);
+            OperationStatusEnum result = matixBuisnessInterface.UpdatePlayer(userData.EmailAddress, userData.FirstName, userData.LastName, userData.NickName);
 
-            return OperationStatusnEnum.Success;
+            return OperationStatusEnum.Success;
         }
 
         public LoginResult UserLogin(LoginData loginData)
@@ -68,12 +68,44 @@ namespace WcfMatixServiceLibrary
 
             LoginResult result = matixBuisnessInterface.UserLogin(loginData.EmailAddress, loginData.Password, ipAddress);
 
-            if ( result.Status == OperationStatusnEnum.Success)
+            if (result.Status == OperationStatusEnum.Success)
             {
-                usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();                
+                usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();
+
+                OperationContext.Current.Channel.Faulted += ClientDisconnected;
+                OperationContext.Current.Channel.Closed += ClientDisconnected;
             }
-            
             return result;
+        }
+
+
+        private void ClientDisconnected(object sender, EventArgs e)
+        {
+            logger.Info("ClientDisconnected");
+
+            IMatixServiceCallback callback = sender as IMatixServiceCallback;
+
+            string disconnected = null;
+            foreach(var keyValue in usersCallbackes)
+            {
+                if(keyValue.Value == callback)
+                {
+                    disconnected = keyValue.Key;
+                    break;
+                }
+            }
+
+            if (string.IsNullOrEmpty(disconnected))
+            {
+                logger.Error("ClientDisconnected - Can't find the disconnected client");
+            }
+            else
+            {
+                logger.InfoFormat("ClientDisconnected - Client {0} disconnected!", disconnected);
+
+                matixBuisnessInterface.ClientDisconnected(disconnected);
+            }
+
         }
 
 
@@ -86,32 +118,54 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
-        public OperationStatusnEnum SelectPlayerToPlay(string email, string nickName)
+        public OperationStatusEnum SelectPlayerToPlay(string email, string nickName)
         {
             logger.InfoFormat("SelectPlayer email: {0}, nickname: {1} ",email,  nickName);
 
-            OperationStatusnEnum result = matixBuisnessInterface.StartPlayingWithPlayer(email, nickName);
+            OperationStatusEnum result = matixBuisnessInterface.StartPlayingWithPlayer(email, nickName);
 
             return result;
         }
 
-        public OperationStatusnEnum SelectRobotToPlay(string email)
+        public OperationStatusEnum SelectRobotToPlay(string email)
         {
             logger.InfoFormat("SelectRobotToPlay email: {0}", email);
 
-            OperationStatusnEnum result = matixBuisnessInterface.StartPlayingWithRobot(email);
+            OperationStatusEnum result = matixBuisnessInterface.StartPlayingWithRobot(email);
 
             return result;
         }
 
-        public OperationStatusnEnum SetGameAction(string email, int row, int col)
+        public OperationStatusEnum SetGameAction(string email, int row, int col)
         {
             logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to col: {2}", email, row, col);
 
-            OperationStatusnEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
+            OperationStatusEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
 
             return result;
         }
+
+
+        public void RemoveFromWaitingPlayers(string email)
+        {
+            matixBuisnessInterface.RemoveFromWaitingPlayers(email);
+        }
+
+        public void QuitTheGame(string email)
+        {
+            matixBuisnessInterface.QuitTheGame(email);
+        }
+
+
+        public void NotifyWatingPlars(string email, WaitingPlayerResult result)
+        {
+            logger.InfoFormat("NotifyWatingPlars - email: {0}", email);
+
+            // Get the callback instance
+            IMatixServiceCallback callback = usersCallbackes[email];
+            callback.UpdateWaitingPlayer(result);
+        }
+
 
         /// <summary>
         /// 
@@ -167,5 +221,6 @@ namespace WcfMatixServiceLibrary
 
             return oRemoteEndpointMessageProperty.Address;
         }
+
     }
 }

@@ -26,7 +26,7 @@ namespace MatixGameClient
     [CallbackBehavior(
       ConcurrencyMode = ConcurrencyMode.Single,
       UseSynchronizationContext = true)]
-    public partial class MainWindow : Window, IMatixServiceCallback
+    public partial class MainWindow : Window, MatixGameServiceReference.IMatixServiceCallback
     {
         /// <summary>
         /// A class logger instance  
@@ -141,7 +141,7 @@ namespace MatixGameClient
         {
             MessageBox.Show("Ping: " + value);
         }
-
+        
         public void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers)
         {
             logger.InfoFormat("WaitingPlayerResult Status: {0}", waitingPlayers.Status);
@@ -149,7 +149,7 @@ namespace MatixGameClient
             string name = mainFrame.NavigationService.Content.GetType().Name;
             if (name == "PlayersListPage")
             {
-
+             ///   ((PlayersListPage)mainFrame.NavigationService.Content).UpdateWaitingPlayerslistView(waitingPlayers.WaitingPlayerslist);
             }
         }
 
@@ -186,6 +186,6 @@ namespace MatixGameClient
             PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickname, email, winnerNickname, score);
             mainFrame.NavigationService.Navigate(page);
 
-        }
+        }   
     }  
 }

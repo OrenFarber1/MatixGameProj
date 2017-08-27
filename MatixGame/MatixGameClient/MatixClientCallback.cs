@@ -14,7 +14,7 @@ namespace MatixGameClient
     [CallbackBehavior(
        ConcurrencyMode = ConcurrencyMode.Single,
        UseSynchronizationContext = false)]
-    public  class MatixClientCallback : IMatixServiceCallback
+    public  class MatixClientCallback : MatixGameServiceReference.IMatixServiceCallback
     {
         /// <summary>
         /// A class logger instance  

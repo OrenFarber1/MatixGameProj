@@ -10,20 +10,25 @@ namespace WcfMatixServiceLibrary
     {
         void SetMatixWcfService(MatixWcfService matixService);
 
+        void ClientDisconnected(string email);
+
         RegistrationResult AddPlayer(string firstName, string lastName, string nickName, string email, string password);
 
-        OperationStatusnEnum UpdatePlayer(string email, string firstName, string lastName, string nickName);
+        OperationStatusEnum UpdatePlayer(string email, string firstName, string lastName, string nickName);
 
         LoginResult UserLogin(string email, string password, string ipAddress);
 
         WaitingPlayerResult GetWaitingPlayersList(string excludedEmail);
 
-        OperationStatusnEnum StartPlayingWithPlayer(string firstEmail, string nickName);
+        OperationStatusEnum StartPlayingWithPlayer(string firstEmail, string nickName);
 
-        OperationStatusnEnum StartPlayingWithRobot(string firstEmail);
+        OperationStatusEnum StartPlayingWithRobot(string firstEmail);
 
-        OperationStatusnEnum SetGameAction(string email, int row, int col);
+        OperationStatusEnum SetGameAction(string email, int row, int col);
 
-      
+        void RemoveFromWaitingPlayers(string email);
+        
+        void QuitTheGame(string email);
+
     }
 }
