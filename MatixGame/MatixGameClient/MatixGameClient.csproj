@@ -208,6 +208,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.OperationStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.RegistrationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MatixGameServiceReference\MatixGameClient.MatixGameServiceReference.WaitingPlayerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MatixGameServiceReference\service.wsdl" />
     <None Include="Service References\MatixGameServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -248,6 +260,7 @@
       <Name>WcfMatixServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MatixGameServiceReference\" />
   </ItemGroup>
