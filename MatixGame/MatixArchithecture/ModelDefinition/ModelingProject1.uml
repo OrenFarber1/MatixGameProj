@@ -157,6 +157,141 @@
       Id="61b3faf2-f258-42bf-9cf0-daaa7e6b5924">
       <body>Database</body>
     </comment>
+    <comment
+      Id="b34cb737-658d-48e3-9d30-f62f00e01be6">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="8ff00d91-9c23-4a5e-9e45-77cef322c421">
+      <body>Client</body>
+    </comment>
+    <comment
+      Id="b7dc6eac-99af-4e99-afbc-04dc81787b32">
+      <body>Server
+</body>
+    </comment>
+    <comment
+      Id="f0b6b279-6d94-4a16-9290-c7f3ca9f8994">
+      <body>Select </body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="960fb585-9e2a-4210-b26b-d35fbbab10b3"
+          LastKnownName="Decision3"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="368e9e69-329c-460a-abf9-a0cc9eaaf6c8">
+      <body>Wait</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="960fb585-9e2a-4210-b26b-d35fbbab10b3"
+          LastKnownName="Decision3"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="9278b602-ee0e-4a5f-8d98-74e2548d50b2">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="0105d6fb-a3bd-4ee7-acf1-b8e8167d8879">
+      <body>
+Select a plater or wait 
+for other player to select</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="960fb585-9e2a-4210-b26b-d35fbbab10b3"
+          LastKnownName="Decision3"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="92e5b7a8-0a79-48da-9051-58c196171500">
+      <body>Client</body>
+    </comment>
+    <comment
+      Id="f7141ec1-6817-4a1d-86a4-2aee0ce7f989">
+      <body>Server
+</body>
+    </comment>
+    <comment
+      Id="fd85673b-16c3-4215-bf84-d4eb8cdcbe72">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="96f3d574-3bb8-4847-b162-869ad7e88cf4">
+      <body>Client</body>
+    </comment>
+    <comment
+      Id="9c9985fe-b064-4ccb-a4cf-203463c36177">
+      <body>Server
+</body>
+    </comment>
+    <comment
+      Id="497c4f35-b5e0-4731-b90c-5163b07b25ef">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="88b62553-263b-4b8f-a21f-19cebe2a8bda">
+      <body>Client</body>
+    </comment>
+    <comment
+      Id="467175b3-d7df-47bc-b19e-a968590d55dd">
+      <body>Server
+</body>
+    </comment>
+    <comment
+      Id="f629b3d5-b801-41cf-8083-7a5d758752e2">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="66154d04-9e00-49c4-9623-043ab0606924">
+      <body>Client A</body>
+    </comment>
+    <comment
+      Id="4789839a-b4e7-42da-a079-42661edfe00d">
+      <body>Server
+</body>
+    </comment>
+    <comment
+      Id="5dfad8dd-1b9a-4412-9052-171aaec4aba0">
+      <body>Database</body>
+    </comment>
+    <comment
+      Id="d7f08cb8-341d-40fc-b8bf-c7dc6d2fd78e">
+      <body>Client B</body>
+    </comment>
+    <comment
+      Id="896a8858-8044-4f39-871b-e90e48584e88">
+      <body>Check If game ended</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="096619f5-3652-490f-915e-818b09faffa3"
+          LastKnownName="Decision1"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="79c5d019-034a-492a-b376-2827babbab38">
+      <body>Yes, Game Ended</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="096619f5-3652-490f-915e-818b09faffa3"
+          LastKnownName="Decision1"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="ee4ac49d-22ae-40fb-ba06-4b0c0bf7be6a">
+      <body>Continue Playing</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="096619f5-3652-490f-915e-818b09faffa3"
+          LastKnownName="Decision1"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
   </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
@@ -228,7 +363,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="ae3ec19a-6739-4a13-8786-83989b087a5f"
-              LastKnownName="Connect to Game Server"
+              LastKnownName="Multi player game"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -248,84 +383,6 @@
                 <memberEnd
                   Id="e5db31f0-23b5-4c56-9b7c-66e692fdbdaf"
                   name="Connect to Game Server"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="7d06b77b-2484-4c42-ba80-6ea1e5b1483b"
-            isDerived="false"
-            sourceEndRoleName="Player1"
-            targetEndRoleName="Check avaiable games"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="222624b0-e779-4421-bf55-be63886a49fd"
-              LastKnownName="Check avaiable games"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="07dc0753-84eb-451c-9b58-6a22957cdf90"
-                  name="Player1"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="1c443d02-86e7-4bf9-a702-da637f82b5fb"
-                  name="Check avaiable games"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="1eaa5548-833f-4960-bc15-78641f785336"
-            isDerived="false"
-            sourceEndRoleName="Player1"
-            targetEndRoleName="Wait for player"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="6d487149-7d76-48c2-ba75-d4f2ab7e8e6a"
-              LastKnownName="Wait for player"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="570d9ecb-fce5-4845-92b5-c25e37dd02e1"
-                  name="Player1"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e345d3a2-9769-4428-9594-11b854f2166a"
-                  name="Wait for player"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -356,15 +413,29 @@
     <packageHasNamedElement>
       <subsystem
         Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-        name="Game Client"
+        name="Matix Game"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <ownedCommentsInternal>
+          <comment
+            Id="5db96c7d-e3e3-4680-90df-1211cf3e4b64">
+            <body>Server generate a new board
+select direction for each player and select who will start the game</body>
+            <annotatedElements>
+              <useCaseMoniker
+                Id="b1677cfe-b719-493b-b13c-38dd18126dfa"
+                LastKnownName="Server Generate a new Game"
+                LastKnownLocation="ModelingProject1.uml" />
+            </annotatedElements>
+          </comment>
+        </ownedCommentsInternal>
+      </subsystem>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="b1677cfe-b719-493b-b13c-38dd18126dfa"
-        name="Select a player"
+        name="Server Generate a new Game"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -411,7 +482,7 @@
         <subjects>
           <subsystemMoniker
             Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-            LastKnownName="Game Client"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -424,45 +495,6 @@
         isLeaf="false">
         <targetEnds>
           <association
-            Id="80ac91a0-cee1-4ced-876b-265ae4fb7471"
-            isDerived="false"
-            sourceEndRoleName="Player 2"
-            targetEndRoleName="Join a gmae"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="b1677cfe-b719-493b-b13c-38dd18126dfa"
-              LastKnownName="Select a player"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="5b2ed612-d015-4466-ba26-fc6e49556173"
-                  name="Player 2"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="eff85190-0a81-41c7-9586-9310f663eee0"
-                  name="Join a gmae"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="9cf7d903-3094-4398-87f0-de2d9175323f"
             isDerived="false"
             sourceEndRoleName="Player 2"
@@ -471,7 +503,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="ae3ec19a-6739-4a13-8786-83989b087a5f"
-              LastKnownName="Connect to Game Server"
+              LastKnownName="Multi player game"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -491,45 +523,6 @@
                 <memberEnd
                   Id="05090daf-1e50-4e75-b147-ddaac601a46d"
                   name="Connect to Game Server"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="fbb6b39d-5615-4101-99c3-ff36ed6172e2"
-            isDerived="false"
-            sourceEndRoleName="Player 2"
-            targetEndRoleName="Check avaiable games"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="222624b0-e779-4421-bf55-be63886a49fd"
-              LastKnownName="Check avaiable games"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e1a70321-bf22-4425-ac0c-7a8f02bf6332"
-                  name="Player 2"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="794a2cb8-20d5-47fb-929a-983da6d726b9"
-                  name="Check avaiable games"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -705,13 +698,22 @@
     <packageHasNamedElement>
       <useCase
         Id="ae3ec19a-6739-4a13-8786-83989b087a5f"
-        name="Connect to Game Server"
+        name="Multi player game"
         isAbstract="false"
         isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="80ba591c-193f-407a-bb16-cd28af1f6856">
+            <useCaseMoniker
+              Id="222624b0-e779-4421-bf55-be63886a49fd"
+              LastKnownName="Start a new game "
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
         <subjects>
           <subsystemMoniker
             Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-            LastKnownName="Game Client"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -719,13 +721,22 @@
     <packageHasNamedElement>
       <useCase
         Id="222624b0-e779-4421-bf55-be63886a49fd"
-        name="Check avaiable games"
+        name="Start a new game "
         isAbstract="false"
         isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="8fb5622e-ee74-4ef9-9139-516adcef395b">
+            <useCaseMoniker
+              Id="b1677cfe-b719-493b-b13c-38dd18126dfa"
+              LastKnownName="Server Generate a new Game"
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
         <subjects>
           <subsystemMoniker
             Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-            LastKnownName="Game Client"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -738,84 +749,6 @@
         isLeaf="false">
         <targetEnds>
           <association
-            Id="0e5d19b7-b205-4e1a-8f9a-3c0092e4052b"
-            isDerived="false"
-            sourceEndRoleName="Player 3"
-            targetEndRoleName="Connect to Game Server"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="ae3ec19a-6739-4a13-8786-83989b087a5f"
-              LastKnownName="Connect to Game Server"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="0a604b23-9e2f-4581-a10a-6cac420dd6ea"
-                  name="Player 3"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="80f15b74-743a-4459-b152-10571a54e2a7"
-                  name="Connect to Game Server"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="66f7a711-e72e-45b7-a9d5-0c4fc2df371d"
-            isDerived="false"
-            sourceEndRoleName="Player 3"
-            targetEndRoleName="Check avaiable games"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="222624b0-e779-4421-bf55-be63886a49fd"
-              LastKnownName="Check avaiable games"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="3aca44d6-e9ea-49ec-93da-b9fd491bc045"
-                  name="Player 3"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b5d3019b-33a0-425c-babc-52e87ece27b9"
-                  name="Check avaiable games"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="558a1fe2-79b7-403f-b53b-04e1b5f55770"
             isDerived="false"
             sourceEndRoleName="Player 3"
@@ -824,7 +757,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="6d487149-7d76-48c2-ba75-d4f2ab7e8e6a"
-              LastKnownName="Wait for player"
+              LastKnownName="Single Palyer game"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -860,7 +793,7 @@
     <packageHasNamedElement>
       <useCase
         Id="6d487149-7d76-48c2-ba75-d4f2ab7e8e6a"
-        name="Wait for player"
+        name="Single Palyer game"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -904,10 +837,19 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
+        <extendedCases>
+          <extend
+            Id="12baff4a-12a1-4cae-a700-1a23451cfed2">
+            <useCaseMoniker
+              Id="222624b0-e779-4421-bf55-be63886a49fd"
+              LastKnownName="Start a new game "
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
         <subjects>
           <subsystemMoniker
             Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-            LastKnownName="Game Client"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -986,7 +928,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1124,7 +1066,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1220,7 +1162,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1338,7 +1280,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1446,7 +1388,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1658,7 +1600,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1696,7 +1638,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1706,7 +1648,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </coveredLifelines>
             <finish>
@@ -1750,7 +1692,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -1760,7 +1702,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1842,7 +1784,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1946,7 +1888,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1982,7 +1924,7 @@
             <covered>
               <lifelineMoniker
                 Id="7acecf11-751a-4884-994d-c124d0c19c04"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -1990,9 +1932,9 @@
         <lifelines>
           <lifeline
             Id="7acecf11-751a-4884-994d-c124d0c19c04"
-            name="Game Client"
+            name="Matix Game"
             isActor="false"
-            lifelineDisplayName="Game Client">
+            lifelineDisplayName="Matix Game">
             <represents>
               <propertyMoniker
                 Id="db3dc50b-d7dc-4eca-b94f-3428bdcef44f"
@@ -2448,7 +2390,7 @@
             <type_NamedElement>
               <subsystemMoniker
                 Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -2464,7 +2406,7 @@
             <type_NamedElement>
               <subsystemMoniker
                 Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -2967,19 +2909,12 @@
         Id="3e97a025-2ad6-47ca-b564-a88c8b357865"
         name="Start a new game"
         isAbstract="false"
-        isLeaf="false">
-        <subjects>
-          <subsystemMoniker
-            Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-            LastKnownName="Game Client"
-            LastKnownLocation="ModelingProject1.uml" />
-        </subjects>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <actor
         Id="bf7de1a3-2646-4b5c-a3b3-886c9c39f09b"
-        name="Player11"
+        name="Player"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -2992,7 +2927,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="3c33bb16-c353-4b15-a33e-b97363b3da62"
-              LastKnownName="Connect to Game Server1"
+              LastKnownName="Select a multi palyer game"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -3023,45 +2958,6 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="ea837e06-cff9-4c09-8fb0-faec3f7f2afe"
-            isDerived="false"
-            sourceEndRoleName="Player1"
-            targetEndRoleName="Check avaiable games"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="3cc5fc51-87ab-4302-8f0f-cad8227d604c"
-              LastKnownName="Get available players"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="879f762a-39b7-491d-b50c-fadf7d983559"
-                  name="Player1"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="90c38948-6fec-46f9-a81d-7521a0cde060"
-                  name="Check avaiable games"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="b9d4b324-49a1-479c-930a-952c41ec2ebe"
             isDerived="false"
             sourceEndRoleName="Player1"
@@ -3070,7 +2966,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="f36f9fae-d94f-430b-9bfc-f3e268349c9e"
-              LastKnownName="Wait for player1"
+              LastKnownName="Select a Player from the list"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -3162,7 +3058,7 @@
     <packageHasNamedElement>
       <subsystem
         Id="ed692e44-bc6f-4082-af2e-3ce865ed0399"
-        name="Game Client1"
+        name="Matix Game"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
@@ -3219,13 +3115,22 @@
     <packageHasNamedElement>
       <useCase
         Id="3c33bb16-c353-4b15-a33e-b97363b3da62"
-        name="Connect to Game Server1"
+        name="Select a multi palyer game"
         isAbstract="false"
         isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="f6cb016f-f428-44a1-82be-18aa1e3d4dc5">
+            <useCaseMoniker
+              Id="3cc5fc51-87ab-4302-8f0f-cad8227d604c"
+              LastKnownName="Get available wating players"
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
         <subjects>
           <subsystemMoniker
             Id="ed692e44-bc6f-4082-af2e-3ce865ed0399"
-            LastKnownName="Game Client1"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -3233,13 +3138,13 @@
     <packageHasNamedElement>
       <useCase
         Id="3cc5fc51-87ab-4302-8f0f-cad8227d604c"
-        name="Get available players"
+        name="Get available wating players"
         isAbstract="false"
         isLeaf="false">
         <subjects>
           <subsystemMoniker
             Id="ed692e44-bc6f-4082-af2e-3ce865ed0399"
-            LastKnownName="Game Client1"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -3247,7 +3152,7 @@
     <packageHasNamedElement>
       <useCase
         Id="f36f9fae-d94f-430b-9bfc-f3e268349c9e"
-        name="Wait for player1"
+        name="Select a Player from the list"
         isAbstract="false"
         isLeaf="false">
         <targetEnds>
@@ -3291,10 +3196,19 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
+        <extendedCases>
+          <extend
+            Id="131ea689-e279-4fc1-9b03-d2584c0e8acc">
+            <useCaseMoniker
+              Id="c33ddef8-6baf-46ee-9cd0-8a9b46d70321"
+              LastKnownName="Start a new game "
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
         <subjects>
           <subsystemMoniker
             Id="ed692e44-bc6f-4082-af2e-3ce865ed0399"
-            LastKnownName="Game Client1"
+            LastKnownName="Matix Game"
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
@@ -3754,7 +3668,7 @@
             <covered>
               <lifelineMoniker
                 Id="9a2e8baf-07a0-462b-8cbb-5ddb599e35ac"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -3872,7 +3786,7 @@
             <covered>
               <lifelineMoniker
                 Id="9a2e8baf-07a0-462b-8cbb-5ddb599e35ac"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -3968,7 +3882,7 @@
             <covered>
               <lifelineMoniker
                 Id="9a2e8baf-07a0-462b-8cbb-5ddb599e35ac"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -4096,7 +4010,7 @@
             <covered>
               <lifelineMoniker
                 Id="9a2e8baf-07a0-462b-8cbb-5ddb599e35ac"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -4132,9 +4046,9 @@
         <lifelines>
           <lifeline
             Id="9a2e8baf-07a0-462b-8cbb-5ddb599e35ac"
-            name="Game Client"
+            name="Matix Game"
             isActor="false"
-            lifelineDisplayName="Game Client">
+            lifelineDisplayName="Matix Game">
             <represents>
               <propertyMoniker
                 Id="4726be7b-ceaa-4d53-ba19-33d8fd300ec7"
@@ -4374,7 +4288,7 @@
             <type_NamedElement>
               <subsystemMoniker
                 Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -4390,7 +4304,7 @@
             <type_NamedElement>
               <subsystemMoniker
                 Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -4491,7 +4405,7 @@
             <covered>
               <lifelineMoniker
                 Id="44873608-0b35-4e4b-82b0-176a97af259e"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -4629,7 +4543,7 @@
             <covered>
               <lifelineMoniker
                 Id="44873608-0b35-4e4b-82b0-176a97af259e"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -4655,9 +4569,9 @@
         <lifelines>
           <lifeline
             Id="44873608-0b35-4e4b-82b0-176a97af259e"
-            name="Game Client"
+            name="Matix Game"
             isActor="false"
-            lifelineDisplayName="Game Client">
+            lifelineDisplayName="Matix Game">
             <represents>
               <propertyMoniker
                 Id="8f84737b-4825-4173-8f04-e9b0a4bd2867"
@@ -4798,7 +4712,7 @@
             <type_NamedElement>
               <subsystemMoniker
                 Id="8105104b-06fe-45e2-ae2f-ae5e7b58b55a"
-                LastKnownName="Game Client"
+                LastKnownName="Matix Game"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -8762,6 +8676,14 @@
                   LastKnownName="Decision3"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
+              <controlFlow
+                Id="8e0b39a7-7654-4bea-8eb8-99d1695ac7be"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="fcdfad81-c57a-4eea-aa64-f10b9a4854fb"
+                  LastKnownName="Update Player Information"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
           <decisionNode
@@ -8778,11 +8700,11 @@
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
               <controlFlow
-                Id="b225e396-46d9-4cb8-882e-eeffb82ea030"
+                Id="8f4c3546-e02b-42c0-84a0-7cab1888f8fe"
                 isLeaf="false">
                 <opaqueActionMoniker
-                  Id="e9a2735c-9b36-46a5-b3dd-7efbd12ae5fb"
-                  LastKnownName="Success notification "
+                  Id="8c7c1495-3b12-4c80-a056-e709aae44f6f"
+                  LastKnownName="Beck to Welcome Page"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -8835,22 +8757,37 @@
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
               <controlFlow
-                Id="8ce8c439-d04f-44db-bfbd-2c8f6c9b2045"
+                Id="98ecb9d0-be8a-4ced-b2ad-d715913299a5"
                 isLeaf="false">
-                <activityFinalNodeMoniker
-                  Id="aea1682e-b926-4550-ab8f-6ab833aedb4e"
-                  LastKnownName="ActivityFinal1"
+                <opaqueActionMoniker
+                  Id="8c7c1495-3b12-4c80-a056-e709aae44f6f"
+                  LastKnownName="Beck to Welcome Page"
                   LastKnownLocation="ModelingProject1.uml" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
           <opaqueAction
-            Id="e9a2735c-9b36-46a5-b3dd-7efbd12ae5fb"
-            name="Success notification "
+            Id="fcdfad81-c57a-4eea-aa64-f10b9a4854fb"
+            name="Update Player Information"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="7de2c9d8-e34a-4426-af3d-c7aa9d8f0224"
+                Id="25ccc9ae-7d69-4f17-a117-a24ebce944e0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a28ee0fb-7e7a-4656-97ac-361251a1e3a0"
+                  LastKnownName="Update user details  process"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="8c7c1495-3b12-4c80-a056-e709aae44f6f"
+            name="Beck to Welcome Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="90bb800a-94e3-41f5-b027-5abbc44aab65"
                 isLeaf="false">
                 <activityFinalNodeMoniker
                   Id="aea1682e-b926-4550-ab8f-6ab833aedb4e"
@@ -8891,6 +8828,1064 @@
             LastKnownLocation="ModelingProject1.uml" />
         </subjects>
       </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="03d47b7b-37d4-4884-9f42-01802ba84bc1"
+        name="Wait For Player"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="cdff7b9f-c46f-4eaf-b3b4-67ffcaf461b4"
+            name="Action1"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c33ddef8-6baf-46ee-9cd0-8a9b46d70321"
+        name="Start a new game "
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="ed692e44-bc6f-4082-af2e-3ce865ed0399"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="b69c8178-d210-43b4-aa86-376ca157adba"
+        name="Player"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="b26d3ccf-313b-499e-8843-a21965098747"
+            isDerived="false"
+            sourceEndRoleName="Player1"
+            targetEndRoleName="Connect to Game Server"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="78aa95b8-9cee-4300-930e-16c4ac4e57a8"
+              LastKnownName="Select Single Player"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7fdc6177-737f-4977-b191-19cfac514191"
+                  name="Player1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="da0e26a0-6088-4c12-9582-90f5837c2e87"
+                  name="Connect to Game Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="428bb890-f392-4987-9b8c-afe58a73cbaa"
+            isDerived="false"
+            sourceEndRoleName="Player1"
+            targetEndRoleName="Wait for player"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="f68c12a9-dc33-4fb9-a526-951de835e0cd"
+              LastKnownName="Select a Player from the list1"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0133a27d-c84a-4dc6-8468-ccf9ba643bf2"
+                  name="Player1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1e83bc98-3812-4544-987c-50e7e49d6bc2"
+                  name="Wait for player"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="b530b7cb-a965-44c1-ad4b-f79d47f64ac7"
+        name="Matix Game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="78aa95b8-9cee-4300-930e-16c4ac4e57a8"
+        name="Select Single Player"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="115bfee1-d7d9-4165-aec2-fc4242729f1d">
+            <useCaseMoniker
+              Id="d889996e-5687-4e1f-8c8f-7a414dd4d876"
+              LastKnownName="Get available wating players1"
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+          <extend
+            Id="5cfc562f-b050-4e29-a528-2aff3750b7c4">
+            <useCaseMoniker
+              Id="109a0d98-918c-48d2-b9af-b6d0edf8c657"
+              LastKnownName="Start a new game "
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b530b7cb-a965-44c1-ad4b-f79d47f64ac7"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d889996e-5687-4e1f-8c8f-7a414dd4d876"
+        name="Get available wating players1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f68c12a9-dc33-4fb9-a526-951de835e0cd"
+        name="Select a Player from the list1"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="42f9ba30-6aac-42ce-bcdb-f2a85a2e3679">
+            <useCaseMoniker
+              Id="109a0d98-918c-48d2-b9af-b6d0edf8c657"
+              LastKnownName="Start a new game "
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="109a0d98-918c-48d2-b9af-b6d0edf8c657"
+        name="Start a new game "
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b530b7cb-a965-44c1-ad4b-f79d47f64ac7"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="a4471783-2f09-4e36-b41e-b38844b73c12"
+        name="Player"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="ee89f4c3-aa47-4fc9-869d-5f11872a84b8"
+            isDerived="false"
+            sourceEndRoleName="Player1"
+            targetEndRoleName="Connect to Game Server"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="0cbe6084-fa2b-43a2-a873-e48c6fe73526"
+              LastKnownName="Update Password"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b4e455a9-9541-4f3d-bdf7-0bc8ad7c40b1"
+                  name="Player1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="985b5eab-3453-4089-b6d3-57b07f29b6ae"
+                  name="Connect to Game Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="0634cf82-6904-4361-b23d-2f39b9d83a1d"
+        name="Matix Game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0cbe6084-fa2b-43a2-a873-e48c6fe73526"
+        name="Update Password"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="81bc0828-5957-4585-9459-9b7ddfb05a07">
+            <useCaseMoniker
+              Id="09c22f6c-2a76-4a93-9eec-bc740292ca61"
+              LastKnownName="Save new password on database"
+              LastKnownLocation="ModelingProject1.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="0634cf82-6904-4361-b23d-2f39b9d83a1d"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="09c22f6c-2a76-4a93-9eec-bc740292ca61"
+        name="Save new password on database"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="0634cf82-6904-4361-b23d-2f39b9d83a1d"
+            LastKnownName="Matix Game"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="347e3925-6f77-4a18-8a71-bbc82f10184b"
+        name="Multi Player Game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="575c606a-3d2b-4f6b-8a21-a4235dad85b8"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b4b48a76-a20f-4e87-96b6-176ce0ccc0b0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8d4a7349-5c20-4846-a98f-1fa5b39bbaf0"
+                  LastKnownName="Player selects multi player"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="8785b42a-10c8-4e78-847a-c5da952c02a2"
+            name="Wating"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f30c5e47-0dbb-4b5d-be0c-b425bad2bf78"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8785b42a-10c8-4e78-847a-c5da952c02a2"
+                  LastKnownName="Wating"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="71138120-3bb4-47c8-88a2-5300a13647b3"
+            name="Add player to waiting players list "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e7daaa82-dfc3-4b43-a35d-0c170c65919d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="fba02fbf-110c-4049-aa7a-bfd1dc647767"
+                  LastKnownName="Generate waiting players information "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="ae2488ef-1f94-461e-aec9-494413a88a00"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <decisionNode
+            Id="960fb585-9e2a-4210-b26b-d35fbbab10b3"
+            name="Decision3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="553ced07-9268-470a-a389-c0be8971496e"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8785b42a-10c8-4e78-847a-c5da952c02a2"
+                  LastKnownName="Wating"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="f910add3-687a-4f7a-bb79-fd854f7986a1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a2c3ecd7-b6cd-474b-9b9e-7482342319df"
+                  LastKnownName="Start a New Game"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="8d4a7349-5c20-4846-a98f-1fa5b39bbaf0"
+            name="Player selects multi player"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="db8b2658-7899-42bd-ad74-75b4e06c2a18"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="71138120-3bb4-47c8-88a2-5300a13647b3"
+                  LastKnownName="Add player to waiting players list "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="6b872fd8-b32c-4cd6-aab0-ab42e1a375b7"
+            name="Show waiting players list "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="227c3f56-b22a-422c-80be-f6c91a1d83b2"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="960fb585-9e2a-4210-b26b-d35fbbab10b3"
+                  LastKnownName="Decision3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="07171758-1f55-4e0d-b9d2-6325e201693f"
+            name="Get players details "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="319ee4d1-25e8-4f3b-b946-01101067114f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="fba02fbf-110c-4049-aa7a-bfd1dc647767"
+                  LastKnownName="Generate waiting players information "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="fba02fbf-110c-4049-aa7a-bfd1dc647767"
+            name="Generate waiting players information "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="42363fac-a966-420b-b887-3c20998f647d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="07171758-1f55-4e0d-b9d2-6325e201693f"
+                  LastKnownName="Get players details "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="82acb034-c838-46f0-b674-f60499e57bd1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="6b872fd8-b32c-4cd6-aab0-ab42e1a375b7"
+                  LastKnownName="Show waiting players list "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a2c3ecd7-b6cd-474b-9b9e-7482342319df"
+            name="Start a New Game"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="cd30aa73-adb3-470f-8f15-20a54fabe334"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="ae2488ef-1f94-461e-aec9-494413a88a00"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="50720d6c-2896-4c8b-a971-2ceb4415876d"
+        name="Single Player Game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="53a792a3-e21d-450e-b00f-d2b9b4edb12e"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f68f1b33-fb88-4e5f-8694-d044b215f27a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="650fee08-d4cc-412c-bd00-6bb1933e4420"
+                  LastKnownName="Player selects single player"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="18797922-ed18-4388-8788-f06574a26b89"
+            name="Start play with Robot"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7a88b938-f47a-479d-8c0b-70c38ec51f48"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="ea95e55c-b4a4-475f-9d82-2ce0bad0909f"
+                  LastKnownName="Create a New Game"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="e3c00f17-a912-4519-929a-90002a1b721e"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b563ca00-1a1a-4161-8fde-62725eee8441"
+                  LastKnownName="Get player details "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="eb263e40-00cc-426c-a266-3074c01375f9"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="650fee08-d4cc-412c-bd00-6bb1933e4420"
+            name="Player selects single player"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="529e23d3-753b-4b1e-8267-cc8db04c0db8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="18797922-ed18-4388-8788-f06574a26b89"
+                  LastKnownName="Start play with Robot"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="b563ca00-1a1a-4161-8fde-62725eee8441"
+            name="Get player details "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0b3950da-1960-4a71-8b8f-3485a293783d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="18797922-ed18-4388-8788-f06574a26b89"
+                  LastKnownName="Start play with Robot"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="ea95e55c-b4a4-475f-9d82-2ce0bad0909f"
+            name="Create a New Game"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a7ffa073-6e0f-48c4-8a46-8b0877a1f0fe"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="ed2e04c7-75b6-4b8a-8287-8ec7a9228ebd"
+                  LastKnownName="Start a New Game"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="3a92a37b-9bf1-43ac-808b-949608867cd0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7363d6f2-712e-4698-9bc0-ab80e078063b"
+                  LastKnownName="Get  Robot Details"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="ed2e04c7-75b6-4b8a-8287-8ec7a9228ebd"
+            name="Start a New Game"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="74320699-c19c-4b81-bfab-b8bbe01e6012"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="eb263e40-00cc-426c-a266-3074c01375f9"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7363d6f2-712e-4698-9bc0-ab80e078063b"
+            name="Get  Robot Details"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="4d82242d-c439-4bd7-8b0b-855526c345e6"
+        name="Get Player Statistics"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="3dd498f2-eb11-41cb-a778-0c47624aea70"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="4d64ee40-8578-4e2e-85b8-9135fb64db66"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="d109ec0b-1239-4938-bc13-c120c4a51423"
+                  LastKnownName="Get Player Statistics"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="d109ec0b-1239-4938-bc13-c120c4a51423"
+            name="Get Player Statistics"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="86f7d46b-a61d-4c71-b1f7-44c294feee3f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f6b713ad-b72c-4dae-b14a-26650820c783"
+                  LastKnownName="Get Player Statistics"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c034e14d-1d5a-4fc6-8ab1-edada4eb36ad"
+            name="Show Players Statistics"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c1b4d376-d44a-4b2e-8bc1-150df55bb963"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="4c76170b-a30e-4d5f-8dac-6c22e35661b0"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="4c76170b-a30e-4d5f-8dac-6c22e35661b0"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="f6b713ad-b72c-4dae-b14a-26650820c783"
+            name="Get Player Statistics"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="2c69f82c-3483-4658-84b9-b17ac6ebb1f6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="229513e6-7cf2-42fa-ab80-3fb53cc9ca3b"
+                  LastKnownName="Get Player Statistics"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6da94741-bcfd-4963-89d5-730edad16672"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c034e14d-1d5a-4fc6-8ab1-edada4eb36ad"
+                  LastKnownName="Show Players Statistics"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="229513e6-7cf2-42fa-ab80-3fb53cc9ca3b"
+            name="Get Player Statistics"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="5fb349a9-b6b5-4b83-b0a6-2ea536424183"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f6b713ad-b72c-4dae-b14a-26650820c783"
+                  LastKnownName="Get Player Statistics"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="98c5dd80-0965-46ab-adff-0195da98d5b9"
+        name="Start New Game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="c8741877-c259-4abe-a4f8-2745e8617780"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="2fbdcbfc-b73f-448c-be06-431ef4332959"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2f82d153-6ac8-4648-b94e-53f9799f2fb8"
+                  LastKnownName="Create New Game"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="8eb45337-7942-409a-99a5-19b78eaa0c74"
+            name="Show Game Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="46f00c97-2e9e-462b-af68-794ca5de38d3"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="548fee17-dce6-4b57-a28a-c82df2e35b58"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="548fee17-dce6-4b57-a28a-c82df2e35b58"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="2f82d153-6ac8-4648-b94e-53f9799f2fb8"
+            name="Create New Game"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="4782866c-e67d-4d52-b35c-500715c16c72"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f2efdf79-e40b-4187-8540-1d801f0f07c7"
+                  LastKnownName="Generate a New Board "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c8ca1274-cc00-4631-a9db-b845710a0570"
+            name="Create new Game "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c072ffab-9335-45c6-886f-be9689ae3958"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1080e386-6808-405b-8e83-febb8a351fe6"
+                  LastKnownName="Add Game Id"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="f2efdf79-e40b-4187-8540-1d801f0f07c7"
+            name="Generate a New Board "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3d57c713-bd1c-45b1-a088-6d3c91cee531"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3825f8ba-8e47-4436-9d57-c6e2e115b794"
+                  LastKnownName="Set players direction "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="3825f8ba-8e47-4436-9d57-c6e2e115b794"
+            name="Set players direction "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e71bb182-36fc-472f-b4d6-903580e0c25d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c8ca1274-cc00-4631-a9db-b845710a0570"
+                  LastKnownName="Create new Game "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="9bb6a47f-fb41-4e11-a847-51a0484b7586"
+            name="Notify Human Players"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="309f0e99-18a6-4c94-a8a9-c2feab5db1e9"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8eb45337-7942-409a-99a5-19b78eaa0c74"
+                  LastKnownName="Show Game Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="1080e386-6808-405b-8e83-febb8a351fe6"
+            name="Add Game Id"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="20c32c0a-a057-46dc-82aa-0b138c03dc94"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9bb6a47f-fb41-4e11-a847-51a0484b7586"
+                  LastKnownName="Notify Human Players"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="2d8602a5-471b-4855-adad-7206c0c356f6"
+        name="Playing the game"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="9e89067f-edfa-49d7-a1c6-da2fbf7dbfb0"
+            name="Select a new cell"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="86e32821-ecb8-47fb-9e82-c93b1a1b1dd7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="51f5295e-5e46-4ab6-a390-2aeea6fb654d"
+                  LastKnownName="Validate Rules"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="51f5295e-5e46-4ab6-a390-2aeea6fb654d"
+            name="Validate Rules"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0657d8b5-37f2-4a1d-8f18-be98e72ac901"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b9427927-e86d-418d-8454-d56f3aebb727"
+                  LastKnownName="Set Game Action"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="b9427927-e86d-418d-8454-d56f3aebb727"
+            name="Set Game Action"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f5f4aaf8-9090-4d54-a286-d472e97d40d1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f89cb970-1844-43ea-a79f-3e4434830c96"
+                  LastKnownName="Validate &amp; Update Game"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="f89cb970-1844-43ea-a79f-3e4434830c96"
+            name="Validate &amp; Update Game"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="abcf46bd-9098-4d38-840b-4fc77bc99a2c"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="12ccbb12-ae58-4355-a755-fc6d7b4aa5d1"
+                  LastKnownName="Add Game Action"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="3dc19ad5-4804-4eb9-89e8-be7054257e7f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="89491ad4-ee5b-43ec-8dbb-abbf4aa0183c"
+                  LastKnownName="Update Game Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="102194b1-3467-4ce4-a384-a2e93dc9b61b"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="096619f5-3652-490f-915e-818b09faffa3"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="12ccbb12-ae58-4355-a755-fc6d7b4aa5d1"
+            name="Add Game Action"
+            isLeaf="false" />
+          <opaqueAction
+            Id="89491ad4-ee5b-43ec-8dbb-abbf4aa0183c"
+            name="Update Game Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7fc3099f-5552-4517-b72a-c28fe51fb24e"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="54050e01-5f42-416c-ad84-90f40e0e818f"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="096619f5-3652-490f-915e-818b09faffa3"
+            name="Decision1"
+            isLeaf="false">
+            <description>login or regiter</description>
+            <flowNodeTargets>
+              <controlFlow
+                Id="246cd1d3-af47-40ac-9a10-e29c9609489f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="89a44e23-c150-4fef-a30b-9e4e6756839d"
+                  LastKnownName="Game Ended"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="ce96510b-a536-48b4-ac6e-dd49a373aa47"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a6285d1d-6296-4304-adca-001c321b8743"
+                  LastKnownName="Notify Player "
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="f697f040-7bbe-4730-8a83-5be371b5c641"
+            name="Game Ended"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c579cfff-5f2e-4081-bc23-a6ff2d52b90e"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="54050e01-5f42-416c-ad84-90f40e0e818f"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="89a44e23-c150-4fef-a30b-9e4e6756839d"
+            name="Game Ended"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a4fcfa30-1831-474b-9d3a-a931aa207d40"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="69522b5c-0d1d-42df-a07c-8bac7c7d9b2d"
+                  LastKnownName="Update Game Result"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="86b4ae7d-a287-4b68-a670-45ba5671f063"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f697f040-7bbe-4730-8a83-5be371b5c641"
+                  LastKnownName="Game Ended"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="0a82bec4-2612-4fd5-9346-ccd593e796fa"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9309fee9-cd30-4eae-855f-a6ab6f6eb26a"
+                  LastKnownName="Game Ended"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="69522b5c-0d1d-42df-a07c-8bac7c7d9b2d"
+            name="Update Game Result"
+            isLeaf="false" />
+          <opaqueAction
+            Id="9309fee9-cd30-4eae-855f-a6ab6f6eb26a"
+            name="Game Ended"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b49d6239-410d-476c-b109-06d2cfbf0d2c"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="54050e01-5f42-416c-ad84-90f40e0e818f"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a6285d1d-6296-4304-adca-001c321b8743"
+            name="Notify Player "
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="358b0e1e-7791-4b79-924f-2123d82a3534"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="31887eb3-baa9-436b-b8dd-3f58749b9384"
+                  LastKnownName="Update Game Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="31887eb3-baa9-436b-b8dd-3f58749b9384"
+            name="Update Game Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="112a554a-0f2a-4420-8e25-e25496ec3eae"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="54050e01-5f42-416c-ad84-90f40e0e818f"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="54050e01-5f42-416c-ad84-90f40e0e818f"
+            name="ActivityFinal1"
+            isLeaf="false" />
+        </nodes>
+      </activity>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

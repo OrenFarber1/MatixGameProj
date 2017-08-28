@@ -22,6 +22,13 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="activity\Get Player Statistics.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="activity\Get Player Statistics.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>activity\Get Player Statistics.activitydiagram</DependentUpon>
+    </Content>
     <Content Include="activity\LoginAndRegistration.activitydiagram">
       <SubType>Content</SubType>
     </Content>
@@ -29,12 +36,40 @@
       <SubType>Content</SubType>
       <DependentUpon>activity\LoginAndRegistration.activitydiagram</DependentUpon>
     </Content>
+    <Content Include="activity\Playing the game.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="activity\Playing the game.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>activity\Playing the game.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="activity\Single Player Game.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="activity\Single Player Game.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>activity\Single Player Game.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="activity\Start New Game.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="activity\Start New Game.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>activity\Start New Game.activitydiagram</DependentUpon>
+    </Content>
     <Content Include="activity\UpdateUser.activitydiagram">
       <SubType>Content</SubType>
     </Content>
     <Content Include="activity\UpdateUser.activitydiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>activity\UpdateUser.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="activity\Multi Player Game.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="activity\Multi Player Game.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>activity\Multi Player Game.activitydiagram</DependentUpon>
     </Content>
     <Content Include="class\cell.classdiagram">
       <SubType>Content</SubType>
@@ -92,12 +127,26 @@
       <SubType>Content</SubType>
       <DependentUpon>use case\PlayWithserver.usecasediagram</DependentUpon>
     </Content>
+    <Content Include="use case\Single Player.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\Single Player.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\Single Player.usecasediagram</DependentUpon>
+    </Content>
     <Content Include="use case\StartGame.usecasediagram">
       <SubType>Content</SubType>
     </Content>
     <Content Include="use case\StartGame.usecasediagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>use case\StartGame.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="use case\Update Password.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="use case\Update Password.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>use case\Update Password.usecasediagram</DependentUpon>
     </Content>
     <Content Include="use case\Update Player info.usecasediagram">
       <SubType>Content</SubType>

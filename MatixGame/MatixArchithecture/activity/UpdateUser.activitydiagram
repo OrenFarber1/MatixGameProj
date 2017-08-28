@@ -45,6 +45,10 @@
         <decisionNodeMoniker Id="9fbd9561-8d8e-46fe-b8fb-263867331c9a" LastKnownName="Decision1" />
       </annotatedElements>
     </comment>
+    <comment Id="73008335-4411-40d4-a0a2-2280c913b649">
+      <elementDefinition Id="b34cb737-658d-48e3-9d30-f62f00e01be6" />
+      <body>Database</body>
+    </comment>
   </ownedCommentsInternal>
   <packagedElements>
     <activityRootModelHasActivity>
@@ -76,6 +80,10 @@
                 <decisionNodeMoniker Id="f7baec78-ff99-4f46-9c19-60293e7943d6" LastKnownName="Decision3" />
                 <elementDefinition Id="c1c40fa2-dc0a-4e91-8dec-a2c83ea3b49a" />
               </controlFlow>
+              <controlFlow Id="b4e67361-af9c-4841-bef5-9160ad218c0e" isLeaf="false">
+                <opaqueActionMoniker Id="43e1c596-5103-4bf0-8cc4-508c6bcf228c" LastKnownName="Update Player Information" />
+                <elementDefinition Id="8e0b39a7-7654-4bea-8eb8-99d1695ac7be" />
+              </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
           <decisionNode Id="f7baec78-ff99-4f46-9c19-60293e7943d6" name="Decision3" isLeaf="false">
@@ -85,9 +93,9 @@
                 <opaqueActionMoniker Id="9c954f65-aa03-4a8b-8521-c48496a9fb39" LastKnownName="Error notification" />
                 <elementDefinition Id="30bdd990-dd3f-4d05-975f-83462a38f124" />
               </controlFlow>
-              <controlFlow Id="e1f3ea3f-e0b0-4e94-8c07-a8a5fff777ca" isLeaf="false">
-                <opaqueActionMoniker Id="a1e52457-0c15-4faf-9f0a-8d425b36ef5b" LastKnownName="Success notification " />
-                <elementDefinition Id="b225e396-46d9-4cb8-882e-eeffb82ea030" />
+              <controlFlow Id="0ff5e23a-1656-4454-aae6-75bd74ab5be8" isLeaf="false">
+                <opaqueActionMoniker Id="903b2b04-8ddb-42f0-b0b0-e9b955296e1e" LastKnownName="Beck to Welcome Page" />
+                <elementDefinition Id="8f4c3546-e02b-42c0-84a0-7cab1888f8fe" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
@@ -119,18 +127,27 @@
                 <opaqueActionMoniker Id="61572fa1-8c13-420b-b47f-65b38d83eb03" LastKnownName="Get User Details" />
                 <elementDefinition Id="79bc64a0-a481-4cff-88c2-96dc604d8945" />
               </controlFlow>
-              <controlFlow Id="aecbf752-4d41-401f-92d3-de00b2fbd18b" isLeaf="false">
-                <activityFinalNodeMoniker Id="6127bb55-b1af-495d-bf2b-362bcd62cd79" LastKnownName="ActivityFinal1" />
-                <elementDefinition Id="8ce8c439-d04f-44db-bfbd-2c8f6c9b2045" />
+              <controlFlow Id="6a8f8110-7a45-410c-9775-b62421bba441" isLeaf="false">
+                <opaqueActionMoniker Id="903b2b04-8ddb-42f0-b0b0-e9b955296e1e" LastKnownName="Beck to Welcome Page" />
+                <elementDefinition Id="98ecb9d0-be8a-4ced-b2ad-d715913299a5" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
-          <opaqueAction Id="a1e52457-0c15-4faf-9f0a-8d425b36ef5b" name="Success notification " isLeaf="false">
-            <elementDefinition Id="e9a2735c-9b36-46a5-b3dd-7efbd12ae5fb" />
+          <opaqueAction Id="43e1c596-5103-4bf0-8cc4-508c6bcf228c" name="Update Player Information" isLeaf="false">
+            <elementDefinition Id="fcdfad81-c57a-4eea-aa64-f10b9a4854fb" />
             <flowNodeTargets>
-              <controlFlow Id="a16f3ee7-88f3-49a7-8265-62b48250cc0c" isLeaf="false">
+              <controlFlow Id="e21e34c6-65eb-46e1-8390-a91505d56364" isLeaf="false">
+                <opaqueActionMoniker Id="917b89d9-ce8f-4a3e-acdb-16ca9cfab19f" LastKnownName="Update user details  process" />
+                <elementDefinition Id="25ccc9ae-7d69-4f17-a117-a24ebce944e0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="903b2b04-8ddb-42f0-b0b0-e9b955296e1e" name="Beck to Welcome Page" isLeaf="false">
+            <elementDefinition Id="8c7c1495-3b12-4c80-a056-e709aae44f6f" />
+            <flowNodeTargets>
+              <controlFlow Id="b1481684-ea71-4f7a-bc9c-2c1d294370ab" isLeaf="false">
                 <activityFinalNodeMoniker Id="6127bb55-b1af-495d-bf2b-362bcd62cd79" LastKnownName="ActivityFinal1" />
-                <elementDefinition Id="7de2c9d8-e34a-4426-af3d-c7aa9d8f0224" />
+                <elementDefinition Id="90bb800a-94e3-41f5-b027-5abbc44aab65" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>

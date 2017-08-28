@@ -2,20 +2,10 @@
 using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MatixGameClient
 {
@@ -26,7 +16,7 @@ namespace MatixGameClient
     [CallbackBehavior(
       ConcurrencyMode = ConcurrencyMode.Single,
       UseSynchronizationContext = true)]
-    public partial class MainWindow : Window, MatixGameServiceReference.IMatixServiceCallback
+    public partial class MainWindow : Window, IMatixServiceCallback
     {
         /// <summary>
         /// A class logger instance  
@@ -34,7 +24,7 @@ namespace MatixGameClient
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         
                       
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        private MatixServiceClient service = null;
 
 
         public MainWindow() 
@@ -61,7 +51,7 @@ namespace MatixGameClient
         /// </summary>
         private void OpenServiceConnection()
         {
-            service = new MatixGameServiceReference.MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
+            service = new MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
             //Open connection to the server 
             service.Open();
@@ -127,6 +117,13 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// Change the current page to GamePage and initialize it with the parameters received from the server 
+        /// </summary>
+        /// <param name="matixBoard">Generated board</param>
+        /// <param name="horizontalNickname">Horizontal player nickname</param>
+        /// <param name="verticalNickName">Vertican player nickname</param>
+        /// <param name="whoIsStarting"></param>
         public void StartNewGame(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
             string email = Properties.Settings.Default.email;
@@ -149,7 +146,9 @@ namespace MatixGameClient
             string name = mainFrame.NavigationService.Content.GetType().Name;
             if (name == "PlayersListPage")
             {
-             ///   ((PlayersListPage)mainFrame.NavigationService.Content).UpdateWaitingPlayerslistView(waitingPlayers.WaitingPlayerslist);
+                List<WaitingPlayer> list = new List<WaitingPlayer>();
+                list.AddRange(waitingPlayers.WaitingPlayerslist);                
+                ((PlayersListPage)mainFrame.NavigationService.Content).UpdateWaitingPlayerslistView(list);
             }
         }
 

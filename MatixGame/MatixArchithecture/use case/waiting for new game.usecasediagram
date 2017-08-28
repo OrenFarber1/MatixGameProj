@@ -2,11 +2,11 @@
 <useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="1e9cd1d9-46df-4607-9508-7201c2bcde28" name="waiting for new game" linkedPackageId="0b3402b4-9049-4dc9-b19e-79f4d97e9a0b" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
-      <actor Id="7d2ccc3c-7401-478a-8f34-6509de00cbef" name="Player11" isAbstract="false" isLeaf="false">
+      <actor Id="7d2ccc3c-7401-478a-8f34-6509de00cbef" name="Player" isAbstract="false" isLeaf="false">
         <elementDefinition Id="bf7de1a3-2646-4b5c-a3b3-886c9c39f09b" />
         <targetEnds>
           <association Id="6eb54a6d-2165-4e58-8001-83fee0a14f7f" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Connect to Game Server" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="f58de5b3-8a79-4246-9a1b-f3556265a077" LastKnownName="Connect to Game Server1" />
+            <useCaseMoniker Id="f58de5b3-8a79-4246-9a1b-f3556265a077" LastKnownName="Select a multi palyer game" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="3ae02a7d-e8d3-4fdc-a258-00b43f34a75b" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -21,24 +21,8 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="e5b4a854-db18-4e0c-af4c-ed2a8a58a0da" />
           </association>
-          <association Id="284b0aff-6bf7-4655-8e74-9aedda831d28" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Check avaiable games" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" LastKnownName="Get available players" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="a6c51e72-769a-436c-81c8-309a981b09ed" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="879f762a-39b7-491d-b50c-fadf7d983559" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="fc6f2a80-d4a9-48c5-af25-83512e9a6137" name="Check avaiable games" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="90c38948-6fec-46f9-a81d-7521a0cde060" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="ea837e06-cff9-4c09-8fb0-faec3f7f2afe" />
-          </association>
           <association Id="cee663ec-3b66-40ae-9b78-a26d2f177902" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Wait for player" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="378d36fa-4475-48da-bc41-82be650b3836" LastKnownName="Wait for player1" />
+            <useCaseMoniker Id="378d36fa-4475-48da-bc41-82be650b3836" LastKnownName="Select a Player from the list" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="db9a8b4d-6e77-4d8f-a7ac-e33a14e4c23f" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -57,34 +41,54 @@
       </actor>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <subsystem Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" name="Game Client1" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <subsystem Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" name="Matix Game" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="ed692e44-bc6f-4082-af2e-3ce865ed0399" />
       </subsystem>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="f58de5b3-8a79-4246-9a1b-f3556265a077" name="Connect to Game Server1" isAbstract="false" isLeaf="false">
+      <useCase Id="f58de5b3-8a79-4246-9a1b-f3556265a077" name="Select a multi palyer game" isAbstract="false" isLeaf="false">
         <elementDefinition Id="3c33bb16-c353-4b15-a33e-b97363b3da62" />
+        <extendedCases>
+          <extend Id="65756815-7889-41f2-b7dc-e5158148ffef">
+            <useCaseMoniker Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" LastKnownName="Get available wating players" />
+            <elementDefinition Id="f6cb016f-f428-44a1-82be-18aa1e3d4dc5" />
+          </extend>
+        </extendedCases>
         <subjects>
-          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Matix Game" />
         </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" name="Get available players" isAbstract="false" isLeaf="false">
+      <useCase Id="c242d8b6-8b68-4548-a4b6-b7edb037543d" name="Get available wating players" isAbstract="false" isLeaf="false">
         <elementDefinition Id="3cc5fc51-87ab-4302-8f0f-cad8227d604c" />
         <subjects>
-          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Matix Game" />
         </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="378d36fa-4475-48da-bc41-82be650b3836" name="Wait for player1" isAbstract="false" isLeaf="false">
+      <useCase Id="378d36fa-4475-48da-bc41-82be650b3836" name="Select a Player from the list" isAbstract="false" isLeaf="false">
         <elementDefinition Id="f36f9fae-d94f-430b-9bfc-f3e268349c9e" />
+        <extendedCases>
+          <extend Id="74bc1096-d908-4cc0-b525-10a660ac1607">
+            <useCaseMoniker Id="c780490b-2bae-4cbe-bef5-064445f4fe09" LastKnownName="Start a new game " />
+            <elementDefinition Id="131ea689-e279-4fc1-9b03-d2584c0e8acc" />
+          </extend>
+        </extendedCases>
         <subjects>
-          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Game Client1" />
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Matix Game" />
         </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="c780490b-2bae-4cbe-bef5-064445f4fe09" name="Start a new game " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c33ddef8-6baf-46ee-9cd0-8a9b46d70321" />
+        <subjects>
+          <subsystemMoniker Id="7b881d97-db2d-4a40-8a8e-a4a5fba8ce01" LastKnownName="Matix Game" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="0b3402b4-9049-4dc9-b19e-79f4d97e9a0b" name="ModelingProject1">
     <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
