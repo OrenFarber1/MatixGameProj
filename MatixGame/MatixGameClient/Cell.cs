@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace MatixGameClient
 {
+    /// <summary>
+    /// The class represents a cell in a Matix board 
+    /// </summary>
     public class Cell : INotifyPropertyChanged
     {
+        #region Class Private Members 
         /// <summary>
         /// The current cell value 
         /// </summary>
@@ -24,13 +23,21 @@ namespace MatixGameClient
         /// </summary>
         private bool used;
 
-
+        /// <summary>
+        /// This parameter indicates who use that cell 
+        /// </summary>
         private PlayingDirectionEnum usedBy = PlayingDirectionEnum.None;
 
-
+        /// <summary>
+        /// The current color value
+        /// </summary>
         private int colorValue = 0;
 
+        #endregion
 
+        /// <summary>
+        /// The current color value
+        /// </summary>
         public int ColorValue
         {
             get
@@ -44,6 +51,9 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// The value property of the cell 
+        /// </summary>
         public int Value
         {
             get
@@ -57,6 +67,9 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// A flag indicates whether the cell is a token or not 
+        /// </summary>
         public bool Token
         {
             get
@@ -70,6 +83,9 @@ namespace MatixGameClient
             }
         }
                
+        /// <summary>
+        /// A flag indicates whether the call is already used by a player or not 
+        /// </summary>
         public bool Used
         {
             get
@@ -84,6 +100,9 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// The property indicates witch player use this cell 
+        /// </summary>
         public PlayingDirectionEnum UsedBy
         {
             get
@@ -98,6 +117,11 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// Construct a call with its value and if it is a token or not 
+        /// </summary>
+        /// <param name="value">The cell value (can be negative)</param>
+        /// <param name="token">A falg indicats whether the cell is a token or not</param>
         public Cell(int value, bool token)
         {
             this.Value = value;

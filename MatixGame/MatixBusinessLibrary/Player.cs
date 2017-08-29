@@ -12,15 +12,22 @@ namespace MatixBusinessLibrary
     /// </summary>
     public enum PlayerType
     {
-        Human,
+        /// <summary>
+        /// A human player type 
+        /// </summary>
+        Human,  
+        /// <summary>
+        /// A robot player type
+        /// </summary>
         Robot
     }
 
     /// <summary>
-    /// Encapsulates player details 
+    /// The class encapsulates player details 
     /// </summary>
     public class Player
     {
+        #region Class Private Members
         /// <summary>
         /// Class internal logger 
         /// </summary>
@@ -29,23 +36,24 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// The player email address 
         /// </summary>
-        string email;
+        private string email;
 
         /// <summary>
         /// Player nickname 
         /// </summary>
-        string nickname; 
+        private string nickname; 
 
         /// <summary>
         /// The player current score 
         /// </summary>
-        int score;
+        private int score;
 
         /// <summary>
         /// The player type human or robot
         /// </summary>
-        PlayerType playerType;
+        private PlayerType playerType;
 
+        #endregion
 
         public Player(string _email, string _nickname, PlayerType _type)
         {
@@ -84,11 +92,19 @@ namespace MatixBusinessLibrary
             return score;
         }
 
+        /// <summary>
+        /// Get player score 
+        /// </summary>
+        /// <returns></returns>
         public int GetScore()
         {
             return score;
         }
 
+        /// <summary>
+        /// Get players type Human or Robot
+        /// </summary>
+        /// <returns></returns>
         public PlayerType GetPlayerType()
         {
             return playerType;

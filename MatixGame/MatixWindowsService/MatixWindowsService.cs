@@ -77,10 +77,8 @@ namespace MatixWindowsService
             {
                 gameServiceHost.Close();
             }
-            
-        //    gameServiceHost = new ServiceHost(typeof(MatixWcfService));
-         //   gameServiceHost.Open();
-
+    
+            // Create the business layer instance 
             matixGameManager = new MatixGameManager();
 
             while (!shutdownEvent.WaitOne(0))

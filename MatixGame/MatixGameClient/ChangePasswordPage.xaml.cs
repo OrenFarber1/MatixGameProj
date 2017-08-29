@@ -31,11 +31,11 @@ namespace MatixGameClient
         /// <summary>
         /// Reference to the WCF service instance 
         /// </summary>
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        private MatixServiceClient service = null;
         private string nickName;
         
 
-        public ChangePasswordPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
+        public ChangePasswordPage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             service = _service;

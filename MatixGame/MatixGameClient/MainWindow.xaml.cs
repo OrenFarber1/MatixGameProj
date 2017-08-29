@@ -23,7 +23,9 @@ namespace MatixGameClient
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         
-                      
+        /// <summary>
+        /// Reference to the WCF service instance 
+        /// </summary>
         private MatixServiceClient service = null;
 
 

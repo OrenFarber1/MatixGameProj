@@ -1,20 +1,10 @@
 ﻿using log4net;
 using MatixGameClient.MatixGameServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WcfMatixServiceLibrary;
+
 
 namespace MatixGameClient
 {
@@ -28,11 +18,30 @@ namespace MatixGameClient
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        /// <summary>
+        /// Reference to the WCF service 
+        /// </summary>
+        private MatixServiceClient service = null;
+
+        /// <summary>
+        /// The player nickname
+        /// </summary>
         private string nickName;
+
+        /// <summary>
+        /// The player email address
+        /// </summary>
         private string email;
+
+        /// <summary>
+        /// A flag indicates whether the player is currently logged in to the server 
+        /// </summary>
         private bool loggedin;
 
+        /// <summary>
+        /// Constructor while we have no player details 
+        /// </summary>
+        /// <param name="_service"></param>
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service)
         {
             InitializeComponent();
@@ -47,6 +56,12 @@ namespace MatixGameClient
             statisticsButton.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Construct a page with player details 
+        /// </summary>
+        /// <param name="_service">WCF service reference</param>
+        /// <param name="_nickName">Player nickname </param>
+        /// <param name="_email">player email address</param>
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
@@ -84,6 +99,10 @@ namespace MatixGameClient
                 multyPlayersButton.IsEnabled = false;
                 updateDetailsButton.IsEnabled = false;
                 statisticsButton.IsEnabled = false;
+
+                // Send logout message to the server !!!
+
+                //service.....
             }
             else
             {
@@ -108,7 +127,11 @@ namespace MatixGameClient
             NavigationService.Navigate(page);
         }
 
-
+        /// <summary>
+        /// The player select to play with other players so open the waiting players list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void multiPlayersButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("multi players clicked");
@@ -116,7 +139,11 @@ namespace MatixGameClient
             NavigationService.Navigate(page);
         }
 
-
+        /// <summary>
+        /// Player select to update its user information so open the update details page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateDetailsButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to update details");
@@ -126,6 +153,11 @@ namespace MatixGameClient
 
         }
 
+        /// <summary>
+        /// Player select to see its statistics details so open the player statistics page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click on player statistics");
@@ -135,6 +167,11 @@ namespace MatixGameClient
 
         }
 
+        /// <summary>
+        /// The player select to quit the application 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to quit");

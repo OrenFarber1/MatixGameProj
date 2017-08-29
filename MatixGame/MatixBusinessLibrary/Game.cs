@@ -25,6 +25,7 @@ namespace MatixBusinessLibrary
     /// </summary>
     class Game
     {
+        #region Class Private Members
         /// <summary>
         /// Class internal logger 
         /// </summary>
@@ -48,27 +49,29 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Whose turn is it        
         /// </summary>
-        GameTurnType currentTurn;
+        private GameTurnType currentTurn;
 
         /// <summary>
         /// The game board 
         /// </summary>
-        MatixBoard board;
+        private MatixBoard board;
 
         /// <summary>
         /// Reference to the current token cell.  
         /// </summary>
-        MatixCell currentToken;
+        private MatixCell currentToken;
 
         /// <summary>
         /// Use to generate random board and to choose direction and more 
         /// </summary>
-        Random random = new Random();
+        private Random random = new Random();
 
         /// <summary>
         /// The id of the game in the database so we can use it for updates
         /// </summary>
-        long gameDatabaseId = -1;
+        private long gameDatabaseId = -1;
+
+        #endregion
 
         /// <summary>
         /// Construct a game and choose randomly who is the horizontal and vertical players and who should start the game 

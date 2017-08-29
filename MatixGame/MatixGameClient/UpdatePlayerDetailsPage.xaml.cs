@@ -1,19 +1,8 @@
 ﻿using log4net;
 using MatixGameClient.MatixGameServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MatixGameClient
 {
@@ -22,6 +11,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class UpdatePlayerDetailsPage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -30,10 +21,16 @@ namespace MatixGameClient
         /// <summary>
         /// Reference to the WCF service instance 
         /// </summary>
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        private MatixServiceClient service = null;
+
+        /// <summary>
+        /// Current players nickname 
+        /// </summary>
         private string nickName;
-      
-        public UpdatePlayerDetailsPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
+  
+        #endregion
+              
+        public UpdatePlayerDetailsPage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             service = _service;
@@ -42,12 +39,23 @@ namespace MatixGameClient
             loginName.Content = "Hi " + _nickName;            
         }
 
+        /// <summary>
+        /// User select to back to the welcome page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackClicked(object sender, RoutedEventArgs e)
         {
             WelcomePage page = new WelcomePage(service, nickName, emailAddr.Content.ToString());
             NavigationService.Navigate(page);
         }
 
+        /// <summary>
+        /// User clicked to update its details. The method validates the parameters and notify if something is missing 
+        /// On success the method navigate to the welcome page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateClicked(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to update details");
@@ -89,6 +97,11 @@ namespace MatixGameClient
 
         }
 
+        /// <summary>
+        /// User click to change password so open the change password page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangePassClicked(object sender, RoutedEventArgs e)
         {
             logger.Info("User click to change password");

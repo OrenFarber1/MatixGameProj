@@ -696,12 +696,6 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/SetGameAction", ReplyAction="http://tempuri.org/IMatixService/SetGameActionResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame", ReplyAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse")]
-        void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/NotifyPlayerOfNewGame", ReplyAction="http://tempuri.org/IMatixService/NotifyPlayerOfNewGameResponse")]
-        System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse")]
         void RemoveFromWaitingPlayers(string email);
         
@@ -816,14 +810,6 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> SetGameActionAsync(string email, int row, int col) {
             return base.Channel.SetGameActionAsync(email, row, col);
-        }
-        
-        public void NotifyPlayerOfNewGame(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting) {
-            base.Channel.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname, verticalNickname, matixBoard, whoIsStarting);
-        }
-        
-        public System.Threading.Tasks.Task NotifyPlayerOfNewGameAsync(string horizontalEmail, string horizontalNickname, string verticalNickname, MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting) {
-            return base.Channel.NotifyPlayerOfNewGameAsync(horizontalEmail, horizontalNickname, verticalNickname, matixBoard, whoIsStarting);
         }
         
         public void RemoveFromWaitingPlayers(string email) {

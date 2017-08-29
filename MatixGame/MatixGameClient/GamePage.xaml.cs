@@ -1,19 +1,10 @@
 ﻿using log4net;
 using MatixGameClient.MatixGameServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace MatixGameClient
@@ -23,21 +14,34 @@ namespace MatixGameClient
     /// </summary>
     public partial class GamePage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        /// <summary>
+        /// Reference to the WCF service instance 
+        /// </summary>
+        private MatixServiceClient service = null;
 
+        /// <summary>
+        /// Current player nickname 
+        /// </summary>
         private string nickName;
 
+        /// <summary>
+        /// Current player email address 
+        /// </summary>
         private string email;
 
         /// <summary>
         /// Use to accumulated the user selected cell values  
         /// </summary>
         private int firstPlayerScoreValue = 0;
+  
+        #endregion
 
 
         public delegate void SetBoardDelegate(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirection);

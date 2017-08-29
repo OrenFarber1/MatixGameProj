@@ -20,7 +20,7 @@ namespace MatixGameClient
         /// <summary>
         /// Reference to the WCF service instance 
         /// </summary>
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        private MatixServiceClient service = null;
 
         public RegistrationPage(MatixGameServiceReference.MatixServiceClient _service)
         {

@@ -48,6 +48,8 @@ namespace MatixGameClient
     [ComplexBindingProperties("DataSource")]
     public partial class Board : UserControl
     {
+      
+        #region Class Private Members 
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -66,27 +68,29 @@ namespace MatixGameClient
         /// <summary>
         /// The current row index of the token
         /// </summary>
-        int currentTokenRow = -1;
+        private int currentTokenRow = -1;
 
         /// <summary>
         /// The current column index of the token
         /// </summary>
-        int currentTokenCol = -1;
+        private int currentTokenCol = -1;
 
         /// <summary>
         /// Contains the current playing direction
         /// </summary>
-        PlayingDirectionEnum currentPlayingDirection;
+        private PlayingDirectionEnum currentPlayingDirection;
 
         /// <summary>
         /// Save the 
         /// </summary>
-        PlayingDirectionEnum myPlayingDirection;
+        private PlayingDirectionEnum myPlayingDirection;
 
         /// <summary>
         /// Reference to the parent page use to update changes the player made on the board 
         /// </summary>
-        GamePage parentPage = null;
+        private GamePage parentPage = null;
+
+        #endregion
 
 
         /// <summary>
@@ -244,6 +248,12 @@ namespace MatixGameClient
             }
         }
 
+        /// <summary>
+        /// Set the color value of the cell based on its properties
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
         private void UpdateColorValue(Cell c, int row, int column)
         {
             if (c.Token)

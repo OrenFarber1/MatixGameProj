@@ -28,11 +28,18 @@ namespace MatixGameClient
         /// </summary>
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private MatixGameServiceReference.MatixServiceClient service = null;
+        /// <summary>
+        /// Reference to the WCF service instance 
+        /// </summary>
+        private MatixServiceClient service = null;
+
         private string nickName;
+        /// <summary>
+        /// Current player email address 
+        /// </summary>
         private string email;
 
-        public PlayersListPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
+        public PlayersListPage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             service = _service;

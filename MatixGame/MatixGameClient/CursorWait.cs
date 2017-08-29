@@ -8,7 +8,11 @@ namespace MatixGameClient
     /// </summary>
     public class CursorWait : IDisposable
     {
+        #region Class Private Members 
+
         private Cursor _previousCursor;
+
+        #endregion
 
         public CursorWait()
         {

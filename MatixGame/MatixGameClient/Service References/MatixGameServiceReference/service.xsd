@@ -102,22 +102,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="NotifyPlayerOfNewGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="horizontalEmail" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="horizontalNickname" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="verticalNickname" nillable="true" type="xs:string" />
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q11:MatixBoard" />
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q12:GameTurnTypeEnum" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="NotifyPlayerOfNewGameResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="RemoveFromWaitingPlayers">
     <xs:complexType>
       <xs:sequence>
@@ -152,17 +136,17 @@
   <xs:element name="UpdateWaitingPlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q13:WaitingPlayerResult" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q11:WaitingPlayerResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMatixBoard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q14:MatixBoard" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q12:MatixBoard" />
         <xs:element minOccurs="0" name="horizontalNickname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="verticalNickName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q15:GameTurnTypeEnum" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q13:GameTurnTypeEnum" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
