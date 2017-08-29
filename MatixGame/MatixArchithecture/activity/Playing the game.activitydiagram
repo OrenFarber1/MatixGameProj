@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="98ac8cf2-2cd4-4d16-873a-646b19fa4c89" name="Playing the game" linkedPackageId="981d418c-4e9d-4790-9924-7a8f1c45a991" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="fd33173d-4a32-4080-ad63-f8b43b5a2dca">
+      <elementDefinition Id="66154d04-9e00-49c4-9623-043ab0606924" />
+      <body>Client A</body>
+    </comment>
+    <comment Id="c46f0ced-c4d0-4c7d-a1d3-129f814b3514">
+      <elementDefinition Id="4789839a-b4e7-42da-a079-42661edfe00d" />
+      <body>Server
+</body>
+    </comment>
+    <comment Id="db32c679-03b1-4a78-b948-ff7b706adb9b">
+      <elementDefinition Id="5dfad8dd-1b9a-4412-9052-171aaec4aba0" />
+      <body>Database</body>
+    </comment>
+    <comment Id="7b1e2274-a612-4c48-906c-fb6ed62d6bed">
+      <elementDefinition Id="d7f08cb8-341d-40fc-b8bf-c7dc6d2fd78e" />
+      <body>Client B</body>
+    </comment>
+    <comment Id="46e1fdcc-1c4c-4925-a509-7a6861ab1763">
+      <elementDefinition Id="896a8858-8044-4f39-871b-e90e48584e88" />
+      <body>Check If game ended</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="43f384db-c218-4955-8d35-6c3b422378c2" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="a0d5882d-7215-49b3-a172-e3f082471f3d">
+      <elementDefinition Id="79c5d019-034a-492a-b376-2827babbab38" />
+      <body>Yes, Game Ended</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="43f384db-c218-4955-8d35-6c3b422378c2" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="f3c04622-261e-4074-9167-bebb3d5d4ec0">
+      <elementDefinition Id="ee4ac49d-22ae-40fb-ba06-4b0c0bf7be6a" />
+      <body>Continue Playing</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="43f384db-c218-4955-8d35-6c3b422378c2" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="93c6fdc5-e4fd-4043-868e-e1e3b2177446">
+      <profileInstance Id="7ddc977f-9ff8-47fa-a25c-d9f22622855a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="e3b41f13-be23-4039-b184-ed202156b338">
+      <profileInstance Id="5d6640e0-0cd9-4d97-8d84-2bda63d86fd4" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="ff3849aa-f1d0-483a-9b5c-f3930b4a1ea5" name="Playing the game" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="2d8602a5-471b-4855-adad-7206c0c356f6" />
+        <nodes>
+          <opaqueAction Id="9bdfcece-1719-4336-bf0b-d0b22d970f56" name="Select a new cell" isLeaf="false">
+            <elementDefinition Id="9e89067f-edfa-49d7-a1c6-da2fbf7dbfb0" />
+            <flowNodeTargets>
+              <controlFlow Id="97cae6b0-37f5-412a-9ac7-0732d47bdb61" isLeaf="false">
+                <opaqueActionMoniker Id="4ea6f44b-5932-4a81-8618-c95825b59ac8" LastKnownName="Validate Rules" />
+                <elementDefinition Id="86e32821-ecb8-47fb-9e82-c93b1a1b1dd7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="4ea6f44b-5932-4a81-8618-c95825b59ac8" name="Validate Rules" isLeaf="false">
+            <elementDefinition Id="51f5295e-5e46-4ab6-a390-2aeea6fb654d" />
+            <flowNodeTargets>
+              <controlFlow Id="3a5d0186-e5ad-412a-91e9-3676e7de9b91" isLeaf="false">
+                <opaqueActionMoniker Id="e253f754-7f25-48f3-be40-504f19040110" LastKnownName="Set Game Action" />
+                <elementDefinition Id="0657d8b5-37f2-4a1d-8f18-be98e72ac901" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e253f754-7f25-48f3-be40-504f19040110" name="Set Game Action" isLeaf="false">
+            <elementDefinition Id="b9427927-e86d-418d-8454-d56f3aebb727" />
+            <flowNodeTargets>
+              <controlFlow Id="74ba3e9f-5db0-45be-ab8f-15f21cdac6de" isLeaf="false">
+                <opaqueActionMoniker Id="7a9fa7ec-7ea2-46ac-b2c4-88fa2695162a" LastKnownName="Validate &amp; Update Game" />
+                <elementDefinition Id="f5f4aaf8-9090-4d54-a286-d472e97d40d1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="7a9fa7ec-7ea2-46ac-b2c4-88fa2695162a" name="Validate &amp; Update Game" isLeaf="false">
+            <elementDefinition Id="f89cb970-1844-43ea-a79f-3e4434830c96" />
+            <flowNodeTargets>
+              <controlFlow Id="10bd7710-2572-4975-9c54-d7d4662dc204" isLeaf="false">
+                <opaqueActionMoniker Id="e3b8383d-ff8e-482b-86aa-74aefd13f2a5" LastKnownName="Add Game Action" />
+                <elementDefinition Id="abcf46bd-9098-4d38-840b-4fc77bc99a2c" />
+              </controlFlow>
+              <controlFlow Id="65ca9a64-054e-4962-9cd6-dee9d2aa2665" isLeaf="false">
+                <opaqueActionMoniker Id="174bf2ea-f205-4e2c-90e8-dfad14a61ebe" LastKnownName="Update Game Page" />
+                <elementDefinition Id="3dc19ad5-4804-4eb9-89e8-be7054257e7f" />
+              </controlFlow>
+              <controlFlow Id="4dfe6a1f-944f-4931-9046-63a1721ee414" isLeaf="false">
+                <decisionNodeMoniker Id="43f384db-c218-4955-8d35-6c3b422378c2" LastKnownName="Decision1" />
+                <elementDefinition Id="102194b1-3467-4ce4-a384-a2e93dc9b61b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e3b8383d-ff8e-482b-86aa-74aefd13f2a5" name="Add Game Action" isLeaf="false">
+            <elementDefinition Id="12ccbb12-ae58-4355-a755-fc6d7b4aa5d1" />
+          </opaqueAction>
+          <opaqueAction Id="174bf2ea-f205-4e2c-90e8-dfad14a61ebe" name="Update Game Page" isLeaf="false">
+            <elementDefinition Id="89491ad4-ee5b-43ec-8dbb-abbf4aa0183c" />
+            <flowNodeTargets>
+              <controlFlow Id="46eb12e8-e539-4ec4-9f76-5177b87ed99f" isLeaf="false">
+                <activityFinalNodeMoniker Id="b2c31a9b-de7f-4147-91b5-ecb51672a6c7" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="7fc3099f-5552-4517-b72a-c28fe51fb24e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="43f384db-c218-4955-8d35-6c3b422378c2" name="Decision1" isLeaf="false">
+            <description>login or regiter</description>
+            <elementDefinition Id="096619f5-3652-490f-915e-818b09faffa3" />
+            <flowNodeTargets>
+              <controlFlow Id="82b12f3f-8953-449c-bd9b-7bd33c4b7b2b" isLeaf="false">
+                <opaqueActionMoniker Id="0abe8cd3-8fa6-4aa4-a804-1fdcac1f6e1d" LastKnownName="Game Ended" />
+                <elementDefinition Id="246cd1d3-af47-40ac-9a10-e29c9609489f" />
+              </controlFlow>
+              <controlFlow Id="3dd02dbe-8a46-4a37-b3b6-5bb776d5d92f" isLeaf="false">
+                <opaqueActionMoniker Id="702fab4c-7979-44a1-96b1-3581b916d5a8" LastKnownName="Notify Player " />
+                <elementDefinition Id="ce96510b-a536-48b4-ac6e-dd49a373aa47" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="c028dc91-8be4-4ea4-b810-76e9cf9f7d1d" name="Game Ended" isLeaf="false">
+            <elementDefinition Id="f697f040-7bbe-4730-8a83-5be371b5c641" />
+            <flowNodeTargets>
+              <controlFlow Id="26485b1d-4dd0-4391-9a9a-2f7ed2d4908b" isLeaf="false">
+                <activityFinalNodeMoniker Id="b2c31a9b-de7f-4147-91b5-ecb51672a6c7" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="c579cfff-5f2e-4081-bc23-a6ff2d52b90e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="0abe8cd3-8fa6-4aa4-a804-1fdcac1f6e1d" name="Game Ended" isLeaf="false">
+            <elementDefinition Id="89a44e23-c150-4fef-a30b-9e4e6756839d" />
+            <flowNodeTargets>
+              <controlFlow Id="fe013ff1-5093-4902-82c4-0c0f18e1a65b" isLeaf="false">
+                <opaqueActionMoniker Id="45416372-808f-4491-a5e8-16fec90a80b7" LastKnownName="Update Game Result" />
+                <elementDefinition Id="a4fcfa30-1831-474b-9d3a-a931aa207d40" />
+              </controlFlow>
+              <controlFlow Id="937e0bba-6d62-472c-844e-99ea6c9bc0d4" isLeaf="false">
+                <opaqueActionMoniker Id="c028dc91-8be4-4ea4-b810-76e9cf9f7d1d" LastKnownName="Game Ended" />
+                <elementDefinition Id="86b4ae7d-a287-4b68-a670-45ba5671f063" />
+              </controlFlow>
+              <controlFlow Id="d3eb59ad-f413-460d-ab53-a1944a2f963a" isLeaf="false">
+                <opaqueActionMoniker Id="b7599289-859c-4d6c-b6f8-d6e40ee324d2" LastKnownName="Game Ended" />
+                <elementDefinition Id="0a82bec4-2612-4fd5-9346-ccd593e796fa" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="45416372-808f-4491-a5e8-16fec90a80b7" name="Update Game Result" isLeaf="false">
+            <elementDefinition Id="69522b5c-0d1d-42df-a07c-8bac7c7d9b2d" />
+          </opaqueAction>
+          <opaqueAction Id="b7599289-859c-4d6c-b6f8-d6e40ee324d2" name="Game Ended" isLeaf="false">
+            <elementDefinition Id="9309fee9-cd30-4eae-855f-a6ab6f6eb26a" />
+            <flowNodeTargets>
+              <controlFlow Id="cb68685f-5c6f-4b2f-b139-f0084cfadda5" isLeaf="false">
+                <activityFinalNodeMoniker Id="b2c31a9b-de7f-4147-91b5-ecb51672a6c7" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="b49d6239-410d-476c-b109-06d2cfbf0d2c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="702fab4c-7979-44a1-96b1-3581b916d5a8" name="Notify Player " isLeaf="false">
+            <elementDefinition Id="a6285d1d-6296-4304-adca-001c321b8743" />
+            <flowNodeTargets>
+              <controlFlow Id="59428561-8767-4b41-8a86-0af705687b00" isLeaf="false">
+                <opaqueActionMoniker Id="b6fe1968-9610-4d65-ac1e-5f6d8c044d80" LastKnownName="Update Game Page" />
+                <elementDefinition Id="358b0e1e-7791-4b79-924f-2123d82a3534" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b6fe1968-9610-4d65-ac1e-5f6d8c044d80" name="Update Game Page" isLeaf="false">
+            <elementDefinition Id="31887eb3-baa9-436b-b8dd-3f58749b9384" />
+            <flowNodeTargets>
+              <controlFlow Id="0606fa1f-9969-4724-9a2c-02b9483fca67" isLeaf="false">
+                <activityFinalNodeMoniker Id="b2c31a9b-de7f-4147-91b5-ecb51672a6c7" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="112a554a-0f2a-4420-8e25-e25496ec3eae" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="b2c31a9b-de7f-4147-91b5-ecb51672a6c7" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="54050e01-5f42-416c-ad84-90f40e0e818f" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="981d418c-4e9d-4790-9924-7a8f1c45a991" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</activityRootModel>

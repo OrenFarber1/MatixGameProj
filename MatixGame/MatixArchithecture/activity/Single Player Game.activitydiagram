@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="79f10898-b8b9-42c8-a159-e94d161cd210" name="Single Player Game" linkedPackageId="0e990289-b397-4275-bdcb-b212961d7c3e" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="9a15c52a-1c5d-4c00-970b-1d31ffc93c23">
+      <elementDefinition Id="92e5b7a8-0a79-48da-9051-58c196171500" />
+      <body>Client</body>
+    </comment>
+    <comment Id="4bc9e81f-c503-4566-8098-2ffe86f90f39">
+      <elementDefinition Id="f7141ec1-6817-4a1d-86a4-2aee0ce7f989" />
+      <body>Server
+</body>
+    </comment>
+    <comment Id="0e25ab43-af06-48f4-a7ad-36011dc57014">
+      <elementDefinition Id="fd85673b-16c3-4215-bf84-d4eb8cdcbe72" />
+      <body>Database</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="5a552ad1-d895-42ae-a622-1b39edd03f1d">
+      <profileInstance Id="0301b91e-44af-401c-bc44-ec12482fa218" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="79eaa225-4a2f-4f16-ae5e-749924874c0f">
+      <profileInstance Id="b75d4b62-a8f3-4f0f-a499-f632c9499cfb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="be3b4e57-9cc0-4655-83f6-e8dedb7c2b1c" name="Single Player Game" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="50720d6c-2896-4c8b-a971-2ceb4415876d" />
+        <nodes>
+          <initialNode Id="b294845d-d0b0-4050-9c8a-3bca5805b1c8" name="Initial1" isLeaf="false">
+            <elementDefinition Id="53a792a3-e21d-450e-b00f-d2b9b4edb12e" />
+            <flowNodeTargets>
+              <controlFlow Id="8f3419ec-65a4-4747-b4df-4b4f553ea0f9" isLeaf="false">
+                <opaqueActionMoniker Id="eb2f1b40-3b77-403f-a831-4544ad40f3f3" LastKnownName="Player selects single player" />
+                <elementDefinition Id="f68f1b33-fb88-4e5f-8694-d044b215f27a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="ecbe2e98-88e0-44b6-ad3a-6ca9187188b4" name="Start play with Robot" isLeaf="false">
+            <elementDefinition Id="18797922-ed18-4388-8788-f06574a26b89" />
+            <flowNodeTargets>
+              <controlFlow Id="258d0db5-8280-404e-a871-ee08bdcd1fe0" isLeaf="false">
+                <opaqueActionMoniker Id="65bff4bd-54e3-41c5-a298-9d3a4df08c94" LastKnownName="Create a New Game" />
+                <elementDefinition Id="7a88b938-f47a-479d-8c0b-70c38ec51f48" />
+              </controlFlow>
+              <controlFlow Id="cd02a501-712e-48e3-acb4-371b22a5a666" isLeaf="false">
+                <opaqueActionMoniker Id="eb269cac-86d4-4ef0-9517-669233d5a594" LastKnownName="Get player details " />
+                <elementDefinition Id="e3c00f17-a912-4519-929a-90002a1b721e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="d2a5b844-16c8-4955-9362-8d5ec9d57d92" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="eb263e40-00cc-426c-a266-3074c01375f9" />
+          </activityFinalNode>
+          <opaqueAction Id="eb2f1b40-3b77-403f-a831-4544ad40f3f3" name="Player selects single player" isLeaf="false">
+            <elementDefinition Id="650fee08-d4cc-412c-bd00-6bb1933e4420" />
+            <flowNodeTargets>
+              <controlFlow Id="8a68cfaa-d7f4-4263-827a-6f1cf4f17588" isLeaf="false">
+                <opaqueActionMoniker Id="ecbe2e98-88e0-44b6-ad3a-6ca9187188b4" LastKnownName="Start play with Robot" />
+                <elementDefinition Id="529e23d3-753b-4b1e-8267-cc8db04c0db8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="eb269cac-86d4-4ef0-9517-669233d5a594" name="Get player details " isLeaf="false">
+            <elementDefinition Id="b563ca00-1a1a-4161-8fde-62725eee8441" />
+            <flowNodeTargets>
+              <controlFlow Id="900cd2c0-0fb6-452e-b562-44c9111d4d2e" isLeaf="false">
+                <opaqueActionMoniker Id="ecbe2e98-88e0-44b6-ad3a-6ca9187188b4" LastKnownName="Start play with Robot" />
+                <elementDefinition Id="0b3950da-1960-4a71-8b8f-3485a293783d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="65bff4bd-54e3-41c5-a298-9d3a4df08c94" name="Create a New Game" isLeaf="false">
+            <elementDefinition Id="ea95e55c-b4a4-475f-9d82-2ce0bad0909f" />
+            <flowNodeTargets>
+              <controlFlow Id="cd824a6e-34fc-47f8-aa3b-8e32d82c5ab0" isLeaf="false">
+                <opaqueActionMoniker Id="32c7d736-ba75-4066-a255-0e77bb12ef87" LastKnownName="Start a New Game" />
+                <elementDefinition Id="a7ffa073-6e0f-48c4-8a46-8b0877a1f0fe" />
+              </controlFlow>
+              <controlFlow Id="15019cda-2c4a-4a27-a7d6-32214c357087" isLeaf="false">
+                <opaqueActionMoniker Id="d056a34c-f109-4e60-ab0c-967bab26fd8a" LastKnownName="Get  Robot Details" />
+                <elementDefinition Id="3a92a37b-9bf1-43ac-808b-949608867cd0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="32c7d736-ba75-4066-a255-0e77bb12ef87" name="Start a New Game" isLeaf="false">
+            <elementDefinition Id="ed2e04c7-75b6-4b8a-8287-8ec7a9228ebd" />
+            <flowNodeTargets>
+              <controlFlow Id="db7ed833-4e91-4434-942d-750462610de8" isLeaf="false">
+                <activityFinalNodeMoniker Id="d2a5b844-16c8-4955-9362-8d5ec9d57d92" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="74320699-c19c-4b81-bfab-b8bbe01e6012" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="d056a34c-f109-4e60-ab0c-967bab26fd8a" name="Get  Robot Details" isLeaf="false">
+            <elementDefinition Id="7363d6f2-712e-4698-9bc0-ab80e078063b" />
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="0e990289-b397-4275-bdcb-b212961d7c3e" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</activityRootModel>

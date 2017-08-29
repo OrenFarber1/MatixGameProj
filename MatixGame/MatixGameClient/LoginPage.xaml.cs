@@ -82,11 +82,11 @@ namespace MatixGameClient
                             {
                                 Properties.Settings.Default.email = emailAddrTextBox.Text;
                                 Properties.Settings.Default.password = PassTextBox.Password;
-                                Properties.Settings.Default.nickname = result.NickName;
+                                Properties.Settings.Default.nickname = result.Nickname;
 
                                 Properties.Settings.Default.Save();
 
-                                WelcomePage welcome = new WelcomePage(service, result.NickName, emailAddrTextBox.Text);
+                                WelcomePage welcome = new WelcomePage(service, result.Nickname, emailAddrTextBox.Text);
                                 NavigationService.Navigate(welcome);
                             }
                             break;

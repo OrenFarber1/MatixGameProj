@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="f55ccb0e-d184-48ae-b4c7-c623dd9c7e37" name="Single Player" linkedPackageId="505c95ef-0ec7-4b4d-a3e3-5a53341dc869" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="1dce56f5-6931-470e-9e2f-5519885d5674">
+      <profileInstance Id="83743a36-7041-44a5-9bed-6d4fe2119a2f" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="3c85124c-8257-48dd-ac18-36c4295d5486">
+      <profileInstance Id="9d00e078-c8de-426d-b31f-9ad5fb8f48c1" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="527d8729-2efa-487c-bf51-9904cedf01ec" name="Player" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b69c8178-d210-43b4-aa86-376ca157adba" />
+        <targetEnds>
+          <association Id="5e7067f3-a6c4-40b9-87ef-2eab4fd49d11" isDerived="false" sourceEndRoleName="Player1" targetEndRoleName="Connect to Game Server" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f37c0ff4-bcc8-49c3-be68-57ca39c59182" LastKnownName="Select Single Player" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="18c266f9-c90d-469e-91af-0ce4fa55027d" name="Player1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7fdc6177-737f-4977-b191-19cfac514191" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="36907527-aeba-422e-a766-e305e93ee772" name="Connect to Game Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="da0e26a0-6088-4c12-9582-90f5837c2e87" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b26d3ccf-313b-499e-8843-a21965098747" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="5fbb3b31-923d-4704-824b-79e2f8520911" name="Matix Game" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b530b7cb-a965-44c1-ad4b-f79d47f64ac7" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f37c0ff4-bcc8-49c3-be68-57ca39c59182" name="Select Single Player" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="78aa95b8-9cee-4300-930e-16c4ac4e57a8" />
+        <extendedCases>
+          <extend Id="feea3a49-ab1f-42e8-a126-e6452b90e8d1">
+            <useCaseMoniker Id="b183dd9c-f5c6-473a-b0f8-021ab9c8cd47" LastKnownName="Start a new game " />
+            <elementDefinition Id="5cfc562f-b050-4e29-a528-2aff3750b7c4" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="5fbb3b31-923d-4704-824b-79e2f8520911" LastKnownName="Matix Game" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b183dd9c-f5c6-473a-b0f8-021ab9c8cd47" name="Start a new game " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="109a0d98-918c-48d2-b9af-b6d0edf8c657" />
+        <subjects>
+          <subsystemMoniker Id="5fbb3b31-923d-4704-824b-79e2f8520911" LastKnownName="Matix Game" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="505c95ef-0ec7-4b4d-a3e3-5a53341dc869" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</useCaseModelRoot>

@@ -91,7 +91,7 @@ namespace MatixGameClient
 
                 if (result.Status == OperationStatus.Success)
                 {
-                    welcome = new WelcomePage(service, result.NickName, email);
+                    welcome = new WelcomePage(service, result.Nickname, email);
                 }
                 else
                 {

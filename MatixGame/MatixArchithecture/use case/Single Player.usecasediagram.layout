@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Single Player">
+  <useCaseModelRootMoniker Id="f55ccb0e-d184-48ae-b4c7-c623dd9c7e37" />
+  <nestedChildShapes>
+    <actorShape Id="8594fc73-675d-4445-b1ff-68dd42b62093" absoluteBounds="2.75, 2.625, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="527d8729-2efa-487c-bf51-9904cedf01ec" LastKnownName="Player" />
+      <relativeChildShapes />
+    </actorShape>
+    <SubsystemShape Id="b6a643b1-3bda-4aa0-92fd-f6d70d3ac7f5" absoluteBounds="4, 1.25, 3.125, 3.375" customColor="Transparent">
+      <subsystemMoniker Id="5fbb3b31-923d-4704-824b-79e2f8520911" LastKnownName="Matix Game" />
+      <nestedChildShapes>
+        <useCaseShape Id="37dd0fb4-7506-49d1-8382-0eb3cae44670" absoluteBounds="5, 1.75, 1.125, 0.875" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="f37c0ff4-bcc8-49c3-be68-57ca39c59182" LastKnownName="Select Single Player" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="ddf61799-9a28-4f2c-a5fa-4f4ebd59c266" absoluteBounds="5.375, 3, 1.125, 1" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="b183dd9c-f5c6-473a-b0f8-021ab9c8cd47" LastKnownName="Start a new game " />
+          <relativeChildShapes />
+        </useCaseShape>
+      </nestedChildShapes>
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(3.25 : 2.80792682926829); (5.03074739055597 : 2.33016533424108)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="5e7067f3-a6c4-40b9-87ef-2eab4fd49d11" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="8594fc73-675d-4445-b1ff-68dd42b62093" />
+        <useCaseShapeMoniker Id="37dd0fb4-7506-49d1-8382-0eb3cae44670" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <extendConnector edgePoints="[(5.68452338252299 : 2.61458183883048); (5.79903846153846 : 3.01538461538462)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«extend»">
+      <extendMoniker Id="feea3a49-ab1f-42e8-a126-e6452b90e8d1" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="37dd0fb4-7506-49d1-8382-0eb3cae44670" />
+        <useCaseShapeMoniker Id="ddf61799-9a28-4f2c-a5fa-4f4ebd59c266" />
+      </nodes>
+    </extendConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

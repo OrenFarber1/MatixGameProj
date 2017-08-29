@@ -192,7 +192,7 @@ namespace MatixBusinessLibrary
                         usernNiknameToEmail[nickName] = email;
                     }
 
-                    result.NickName = nickName;          
+                    result.Nickname = nickName;          
 
                 }
                 else

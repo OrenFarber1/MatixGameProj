@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="fa9929dc-9224-43dc-8d98-ed908b846ed7" name="Multi Player Game" linkedPackageId="bec60683-ff4b-4178-8258-316bc7fab516" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="c6bf7482-186d-47a3-b344-4b43ba936d78">
+      <elementDefinition Id="8ff00d91-9c23-4a5e-9e45-77cef322c421" />
+      <body>Client</body>
+    </comment>
+    <comment Id="ddf547b5-1004-4291-8b08-9a1e906f09f8">
+      <elementDefinition Id="b7dc6eac-99af-4e99-afbc-04dc81787b32" />
+      <body>Server
+</body>
+    </comment>
+    <comment Id="780b9dc0-2fa7-466e-885a-7fa1c0ef3664">
+      <elementDefinition Id="f0b6b279-6d94-4a16-9290-c7f3ca9f8994" />
+      <body>Select </body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="cf08bd05-287b-4fc4-9591-cd4c65f4f61d" LastKnownName="Decision3" />
+      </annotatedElements>
+    </comment>
+    <comment Id="5a6d9ecb-c4aa-41a5-8d1d-e6aa29a871b6">
+      <elementDefinition Id="368e9e69-329c-460a-abf9-a0cc9eaaf6c8" />
+      <body>Wait</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="cf08bd05-287b-4fc4-9591-cd4c65f4f61d" LastKnownName="Decision3" />
+      </annotatedElements>
+    </comment>
+    <comment Id="3a9b7735-61fe-4b6e-86f9-b2bc4daa72d2">
+      <elementDefinition Id="9278b602-ee0e-4a5f-8d98-74e2548d50b2" />
+      <body>Database</body>
+    </comment>
+    <comment Id="0c1b6016-6ebf-41df-9884-f486f40cff1b">
+      <elementDefinition Id="0105d6fb-a3bd-4ee7-acf1-b8e8167d8879" />
+      <body>
+Select a plater or wait 
+for other player to select</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="cf08bd05-287b-4fc4-9591-cd4c65f4f61d" LastKnownName="Decision3" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="4124e66b-df7d-4ee3-aa81-c7d89e2af3ef">
+      <profileInstance Id="0dcebbb9-95df-4886-bb7a-4e0509087c8a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="d532bede-27e2-41ec-9155-5a7491b4ed8b">
+      <profileInstance Id="32c67e70-da72-4521-8406-1323ad65a495" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="2e437f77-f915-4549-be61-3057587de060" name="Multi Player Game" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="347e3925-6f77-4a18-8a71-bbc82f10184b" />
+        <nodes>
+          <initialNode Id="02abc9c6-8d8b-47a7-b799-f76506035a97" name="Initial1" isLeaf="false">
+            <elementDefinition Id="575c606a-3d2b-4f6b-8a21-a4235dad85b8" />
+            <flowNodeTargets>
+              <controlFlow Id="33e50e02-2f4b-414f-8271-9c81aac075df" isLeaf="false">
+                <opaqueActionMoniker Id="fa1b348e-4760-4b1a-8e10-bfa40480901e" LastKnownName="Player selects multi player" />
+                <elementDefinition Id="b4b48a76-a20f-4e87-96b6-176ce0ccc0b0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="81568a61-d222-4dc3-970c-15236b89f483" name="Wating" isLeaf="false">
+            <elementDefinition Id="8785b42a-10c8-4e78-847a-c5da952c02a2" />
+            <flowNodeTargets>
+              <controlFlow Id="e75946b6-ab80-4075-b118-bc3a2d4fcf04" isLeaf="false">
+                <opaqueActionMoniker Id="81568a61-d222-4dc3-970c-15236b89f483" LastKnownName="Wating" />
+                <elementDefinition Id="f30c5e47-0dbb-4b5d-be0c-b425bad2bf78" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8b850f59-196d-46b6-b953-df07500d895a" name="Add player to waiting players list " isLeaf="false">
+            <elementDefinition Id="71138120-3bb4-47c8-88a2-5300a13647b3" />
+            <flowNodeTargets>
+              <controlFlow Id="02072988-0bc0-44ba-878e-63fd3feed6fb" isLeaf="false">
+                <opaqueActionMoniker Id="a24380ea-b395-4a8f-97ed-b9df2f6537ec" LastKnownName="Generate waiting players information " />
+                <elementDefinition Id="e7daaa82-dfc3-4b43-a35d-0c170c65919d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="2704aa41-29bf-4392-a51a-a80fd2e4704c" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="ae2488ef-1f94-461e-aec9-494413a88a00" />
+          </activityFinalNode>
+          <decisionNode Id="cf08bd05-287b-4fc4-9591-cd4c65f4f61d" name="Decision3" isLeaf="false">
+            <elementDefinition Id="960fb585-9e2a-4210-b26b-d35fbbab10b3" />
+            <flowNodeTargets>
+              <controlFlow Id="988e8c4d-1743-407a-8f94-6c262d0ae8b9" isLeaf="false">
+                <opaqueActionMoniker Id="81568a61-d222-4dc3-970c-15236b89f483" LastKnownName="Wating" />
+                <elementDefinition Id="553ced07-9268-470a-a389-c0be8971496e" />
+              </controlFlow>
+              <controlFlow Id="97597593-c8f9-4ee4-bcc0-b304930c9eaf" isLeaf="false">
+                <opaqueActionMoniker Id="beb49458-d363-4920-9094-432532910018" LastKnownName="Start a New Game" />
+                <elementDefinition Id="f910add3-687a-4f7a-bb79-fd854f7986a1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="fa1b348e-4760-4b1a-8e10-bfa40480901e" name="Player selects multi player" isLeaf="false">
+            <elementDefinition Id="8d4a7349-5c20-4846-a98f-1fa5b39bbaf0" />
+            <flowNodeTargets>
+              <controlFlow Id="056b4deb-06ad-4816-8ae8-785fa4930553" isLeaf="false">
+                <opaqueActionMoniker Id="8b850f59-196d-46b6-b953-df07500d895a" LastKnownName="Add player to waiting players list " />
+                <elementDefinition Id="db8b2658-7899-42bd-ad74-75b4e06c2a18" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="968b7608-fc41-4683-9a57-9414a5de88e8" name="Show waiting players list " isLeaf="false">
+            <elementDefinition Id="6b872fd8-b32c-4cd6-aab0-ab42e1a375b7" />
+            <flowNodeTargets>
+              <controlFlow Id="3653e364-d633-4223-9d9b-6de253a4f947" isLeaf="false">
+                <decisionNodeMoniker Id="cf08bd05-287b-4fc4-9591-cd4c65f4f61d" LastKnownName="Decision3" />
+                <elementDefinition Id="227c3f56-b22a-422c-80be-f6c91a1d83b2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="7312e39e-5732-4879-8763-dc856990f81f" name="Get players details " isLeaf="false">
+            <elementDefinition Id="07171758-1f55-4e0d-b9d2-6325e201693f" />
+            <flowNodeTargets>
+              <controlFlow Id="856e383a-aeee-4050-98b0-d91e21ce7edb" isLeaf="false">
+                <opaqueActionMoniker Id="a24380ea-b395-4a8f-97ed-b9df2f6537ec" LastKnownName="Generate waiting players information " />
+                <elementDefinition Id="319ee4d1-25e8-4f3b-b946-01101067114f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a24380ea-b395-4a8f-97ed-b9df2f6537ec" name="Generate waiting players information " isLeaf="false">
+            <elementDefinition Id="fba02fbf-110c-4049-aa7a-bfd1dc647767" />
+            <flowNodeTargets>
+              <controlFlow Id="55f521a3-96fb-4cba-9bef-d607353bf7bd" isLeaf="false">
+                <opaqueActionMoniker Id="7312e39e-5732-4879-8763-dc856990f81f" LastKnownName="Get players details " />
+                <elementDefinition Id="42363fac-a966-420b-b887-3c20998f647d" />
+              </controlFlow>
+              <controlFlow Id="5712438d-848c-4a42-8768-c65ff12d054e" isLeaf="false">
+                <opaqueActionMoniker Id="968b7608-fc41-4683-9a57-9414a5de88e8" LastKnownName="Show waiting players list " />
+                <elementDefinition Id="82acb034-c838-46f0-b674-f60499e57bd1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="beb49458-d363-4920-9094-432532910018" name="Start a New Game" isLeaf="false">
+            <elementDefinition Id="a2c3ecd7-b6cd-474b-9b9e-7482342319df" />
+            <flowNodeTargets>
+              <controlFlow Id="74316a07-56e5-49d1-9c51-9788ce8214d8" isLeaf="false">
+                <activityFinalNodeMoniker Id="2704aa41-29bf-4392-a51a-a80fd2e4704c" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="cd30aa73-adb3-470f-8f15-20a54fabe334" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="bec60683-ff4b-4178-8258-316bc7fab516" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</activityRootModel>

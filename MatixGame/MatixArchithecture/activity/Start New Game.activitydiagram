@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="e1419b88-5062-4c2e-ace1-1866aa18dac4" name="Start New Game" linkedPackageId="ac68c64f-42d5-4186-b716-a56334d99b35" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="20f4123b-cfb5-4541-a181-daa40a7a6e3a">
+      <elementDefinition Id="88b62553-263b-4b8f-a21f-19cebe2a8bda" />
+      <body>Client</body>
+    </comment>
+    <comment Id="db104372-a7ca-4ce8-a70f-d5ed48b57320">
+      <elementDefinition Id="467175b3-d7df-47bc-b19e-a968590d55dd" />
+      <body>Server
+</body>
+    </comment>
+    <comment Id="27d732d4-666d-4f41-a149-a45cf10159ff">
+      <elementDefinition Id="f629b3d5-b801-41cf-8083-7a5d758752e2" />
+      <body>Database</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="d5f622a2-cfb8-4e87-96a4-2f97ce3f6eb8">
+      <profileInstance Id="ecf77eb7-3b16-4066-81ae-2720604ad5a3" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="a97bbd23-be3d-42bb-bd89-0da776b795c1">
+      <profileInstance Id="11969b77-c9bd-47b1-8edb-727c81956661" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="c499c321-4c59-4d48-ae68-222a579fdbd1" name="Start New Game" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="98c5dd80-0965-46ab-adff-0195da98d5b9" />
+        <nodes>
+          <initialNode Id="dab8dbbc-c622-4269-a590-2141f7d6f105" name="Initial1" isLeaf="false">
+            <elementDefinition Id="c8741877-c259-4abe-a4f8-2745e8617780" />
+            <flowNodeTargets>
+              <controlFlow Id="998a8488-2983-4272-a991-aa6157e96894" isLeaf="false">
+                <opaqueActionMoniker Id="158e664d-e203-4091-8304-71059127a72c" LastKnownName="Create New Game" />
+                <elementDefinition Id="2fbdcbfc-b73f-448c-be06-431ef4332959" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="3801d15e-a71f-4e1a-a235-31a9f26b7c92" name="Show Game Page" isLeaf="false">
+            <elementDefinition Id="8eb45337-7942-409a-99a5-19b78eaa0c74" />
+            <flowNodeTargets>
+              <controlFlow Id="4d81319e-ead1-4eaf-8cd7-80ec112ab591" isLeaf="false">
+                <activityFinalNodeMoniker Id="2e6891f6-c77c-4d45-86e9-a5b518fa7d13" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="46f00c97-2e9e-462b-af68-794ca5de38d3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="2e6891f6-c77c-4d45-86e9-a5b518fa7d13" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="548fee17-dce6-4b57-a28a-c82df2e35b58" />
+          </activityFinalNode>
+          <opaqueAction Id="158e664d-e203-4091-8304-71059127a72c" name="Create New Game" isLeaf="false">
+            <elementDefinition Id="2f82d153-6ac8-4648-b94e-53f9799f2fb8" />
+            <flowNodeTargets>
+              <controlFlow Id="d88a7f19-7a56-4205-b855-ea4682a2d69f" isLeaf="false">
+                <opaqueActionMoniker Id="641dbb9e-e6d9-43b1-86f0-fcd609ad2b7c" LastKnownName="Generate a New Board " />
+                <elementDefinition Id="4782866c-e67d-4d52-b35c-500715c16c72" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="02d2e599-e8b4-4918-b483-8f975fb9fae3" name="Create new Game " isLeaf="false">
+            <elementDefinition Id="c8ca1274-cc00-4631-a9db-b845710a0570" />
+            <flowNodeTargets>
+              <controlFlow Id="ac483901-226e-4c6a-9542-d40c0e655a32" isLeaf="false">
+                <opaqueActionMoniker Id="1e336d1c-a7e6-4b17-9b48-455a0e6b9ec4" LastKnownName="Add Game Id" />
+                <elementDefinition Id="c072ffab-9335-45c6-886f-be9689ae3958" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="641dbb9e-e6d9-43b1-86f0-fcd609ad2b7c" name="Generate a New Board " isLeaf="false">
+            <elementDefinition Id="f2efdf79-e40b-4187-8540-1d801f0f07c7" />
+            <flowNodeTargets>
+              <controlFlow Id="fc6831b9-9c4f-456f-948d-415c3bc44417" isLeaf="false">
+                <opaqueActionMoniker Id="adcf37ae-8cf1-42b4-b7f5-631acd387439" LastKnownName="Set players direction " />
+                <elementDefinition Id="3d57c713-bd1c-45b1-a088-6d3c91cee531" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="adcf37ae-8cf1-42b4-b7f5-631acd387439" name="Set players direction " isLeaf="false">
+            <elementDefinition Id="3825f8ba-8e47-4436-9d57-c6e2e115b794" />
+            <flowNodeTargets>
+              <controlFlow Id="4c01c2cc-6fbd-4e72-9ee9-65d9ee7815a2" isLeaf="false">
+                <opaqueActionMoniker Id="02d2e599-e8b4-4918-b483-8f975fb9fae3" LastKnownName="Create new Game " />
+                <elementDefinition Id="e71bb182-36fc-472f-b4d6-903580e0c25d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="4a0d7507-4b05-4912-ae43-e207dcf359df" name="Notify Human Players" isLeaf="false">
+            <elementDefinition Id="9bb6a47f-fb41-4e11-a847-51a0484b7586" />
+            <flowNodeTargets>
+              <controlFlow Id="75d1473c-09b7-4907-a925-372409590dcb" isLeaf="false">
+                <opaqueActionMoniker Id="3801d15e-a71f-4e1a-a235-31a9f26b7c92" LastKnownName="Show Game Page" />
+                <elementDefinition Id="309f0e99-18a6-4c94-a8a9-c2feab5db1e9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="1e336d1c-a7e6-4b17-9b48-455a0e6b9ec4" name="Add Game Id" isLeaf="false">
+            <elementDefinition Id="1080e386-6808-405b-8e83-febb8a351fe6" />
+            <flowNodeTargets>
+              <controlFlow Id="e15b303f-16b0-4553-83d5-f9216a0d9691" isLeaf="false">
+                <opaqueActionMoniker Id="4a0d7507-4b05-4912-ae43-e207dcf359df" LastKnownName="Notify Human Players" />
+                <elementDefinition Id="20c32c0a-a057-46dc-82aa-0b138c03dc94" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="ac68c64f-42d5-4186-b716-a56334d99b35" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</activityRootModel>

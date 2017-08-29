@@ -104,6 +104,9 @@ namespace WcfMatixServiceLibrary
         }
     }
 
+    /// <summary>
+    /// The class contains the player information for login message 
+    /// </summary>
     [DataContract]
     public class LoginData
     {
@@ -141,7 +144,7 @@ namespace WcfMatixServiceLibrary
         /// The user nick name
         /// </summary>
         [DataMember]
-        public string NickName
+        public string Nickname
         {
             get { return nickName; }
             set { nickName = value; }

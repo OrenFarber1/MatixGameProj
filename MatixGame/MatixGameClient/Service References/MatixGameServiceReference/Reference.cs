@@ -280,7 +280,7 @@ namespace MatixGameClient.MatixGameServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NickNameField;
+        private string NicknameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MatixGameClient.MatixGameServiceReference.OperationStatus StatusField;
@@ -296,14 +296,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NickName {
+        public string Nickname {
             get {
-                return this.NickNameField;
+                return this.NicknameField;
             }
             set {
-                if ((object.ReferenceEquals(this.NickNameField, value) != true)) {
-                    this.NickNameField = value;
-                    this.RaisePropertyChanged("NickName");
+                if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
+                    this.NicknameField = value;
+                    this.RaisePropertyChanged("Nickname");
                 }
             }
         }

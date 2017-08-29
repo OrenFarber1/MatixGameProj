@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="e3f0e075-7882-42e3-97bd-7be9f885982e" name="Get Player Statistics" linkedPackageId="4074930b-e2df-402d-9792-6646b55c6f3f" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="65c7cd90-13ba-4916-a1e0-030d8b6de463">
+      <elementDefinition Id="96f3d574-3bb8-4847-b162-869ad7e88cf4" />
+      <body>Client</body>
+    </comment>
+    <comment Id="364f9557-fd00-4208-a230-82e25142f63a">
+      <elementDefinition Id="9c9985fe-b064-4ccb-a4cf-203463c36177" />
+      <body>Server
+</body>
+    </comment>
+    <comment Id="c5d82513-b474-4486-8032-c8d7cfa142bd">
+      <elementDefinition Id="497c4f35-b5e0-4731-b90c-5163b07b25ef" />
+      <body>Database</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="399b140e-8935-44ac-8606-5482375c4822">
+      <profileInstance Id="4e5281aa-ede6-4d75-81b6-9d3524353d5f" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="68c7fac7-3b14-4496-88ce-87315ef095bf">
+      <profileInstance Id="0d33bbaf-f077-442e-aca4-d0331731cd53" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="5b5d0ca6-2cfb-45d8-9664-f9ee153f12eb" name="Get Player Statistics" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="4d82242d-c439-4bd7-8b0b-855526c345e6" />
+        <nodes>
+          <initialNode Id="eb6c95d2-7cef-400a-a9c8-ff9acd13d604" name="Initial1" isLeaf="false">
+            <elementDefinition Id="3dd498f2-eb11-41cb-a778-0c47624aea70" />
+            <flowNodeTargets>
+              <controlFlow Id="97382470-9f8b-465d-b397-99963edb814f" isLeaf="false">
+                <opaqueActionMoniker Id="c7d62d14-7744-4ca7-9303-67a5b3dea7ff" LastKnownName="Get Player Statistics" />
+                <elementDefinition Id="4d64ee40-8578-4e2e-85b8-9135fb64db66" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="c7d62d14-7744-4ca7-9303-67a5b3dea7ff" name="Get Player Statistics" isLeaf="false">
+            <elementDefinition Id="d109ec0b-1239-4938-bc13-c120c4a51423" />
+            <flowNodeTargets>
+              <controlFlow Id="842dd50a-ebf3-486f-832c-6d5e75596bb6" isLeaf="false">
+                <opaqueActionMoniker Id="5ce333d0-ec82-449c-ab49-cef2d33146d6" LastKnownName="Get Player Statistics" />
+                <elementDefinition Id="86f7d46b-a61d-4c71-b1f7-44c294feee3f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b3305b21-7c0e-46b8-9e86-5203f28be06d" name="Show Players Statistics" isLeaf="false">
+            <elementDefinition Id="c034e14d-1d5a-4fc6-8ab1-edada4eb36ad" />
+            <flowNodeTargets>
+              <controlFlow Id="caeb3fdb-83c2-462d-80ed-98bdb4e60b0c" isLeaf="false">
+                <activityFinalNodeMoniker Id="88d757f1-0412-4e68-9ed6-d3fabe51436c" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="c1b4d376-d44a-4b2e-8bc1-150df55bb963" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="88d757f1-0412-4e68-9ed6-d3fabe51436c" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="4c76170b-a30e-4d5f-8dac-6c22e35661b0" />
+          </activityFinalNode>
+          <opaqueAction Id="5ce333d0-ec82-449c-ab49-cef2d33146d6" name="Get Player Statistics" isLeaf="false">
+            <elementDefinition Id="f6b713ad-b72c-4dae-b14a-26650820c783" />
+            <flowNodeTargets>
+              <controlFlow Id="94f3d7ab-142c-4599-9804-950bb81d0a3f" isLeaf="false">
+                <opaqueActionMoniker Id="ee781549-5cd5-4255-b9bf-1378c6aee3c6" LastKnownName="Get Player Statistics" />
+                <elementDefinition Id="2c69f82c-3483-4658-84b9-b17ac6ebb1f6" />
+              </controlFlow>
+              <controlFlow Id="bc3ed0b9-8252-416b-90b0-077574e5c839" isLeaf="false">
+                <opaqueActionMoniker Id="b3305b21-7c0e-46b8-9e86-5203f28be06d" LastKnownName="Show Players Statistics" />
+                <elementDefinition Id="6da94741-bcfd-4963-89d5-730edad16672" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="ee781549-5cd5-4255-b9bf-1378c6aee3c6" name="Get Player Statistics" isLeaf="false">
+            <elementDefinition Id="229513e6-7cf2-42fa-ab80-3fb53cc9ca3b" />
+            <flowNodeTargets>
+              <controlFlow Id="ed34aefe-25d4-4152-8477-85a217cd1447" isLeaf="false">
+                <opaqueActionMoniker Id="5ce333d0-ec82-449c-ab49-cef2d33146d6" LastKnownName="Get Player Statistics" />
+                <elementDefinition Id="5fb349a9-b6b5-4b83-b0a6-2ea536424183" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="4074930b-e2df-402d-9792-6646b55c6f3f" name="ModelingProject1">
+    <elementDefinition Id="3bb340f7-d954-4945-b44b-0472e81fed35" />
+  </package>
+</activityRootModel>

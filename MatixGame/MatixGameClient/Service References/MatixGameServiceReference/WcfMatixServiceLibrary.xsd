@@ -38,7 +38,7 @@
   <xs:element name="LoginData" nillable="true" type="tns:LoginData" />
   <xs:complexType name="LoginResult">
     <xs:sequence>
-      <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nickname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Status" type="tns:OperationStatus" />
     </xs:sequence>
   </xs:complexType>
