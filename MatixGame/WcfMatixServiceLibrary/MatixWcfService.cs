@@ -30,7 +30,7 @@ namespace WcfMatixServiceLibrary
         /// <summary>
         /// A dictionary of uses email address and its callback function
         /// </summary>
-        Dictionary<string, IMatixServiceCallback> usersCallbackes = null;
+        private Dictionary<string, IMatixServiceCallback> usersCallbackes = null;
 
      
         public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
@@ -72,6 +72,8 @@ namespace WcfMatixServiceLibrary
             {
                 usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();
 
+                logger.InfoFormat("UserLogin - Add callback to usersCallbackes dictionary email: {0}", loginData.EmailAddress);
+
                 OperationContext.Current.Channel.Faulted += ClientDisconnected;
             //    OperationContext.Current.Channel.Closed += ClientDisconnected;
             }
@@ -81,9 +83,13 @@ namespace WcfMatixServiceLibrary
 
         public OperationStatusEnum UserLogout(string email, string reason)
         {
+            logger.InfoFormat("UserLogout email: {0}", email);
+
             OperationStatusEnum result =  matixBuisnessInterface.UserLogout(email, reason);
 
             usersCallbackes.Remove(email);
+
+            logger.Info("UserLogout - Remove key from usersCallbackes");
 
             return result;
         }
@@ -120,7 +126,7 @@ namespace WcfMatixServiceLibrary
 
         public WaitingPlayerResult GetWaitingPlayers(string excludedEmail)
         {
-            logger.Info("GetWaitingPlayers");
+            logger.InfoFormat("GetWaitingPlayers excludedEmail: {0}", excludedEmail);
 
             WaitingPlayerResult result = matixBuisnessInterface.GetWaitingPlayersList(excludedEmail);
 
@@ -170,14 +176,21 @@ namespace WcfMatixServiceLibrary
         {
             logger.InfoFormat("NotifyWatingPlars - email: {0}", email);
 
-            // Get the callback instance
-            IMatixServiceCallback callback = usersCallbackes[email];
-            callback.UpdateWaitingPlayer(result);
+            try
+            {
+                // Get the callback instance
+	            IMatixServiceCallback callback = usersCallbackes[email];
+	            callback.UpdateWaitingPlayer(result);
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on NotifyWatingPlars: {0}", ex);
+            }
         }
 
 
         /// <summary>
-        /// 
+        /// Notify the client using a callback to start a new game 
         /// </summary>
         /// <param name="playerEmail"></param>
         /// <param name="horizontalNickname"></param>
@@ -188,34 +201,55 @@ namespace WcfMatixServiceLibrary
         public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
         {
             logger.InfoFormat("NotifyPlayerOfNewGame - playerEmail: {0},  horizontalNickname:{1},  verticalNickname: {2}", playerEmail,  horizontalNickname, verticalNickname);
-           
-            // Get the callback instance
-            IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
-            // Send information to the client 
-            callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
+            try
+            {
+                // Get the callback instance
+                IMatixServiceCallback callback = usersCallbackes[playerEmail];
+
+                // Send information to the client 
+                callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on NotifyPlayerOfNewGame: {0}", ex);
+            }
         }
-        
+
         public void NotifyPlayerOfGameAction(string playerEmail, int row, int column, int value)
         {
             logger.InfoFormat("NotifyPlayerOfGameAction  playerEmail: {0}, row: {1}, column: {2}, value: {3}", playerEmail, row,  column,  value);
-            
-            // Get the callback instance
-            IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
-            // Send information to the client using the callback 
-            callback.UpdateGameAction(row, column, value);
+            try
+            {
+                // Get the callback instance
+                IMatixServiceCallback callback = usersCallbackes[playerEmail];
+
+                // Send information to the client using the callback 
+                callback.UpdateGameAction(row, column, value);
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on NotifyPlayerOfGameAction: {0}", ex);
+            }
         }
 
         public void NotifyPlayerOfGameEnded(string playerEmail, string winnerNickname, int score)
         {
             logger.InfoFormat("NotifyPlayerOfGameEnded  playerEmail: {0}, winnerNickname: {1}, score: {2}", playerEmail, winnerNickname, score);
 
-            // Get the callback instance
-            IMatixServiceCallback callback = usersCallbackes[playerEmail];
+            try
+            {
+                // Get the callback instance
+                IMatixServiceCallback callback = usersCallbackes[playerEmail];
 
-            // Send end of the game to the client using the callback 
-            callback.UpdateGameEnded(winnerNickname, score);
+                // Send end of the game to the client using the callback 
+                callback.UpdateGameEnded(winnerNickname, score);
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on NotifyPlayerOfGameEnded: {0}", ex);
+            }
         }
 
         /// <summary>

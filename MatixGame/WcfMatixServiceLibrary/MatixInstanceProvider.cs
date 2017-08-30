@@ -15,7 +15,9 @@ namespace WcfMatixServiceLibrary
     /// </summary>
     public class MatixInstanceProvider : IInstanceProvider, IContractBehavior
     {
-        private readonly IMatixBuisnessInterface matixBuisnessInterface = null;
+       // private readonly IMatixBuisnessInterface matixBuisnessInterface = null;
+
+        private readonly MatixWcfService instance = null;             
 
         public MatixInstanceProvider(IMatixBuisnessInterface buisnessInterface)
         {
@@ -23,8 +25,8 @@ namespace WcfMatixServiceLibrary
             {
                 throw new ArgumentNullException("IMatixBuisnessInterface");
             }
-
-            this.matixBuisnessInterface = buisnessInterface;
+                        
+            instance = new MatixWcfService(buisnessInterface);
         }
 
         #region IInstanceProvider Members
@@ -35,8 +37,8 @@ namespace WcfMatixServiceLibrary
         }
 
         public object GetInstance(InstanceContext instanceContext)
-        {
-            return new MatixWcfService(this.matixBuisnessInterface);
+        {   
+            return instance;
         }
 
         public void ReleaseInstance(InstanceContext instanceContext, object instance)

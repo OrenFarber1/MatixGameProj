@@ -250,7 +250,7 @@ namespace MatixBusinessLibrary
 
         public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)
         {
-            logger.Info("GetWaitingPlayr ");
+            logger.InfoFormat("GetWaitingPlayersList excludedEmail: {0}", excludedEmail);
 
             WaitingPlayerResult result = new WaitingPlayerResult();
 
@@ -264,7 +264,7 @@ namespace MatixBusinessLibrary
                 logger.ErrorFormat("GetWaitingPlayersList Email: {0} Faile to add to the waiting list or email already there.", excludedEmail);
             }
 
-
+            // Create a waiting players result 
             foreach (string email in waitingPlayersList)
             {
                 if (email == excludedEmail)
@@ -283,6 +283,7 @@ namespace MatixBusinessLibrary
 
             result.Status = OperationStatusEnum.Success;
 
+            // Create a task to notify all other waiting players with the change
             Task.Run(() => NotifyPlayersWithWaitingPlayersTask(excludedEmail));
 
             return result;
@@ -290,6 +291,7 @@ namespace MatixBusinessLibrary
 
         private void NotifyPlayersWithWaitingPlayersTask(string excudedEmail)
         {
+            logger.InfoFormat("NotifyPlayersWithWaitingPlayersTask excudedEmail: {0}", excudedEmail);
 
             foreach (string notifyPlayer in waitingPlayersList)
             {
@@ -315,8 +317,8 @@ namespace MatixBusinessLibrary
                     result.WaitingPlayerslist.Add(waitingPlayer);
                 }
 
+                // Send notification 
                 matixWcfService.NotifyWatingPlars(notifyPlayer, result);
-
             }
         }
 

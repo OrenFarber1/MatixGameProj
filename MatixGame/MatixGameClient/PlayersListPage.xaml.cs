@@ -41,12 +41,17 @@ namespace MatixGameClient
             // Get waiting players from server 
             WaitingPlayerResult results = service.GetWaitingPlayers(email);
 
-          //  UpdateWaitingPlayerslistView(results.WaitingPlayerslist);
-            
+            List<WaitingPlayer> list = new List<WaitingPlayer>();
+            list.AddRange(results.WaitingPlayerslist);
+
+            UpdateWaitingPlayerslistView(list);
+
         }
 
         public void UpdateWaitingPlayerslistView(List<WaitingPlayer> list)
         {
+            logger.Info("UpdateWaitingPlayerslistView");
+
             waitingPlayerslistView.ItemsSource = list;
         }
 
@@ -57,6 +62,8 @@ namespace MatixGameClient
         /// <param name="e"></param>
         protected void ListViewDoubleClick(object sender, RoutedEventArgs e)
         {
+            logger.Info("ListViewDoubleClick");
+
             //grab the original element that was double clicked on and search from child to parent until
             //you find either a ListViewItem or the top of the tree
             DependencyObject originalSource = (DependencyObject)e.OriginalSource;

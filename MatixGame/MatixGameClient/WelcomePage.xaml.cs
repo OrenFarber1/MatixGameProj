@@ -87,7 +87,7 @@ namespace MatixGameClient
         {
             if (loggedin)
             {
-                logger.Info("User clicked on loginButton_Click to logout from server");
+                logger.InfoFormat("User clicked on loginButton_Click to logout from server email: {0}", email);
 
                 Properties.Settings.Default.email = "";
                 Properties.Settings.Default.password = "";
@@ -121,7 +121,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void singlePlayerButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("User clicked on singlePlayerButton_Click");
+            logger.InfoFormat("User clicked on singlePlayerButton_Click email: {0}", email);
 
             // Start a new game with the server
             OperationStatus result = service.SelectRobotToPlay(email);
@@ -137,7 +137,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void multiPlayersButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("multi players clicked");
+            logger.InfoFormat("multi players clicked email: {0}", email);
             PlayersListPage page = new PlayersListPage(service, nickName, email);
             NavigationService.Navigate(page);
         }
@@ -149,7 +149,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void UpdateDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("User click to update details");
+            logger.InfoFormat("User click to update details email: {0}", email);
 
             UpdatePlayerDetailsPage page = new UpdatePlayerDetailsPage(service, nickName, email);
             NavigationService.Navigate(page);
@@ -163,7 +163,7 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("User click on player statistics");
+            logger.InfoFormat("User click on player statistics email: {0}", email);
 
             PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickName, email);
             NavigationService.Navigate(page);
