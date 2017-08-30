@@ -672,6 +672,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResult> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogout", ReplyAction="http://tempuri.org/IMatixService/UserLogoutResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus UserLogout(string email, string reason);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogout", ReplyAction="http://tempuri.org/IMatixService/UserLogoutResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UserLogoutAsync(string email, string reason);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/GetWaitingPlayersResponse")]
         MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
         
@@ -778,6 +784,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.LoginResult> UserLoginAsync(MatixGameClient.MatixGameServiceReference.LoginData loginData) {
             return base.Channel.UserLoginAsync(loginData);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.OperationStatus UserLogout(string email, string reason) {
+            return base.Channel.UserLogout(email, reason);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UserLogoutAsync(string email, string reason) {
+            return base.Channel.UserLogoutAsync(email, reason);
         }
         
         public MatixGameClient.MatixGameServiceReference.WaitingPlayerResult GetWaitingPlayers(string excludedEmail) {

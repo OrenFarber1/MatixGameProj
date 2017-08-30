@@ -81,9 +81,16 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            service.QuitTheGame(email);
-            WelcomePage welcome = new WelcomePage(service, nickName, email);
-            NavigationService.Navigate(welcome);
+            logger.Info("Back button clicked - Quit the game");
+
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to quit the game?", "Matix Game", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                logger.Info("Back button clicked - Approved - Quit the game");
+                service.QuitTheGame(email);
+                WelcomePage welcome = new WelcomePage(service, nickName, email);
+                NavigationService.Navigate(welcome);
+            }
         }
 
         public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)

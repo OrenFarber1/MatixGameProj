@@ -123,6 +123,8 @@ namespace MatixGameClient
         /// <param name="e"></param>
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Back button clicked");
+
             WelcomePage welcome = new WelcomePage(service);
             NavigationService.Navigate(welcome);
         }

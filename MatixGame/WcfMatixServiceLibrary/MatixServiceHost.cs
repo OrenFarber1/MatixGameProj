@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace WcfMatixServiceLibrary
 {
+    /// <summary>
+    /// Implement a ServiceHost that receives IMatixBuisnessInterface reference on creation 
+    /// </summary>
     public class MatixServiceHost : ServiceHost
     {
 

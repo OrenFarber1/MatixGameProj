@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WcfMatixServiceLibrary
 {
     /// <summary>
-    /// Matix game callback service operations
+    /// Matix game callback service methods. Defines the  messages the server can sends to the client 
     /// </summary>
     public interface IMatixServiceCallback
     {

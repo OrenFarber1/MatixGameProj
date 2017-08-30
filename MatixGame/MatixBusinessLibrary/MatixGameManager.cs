@@ -60,6 +60,9 @@ namespace MatixBusinessLibrary
         Dictionary<string, Game> userEmailToGamel = null;
 
 
+        Dictionary<string, long> userEmailTologinId = null;
+
+
         public MatixGameManager()
         {
             userEmailToNickname = new Dictionary<string, string>();
@@ -67,6 +70,7 @@ namespace MatixBusinessLibrary
             waitingPlayersList = new HashSet<string>();
             matixData = new MatixDataAccess();
             userEmailToGamel = new Dictionary<string, Game>();
+            userEmailTologinId = new Dictionary<string, long>();
 
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
             matixHost.Open();
@@ -76,22 +80,10 @@ namespace MatixBusinessLibrary
         {
             logger.InfoFormat("ClientDisconnected - {0}", email);
 
-            if (userEmailToNickname.Remove(email))
-            {
-                logger.InfoFormat("ClientDisconnected - {0} removed from userEmailToNickname", email);
-            }
-
-            if (waitingPlayersList.Remove(email))
-            {
-                logger.InfoFormat("ClientDisconnected - {0} removed from waitingPlayers", email);
-            }
-
-            if (waitingPlayersList.Remove(email))
-            {
-                logger.InfoFormat("ClientDisconnected - {0} removed from userEmailToGamel", email);
-            }
-
             // Handle closing a running game !!!
+
+            UserLogout(email, "Client disconnected");
+
         }
 
 
@@ -173,10 +165,13 @@ namespace MatixBusinessLibrary
             // checked the database that user email and password exists 
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
+                long loginId;
                 // Add a login record
-                if (matixData.PlayerLogin(email, passwordHash, ipAddress))
+                if (matixData.PlayerLogin(email, passwordHash, ipAddress, out loginId))
                 {
                     result.Status = OperationStatusEnum.Success;
+
+                    userEmailTologinId[email] = loginId;
 
                     string nickName;
                     if (!userEmailToNickname.TryGetValue(email, out nickName))
@@ -192,7 +187,7 @@ namespace MatixBusinessLibrary
                         usernNiknameToEmail[nickName] = email;
                     }
 
-                    result.Nickname = nickName;          
+                    result.Nickname = nickName;
 
                 }
                 else
@@ -213,6 +208,44 @@ namespace MatixBusinessLibrary
             }
 
             return result;
+        }
+
+
+        public OperationStatusEnum UserLogout(string email, string reason)
+        {          
+            try
+            {
+                logger.InfoFormat("UserLogout email: {0}, reason: {1}", email, reason);
+
+                long loginId;
+                if (userEmailTologinId.TryGetValue(email, out loginId))
+                {
+                    // Update the database 
+                    matixData.PlayerLogout(loginId, email, reason);
+                    userEmailTologinId.Remove(email);
+                }
+
+                if (userEmailToNickname.Remove(email))
+                {
+                    logger.InfoFormat("UserLogout - {0} removed from userEmailToNickname", email);
+                }
+
+                if (waitingPlayersList.Remove(email))
+                {
+                    logger.InfoFormat("UserLogout - {0} removed from waitingPlayers", email);
+                }
+
+                if (waitingPlayersList.Remove(email))
+                {
+                    logger.InfoFormat("UserLogout - {0} removed from userEmailToGamel", email);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("Exception on UserLogout: {0}", ex);
+            }
+
+            return OperationStatusEnum.Success;
         }
 
         public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)
@@ -251,7 +284,7 @@ namespace MatixBusinessLibrary
             result.Status = OperationStatusEnum.Success;
 
             Task.Run(() => NotifyPlayersWithWaitingPlayersTask(excludedEmail));
-            
+
             return result;
         }
 
@@ -586,12 +619,12 @@ namespace MatixBusinessLibrary
         }
 
         public void RemoveFromWaitingPlayers(string email)
-        {            
+        {
             if (waitingPlayersList.Remove(email))
             {
                 logger.InfoFormat("RemoveFromWaitingPlayers - {0} removed from waitingPlayers", email);
             }
-            
+
             Task.Run(() => NotifyPlayersWithWaitingPlayersTask(email));
         }
 
@@ -667,7 +700,6 @@ namespace MatixBusinessLibrary
             botEmail = "m1@matix.com";
             botNickname = "Matix - 1";
         }
-
 
     }
 

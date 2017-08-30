@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WcfMatixServiceLibrary
 {
+    /// <summary>
+    /// The Matix business layer interface  
+    /// </summary>
     public interface IMatixBuisnessInterface
     {
         void SetMatixWcfService(MatixWcfService matixService);
@@ -17,6 +20,8 @@ namespace WcfMatixServiceLibrary
         OperationStatusEnum UpdatePlayer(string email, string firstName, string lastName, string nickName);
 
         LoginResult UserLogin(string email, string password, string ipAddress);
+
+        OperationStatusEnum UserLogout(string email, string reason);
 
         WaitingPlayerResult GetWaitingPlayersList(string excludedEmail);
 

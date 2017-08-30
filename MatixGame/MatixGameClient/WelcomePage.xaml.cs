@@ -87,6 +87,8 @@ namespace MatixGameClient
         {
             if (loggedin)
             {
+                logger.Info("User clicked on loginButton_Click to logout from server");
+
                 Properties.Settings.Default.email = "";
                 Properties.Settings.Default.password = "";
                 Properties.Settings.Default.Save();
@@ -100,12 +102,13 @@ namespace MatixGameClient
                 updateDetailsButton.IsEnabled = false;
                 statisticsButton.IsEnabled = false;
 
-                // Send logout message to the server !!!
-
-                //service.....
+                // Send logout message to the server
+                service.UserLogout(email, "User Logout");
             }
             else
             {
+                logger.Info("User clicked on loginButton_Click to login to server");
+
                 LoginPage login = new LoginPage(service);
                 NavigationService.Navigate(login);
             }

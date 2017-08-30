@@ -2,7 +2,9 @@
 using MatixGameClient.MatixGameServiceReference;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ServiceModel;
+using System.Text;
 using System.Threading;
 using System.Windows;
 
@@ -30,9 +32,11 @@ namespace MatixGameClient
 
 
         public MainWindow() 
-         { 
+         {
             InitializeComponent();
-            
+
+            this.Closing += Window_Closing;
+
             try
             {
                 OpenServiceConnection();
@@ -41,13 +45,28 @@ namespace MatixGameClient
             catch (Exception e)
             {
                logger.ErrorFormat("Main Window - Exception: {0}", e.Message);
-              
-                string message = "Failed to connect to server!" + Environment.NewLine + "Try to connect later.";
-                ErrorPage errorPage = new ErrorPage(message);
+
+                StringBuilder message = new StringBuilder("Failed to connect to server!");
+                message.Append(Environment.NewLine);
+                message.Append("Try to connect later.");
+                ErrorPage errorPage = new ErrorPage(message.ToString());
                 mainFrame.NavigationService.Navigate(errorPage);
             }
         }
-        
+
+        void Window_Closing(object sender, CancelEventArgs e)
+        {
+            string name = mainFrame.NavigationService.Content.GetType().Name;
+            if (name == "GamePage")
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to quit the game?", "Matix Game", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }            
+        }
+
         /// <summary>
         /// Open a connection to the server 
         /// </summary>

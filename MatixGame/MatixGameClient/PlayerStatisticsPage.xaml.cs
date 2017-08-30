@@ -22,7 +22,7 @@ namespace MatixGameClient
         private MatixServiceClient service = null;
 
         /// <summary>
-        /// Players nickname 
+        /// The current players nickname 
         /// </summary>
         private string nickName;
 
@@ -31,10 +31,22 @@ namespace MatixGameClient
         /// </summary>
         private string email;
 
+        /// <summary>
+        /// The nickname of the winner 
+        /// </summary>
         private string winnerNickname;
 
+        /// <summary>
+        /// The score of the winner 
+        /// </summary>
         private int winnerScore;
         
+        /// <summary>
+        /// Construct a page 
+        /// </summary>
+        /// <param name="_service"></param>
+        /// <param name="_nickName"></param>
+        /// <param name="_email"></param>
         public PlayerStatisticsPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
@@ -47,6 +59,14 @@ namespace MatixGameClient
             loginName.Content = "Hi " + _nickName;
         }
 
+        /// <summary>
+        /// Construct a page with winner information 
+        /// </summary>
+        /// <param name="_service"></param>
+        /// <param name="_nickName"></param>
+        /// <param name="_email"></param>
+        /// <param name="_winnerNickname"></param>
+        /// <param name="_winnerScore"></param>
         public PlayerStatisticsPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email, string _winnerNickname, int _winnerScore)
         {
             InitializeComponent();
@@ -62,6 +82,7 @@ namespace MatixGameClient
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Back button clicked");
             WelcomePage welcome = new WelcomePage(service, nickName, email);
             NavigationService.Navigate(welcome);
         }

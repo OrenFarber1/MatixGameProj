@@ -58,6 +58,12 @@
   <wsdl:message name="IMatixService_UserLogin_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserLoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_UserLogout_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLogout" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_UserLogout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLogoutResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_GetWaitingPlayers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetWaitingPlayers" />
   </wsdl:message>
@@ -121,6 +127,10 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserLogin" message="tns:IMatixService_UserLogin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UserLoginResponse" message="tns:IMatixService_UserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserLogout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserLogout" message="tns:IMatixService_UserLogout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UserLogoutResponse" message="tns:IMatixService_UserLogout_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetWaitingPlayers">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetWaitingPlayers" message="tns:IMatixService_GetWaitingPlayers_InputMessage" />
@@ -186,6 +196,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserLogin">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UserLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLogout">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/UserLogout" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -73,11 +73,20 @@ namespace WcfMatixServiceLibrary
                 usersCallbackes[loginData.EmailAddress] = OperationContext.Current.GetCallbackChannel<IMatixServiceCallback>();
 
                 OperationContext.Current.Channel.Faulted += ClientDisconnected;
-                OperationContext.Current.Channel.Closed += ClientDisconnected;
+            //    OperationContext.Current.Channel.Closed += ClientDisconnected;
             }
             return result;
         }
 
+
+        public OperationStatusEnum UserLogout(string email, string reason)
+        {
+            OperationStatusEnum result =  matixBuisnessInterface.UserLogout(email, reason);
+
+            usersCallbackes.Remove(email);
+
+            return result;
+        }
 
         private void ClientDisconnected(object sender, EventArgs e)
         {
@@ -222,5 +231,6 @@ namespace WcfMatixServiceLibrary
             return oRemoteEndpointMessageProperty.Address;
         }
 
+     
     }
 }

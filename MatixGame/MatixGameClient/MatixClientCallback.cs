@@ -1,12 +1,8 @@
 ﻿using log4net;
 using MatixGameClient.MatixGameServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MatixGameClient
@@ -14,7 +10,7 @@ namespace MatixGameClient
     [CallbackBehavior(
        ConcurrencyMode = ConcurrencyMode.Single,
        UseSynchronizationContext = false)]
-    public  class MatixClientCallback : MatixGameServiceReference.IMatixServiceCallback
+    public  class MatixClientCallback : IMatixServiceCallback
     {
         /// <summary>
         /// A class logger instance  

@@ -30,6 +30,7 @@ namespace MatixGameClient
 
         private void BackClicked(object sender, RoutedEventArgs e)
         {
+            logger.Info("Back button clicked");
             BackToLogin();
         }
 

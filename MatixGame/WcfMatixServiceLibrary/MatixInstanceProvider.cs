@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace WcfMatixServiceLibrary
 {
+    /// <summary>
+    /// The class controls the creation and recycling of the service objects 
+    /// </summary>
     public class MatixInstanceProvider : IInstanceProvider, IContractBehavior
     {
         private readonly IMatixBuisnessInterface matixBuisnessInterface = null;

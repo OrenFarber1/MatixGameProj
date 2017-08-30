@@ -7,6 +7,9 @@ using System.Text;
 
 namespace WcfMatixServiceLibrary
 {
+    /// <summary>
+    /// The Matix service interface. Defines all the messages that can be used between the client and the server.
+    /// </summary>
     [ServiceContract(
     SessionMode = SessionMode.Required,
     CallbackContract = typeof(IMatixServiceCallback))]
@@ -21,6 +24,9 @@ namespace WcfMatixServiceLibrary
         [OperationContract]
         LoginResult UserLogin(LoginData loginData);
 
+        [OperationContract]
+        OperationStatusEnum UserLogout(string email, string reason);
+        
         [OperationContract]
         WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
 
@@ -62,6 +68,9 @@ namespace WcfMatixServiceLibrary
         InvalidAction
     }
 
+    /// <summary>
+    /// Enumeration the player's direction 
+    /// </summary>
     [DataContract]
     public enum GameTurnTypeEnum
     {
@@ -131,6 +140,9 @@ namespace WcfMatixServiceLibrary
         }
     }
 
+    /// <summary>
+    /// Log in result information 
+    /// </summary>
     [DataContract]
     public class LoginResult
     {

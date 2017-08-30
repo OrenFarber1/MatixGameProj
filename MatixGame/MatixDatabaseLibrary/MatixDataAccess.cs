@@ -173,31 +173,36 @@ namespace MatixDatabaseLibrary
         /// <param name="email">User email address</param>
         /// <param name="passwordHash"></param>
         /// <returns></returns>
-        public bool PlayerLogin(string email, string passwordHash, string ip)
+        public bool PlayerLogin(string email, string passwordHash, string ip, out long lognId)
         {
+            logger.InfoFormat("PlayerLogin email: {0}", email);
+
             try
             {
+                lognId = 0;
                 using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
-                    long id = 0;
+                    long playerId = 0;
                     var query = from player in matixData.Players
                                 where player.Email == email
                                 select player;
 
                     foreach (Player p in query)
                     {
-                        id = p.PlayerId;
+                        playerId = p.PlayerId;
                     }
 
                     PlayersLogin login = new PlayersLogin
                     {
-                        PlayerId = id,
+                        PlayerId = playerId,
                         LoginTime = DateTime.Now,
                         IPAddress = ip
                     };
 
                     matixData.PlayersLogins.InsertOnSubmit(login);
                     matixData.SubmitChanges();
+
+                    lognId = login.LoginId;
                 }
 
             }
@@ -205,6 +210,37 @@ namespace MatixDatabaseLibrary
             {
                 logger.ErrorFormat("Exception on AddPlayer - {0}", ex);
                 throw new Invalid​Operation​Exception("Add Player operation Failed");
+            }
+
+            return true;
+        }
+
+        public bool PlayerLogout(long lognId, string email, string reason)
+        {          
+            try
+            {
+
+                logger.InfoFormat("PlayerLogout email: {0}, reason: {1}, lognId: {2} ", email, reason, lognId);
+
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    var query = from record in matixData.PlayersLogins
+                                where record.LoginId == lognId
+                                select record;
+
+                    foreach (PlayersLogin p in query)
+                    {
+                        p.LogoutTime = DateTime.Now;
+                        p.Reason = reason;                        
+                    }
+
+                    matixData.SubmitChanges();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on PlayerLogout - {0}", ex);
+                throw new Invalid​Operation​Exception("Player logout operation Failed");
             }
 
             return true;
