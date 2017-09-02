@@ -122,7 +122,6 @@
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MatixClientCallback.cs" />
     <Compile Include="PlayersListPage.xaml.cs">
       <DependentUpon>PlayersListPage.xaml</DependentUpon>
     </Compile>

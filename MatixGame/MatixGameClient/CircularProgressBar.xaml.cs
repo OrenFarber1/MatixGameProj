@@ -12,8 +12,10 @@ namespace MatixGameClient
     /// </summary>
     public partial class CircularProgressBar : UserControl
     {
-        #region Data
+        #region Class Private Members 
+
         private readonly DispatcherTimer animationTimer;
+
         #endregion
 
         #region Constructor

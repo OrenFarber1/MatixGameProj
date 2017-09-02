@@ -356,6 +356,34 @@ namespace MatixDatabaseLibrary
             return true;
         }
 
+        public void AddPlayerHistory(string email, long gameId, bool win, int score)
+        {
+            try
+            {
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    long playerId = GetPlayerId(matixData, email);
+
+                    PlayersHistory history = new PlayersHistory
+                    {
+                        GameId = gameId,
+                        PlayerId = playerId,
+                        HistoryTime = DateTime.Now,
+                        Win = win,
+                        Score = score
+                    };
+
+                    matixData.PlayersHistories.InsertOnSubmit(history);
+                    matixData.SubmitChanges();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                logger.ErrorFormat("Exception on CreateNeAddPlayerHistorywGame - {0}", ex);
+                throw new Invalid​Operation​Exception("Failed to add player history");
+            }
+        }
+
         /// <summary>
         /// Query the Players table and get the record id for the requested email
         /// </summary>

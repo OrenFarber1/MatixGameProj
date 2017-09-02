@@ -31,6 +31,8 @@ namespace WcfMatixServiceLibrary
 
         OperationStatusEnum SetGameAction(string email, int row, int col);
 
+        PlayerStatisticsResult GetPlayerStatistics(string email);
+
         void RemoveFromWaitingPlayers(string email);
         
         void QuitTheGame(string email);

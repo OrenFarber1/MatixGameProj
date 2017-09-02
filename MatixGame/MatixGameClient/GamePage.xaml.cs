@@ -74,6 +74,12 @@ namespace MatixGameClient
             loginName.Content = "Hi " + _nickName;
         }
 
+
+        public bool IsBoardLoaded()
+        {
+            return (setBoard != null && setToken != null);
+        }
+
         /// <summary>
         /// Back to the Welcome page
         /// </summary>
@@ -252,6 +258,9 @@ namespace MatixGameClient
             {
                 loginName.Content = othercontentMessage;
             }
+
+            logger.InfoFormat("ChangeCurrentDirection to: {0}", currentTurn);
+
         }
 
     }

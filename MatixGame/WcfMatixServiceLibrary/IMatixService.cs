@@ -26,7 +26,7 @@ namespace WcfMatixServiceLibrary
 
         [OperationContract]
         OperationStatusEnum UserLogout(string email, string reason);
-        
+
         [OperationContract]
         WaitingPlayerResult GetWaitingPlayers(string excludedEmail);
 
@@ -35,12 +35,15 @@ namespace WcfMatixServiceLibrary
 
         [OperationContract]
         OperationStatusEnum SelectRobotToPlay(string email);
-        
+
         [OperationContract]
         OperationStatusEnum SetGameAction(string email, int row, int col);
 
         [OperationContract]
         void RemoveFromWaitingPlayers(string email);
+
+        [OperationContract]
+        PlayerStatisticsResult GetPlayerStatistics(string email);
 
         [OperationContract]
         void QuitTheGame(string email);
@@ -406,12 +409,12 @@ namespace WcfMatixServiceLibrary
     /// </summary>
     [DataContract]
     public class MatixBoard
-    {  
+    {
         /// <summary>
         /// List of MatrixCells lists
         /// </summary>
         List<List<MatixCell>> matixCells;
-        
+
         /// <summary>
         /// List of MatrixCells lists
         /// </summary>
@@ -422,5 +425,44 @@ namespace WcfMatixServiceLibrary
             set { matixCells = value; }
         }
 
+    }
+
+    [DataContract]
+    public class PlayerStatisticsResult
+    {
+        private int rank;
+        private int numberOfGames;
+        private int winnings;
+        private double averageScore;
+
+        [DataMember]
+        public int Rank
+        {
+            get { return rank; }
+            set { rank = value; }
+        }
+
+
+        [DataMember]
+        public int NumberOfGames
+        {
+            get { return numberOfGames; }
+            set { numberOfGames = value; }
+        }
+
+
+        [DataMember]
+        public int Winnings
+        {
+            get { return winnings; }
+            set { winnings = value; }
+        }
+
+        [DataMember]
+        public double AverageScore
+        {
+            get { return averageScore; }
+            set { averageScore = value; }
+        }
     }
 }

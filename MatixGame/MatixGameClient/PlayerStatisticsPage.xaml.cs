@@ -11,6 +11,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class PlayerStatisticsPage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -41,6 +43,8 @@ namespace MatixGameClient
         /// </summary>
         private int winnerScore;
         
+        #endregion
+
         /// <summary>
         /// Construct a page 
         /// </summary>
@@ -57,6 +61,11 @@ namespace MatixGameClient
             winnerScore = 0;
 
             loginName.Content = "Hi " + _nickName;
+
+            // Get waiting players from server 
+         //   WaitingPlayerResult results = service.getplayer
+
+
         }
 
         /// <summary>

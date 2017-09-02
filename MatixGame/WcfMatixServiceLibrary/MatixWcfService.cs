@@ -17,6 +17,7 @@ namespace WcfMatixServiceLibrary
         InstanceContextMode = InstanceContextMode.PerSession) ]
     public class MatixWcfService : IMatixService
     {
+        #region Class Private Members 
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -31,16 +32,30 @@ namespace WcfMatixServiceLibrary
         /// A dictionary of uses email address and its callback function
         /// </summary>
         private Dictionary<string, IMatixServiceCallback> usersCallbackes = null;
+        
+        #endregion
 
-     
+        #region Constructors
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="buisnessInterface"></param>
         public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
         {
             matixBuisnessInterface = buisnessInterface;
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();
             matixBuisnessInterface.SetMatixWcfService(this);
         }
-        
+    
+        #endregion
 
+        #region IMatixService Implementation
+
+        /// <summary>
+        /// Implementation method for user registration request
+        /// </summary>
+        /// <param name="userData"></param>
+        /// <returns>RegistrationResult</returns>
         public RegistrationResult UserRegistration(UserInformationData userData)
         {
             logger.Info("UserRegistration");
@@ -50,6 +65,11 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
+        /// <summary>
+        /// Implementation method for updating user details request
+        /// </summary>
+        /// <param name="userData"></param>
+        /// <returns>OperationStatusEnum</returns>
         public OperationStatusEnum UpdateUserDetailes(UserInformationData userData)
         {
             logger.InfoFormat("UpdateUserDetailes email: {0}", userData.EmailAddress);
@@ -59,9 +79,14 @@ namespace WcfMatixServiceLibrary
             return OperationStatusEnum.Success;
         }
 
+        /// <summary>
+        /// Implementation method for user login request
+        /// </summary>
+        /// <param name="loginData"></param>
+        /// <returns>LoginResult</returns>
         public LoginResult UserLogin(LoginData loginData)
         {
-            logger.Info("UserLogin");
+            logger.InfoFormat("UserLogin email: {0}", loginData.EmailAddress);
 
             // Get the IP address the user connect from 
             string ipAddress = GetUserIpAddress();
@@ -75,12 +100,17 @@ namespace WcfMatixServiceLibrary
                 logger.InfoFormat("UserLogin - Add callback to usersCallbackes dictionary email: {0}", loginData.EmailAddress);
 
                 OperationContext.Current.Channel.Faulted += ClientDisconnected;
-            //    OperationContext.Current.Channel.Closed += ClientDisconnected;
+            
             }
             return result;
         }
 
-
+        /// <summary>
+        /// Implementation method for user logout request
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="reason"></param>
+        /// <returns>OperationStatusEnum</returns>
         public OperationStatusEnum UserLogout(string email, string reason)
         {
             logger.InfoFormat("UserLogout email: {0}", email);
@@ -94,36 +124,11 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
-        private void ClientDisconnected(object sender, EventArgs e)
-        {
-            logger.Info("ClientDisconnected");
-
-            IMatixServiceCallback callback = sender as IMatixServiceCallback;
-
-            string disconnected = null;
-            foreach(var keyValue in usersCallbackes)
-            {
-                if(keyValue.Value == callback)
-                {
-                    disconnected = keyValue.Key;
-                    break;
-                }
-            }
-
-            if (string.IsNullOrEmpty(disconnected))
-            {
-                logger.Error("ClientDisconnected - Can't find the disconnected client");
-            }
-            else
-            {
-                logger.InfoFormat("ClientDisconnected - Client {0} disconnected!", disconnected);
-
-                matixBuisnessInterface.ClientDisconnected(disconnected);
-            }
-
-        }
-
-
+        /// <summary>
+        /// Implementation method for getting the waiting players list
+        /// </summary>
+        /// <param name="excludedEmail">Sender email address</param>
+        /// <returns>WaitingPlayerResult</returns>
         public WaitingPlayerResult GetWaitingPlayers(string excludedEmail)
         {
             logger.InfoFormat("GetWaitingPlayers excludedEmail: {0}", excludedEmail);
@@ -133,15 +138,36 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
+        /// <summary>
+        /// Implementation method to remove a player from the waiting players list
+        /// </summary>
+        /// <param name="email">Sender email address</param>
+        public void RemoveFromWaitingPlayers(string email)
+        {
+            logger.InfoFormat("RemoveFromWaitingPlayers email: {0}", email);
+
+            matixBuisnessInterface.RemoveFromWaitingPlayers(email);
+        }
+        /// <summary>
+        /// Implementation method for selecting a player to play 
+        /// </summary>
+        /// <param name="email">Sender email address</param>
+        /// <param name="nickName">The second player nickname</param>
+        /// <returns>OperationStatusEnum</returns>
         public OperationStatusEnum SelectPlayerToPlay(string email, string nickName)
         {
-            logger.InfoFormat("SelectPlayer email: {0}, nickname: {1} ",email,  nickName);
+            logger.InfoFormat("SelectPlayer email: {0}, nickname: {1} ", email, nickName);
 
             OperationStatusEnum result = matixBuisnessInterface.StartPlayingWithPlayer(email, nickName);
 
             return result;
         }
 
+        /// <summary>
+        /// Implementation method for selecting to play with the server
+        /// </summary>
+        /// <param name="email">Sender email address</param>
+        /// <returns>OperationStatusEnum</returns>
         public OperationStatusEnum SelectRobotToPlay(string email)
         {
             logger.InfoFormat("SelectRobotToPlay email: {0}", email);
@@ -151,6 +177,13 @@ namespace WcfMatixServiceLibrary
             return result;
         }
 
+        /// <summary>
+        /// Implementation method for reporting a move of the token on the board 
+        /// </summary>
+        /// <param name="email">Sender email address</param>
+        /// <param name="row">The new token row</param>
+        /// <param name="col">The new token column</param>
+        /// <returns></returns>
         public OperationStatusEnum SetGameAction(string email, int row, int col)
         {
             logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to col: {2}", email, row, col);
@@ -161,17 +194,31 @@ namespace WcfMatixServiceLibrary
         }
 
 
-        public void RemoveFromWaitingPlayers(string email)
+        public PlayerStatisticsResult GetPlayerStatistics(string email)
         {
-            matixBuisnessInterface.RemoveFromWaitingPlayers(email);
+            logger.InfoFormat("GetPlayerStatistics - email: {0}", email);
+
+        //    PlayerStatisticsResult result  = GetPlayerStatistics(string email);
+
+            throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Implementation method to quit from a game.
+        /// </summary>
+        /// <param name="email">Sender email address</param>
         public void QuitTheGame(string email)
         {
+            logger.InfoFormat("QuitTheGame email: {0}", email);
+
             matixBuisnessInterface.QuitTheGame(email);
         }
 
-
+        #endregion
+    
+        #region Client Callback Notofocation Methods 
+        
         public void NotifyWatingPlars(string email, WaitingPlayerResult result)
         {
             logger.InfoFormat("NotifyWatingPlars - email: {0}", email);
@@ -252,6 +299,11 @@ namespace WcfMatixServiceLibrary
             }
         }
 
+   
+        #endregion
+
+        #region Class Private Methods 
+
         /// <summary>
         /// Get player IP address 
         /// </summary>
@@ -265,6 +317,40 @@ namespace WcfMatixServiceLibrary
             return oRemoteEndpointMessageProperty.Address;
         }
 
+        /// <summary>
+        /// Client disconnected event handler 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClientDisconnected(object sender, EventArgs e)
+        {
+            logger.Info("ClientDisconnected");
+
+            IMatixServiceCallback callback = sender as IMatixServiceCallback;
+
+            string disconnected = null;
+            foreach (var keyValue in usersCallbackes)
+            {
+                if (keyValue.Value == callback)
+                {
+                    disconnected = keyValue.Key;
+                    break;
+                }
+            }
+
+            if (string.IsNullOrEmpty(disconnected))
+            {
+                logger.Error("ClientDisconnected - Can't find the disconnected client");
+            }
+            else
+            {
+                logger.InfoFormat("ClientDisconnected - Client {0} disconnected!", disconnected);
+                matixBuisnessInterface.ClientDisconnected(disconnected);
+            }
+        }
+
      
+        #endregion
+
     }
 }

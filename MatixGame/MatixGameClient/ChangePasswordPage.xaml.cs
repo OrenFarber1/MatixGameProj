@@ -23,6 +23,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class ChangePasswordPage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -32,8 +34,13 @@ namespace MatixGameClient
         /// Reference to the WCF service instance 
         /// </summary>
         private MatixServiceClient service = null;
+
+        /// <summary>
+        /// User nickname
+        /// </summary>
         private string nickName;
-        
+
+        #endregion
 
         public ChangePasswordPage(MatixServiceClient _service, string _nickName, string _email)
         {

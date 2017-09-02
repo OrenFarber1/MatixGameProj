@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 
@@ -20,6 +21,7 @@ namespace MatixGameClient
       UseSynchronizationContext = true)]
     public partial class MainWindow : Window, IMatixServiceCallback
     {
+        #region Class Private Members 
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -30,7 +32,8 @@ namespace MatixGameClient
         /// </summary>
         private MatixServiceClient service = null;
 
-
+        #endregion
+        
         public MainWindow() 
          {
             InitializeComponent();
@@ -54,7 +57,12 @@ namespace MatixGameClient
             }
         }
 
-        void Window_Closing(object sender, CancelEventArgs e)
+        /// <summary>
+        /// Application closing event handler 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             string name = mainFrame.NavigationService.Content.GetType().Name;
             if (name == "GamePage")
@@ -113,6 +121,13 @@ namespace MatixGameClient
                 if (result.Status == OperationStatus.Success)
                 {
                     welcome = new WelcomePage(service, result.Nickname, email);
+
+                    Properties.Settings.Default.email = email;
+                    Properties.Settings.Default.password = pass;
+                    Properties.Settings.Default.nickname = result.Nickname;
+
+                    Properties.Settings.Default.Save();
+
                 }
                 else
                 {
@@ -150,9 +165,30 @@ namespace MatixGameClient
             string email = Properties.Settings.Default.email;
             string nickname = Properties.Settings.Default.nickname;
 
+            logger.InfoFormat("StartNewGame email: {0}, nickname: {1}", email, nickname);
+
             GamePage page = new GamePage(service, nickname, email);
-            page.SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
-            mainFrame.NavigationService.Navigate(page);            
+            mainFrame.NavigationService.Navigate(page);
+
+            SynchronizationContext uiSyncContext = SynchronizationContext.Current;
+
+            // We should update the board after it is loaded so create a task that wait till the 
+            // page and the board is loaded and than update it with the received data 
+
+            Task.Run(() =>
+            {
+                logger.Info("StartNewGame Running task.");
+
+                while (!page.IsBoardLoaded())
+                    Thread.Sleep(300);
+
+                logger.Info("StartNewGame Running task Board is loaded");
+
+                SendOrPostCallback callback = (x => SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting));
+                uiSyncContext.Post(callback, null);
+                
+            });
+         
         }
 
         public void Ping(int value)

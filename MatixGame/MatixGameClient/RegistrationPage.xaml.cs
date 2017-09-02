@@ -12,6 +12,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary> 
@@ -21,6 +23,8 @@ namespace MatixGameClient
         /// Reference to the WCF service instance 
         /// </summary>
         private MatixServiceClient service = null;
+
+        #endregion
 
         public RegistrationPage(MatixGameServiceReference.MatixServiceClient _service)
         {

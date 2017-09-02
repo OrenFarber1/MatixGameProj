@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MatixDatabaseLibrary
 {
     /// <summary>
-    /// 
+    /// The class contains Player's statistics information 
     /// </summary>
     public class PlayerScoreData
     {
@@ -15,5 +15,6 @@ namespace MatixDatabaseLibrary
         public int TotalNumberOfGames { get; set; }
         public int NumberOfWinnings { get; set; }
         public int TotalScore { get; set; }        
+        
     }
 }

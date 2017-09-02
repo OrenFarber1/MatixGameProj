@@ -248,6 +248,23 @@ namespace MatixBusinessLibrary
             return OperationStatusEnum.Success;
         }
 
+
+        public PlayerStatisticsResult GetPlayerStatistics(string email)
+        {
+            logger.InfoFormat("GetPlayerStatistics email: {0}", email);
+
+            PlayerStatisticsResult results = new PlayerStatisticsResult();
+
+            PlayerScoreData playerData = matixData.GetWaitingPlayerData(email);
+            results.NumberOfGames = playerData.TotalNumberOfGames;
+            results.AverageScore = playerData.TotalNumberOfGames == 0 ? 0 : playerData.TotalScore / playerData.TotalNumberOfGames;
+            results.Winnings = playerData.NumberOfWinnings;
+            results.Rank = 9;
+
+
+            throw new NotImplementedException();
+        }
+
         public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)
         {
             logger.InfoFormat("GetWaitingPlayersList excludedEmail: {0}", excludedEmail);
@@ -408,6 +425,8 @@ namespace MatixBusinessLibrary
             // if players are human they should be notify 
             if (game.GetHorizontalPlayerType() == PlayerType.Human)
             {
+                logger.InfoFormat("CreateNewGameTask - Notify player {0}", horizontalEmail);
+
                 matixWcfService.NotifyPlayerOfNewGame(horizontalEmail, horizontalNickname,
                                                 verticalNickname, game.GetMatixBoard(),
                                                 (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
@@ -415,6 +434,8 @@ namespace MatixBusinessLibrary
 
             if (game.GetVerticalPlayerType() == PlayerType.Human)
             {
+                logger.InfoFormat("CreateNewGameTask - Notify player {0}", verticalEmail);
+
                 matixWcfService.NotifyPlayerOfNewGame(verticalEmail, horizontalNickname,
                                                verticalNickname, game.GetMatixBoard(),
                                                (WcfMatixServiceLibrary.GameTurnTypeEnum)game.GetWhoseTurnIsIt());
@@ -542,10 +563,13 @@ namespace MatixBusinessLibrary
 
             if (list.Count == 0)
             {
-
+                string horEmail = game.GetHorizontalPlayerEmail();
+                string vertEmail = game.GetVerticalPlayerEmail();
+                
                 int horScore = game.GetHorizontalScore();
                 int vertScore = game.GetVerticalScore();
 
+        
                 int winnerScore;
                 string winnerNickname;
                 if (horScore > vertScore)
@@ -560,10 +584,17 @@ namespace MatixBusinessLibrary
                 }
 
 
-                if (game.GetHorizontalPlayerType() == PlayerType.Human)
-                {
-                    string horEmail = game.GetHorizontalPlayerEmail();
+                // Update database 
 
+                // Set horizontal player information 
+                matixData.AddPlayerHistory(horEmail, game.GameId, winnerNickname == game.GetHorizontalNickname(), horScore);
+                
+                // Set vertical player information 
+                matixData.AddPlayerHistory(vertEmail, game.GameId, winnerNickname == game.GetVerticalPlayerNickname(), vertScore);
+
+
+                if (game.GetHorizontalPlayerType() == PlayerType.Human)
+                {                    
                     userEmailToGamel.Remove(horEmail);
 
                     // The game is ended and we should notify the players  
@@ -572,14 +603,11 @@ namespace MatixBusinessLibrary
 
                 if (game.GetVerticalPlayerType() == PlayerType.Human)
                 {
-                    string vertEmail = game.GetVerticalPlayerEmail();
                     userEmailToGamel.Remove(vertEmail);
 
                     // The game is ended and we should notify the players  
                     matixWcfService.NotifyPlayerOfGameEnded(vertEmail, winnerNickname, winnerScore);
                 }
-
-                // Update database 
 
             }
             else
@@ -697,6 +725,11 @@ namespace MatixBusinessLibrary
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Get server bot player email and nick name 
+        /// </summary>
+        /// <param name="botEmail"></param>
+        /// <param name="botNickname"></param>
         private void GetBotDetails(out string botEmail, out string botNickname)
         {
             botEmail = "m1@matix.com";

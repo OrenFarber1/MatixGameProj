@@ -14,6 +14,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class PlayersListPage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -24,11 +26,17 @@ namespace MatixGameClient
         /// </summary>
         private MatixServiceClient service = null;
 
-        private string nickName;
         /// <summary>
-        /// Current player email address 
+        /// Current player's nickname 
+        /// </summary>
+        private string nickName;
+
+        /// <summary>
+        /// Current player's email address 
         /// </summary>
         private string email;
+
+        #endregion
 
         public PlayersListPage(MatixServiceClient _service, string _nickName, string _email)
         {

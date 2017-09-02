@@ -13,6 +13,8 @@ namespace MatixGameClient
     /// </summary>
     public partial class WelcomePage : Page
     {
+        #region Class Private Members 
+
         /// <summary>
         /// A class logger instance  
         /// </summary>
@@ -37,6 +39,8 @@ namespace MatixGameClient
         /// A flag indicates whether the player is currently logged in to the server 
         /// </summary>
         private bool loggedin;
+
+        #endregion
 
         /// <summary>
         /// Constructor while we have no player details 
