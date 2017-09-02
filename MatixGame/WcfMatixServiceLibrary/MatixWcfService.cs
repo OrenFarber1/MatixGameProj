@@ -194,13 +194,18 @@ namespace WcfMatixServiceLibrary
         }
 
 
+        /// <summary>
+        /// Get player's statistics information 
+        /// </summary>
+        /// <param name="email">The player's email address</param>
+        /// <returns></returns>
         public PlayerStatisticsResult GetPlayerStatistics(string email)
         {
             logger.InfoFormat("GetPlayerStatistics - email: {0}", email);
 
-        //    PlayerStatisticsResult result  = GetPlayerStatistics(string email);
+            PlayerStatisticsResult result  = matixBuisnessInterface.GetPlayerStatistics(email);
 
-            throw new NotImplementedException();
+            return result;
         }
 
 

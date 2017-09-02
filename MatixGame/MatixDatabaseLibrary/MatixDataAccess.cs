@@ -246,6 +246,45 @@ namespace MatixDatabaseLibrary
             return true;
         }
 
+        public PlayerScoreData GetPlayerStatistics(string email)
+        {
+            logger.InfoFormat("GetPlayerStatistics email: {0}", email);
+
+            try
+            {
+
+                PlayerScoreData result = new PlayerScoreData();
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    var query = from player in matixData.PlayerStatistics                               
+                                select player;
+
+                    int rank = 0;
+                    foreach (var p in query)
+                    {
+                        rank++;
+                        if (p.Email == email)
+                        {
+                            result.NickName = p.NickName;
+                            result.TotalScore = p.Score.Value;
+                            result.TotalNumberOfGames = p.Games.Value;
+                            result.NumberOfWinnings = p.Winnings.Value;
+                            result.Rank = rank;
+                            break;
+                        }
+                    } 
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("Exception on GetPlayerStatistics - {0}", ex);
+                throw new Invalid​Operation​Exception("Getting Player Statistics Failed");
+            }
+
+        }
+
 
         /// <summary>
         /// Retrieve player information 

@@ -255,14 +255,13 @@ namespace MatixBusinessLibrary
 
             PlayerStatisticsResult results = new PlayerStatisticsResult();
 
-            PlayerScoreData playerData = matixData.GetWaitingPlayerData(email);
+            PlayerScoreData playerData = matixData.GetPlayerStatistics(email);
             results.NumberOfGames = playerData.TotalNumberOfGames;
             results.AverageScore = playerData.TotalNumberOfGames == 0 ? 0 : playerData.TotalScore / playerData.TotalNumberOfGames;
             results.Winnings = playerData.NumberOfWinnings;
-            results.Rank = 9;
+            results.Rank = playerData.Rank;
 
-
-            throw new NotImplementedException();
+            return results;
         }
 
         public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)

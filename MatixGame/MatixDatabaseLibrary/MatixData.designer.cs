@@ -116,6 +116,14 @@ namespace MatixDatabaseLibrary
 				return this.GetTable<Player>();
 			}
 		}
+		
+		public System.Data.Linq.Table<PlayerStatistic> PlayerStatistics
+		{
+			get
+			{
+				return this.GetTable<PlayerStatistic>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Games")]
@@ -1556,6 +1564,105 @@ namespace MatixDatabaseLibrary
 		{
 			this.SendPropertyChanging();
 			entity.Player = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlayerStatistics")]
+	public partial class PlayerStatistic
+	{
+		
+		private string _Email;
+		
+		private string _NickName;
+		
+		private System.Nullable<int> _Games;
+		
+		private System.Nullable<int> _Winnings;
+		
+		private System.Nullable<int> _Score;
+		
+		public PlayerStatistic()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NickName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string NickName
+		{
+			get
+			{
+				return this._NickName;
+			}
+			set
+			{
+				if ((this._NickName != value))
+				{
+					this._NickName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Games", DbType="Int")]
+		public System.Nullable<int> Games
+		{
+			get
+			{
+				return this._Games;
+			}
+			set
+			{
+				if ((this._Games != value))
+				{
+					this._Games = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Winnings", DbType="Int")]
+		public System.Nullable<int> Winnings
+		{
+			get
+			{
+				return this._Winnings;
+			}
+			set
+			{
+				if ((this._Winnings != value))
+				{
+					this._Winnings = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
+		public System.Nullable<int> Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this._Score = value;
+				}
+			}
 		}
 	}
 }

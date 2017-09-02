@@ -63,8 +63,14 @@ namespace MatixGameClient
             loginName.Content = "Hi " + _nickName;
 
             // Get waiting players from server 
-         //   WaitingPlayerResult results = service.getplayer
+            PlayerStatisticsResult results = service.GetPlayerStatistics(email);
 
+            message.Content = "Your's current statistics:\n321564321564";
+
+            rankValue.Content = results.Rank;
+            numberofGamesValue.Content = results.NumberOfGames;
+            winningsValue.Content = results.Winnings;
+            averageScoreValue.Content = results.AverageScore;
 
         }
 

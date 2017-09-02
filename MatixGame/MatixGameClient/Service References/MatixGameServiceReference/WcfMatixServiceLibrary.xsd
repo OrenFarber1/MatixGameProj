@@ -65,6 +65,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="WaitingPlayer" nillable="true" type="tns:WaitingPlayer" />
+  <xs:complexType name="PlayerStatisticsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AverageScore" type="xs:double" />
+      <xs:element minOccurs="0" name="NumberOfGames" type="xs:int" />
+      <xs:element minOccurs="0" name="Rank" type="xs:int" />
+      <xs:element minOccurs="0" name="Winnings" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerStatisticsResult" nillable="true" type="tns:PlayerStatisticsResult" />
   <xs:complexType name="MatixBoard">
     <xs:sequence>
       <xs:element minOccurs="0" name="MatixCells" nillable="true" type="tns:ArrayOfArrayOfMatixCell" />

@@ -14,7 +14,8 @@ namespace MatixDatabaseLibrary
         public string NickName { get; set; }
         public int TotalNumberOfGames { get; set; }
         public int NumberOfWinnings { get; set; }
-        public int TotalScore { get; set; }        
-        
+        public int TotalScore { get; set; }
+        public int Rank  { get; set; }
+
     }
 }

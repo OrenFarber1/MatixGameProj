@@ -66,4 +66,13 @@
       <Association Name="Player_GameActivity" Member="GameActivities" ThisKey="PlayerId" OtherKey="PlayerId" Type="GameActivity" />
     </Type>
   </Table>
+  <Table Name="dbo.PlayerStatistics" Member="PlayerStatistics">
+    <Type Name="PlayerStatistic">
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Games" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Winnings" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Score" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

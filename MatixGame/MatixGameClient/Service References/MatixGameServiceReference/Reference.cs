@@ -487,6 +487,99 @@ namespace MatixGameClient.MatixGameServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerStatisticsResult", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class PlayerStatisticsResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double AverageScoreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberOfGamesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RankField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WinningsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double AverageScore {
+            get {
+                return this.AverageScoreField;
+            }
+            set {
+                if ((this.AverageScoreField.Equals(value) != true)) {
+                    this.AverageScoreField = value;
+                    this.RaisePropertyChanged("AverageScore");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumberOfGames {
+            get {
+                return this.NumberOfGamesField;
+            }
+            set {
+                if ((this.NumberOfGamesField.Equals(value) != true)) {
+                    this.NumberOfGamesField = value;
+                    this.RaisePropertyChanged("NumberOfGames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Rank {
+            get {
+                return this.RankField;
+            }
+            set {
+                if ((this.RankField.Equals(value) != true)) {
+                    this.RankField = value;
+                    this.RaisePropertyChanged("Rank");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Winnings {
+            get {
+                return this.WinningsField;
+            }
+            set {
+                if ((this.WinningsField.Equals(value) != true)) {
+                    this.WinningsField = value;
+                    this.RaisePropertyChanged("Winnings");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MatixBoard", Namespace="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary")]
     [System.SerializableAttribute()]
     public partial class MatixBoard : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -708,6 +801,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers", ReplyAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse")]
         System.Threading.Tasks.Task RemoveFromWaitingPlayersAsync(string email);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetPlayerStatistics", ReplyAction="http://tempuri.org/IMatixService/GetPlayerStatisticsResponse")]
+        MatixGameClient.MatixGameServiceReference.PlayerStatisticsResult GetPlayerStatistics(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/GetPlayerStatistics", ReplyAction="http://tempuri.org/IMatixService/GetPlayerStatisticsResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.PlayerStatisticsResult> GetPlayerStatisticsAsync(string email);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/QuitTheGame", ReplyAction="http://tempuri.org/IMatixService/QuitTheGameResponse")]
         void QuitTheGame(string email);
         
@@ -832,6 +931,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task RemoveFromWaitingPlayersAsync(string email) {
             return base.Channel.RemoveFromWaitingPlayersAsync(email);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.PlayerStatisticsResult GetPlayerStatistics(string email) {
+            return base.Channel.GetPlayerStatistics(email);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.PlayerStatisticsResult> GetPlayerStatisticsAsync(string email) {
+            return base.Channel.GetPlayerStatisticsAsync(email);
         }
         
         public void QuitTheGame(string email) {

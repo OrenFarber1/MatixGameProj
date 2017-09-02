@@ -94,6 +94,12 @@
   <wsdl:message name="IMatixService_RemoveFromWaitingPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFromWaitingPlayersResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_GetPlayerStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_GetPlayerStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerStatisticsResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_QuitTheGame_InputMessage">
     <wsdl:part name="parameters" element="tns:QuitTheGame" />
   </wsdl:message>
@@ -151,6 +157,10 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveFromWaitingPlayers">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers" message="tns:IMatixService_RemoveFromWaitingPlayers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/RemoveFromWaitingPlayersResponse" message="tns:IMatixService_RemoveFromWaitingPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPlayerStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/GetPlayerStatistics" message="tns:IMatixService_GetPlayerStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetPlayerStatisticsResponse" message="tns:IMatixService_GetPlayerStatistics_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="QuitTheGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/QuitTheGame" message="tns:IMatixService_QuitTheGame_InputMessage" />
@@ -250,6 +260,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveFromWaitingPlayers">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/RemoveFromWaitingPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerStatistics">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/GetPlayerStatistics" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
