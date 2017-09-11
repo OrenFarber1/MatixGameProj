@@ -32,41 +32,31 @@ namespace MatixGameClient
         /// Player email address 
         /// </summary>
         private string email;
-
-        /// <summary>
-        /// The nickname of the winner 
-        /// </summary>
-        private string winnerNickname;
-
-        /// <summary>
-        /// The score of the winner 
-        /// </summary>
-        private int winnerScore;
         
         #endregion
+
+        #region Class Constructors
 
         /// <summary>
         /// Construct a page 
         /// </summary>
-        /// <param name="_service"></param>
-        /// <param name="_nickName"></param>
-        /// <param name="_email"></param>
+        /// <param name="_service">Reference to the WCF service host instance</param>
+        /// <param name="_nickName">Player's nickname</param>
+        /// <param name="_email">Player's email address</param>
         public PlayerStatisticsPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             nickName = _nickName;
             email = _email;
             service = _service;
-            winnerNickname = "";
-            winnerScore = 0;
-
+       
             loginName.Content = "Hi " + _nickName;
 
+            message.Content = "Your current statistics are";
+            
             // Get waiting players from server 
             PlayerStatisticsResult results = service.GetPlayerStatistics(email);
-
-            message.Content = "Your's current statistics:\n321564321564";
-
+                                    
             rankValue.Content = results.Rank;
             numberofGamesValue.Content = results.NumberOfGames;
             winningsValue.Content = results.Winnings;
@@ -77,11 +67,11 @@ namespace MatixGameClient
         /// <summary>
         /// Construct a page with winner information 
         /// </summary>
-        /// <param name="_service"></param>
-        /// <param name="_nickName"></param>
-        /// <param name="_email"></param>
-        /// <param name="_winnerNickname"></param>
-        /// <param name="_winnerScore"></param>
+        /// <param name="_service">Reference to the WCF service host instance</param>
+        /// <param name="_nickName">Player's nickname</param>
+        /// <param name="_email">Player's email address</param>
+        /// <param name="_winnerNickname">The winner nickname</param>
+        /// <param name="_winnerScore">the winner score</param>
         public PlayerStatisticsPage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email, string _winnerNickname, int _winnerScore)
         {
             InitializeComponent();
@@ -89,17 +79,38 @@ namespace MatixGameClient
             email = _email;
             service = _service;
 
-            winnerNickname = _winnerNickname;
-            winnerScore = _winnerScore;
-
             loginName.Content = "Hi " + _nickName;
+
+            if(_winnerNickname == nickName)
+               message.Content = "Well done, you won the game\nwith " + _winnerScore + " points."; 
+            else
+               message.Content = "You lost the game\n" + _winnerNickname + " won with "  + _winnerScore  + " points.";
+
+            // Get waiting players from server 
+            PlayerStatisticsResult results = service.GetPlayerStatistics(email);
+
+            rankValue.Content = results.Rank;
+            numberofGamesValue.Content = results.NumberOfGames;
+            winningsValue.Content = results.Winnings;
+            averageScoreValue.Content = results.AverageScore;
         }
 
+        #endregion
+
+        #region Class Private Methods 
+
+        /// <summary>
+        /// Back button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("Back button clicked");
             WelcomePage welcome = new WelcomePage(service, nickName, email);
             NavigationService.Navigate(welcome);
         }
+
+        #endregion
     }
 }

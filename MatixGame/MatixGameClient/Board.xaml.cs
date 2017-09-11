@@ -8,14 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace MatixGameClient
 {
@@ -48,7 +42,7 @@ namespace MatixGameClient
     [ComplexBindingProperties("DataSource")]
     public partial class Board : UserControl
     {
-      
+
         #region Class Private Members 
         /// <summary>
         /// A class logger instance  
@@ -108,39 +102,30 @@ namespace MatixGameClient
             this.Loaded += new RoutedEventHandler(Page_Loaded);
         }
 
+        /// <summary>
+        /// Get token row index
+        /// </summary>
+        /// <returns></returns>
         public int GetTokenRow()
         {
             return currentTokenRow;
         }
 
+        /// <summary>
+        /// Get token column index
+        /// </summary>
+        /// <returns></returns>
         public int GetTokenColumn()
         {
             return currentTokenCol;
         }
 
         /// <summary>
-        /// Event handler method while the page is loaded
+        /// Update a game with a new board
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-
-            var parent = VisualTreeHelper.GetParent(this);
-            while (!(parent is Page))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            parentPage = (GamePage)parent;
-
-            // Set function handlers to the Game Page 
-            parentPage.setBoard = UpdateMatixBoard;
-            parentPage.setToken = UpdateBoardToken;
-
-        }
-
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="direction">Current playing direction</param>
+        /// <param name="myDirection">Client player direction</param>
         public void UpdateMatixBoard(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirectionn)
         {
             logger.InfoFormat("UpdateMatixBoard");
@@ -173,6 +158,12 @@ namespace MatixGameClient
             }
         }
 
+
+        /// <summary>
+        /// Update the game that a new token selected by the other player
+        /// </summary>
+        /// <param name="row">Token row</param>
+        /// <param name="column">Token column</param>
         public void UpdateBoardToken(int row, int column)
         {
             logger.InfoFormat("UpdateBoardToken row: {0}, column: {1} currentPlayingDirection: {2}", row, column, currentPlayingDirection);
@@ -196,6 +187,30 @@ namespace MatixGameClient
             currentPlayingDirection = myPlayingDirection;
         }
 
+        #region Class Private Mothods 
+
+        /// <summary>
+        /// Event handler method while the page is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            var parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is Page))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            parentPage = (GamePage)parent;
+
+            // Set function handlers to the Game Page 
+            parentPage.updateMatixBoardDelegate = UpdateMatixBoard;
+            parentPage.updateBoardTokenDelegate = UpdateBoardToken;
+
+        }
         /// <summary>
         /// Handler method for clicking the board the method allow selecting a new token 
         /// and update the client and the server with the selection
@@ -219,9 +234,21 @@ namespace MatixGameClient
 
                     logger.InfoFormat("BoardMouseLeftButtonDown DoubleClick on row: {0}, col: {1}, PlayingDirection: {2}", row, column, currentPlayingDirection);
 
-                    Cell c = boardCells.GetCell(row, column);
-                    if (!c.Used && !c.Token)
+                    // validate client action 
+                    bool valid = false;
+                    if (currentPlayingDirection == PlayingDirectionEnum.Horizontal)
                     {
+                        valid = currentTokenRow == row;
+                    }
+                    else
+                    {
+                        valid = currentTokenCol == column;
+                    }
+
+                    Cell c = boardCells.GetCell(row, column);
+                    if (!c.Used && !c.Token && valid)
+                    {
+
                         // Update the server of the change 
                         OperationStatus status = parentPage.UpdateMatixServer(row, column, c.Value);
 
@@ -258,7 +285,10 @@ namespace MatixGameClient
         {
             if (c.Token)
             {
-                c.ColorValue = 1;
+                if (c.UsedBy == PlayingDirectionEnum.InitializeToken)
+                    c.ColorValue = 1;
+                else
+                    c.ColorValue = 5;
             }
             else
             {
@@ -295,6 +325,7 @@ namespace MatixGameClient
                 currentPlayingDirection = PlayingDirectionEnum.Horizontal;
             }
         }
+        #endregion
 
         #region INotifyPropertyChanged Members & Handlers
         public event PropertyChangedEventHandler PropertyChanged;

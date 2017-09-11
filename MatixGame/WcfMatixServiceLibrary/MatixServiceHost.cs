@@ -9,7 +9,12 @@ namespace WcfMatixServiceLibrary
     /// </summary>
     public class MatixServiceHost : ServiceHost
     {
-
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="buisnessInterface">Instanse of the buisness layer</param>
+        /// <param name="serviceType"></param>
+        /// <param name="baseAddresses"></param>
         public MatixServiceHost(IMatixBuisnessInterface buisnessInterface, Type serviceType, params Uri[] baseAddresses)
         : base(serviceType, baseAddresses)
         {

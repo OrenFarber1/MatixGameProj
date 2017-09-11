@@ -759,6 +759,12 @@ namespace MatixGameClient.MatixGameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UpdateUserDetailes", ReplyAction="http://tempuri.org/IMatixService/UpdateUserDetailesResponse")]
         System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UpdateUserDetailesAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/ChangeUserPassword", ReplyAction="http://tempuri.org/IMatixService/ChangeUserPasswordResponse")]
+        MatixGameClient.MatixGameServiceReference.OperationStatus ChangeUserPassword(string email, string oldPassword, string newPawwsord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/ChangeUserPassword", ReplyAction="http://tempuri.org/IMatixService/ChangeUserPasswordResponse")]
+        System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> ChangeUserPasswordAsync(string email, string oldPassword, string newPawwsord);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatixService/UserLogin", ReplyAction="http://tempuri.org/IMatixService/UserLoginResponse")]
         MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData);
         
@@ -817,17 +823,14 @@ namespace MatixGameClient.MatixGameServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMatixServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/Ping")]
-        void Ping(int value);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateWaitingPlayer")]
         void UpdateWaitingPlayer(MatixGameClient.MatixGameServiceReference.WaitingPlayerResult waitingPlayers);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/GetMatixBoard")]
-        void GetMatixBoard(MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, string horizontalNickname, string verticalNickName, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/StartingNewGame")]
+        void StartingNewGame(MatixGameClient.MatixGameServiceReference.MatixBoard matixBoard, string horizontalNickname, string verticalNickName, MatixGameClient.MatixGameServiceReference.GameTurnTypeEnum whoIsStarting);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameAction")]
-        void UpdateGameAction(int row, int col, int score);
+        void UpdateGameAction(int row, int column, int score);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatixService/UpdateGameEnded")]
         void UpdateGameEnded(string winnerNickname, int score);
@@ -875,6 +878,14 @@ namespace MatixGameClient.MatixGameServiceReference {
         
         public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> UpdateUserDetailesAsync(MatixGameClient.MatixGameServiceReference.UserInformationData userData) {
             return base.Channel.UpdateUserDetailesAsync(userData);
+        }
+        
+        public MatixGameClient.MatixGameServiceReference.OperationStatus ChangeUserPassword(string email, string oldPassword, string newPawwsord) {
+            return base.Channel.ChangeUserPassword(email, oldPassword, newPawwsord);
+        }
+        
+        public System.Threading.Tasks.Task<MatixGameClient.MatixGameServiceReference.OperationStatus> ChangeUserPasswordAsync(string email, string oldPassword, string newPawwsord) {
+            return base.Channel.ChangeUserPasswordAsync(email, oldPassword, newPawwsord);
         }
         
         public MatixGameClient.MatixGameServiceReference.LoginResult UserLogin(MatixGameClient.MatixGameServiceReference.LoginData loginData) {

@@ -416,8 +416,8 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Serialize MatixBoard into an XML string
         /// </summary>
-        /// <param name="matixBoard"></param>
-        /// <returns>XML formated string</returns>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <returns>XML formated string of the game board</returns>
         private string SerializeMatixBoard(MatixBoard matixBoard)
         {
             XmlSerializer s = new XmlSerializer(typeof(MatixBoard));
@@ -431,7 +431,7 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Get a list of MatixCell that share the same row value 
         /// </summary>
-        /// <param name="row"></param>
+        /// <param name="row">The raw index of the requested cell</param>
         /// <returns></returns>
         public List<MatixCell> GetRowOfCells(int row)
         {
@@ -453,7 +453,7 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Get a list of MatixCells from the game board that share the same column 
         /// </summary>
-        /// <param name="column">The column of the requested cells</param>
+        /// <param name="column">The column index of the requested cells</param>
         /// <returns></returns>
         public List<MatixCell> GetColumnOfCells(int column)
         {

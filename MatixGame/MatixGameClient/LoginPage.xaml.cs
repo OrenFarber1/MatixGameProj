@@ -36,9 +36,11 @@ namespace MatixGameClient
         /// <summary>
         /// Construct a LoginPage
         /// </summary>
-        /// <param name="_service"></param>
+        /// <param name="_service">Reference to the WCF service host instance</param>
         public LoginPage(MatixServiceClient _service)
         {
+            logger.Info("Create login Page");
+
             InitializeComponent();
             service = _service;
             emailAddrTextBox.Focus();
@@ -83,8 +85,9 @@ namespace MatixGameClient
                                 Properties.Settings.Default.email = emailAddrTextBox.Text;
                                 Properties.Settings.Default.password = PassTextBox.Password;
                                 Properties.Settings.Default.nickname = result.Nickname;
-
                                 Properties.Settings.Default.Save();
+
+                                logger.Info("loginButton_Click - login information saved locally");
 
                                 WelcomePage welcome = new WelcomePage(service, result.Nickname, emailAddrTextBox.Text);
                                 NavigationService.Navigate(welcome);
@@ -100,6 +103,11 @@ namespace MatixGameClient
                             errorMessage.Content = "The password is incorrect";
                             break;
 
+                    }
+
+                    if(string.IsNullOrEmpty(errorMessage.Content.ToString()))
+                    {
+                        logger.WarnFormat("loginButton_Click - errorMessage: {0}", errorMessage.Content.ToString());
                     }
                 }
             }

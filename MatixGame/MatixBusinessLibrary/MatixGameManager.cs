@@ -25,9 +25,9 @@ namespace MatixBusinessLibrary
         static string salt = "Should I use another hashing algorithm";
 
         /// <summary>
-        /// Data Access Layer 
+        /// Data Access layer interface
         /// </summary>
-        MatixDataAccess matixData = null;
+        IMatixDataAccessInterface matixData = null;
 
         /// <summary>
         /// WCF Server host 
@@ -55,12 +55,14 @@ namespace MatixBusinessLibrary
         HashSet<string> waitingPlayersList = null;
 
         /// <summary>
-        /// A list of active games found by users email
+        /// A dictionary of active games found by users email
         /// </summary>
         Dictionary<string, Game> userEmailToGamel = null;
 
-
-        Dictionary<string, long> userEmailTologinId = null;
+        /// <summary>
+        /// A dictionary of login ids found by user email
+        /// </summary>
+        Dictionary<string, long> userEmailToLoginId = null;
 
 
         public MatixGameManager()
@@ -70,20 +72,24 @@ namespace MatixBusinessLibrary
             waitingPlayersList = new HashSet<string>();
             matixData = new MatixDataAccess();
             userEmailToGamel = new Dictionary<string, Game>();
-            userEmailTologinId = new Dictionary<string, long>();
+            userEmailToLoginId = new Dictionary<string, long>();
 
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
             matixHost.Open();
         }
 
+        /// <summary>
+        /// Handle client disconnected event
+        /// </summary>
+        /// <param name="email"></param>
         public void ClientDisconnected(string email)
         {
             logger.InfoFormat("ClientDisconnected - {0}", email);
 
-            // Handle closing a running game !!!
+            // Handle closing a running game 
+            QuitTheGame(email);
 
             UserLogout(email, "Client disconnected");
-
         }
 
 
@@ -99,7 +105,7 @@ namespace MatixBusinessLibrary
         /// <returns></returns>
         public RegistrationResult AddPlayer(string firstName, string lastName, string nickName, string email, string password)
         {
-            logger.Info("AddPlayer");
+            logger.InfoFormat("AddPlayer email: {0}", email);
 
             // Generate password hash  based on the user password and some salt.           
             string passwordHash = GetHashString(email + password + salt);
@@ -130,6 +136,14 @@ namespace MatixBusinessLibrary
             return result;
         }
 
+        /// <summary>
+        /// Update players information in the database 
+        /// </summary>
+        /// <param name="email">Player's email - this parameter remains without change</param>
+        /// <param name="firstName">The updated player first name</param>
+        /// <param name="lastName">The updated player last name</param>
+        /// <param name="nickName">The updated player nickname</param>
+        /// <returns>The operation status</returns>
         public OperationStatusEnum UpdatePlayer(string email, string firstName, string lastName, string nickName)
         {
             logger.InfoFormat("UpdatePlayer email: {0}", email);
@@ -142,6 +156,44 @@ namespace MatixBusinessLibrary
             {
                 logger.ErrorFormat("UpdatePlayer - Exception: {0}", ex);
                 return OperationStatusEnum.Failure;
+            }
+
+            return OperationStatusEnum.Success;
+        }
+
+        /// <summary>
+        /// Change user password
+        /// </summary>
+        /// <param name="email">User email address</param>
+        /// <param name="oldPassword">the user current password </param>
+        /// <param name="newPawwsord">The user new password</param>
+        /// <returns></returns>
+        public OperationStatusEnum ChangePassword(string email, string oldPassword, string newPawwsord)
+        {
+            logger.InfoFormat("ChangePassword email: {0}", email);
+
+            // Generate password hash based on the user password and some salt.           
+            string oldPasswordHash = GetHashString(email + oldPassword + salt);
+
+            if (matixData.CheckEmailAndPasswordHash(email, oldPasswordHash))
+            {
+                // Generate password hash based on the user password and some salt.           
+                string newPasswordHash = GetHashString(email + newPawwsord + salt);
+                
+                try
+                {
+                    matixData.ChangePassword(email, newPasswordHash);
+                }
+                catch (System.Invalid​Operation​Exception ex)
+                {
+                    logger.ErrorFormat("UpdatePlayer - Exception: {0}", ex);
+                    return OperationStatusEnum.Failure;
+                }
+
+            }
+            else
+            {
+                return OperationStatusEnum.InvalidPassword;
             }
 
             return OperationStatusEnum.Success;
@@ -171,7 +223,7 @@ namespace MatixBusinessLibrary
                 {
                     result.Status = OperationStatusEnum.Success;
 
-                    userEmailTologinId[email] = loginId;
+                    userEmailToLoginId[email] = loginId;
 
                     string nickName;
                     if (!userEmailToNickname.TryGetValue(email, out nickName))
@@ -218,11 +270,11 @@ namespace MatixBusinessLibrary
                 logger.InfoFormat("UserLogout email: {0}, reason: {1}", email, reason);
 
                 long loginId;
-                if (userEmailTologinId.TryGetValue(email, out loginId))
+                if (userEmailToLoginId.TryGetValue(email, out loginId))
                 {
                     // Update the database 
                     matixData.PlayerLogout(loginId, email, reason);
-                    userEmailTologinId.Remove(email);
+                    userEmailToLoginId.Remove(email);
                 }
 
                 if (userEmailToNickname.Remove(email))
@@ -248,7 +300,11 @@ namespace MatixBusinessLibrary
             return OperationStatusEnum.Success;
         }
 
-
+        /// <summary>
+        /// Get player statistics information 
+        /// </summary>
+        /// <param name="email">players email address</param>
+        /// <returns>PlayerStatisticsResult instance with the players statistics</returns>
         public PlayerStatisticsResult GetPlayerStatistics(string email)
         {
             logger.InfoFormat("GetPlayerStatistics email: {0}", email);
@@ -264,6 +320,11 @@ namespace MatixBusinessLibrary
             return results;
         }
 
+        /// <summary>
+        /// Get a list of the current waiting players 
+        /// </summary>
+        /// <param name="excludedEmail">The email of the requeter - should not appear in the result</param>
+        /// <returns>WaitingPlayerResult instance with an updated list of waiting players  </returns>
         public WaitingPlayerResult GetWaitingPlayersList(string excludedEmail)
         {
             logger.InfoFormat("GetWaitingPlayersList excludedEmail: {0}", excludedEmail);
@@ -305,6 +366,10 @@ namespace MatixBusinessLibrary
             return result;
         }
 
+        /// <summary>
+        /// A task method to notify all the waiting players that added a new player
+        /// </summary>
+        /// <param name="excudedEmail">The added player</param>
         private void NotifyPlayersWithWaitingPlayersTask(string excudedEmail)
         {
             logger.InfoFormat("NotifyPlayersWithWaitingPlayersTask excudedEmail: {0}", excudedEmail);
@@ -338,6 +403,12 @@ namespace MatixBusinessLibrary
             }
         }
 
+        /// <summary>
+        /// Handle player's request to start a game with another player
+        /// </summary>
+        /// <param name="firstEmail">The first player's email address</param>
+        /// <param name="secondNickname">The second player's nickname</param>
+        /// <returns></returns>
         public OperationStatusEnum StartPlayingWithPlayer(string firstEmail, string secondNickname)
         {
             logger.InfoFormat("StartPlayingWithPlayer - firstEmail: {0}, secondNickname: {1}", firstEmail, secondNickname);
@@ -647,6 +718,10 @@ namespace MatixBusinessLibrary
             }
         }
 
+        /// <summary>
+        /// Remove a player from the waiting players list and notify other players with the change 
+        /// </summary>
+        /// <param name="email">The email of the player to be removed from the list</param>
         public void RemoveFromWaitingPlayers(string email)
         {
             if (waitingPlayersList.Remove(email))
@@ -657,6 +732,10 @@ namespace MatixBusinessLibrary
             Task.Run(() => NotifyPlayersWithWaitingPlayersTask(email));
         }
 
+        /// <summary>
+        /// Handle the process of player quit a game 
+        /// </summary>
+        /// <param name="email">The email address of the email that quit the game</param>
         public void QuitTheGame(string email)
         {
             logger.InfoFormat("QuitTheGame email: {0}", email);
@@ -664,6 +743,9 @@ namespace MatixBusinessLibrary
             Game game;
             if (userEmailToGamel.TryGetValue(email, out game))
             {
+
+                logger.InfoFormat("QuitTheGame - The player email: {0} has an active game", email);
+
                 PlayerType playerType;
                 string otherEmail;
                 string othernickname;
@@ -694,9 +776,7 @@ namespace MatixBusinessLibrary
                     // Notify the other player that he wins the game   
                     matixWcfService.NotifyPlayerOfGameEnded(otherEmail, othernickname, playerScore);
                 }
-
             }
-
         }
 
         /// <summary>
@@ -735,6 +815,7 @@ namespace MatixBusinessLibrary
             botNickname = "Matix - 1";
         }
 
+    
     }
 
 }

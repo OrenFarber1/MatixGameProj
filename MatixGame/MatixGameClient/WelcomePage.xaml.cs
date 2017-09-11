@@ -45,10 +45,13 @@ namespace MatixGameClient
         /// <summary>
         /// Constructor while we have no player details 
         /// </summary>
-        /// <param name="_service"></param>
+        /// <param name="_service">Reference to the WCF service host instance</param>
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service)
         {
+            logger.Info("Create Welcome Page");
+
             InitializeComponent();
+            
             service = _service;
             loginButton.Content = "Login";
             loginName.Content = "Hi user";
@@ -63,12 +66,15 @@ namespace MatixGameClient
         /// <summary>
         /// Construct a page with player details 
         /// </summary>
-        /// <param name="_service">WCF service reference</param>
+        /// <param name="_service">Reference to the WCF service host instance</param>
         /// <param name="_nickName">Player nickname </param>
         /// <param name="_email">player email address</param>
         public WelcomePage(MatixGameServiceReference.MatixServiceClient _service, string _nickName, string _email)
         {
+            logger.InfoFormat("Create Welcome Page email: {0}", _email);
+
             InitializeComponent();
+
             service = _service;
             nickName = _nickName;
             email = _email;

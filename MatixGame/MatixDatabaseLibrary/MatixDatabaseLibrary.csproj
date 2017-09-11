@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMatixDataAccessInterface.cs" />
     <Compile Include="MatixData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

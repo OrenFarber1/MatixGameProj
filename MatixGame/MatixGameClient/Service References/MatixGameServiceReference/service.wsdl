@@ -52,6 +52,12 @@
   <wsdl:message name="IMatixService_UpdateUserDetailes_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserDetailesResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatixService_ChangeUserPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMatixService_ChangeUserPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatixService_UserLogin_InputMessage">
     <wsdl:part name="parameters" element="tns:UserLogin" />
   </wsdl:message>
@@ -106,14 +112,11 @@
   <wsdl:message name="IMatixService_QuitTheGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:QuitTheGameResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatixService_Ping_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Ping" />
-  </wsdl:message>
   <wsdl:message name="IMatixService_UpdateWaitingPlayer_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateWaitingPlayer" />
   </wsdl:message>
-  <wsdl:message name="IMatixService_GetMatixBoard_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:GetMatixBoard" />
+  <wsdl:message name="IMatixService_StartingNewGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartingNewGame" />
   </wsdl:message>
   <wsdl:message name="IMatixService_UpdateGameAction_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateGameAction" />
@@ -129,6 +132,10 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateUserDetailes">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UpdateUserDetailes" message="tns:IMatixService_UpdateUserDetailes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateUserDetailesResponse" message="tns:IMatixService_UpdateUserDetailes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChangeUserPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/ChangeUserPassword" message="tns:IMatixService_ChangeUserPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/ChangeUserPasswordResponse" message="tns:IMatixService_ChangeUserPassword_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/UserLogin" message="tns:IMatixService_UserLogin_InputMessage" />
@@ -166,14 +173,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatixService/QuitTheGame" message="tns:IMatixService_QuitTheGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/QuitTheGameResponse" message="tns:IMatixService_QuitTheGame_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/Ping" message="tns:IMatixService_Ping_OutputCallbackMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateWaitingPlayer">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateWaitingPlayer" message="tns:IMatixService_UpdateWaitingPlayer_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetMatixBoard">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/GetMatixBoard" message="tns:IMatixService_GetMatixBoard_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartingNewGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/StartingNewGame" message="tns:IMatixService_StartingNewGame_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateGameAction">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatixService/UpdateGameAction" message="tns:IMatixService_UpdateGameAction_OutputCallbackMessage" />
@@ -197,6 +201,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUserDetailes">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateUserDetailes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/ChangeUserPassword" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -285,20 +298,14 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Ping">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/Ping" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateWaitingPlayer">
       <soap12:operation soapAction="http://tempuri.org/IMatixService/UpdateWaitingPlayer" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetMatixBoard">
-      <soap12:operation soapAction="http://tempuri.org/IMatixService/GetMatixBoard" style="document" />
+    <wsdl:operation name="StartingNewGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatixService/StartingNewGame" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

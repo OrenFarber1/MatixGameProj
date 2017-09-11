@@ -34,6 +34,9 @@ namespace MatixGameClient
 
         #endregion
         
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MainWindow() 
          {
             InitializeComponent();
@@ -57,6 +60,8 @@ namespace MatixGameClient
             }
         }
 
+        #region Class Private methods 
+    
         /// <summary>
         /// Application closing event handler 
         /// </summary>
@@ -80,6 +85,8 @@ namespace MatixGameClient
         /// </summary>
         private void OpenServiceConnection()
         {
+            logger.Info("OpenServiceConnection");
+            
             service = new MatixServiceClient(new InstanceContext(this), "NetTcpBinding_IMatixService");
 
             //Open connection to the server 
@@ -94,6 +101,8 @@ namespace MatixGameClient
                 // Reopen connection 
                 OpenServiceConnection();
             });
+
+            logger.Info("OpenServiceConnection - connection opened successfully");
         }
 
         /// <summary>
@@ -103,6 +112,8 @@ namespace MatixGameClient
         {
             string email = Properties.Settings.Default.email;
             string pass = Properties.Settings.Default.password;
+
+            logger.InfoFormat("ShowWelcomePage saved email: {0}", email);
 
             WelcomePage welcome;
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
@@ -138,6 +149,30 @@ namespace MatixGameClient
             mainFrame.NavigationService.Navigate(welcome);
         }
 
+        /// <summary>
+        /// Internal method to create a Player Statistics Page
+        /// </summary>
+        /// <param name="winnerNickname">The winner's nickname</param>
+        /// <param name="score">The score of the winner</param>
+        private void UpdateGameEndedTask(string winnerNickname, int score)
+        {
+            logger.InfoFormat("UpdateGameEndedTask - winnerNickname: {0}, score: {1}", winnerNickname, score);
+
+            string email = Properties.Settings.Default.email;
+            string nickname = Properties.Settings.Default.nickname;
+
+            PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickname, email, winnerNickname, score);
+            mainFrame.NavigationService.Navigate(page);
+        }
+     #endregion
+
+        /// <summary>
+        /// A callback function to set a game board 
+        /// </summary>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="horizontalNickname">Horizontal player's nickname</param>
+        /// <param name="verticalNickName">Vertical player's nickname</param>
+        /// <param name="whoIsStarting">Who's the player that start the game</param>
         public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
             logger.InfoFormat("SetMatixBoard horizontalNickname: {0}, verticalNickName: {1}, whoIsStarting: {2} ", horizontalNickname, verticalNickName, whoIsStarting);
@@ -145,7 +180,7 @@ namespace MatixGameClient
             string name = mainFrame.NavigationService.Content.GetType().Name;
             if (name == "GamePage")
             {
-                ((GamePage)mainFrame.NavigationService.Content).SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
+                ((GamePage)mainFrame.NavigationService.Content).UpdatePageAndSetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting);
             }
             else 
             {
@@ -156,10 +191,10 @@ namespace MatixGameClient
         /// <summary>
         /// Change the current page to GamePage and initialize it with the parameters received from the server 
         /// </summary>
-        /// <param name="matixBoard">Generated board</param>
+        /// <param name="matixBoard">The generated game board</param>
         /// <param name="horizontalNickname">Horizontal player nickname</param>
         /// <param name="verticalNickName">Vertican player nickname</param>
-        /// <param name="whoIsStarting"></param>
+        /// <param name="whoIsStarting">Who's the player that start the game</param>
         public void StartNewGame(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
             string email = Properties.Settings.Default.email;
@@ -191,11 +226,13 @@ namespace MatixGameClient
          
         }
 
-        public void Ping(int value)
-        {
-            MessageBox.Show("Ping: " + value);
-        }
-        
+
+        #region IMatixServiceCallback Interface Implementation
+
+        /// <summary>
+        /// A callback function that allow the server to update the current waiting list.
+        /// </summary>
+        /// <param name="waitingPlayers"></param>
         public void UpdateWaitingPlayer(WaitingPlayerResult waitingPlayers)
         {
             logger.InfoFormat("WaitingPlayerResult Status: {0}", waitingPlayers.Status);
@@ -209,9 +246,16 @@ namespace MatixGameClient
             }
         }
 
-        public void GetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        /// <summary>
+        /// A callback function sent from the server to start a new game.
+        /// </summary>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="horizontalNickname">Horizontal player nickname</param>
+        /// <param name="verticalNickName">Vertican player nickname</param>
+        /// <param name="whoIsStarting">Who's the player that start the game</param>
+        public void StartingNewGame(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
-            logger.InfoFormat("GetMatixBoard horizontalNickname: {0}, verticalNickName: {1}", horizontalNickname, verticalNickName);
+            logger.InfoFormat("StartingNewGame horizontalNickname: {0}, verticalNickName: {1}", horizontalNickname, verticalNickName);
 
             SendOrPostCallback callback = (x => SetMatixBoard(matixBoard, horizontalNickname, verticalNickName, whoIsStarting));
 
@@ -221,27 +265,45 @@ namespace MatixGameClient
 
         }
 
-        public void UpdateGameAction(int row, int col, int score)
+        /// <summary>
+        /// A callback function to allow the server to notify the client about move the other player did
+        /// </summary>
+        /// <param name="row">The new token row</param>
+        /// <param name="column">The new token column</param>
+        /// <param name="score">The score of the selected token</param>
+        public void UpdateGameAction(int row, int column, int score)
         {
-            logger.InfoFormat("UpdateGameAction - row: {0}, col: {1}, score: {2}", row, col, score);
+            logger.InfoFormat("UpdateGameAction - row: {0}, column: {1}, score: {2}", row, column, score);
 
             string name = mainFrame.NavigationService.Content.GetType().Name;
             if (name == "GamePage")
             {
-                ((GamePage)mainFrame.NavigationService.Content).UpdateMatixBoard(row, col, score);
+                ((GamePage)mainFrame.NavigationService.Content).UpdateMatixBoard(row, column, score);
             }            
         }
 
+        /// <summary>
+        /// A callback function to update the client that the game is ended and that we have a winner
+        /// </summary>
+        /// <param name="winnerNickname">The winner's nickname</param>
+        /// <param name="score">The score of the winner</param>
         public void UpdateGameEnded(string winnerNickname, int score)
         {
             logger.InfoFormat("UpdateGameEnded - winnerNickname: {0}, score: {1}", winnerNickname, score);
 
-            string email = Properties.Settings.Default.email;
-            string nickname = Properties.Settings.Default.nickname;
+            SynchronizationContext uiSyncContext = SynchronizationContext.Current;
+            
+            Task.Run(() =>
+            {
+                logger.Info("UpdateGameEnded Running task.");
 
-            PlayerStatisticsPage page = new PlayerStatisticsPage(service, nickname, email, winnerNickname, score);
-            mainFrame.NavigationService.Navigate(page);
+                SendOrPostCallback callback = (x => UpdateGameEndedTask(winnerNickname, score));
+                uiSyncContext.Post(callback, null);
+            });
 
-        }   
-    }  
+        }
+
+        #endregion
+
+    }
 }

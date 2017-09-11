@@ -49,7 +49,7 @@ namespace WcfMatixServiceLibrary
     
         #endregion
 
-        #region IMatixService Implementation
+        #region IMatixService Interface Implementation
 
         /// <summary>
         /// Implementation method for user registration request
@@ -76,8 +76,26 @@ namespace WcfMatixServiceLibrary
 
             OperationStatusEnum result = matixBuisnessInterface.UpdatePlayer(userData.EmailAddress, userData.FirstName, userData.LastName, userData.NickName);
 
-            return OperationStatusEnum.Success;
+            return result;
         }
+
+        /// <summary>
+        /// Change user password
+        /// </summary>
+        /// <param name="email">User email address</param>
+        /// <param name="oldPassword">The current password</param>
+        /// <param name="newPawwsord">The new password</param>
+        /// <returns></returns>
+        public OperationStatusEnum ChangeUserPassword(string email, string oldPassword, string newPawwsord)
+        {
+            logger.InfoFormat("ChangeUserPassword email: {0}", email);
+
+            OperationStatusEnum result = matixBuisnessInterface.ChangePassword(email, oldPassword, newPawwsord);
+
+            return result;
+        }
+
+
 
         /// <summary>
         /// Implementation method for user login request
@@ -224,6 +242,11 @@ namespace WcfMatixServiceLibrary
     
         #region Client Callback Notofocation Methods 
         
+        /// <summary>
+        /// Notify a player with a waiting players list
+        /// </summary>
+        /// <param name="email">The email address of the player that should be notifyied</param>
+        /// <param name="result">Waiting players information list</param>
         public void NotifyWatingPlars(string email, WaitingPlayerResult result)
         {
             logger.InfoFormat("NotifyWatingPlars - email: {0}", email);
@@ -244,23 +267,22 @@ namespace WcfMatixServiceLibrary
         /// <summary>
         /// Notify the client using a callback to start a new game 
         /// </summary>
-        /// <param name="playerEmail"></param>
-        /// <param name="horizontalNickname"></param>
-        /// <param name="verticalEmail"></param>
-        /// <param name="verticalNickname"></param>
-        /// <param name="matixBoard"></param>
-        /// <param name="whoIsStarting"></param>
-        public void NotifyPlayerOfNewGame(string playerEmail, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
+        /// <param name="email">The notified player's email</param>
+        /// <param name="horizontalNickname">Horizontal player's nickname</param>
+        /// <param name="verticalNickname">Vertcal player's nickname</param>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="whoIsStarting">Who's the player that start the game</param>
+        public void NotifyPlayerOfNewGame(string email, string horizontalNickname, string verticalNickname, MatixBoard matixBoard, GameTurnTypeEnum whoIsStarting)
         {
-            logger.InfoFormat("NotifyPlayerOfNewGame - playerEmail: {0},  horizontalNickname:{1},  verticalNickname: {2}", playerEmail,  horizontalNickname, verticalNickname);
+            logger.InfoFormat("NotifyPlayerOfNewGame - playerEmail: {0},  horizontalNickname:{1},  verticalNickname: {2}", email,  horizontalNickname, verticalNickname);
 
             try
             {
                 // Get the callback instance
-                IMatixServiceCallback callback = usersCallbackes[playerEmail];
+                IMatixServiceCallback callback = usersCallbackes[email];
 
                 // Send information to the client 
-                callback.GetMatixBoard(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
+                callback.StartingNewGame(matixBoard, horizontalNickname, verticalNickname, whoIsStarting);
             }
             catch (System.Exception ex)
             {
@@ -268,6 +290,13 @@ namespace WcfMatixServiceLibrary
             }
         }
 
+        /// <summary>
+        /// Notify a player withe the game action the other player did
+        /// </summary>
+        /// <param name="playerEmail">The email of the player to be notifyed</param>
+        /// <param name="row">The new token row</param>
+        /// <param name="column">The new token column</param>
+        /// <param name="value">The new token value</param>
         public void NotifyPlayerOfGameAction(string playerEmail, int row, int column, int value)
         {
             logger.InfoFormat("NotifyPlayerOfGameAction  playerEmail: {0}, row: {1}, column: {2}, value: {3}", playerEmail, row,  column,  value);
@@ -286,6 +315,12 @@ namespace WcfMatixServiceLibrary
             }
         }
 
+        /// <summary>
+        /// Notify a player that the game is ended and that we have a winner
+        /// </summary>
+        /// <param name="playerEmail"></param>
+        /// <param name="winnerNickname"></param>
+        /// <param name="score"></param>
         public void NotifyPlayerOfGameEnded(string playerEmail, string winnerNickname, int score)
         {
             logger.InfoFormat("NotifyPlayerOfGameEnded  playerEmail: {0}, winnerNickname: {1}, score: {2}", playerEmail, winnerNickname, score);
@@ -354,7 +389,6 @@ namespace WcfMatixServiceLibrary
             }
         }
 
-     
         #endregion
 
     }

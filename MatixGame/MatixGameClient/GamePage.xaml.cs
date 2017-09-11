@@ -40,31 +40,61 @@ namespace MatixGameClient
         /// Use to accumulated the user selected cell values  
         /// </summary>
         private int firstPlayerScoreValue = 0;
-  
+
+        /// <summary>
+        /// Contains a generate message content
+        /// </summary>
+        private string myContentMessage;
+
+        /// <summary>
+        /// Contains a generate message content
+        /// </summary>
+        private string otherContentMessage;
+
+        /// <summary>
+        /// Holds the current playing direction 
+        /// </summary>
+        private PlayingDirectionEnum currentTurn = PlayingDirectionEnum.Vertical;
+
+        /// <summary>
+        /// Holds this client player's direction
+        /// </summary>
+        private PlayingDirectionEnum myDirection = PlayingDirectionEnum.Vertical;
+
         #endregion
 
-
-        public delegate void SetBoardDelegate(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirection);
+        /// <summary>
+        /// Delegate to a Board function 
+        /// </summary>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="direction">Current playing direction</param>
+        /// <param name="myDirection">Client player direction</param>
+        public delegate void UpdateMatixBoardDelegate(MatixBoard matixBoard, PlayingDirectionEnum direction, PlayingDirectionEnum myDirection);
 
         /// <summary>
         /// Delegate to user control
         /// </summary>
-        public SetBoardDelegate setBoard = null;
+        public UpdateMatixBoardDelegate updateMatixBoardDelegate = null;
 
-        public delegate void SetTokenDelegate(int row, int column);
+        /// <summary>
+        /// Delegate to a Board function
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        public delegate void UpdateBoardTokenDelegate(int row, int column);
 
         /// <summary>
         /// Delegate to user control
         /// </summary>
-        public SetTokenDelegate setToken = null;
-
-        string myContentMessage;
-        string othercontentMessage;
-
-        PlayingDirectionEnum currentTurn = PlayingDirectionEnum.Vertical;
-        PlayingDirectionEnum myDirection = PlayingDirectionEnum.Vertical;
-
-
+        public UpdateBoardTokenDelegate updateBoardTokenDelegate = null;
+               
+              
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_service">Reference to the WCF service host instance</param>
+        /// <param name="_nickName">Player's nickname</param>
+        /// <param name="_email">Player's email address</param>
         public GamePage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
@@ -74,10 +104,13 @@ namespace MatixGameClient
             loginName.Content = "Hi " + _nickName;
         }
 
-
+        /// <summary>
+        /// Check if the Board control is loaded 
+        /// </summary>
+        /// <returns>True whether the board is loaded otherwise False</returns>
         public bool IsBoardLoaded()
         {
-            return (setBoard != null && setToken != null);
+            return (updateMatixBoardDelegate != null && updateBoardTokenDelegate != null);
         }
 
         /// <summary>
@@ -99,9 +132,16 @@ namespace MatixGameClient
             }
         }
 
-        public void SetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
+        /// <summary>
+        /// Update the page content and set the board
+        /// </summary>
+        /// <param name="matixBoard">The generated game board</param>
+        /// <param name="horizontalNickname"></param>
+        /// <param name="verticalNickName"></param>
+        /// <param name="whoIsStarting">Who's the player that start the game</param>
+        public void UpdatePageAndSetMatixBoard(MatixBoard matixBoard, string horizontalNickname, string verticalNickName, GameTurnTypeEnum whoIsStarting)
         {
-            logger.Info("SetMatixBoard");
+            logger.Info("UpdatePageAndSetMatixBoard");
 
             StringBuilder myContent = new StringBuilder();
             StringBuilder otherContent = new StringBuilder();
@@ -149,7 +189,7 @@ namespace MatixGameClient
 
             // Save the messages for later use 
             myContentMessage = myContent.ToString();
-            othercontentMessage = otherContent.ToString();
+            otherContentMessage = otherContent.ToString();
 
             if (currentTurn == myDirection)
             {
@@ -157,7 +197,7 @@ namespace MatixGameClient
             }
             else
             {
-                loginName.Content = othercontentMessage;
+                loginName.Content = otherContentMessage;
             }
 
             firstPlayerScore.Content = 0;
@@ -166,10 +206,10 @@ namespace MatixGameClient
             // Hide the progress control 
             progress.Visibility = Visibility.Hidden;
 
-            if (setBoard != null)
+            if (updateMatixBoardDelegate != null)
             {
                 // Call the delegate to update the user control
-                setBoard(matixBoard, currentTurn, myDirection);
+                updateMatixBoardDelegate(matixBoard, currentTurn, myDirection);
             }
         }
 
@@ -183,9 +223,9 @@ namespace MatixGameClient
         {
             logger.InfoFormat("UpdateMatixBoard row: {0},  column: {1}, score: {2} ", row, column, score);
 
-            if (setToken != null)
+            if (updateBoardTokenDelegate != null)
             {
-                setToken(row, column);
+                updateBoardTokenDelegate(row, column);
 
                 secondPlayerScore.Content = score;
             }
@@ -238,6 +278,9 @@ namespace MatixGameClient
             return status;
         }
 
+        /// <summary>
+        /// Change current direction
+        /// </summary>
         private void ChangeCurrentDirection()
         {
             if (currentTurn == PlayingDirectionEnum.Vertical)
@@ -256,7 +299,7 @@ namespace MatixGameClient
             }
             else
             {
-                loginName.Content = othercontentMessage;
+                loginName.Content = otherContentMessage;
             }
 
             logger.InfoFormat("ChangeCurrentDirection to: {0}", currentTurn);

@@ -35,6 +35,9 @@
                                 <DataTrigger Binding="{Binding Path=ColorValue}" Value="4">
                                     <Setter Property="Foreground" Value="#B879D1" />
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ColorValue}" Value="5">
+                                    <Setter Property="Foreground" Value="#947500" />
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
@@ -75,7 +78,10 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Path=ColorValue}" Value="4">
                                 <Setter Property="Background" Value="#B879D1" />
-                            </DataTrigger>                           
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ColorValue}" Value="5">
+                                <Setter Property="Background" Value="#D3A809" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>

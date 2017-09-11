@@ -1,23 +1,12 @@
 ﻿using log4net;
 using MatixGameClient.MatixGameServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MatixGameClient
 {
-  
+
     /// <summary>
     /// Interaction logic for ChangePasswordPage.xaml
     /// </summary>
@@ -36,55 +25,105 @@ namespace MatixGameClient
         private MatixServiceClient service = null;
 
         /// <summary>
+        /// User email address
+        /// </summary>
+        private string email;
+
+        /// <summary>
         /// User nickname
         /// </summary>
         private string nickName;
 
         #endregion
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_service">Reference to the WCF service host instance</param>
+        /// <param name="_nickName">Player's nickname</param>
+        /// <param name="_email">Player's email address</param>
         public ChangePasswordPage(MatixServiceClient _service, string _nickName, string _email)
         {
             InitializeComponent();
             service = _service;
             nickName = _nickName;
-            emailAddr.Content = _email;
+            email = _email;
+            emailAddr.Content = email;
             loginName.Content = "Hi " + _nickName;
         }
 
+
+        #region Class Private Methods
+
+        /// <summary>
+        /// Back button event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackClicked(object sender, RoutedEventArgs e)
         {
-            UpdatePlayerDetailsPage updatePage = new UpdatePlayerDetailsPage(service, nickName, emailAddr.Content.ToString());
+            logger.Info("Back button clicked");
+
+            UpdatePlayerDetailsPage updatePage = new UpdatePlayerDetailsPage(service, nickName, email);
             NavigationService.Navigate(updatePage);
         }
 
+        /// <summary>
+        /// Change password button event handler 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangePassClicked(object sender, RoutedEventArgs e)
         {
-            if(oldPassTextBox.Password.Length == 0)
+            logger.Info("Change password button clicked");
+
+            errorMessage.Content = "";
+
+            if (oldPassTextBox.Password.Length == 0)
             {
-                errorMessage.Content = "Enter old password.";
+                errorMessage.Content = "Enter an old password.";
                 oldPassTextBox.Focus();
             }
             else if (newPassTextBox.Password.Length == 0)
             {
-                errorMessage.Content = "Enter new password.";
+                errorMessage.Content = "Enter a new password.";
                 newPassTextBox.Focus();
             }
             else if (confirmPassTextBox.Password.Length == 0)
             {
-                errorMessage.Content = "Enter Confirm password.";
+                errorMessage.Content = "Enter a Confirm password.";
                 confirmPassLabel.Focus();
             }
             else if (newPassTextBox.Password != confirmPassTextBox.Password)
             {
-                errorMessage.Content = "Confirm password must be same as new password.";
+                errorMessage.Content = "Confirm password must be the same\nas new the password.";
                 confirmPassTextBox.Focus();
             }
             else
             {
                 // Send information to server 
+               OperationStatus result = service.ChangeUserPassword(email, oldPassTextBox.Password, newPassTextBox.Password);
+                if(result == OperationStatus.Success)
+                {
+                    logger.Info("Password has been changed successfully");
+                    MessageBox.Show("Password has been changed successfully.");
 
+                    Properties.Settings.Default.password = newPassTextBox.Password;
+                    Properties.Settings.Default.Save();
+
+                    WelcomePage page = new WelcomePage(service, nickName, email);
+                    NavigationService.Navigate(page);
+                }
+                else
+                {
+                    logger.WarnFormat("Failed to update password - email: {0}, Old Password: {1},  New Password: {2}", email, oldPassTextBox.Password, newPassTextBox.Password);
+
+                    errorMessage.Content = "Failed to update password.";
+                    oldPassTextBox.Focus();
+                }
             }
 
         }
+        #endregion
     }
 }

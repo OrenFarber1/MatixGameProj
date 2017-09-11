@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace MatixDatabaseLibrary
 {
-    public class MatixDataAccess
+    public class MatixDataAccess : IMatixDataAccessInterface
     {
         /// <summary>
         /// A class logger instance  
@@ -128,7 +128,7 @@ namespace MatixDatabaseLibrary
         /// <param name="lastName"></param>
         /// <param name="nickName"></param>
         /// <returns></returns>
-        public bool UpdatePlayerInformation(string email, string firstName, string lastName, string nickName)
+        public void UpdatePlayerInformation(string email, string firstName, string lastName, string nickName)
         {
             logger.InfoFormat("UpdatePlayerInformation email: {0}", email);
 
@@ -163,9 +163,48 @@ namespace MatixDatabaseLibrary
                 throw new Invalid​Operation​Exception("Update Player operation Failed");            
             }
 
-            return true;
         }
 
+        /// <summary>
+        /// Change user password
+        /// </summary>
+        /// <param name="email">Usr email address</param>
+        /// <param name="newPawwsordHash">New generated password hash</param>
+        public void ChangePassword(string email, string newPawwsordHash)
+        {
+            logger.InfoFormat("ChangePassword email: {0} password hash: {1}", email, newPawwsordHash);
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(newPawwsordHash))
+            {
+                logger.ErrorFormat("ChangePassword Invalid arguments email: {0} password hash: {1}", email, newPawwsordHash);
+                throw new ArgumentException("Not email nor password can be empty");
+            }
+
+            try
+            {
+                
+                using (MatixDataDataContext matixData = new MatixDataDataContext())
+                {
+                    var query = from player in matixData.Players
+                                where player.Email == email
+                                select player;
+
+                    // Update the available values 
+                    foreach (Player p in query)
+                    {
+                        p.PasswordHash = newPawwsordHash;
+                    }
+
+                    matixData.SubmitChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("Exception on UpdatePlayerInformation - {0}", ex);
+                throw new Invalid​Operation​Exception("Update Player operation Failed");
+            }
+        }
 
         /// <summary>
         /// Create a new record that a user logged in to the server
@@ -437,5 +476,7 @@ namespace MatixDatabaseLibrary
 
             return query.PlayerId;
         }
+
+   
     }
 }

@@ -52,7 +52,7 @@ namespace WcfMatixServiceLibrary
 
         #endregion
 
-        #region IContractBehavior Members
+        #region IContractBehavior Members implementation
 
         public void AddBindingParameters(ContractDescription contractDescription, ServiceEndpoint endpoint, BindingParameterCollection bindingParameters)
         {

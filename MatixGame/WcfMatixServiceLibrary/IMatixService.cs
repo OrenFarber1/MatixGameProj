@@ -22,6 +22,9 @@ namespace WcfMatixServiceLibrary
         OperationStatusEnum UpdateUserDetailes(UserInformationData userData);
 
         [OperationContract]
+        OperationStatusEnum ChangeUserPassword(string email, string oldPassword, string newPawwsord);
+
+        [OperationContract]
         LoginResult UserLogin(LoginData loginData);
 
         [OperationContract]
@@ -325,6 +328,9 @@ namespace WcfMatixServiceLibrary
         }
     }
 
+    /// <summary>
+    /// The class encapsulates a Matix cell information
+    /// </summary>
     [DataContract]
     public class MatixCell
     {
@@ -334,7 +340,9 @@ namespace WcfMatixServiceLibrary
         bool token;
         bool used;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MatixCell()
         {
             row = -1;
@@ -344,6 +352,10 @@ namespace WcfMatixServiceLibrary
             used = false;
         }
 
+        /// <summary>
+        /// Copy constructor
+        /// </summary>
+        /// <param name="other"></param>
         public MatixCell(MatixCell other)
         {
             row = other.row;
@@ -405,7 +417,7 @@ namespace WcfMatixServiceLibrary
     }
 
     /// <summary>
-    /// 
+    /// The class encapsulates a Matix board 
     /// </summary>
     [DataContract]
     public class MatixBoard
@@ -427,6 +439,9 @@ namespace WcfMatixServiceLibrary
 
     }
 
+    /// <summary>
+    /// The class encapsulates statistic information of a player
+    /// </summary>
     [DataContract]
     public class PlayerStatisticsResult
     {

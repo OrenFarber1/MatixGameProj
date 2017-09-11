@@ -29,17 +29,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ChangeUserPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newPawwsord" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeUserPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="ChangeUserPasswordResult" type="q5:OperationStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UserLogin">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="loginData" nillable="true" type="q5:LoginData" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="loginData" nillable="true" type="q6:LoginData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UserLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLoginResult" nillable="true" type="q6:LoginResult" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLoginResult" nillable="true" type="q7:LoginResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -54,7 +70,7 @@
   <xs:element name="UserLogoutResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLogoutResult" type="q7:OperationStatus" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="UserLogoutResult" type="q8:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -68,7 +84,7 @@
   <xs:element name="GetWaitingPlayersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetWaitingPlayersResult" nillable="true" type="q8:WaitingPlayerResult" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetWaitingPlayersResult" nillable="true" type="q9:WaitingPlayerResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -83,7 +99,7 @@
   <xs:element name="SelectPlayerToPlayResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectPlayerToPlayResult" type="q9:OperationStatus" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectPlayerToPlayResult" type="q10:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -97,7 +113,7 @@
   <xs:element name="SelectRobotToPlayResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectRobotToPlayResult" type="q10:OperationStatus" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SelectRobotToPlayResult" type="q11:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -113,7 +129,7 @@
   <xs:element name="SetGameActionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SetGameActionResult" type="q11:OperationStatus" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="SetGameActionResult" type="q12:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -139,7 +155,7 @@
   <xs:element name="GetPlayerStatisticsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetPlayerStatisticsResult" nillable="true" type="q12:PlayerStatisticsResult" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="GetPlayerStatisticsResult" nillable="true" type="q13:PlayerStatisticsResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -155,27 +171,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Ping">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="value" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UpdateWaitingPlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q13:WaitingPlayerResult" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="waitingPlayers" nillable="true" type="q14:WaitingPlayerResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetMatixBoard">
+  <xs:element name="StartingNewGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q14:MatixBoard" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="matixBoard" nillable="true" type="q15:MatixBoard" />
         <xs:element minOccurs="0" name="horizontalNickname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="verticalNickName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q15:GameTurnTypeEnum" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WcfMatixServiceLibrary" minOccurs="0" name="whoIsStarting" type="q16:GameTurnTypeEnum" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -183,7 +192,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="row" type="xs:int" />
-        <xs:element minOccurs="0" name="col" type="xs:int" />
+        <xs:element minOccurs="0" name="column" type="xs:int" />
         <xs:element minOccurs="0" name="score" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

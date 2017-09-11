@@ -19,6 +19,8 @@ namespace WcfMatixServiceLibrary
 
         OperationStatusEnum UpdatePlayer(string email, string firstName, string lastName, string nickName);
 
+        OperationStatusEnum ChangePassword(string email, string oldPassword, string newPawwsord);
+
         LoginResult UserLogin(string email, string password, string ipAddress);
 
         OperationStatusEnum UserLogout(string email, string reason);

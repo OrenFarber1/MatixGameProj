@@ -1,9 +1,5 @@
 ﻿using MatixGameClient.MatixGameServiceReference;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MatixGameClient
 {
@@ -23,7 +19,7 @@ namespace MatixGameClient
         /// Construct a CellCollection from a MatixBoard
         /// </summary>
         /// <param name="size">The size of the board</param>
-        /// <param name="matixBoard">The MatixBoard received from the server </param>
+        /// <param name="matixBoard">The generated game board</param>
         public CellCollection(int size, MatixBoard matixBoard)
         {
             this.RowCollection = new List<List<Cell>>(size);
