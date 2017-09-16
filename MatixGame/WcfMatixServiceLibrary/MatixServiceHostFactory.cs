@@ -13,13 +13,13 @@ namespace WcfMatixServiceLibrary
         /// <summary>
         /// Reference to the MatixBuisnessInterface
         /// </summary>
-        private readonly IMatixBuisnessInterface matixBuisnessInterface = null;
+        private readonly IMatixBusinessInterface matixBuisnessInterface = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="buisnessInterface"></param>
-        public MatixServiceHostFactory(IMatixBuisnessInterface buisnessInterface)
+        public MatixServiceHostFactory(IMatixBusinessInterface buisnessInterface)
         {
             matixBuisnessInterface = buisnessInterface;
         }

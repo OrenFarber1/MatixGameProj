@@ -15,7 +15,7 @@ namespace WcfMatixServiceLibrary
         /// <param name="buisnessInterface">Instanse of the buisness layer</param>
         /// <param name="serviceType"></param>
         /// <param name="baseAddresses"></param>
-        public MatixServiceHost(IMatixBuisnessInterface buisnessInterface, Type serviceType, params Uri[] baseAddresses)
+        public MatixServiceHost(IMatixBusinessInterface buisnessInterface, Type serviceType, params Uri[] baseAddresses)
         : base(serviceType, baseAddresses)
         {
             if (buisnessInterface == null)

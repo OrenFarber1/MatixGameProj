@@ -50,7 +50,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMatixBuisnessInterface.cs" />
+    <Compile Include="IMatixBusinessInterface.cs" />
     <Compile Include="IMatixService.cs" />
     <Compile Include="IMatixServiceCallback.cs" />
     <Compile Include="MatixInstanceProvider.cs" />

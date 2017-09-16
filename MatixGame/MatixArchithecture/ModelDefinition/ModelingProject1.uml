@@ -23549,6 +23549,22 @@ Selecting a Player Will Start a New Game</body>
         Id="7f6ad84e-2284-4e75-80f1-ce53716e9657"
         name="ExecutionEvent" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a1d52964-deaf-446b-be09-d877b03f3b3a"
+        name="Class3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fb86f995-2de9-4bac-adb2-e982a810828d"
+        name="Class4"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"

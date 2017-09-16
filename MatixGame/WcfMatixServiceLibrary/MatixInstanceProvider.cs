@@ -19,7 +19,7 @@ namespace WcfMatixServiceLibrary
 
         private readonly MatixWcfService instance = null;             
 
-        public MatixInstanceProvider(IMatixBuisnessInterface buisnessInterface)
+        public MatixInstanceProvider(IMatixBusinessInterface buisnessInterface)
         {
             if (buisnessInterface == null)
             {

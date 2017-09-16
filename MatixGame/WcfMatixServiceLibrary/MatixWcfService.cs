@@ -26,7 +26,7 @@ namespace WcfMatixServiceLibrary
         /// <summary>
         /// Reference to the business layer interface 
         /// </summary>
-        private IMatixBuisnessInterface matixBuisnessInterface = null;
+        private IMatixBusinessInterface matixBuisnessInterface = null;
 
         /// <summary>
         /// A dictionary of uses email address and its callback function
@@ -40,7 +40,7 @@ namespace WcfMatixServiceLibrary
         /// Constructor 
         /// </summary>
         /// <param name="buisnessInterface"></param>
-        public MatixWcfService(IMatixBuisnessInterface buisnessInterface)
+        public MatixWcfService(IMatixBusinessInterface buisnessInterface)
         {
             matixBuisnessInterface = buisnessInterface;
             usersCallbackes = new Dictionary<string, IMatixServiceCallback>();

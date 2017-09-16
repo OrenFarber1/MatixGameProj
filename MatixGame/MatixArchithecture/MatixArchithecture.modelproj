@@ -78,6 +78,13 @@
       <SubType>Content</SubType>
       <DependentUpon>class\cell.classdiagram</DependentUpon>
     </Content>
+    <Content Include="class\Collection.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="class\Collection.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>class\Collection.classdiagram</DependentUpon>
+    </Content>
     <Content Include="sequence\Change User Password.sequencediagram">
       <SubType>Content</SubType>
     </Content>

@@ -12,7 +12,7 @@ using System.IO;
 
 namespace MatixBusinessLibrary
 {
-    public class MatixGameManager : IMatixBuisnessInterface
+    public class MatixGameManager : IMatixBusinessInterface
     {
         /// <summary>
         /// Class internal logger 
@@ -74,6 +74,7 @@ namespace MatixBusinessLibrary
             userEmailToGamel = new Dictionary<string, Game>();
             userEmailToLoginId = new Dictionary<string, long>();
 
+            // Create the communication layer instance
             matixHost = new MatixServiceHost(this, typeof(MatixWcfService));
             matixHost.Open();
         }
