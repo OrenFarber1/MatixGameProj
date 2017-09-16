@@ -241,8 +241,8 @@ namespace MatixGameClient
         /// <summary>
         /// Update the server with the player selection
         /// </summary>
-        /// <param name="row"></param>
-        /// <param name="column"></param>
+        /// <param name="row">The new token row</param>
+        /// <param name="column">The new token column</param>
         public OperationStatus UpdateMatixServer(int row, int column, int value)
         {
             logger.InfoFormat("UpdateMatixServer row: {0},  column: {1}, value: {2}", row, column, value);

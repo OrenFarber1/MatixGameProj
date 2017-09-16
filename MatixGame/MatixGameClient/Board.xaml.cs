@@ -162,8 +162,8 @@ namespace MatixGameClient
         /// <summary>
         /// Update the game that a new token selected by the other player
         /// </summary>
-        /// <param name="row">Token row</param>
-        /// <param name="column">Token column</param>
+        /// <param name="row">The new token row</param>
+        /// <param name="column">The new token column</param>
         public void UpdateBoardToken(int row, int column)
         {
             logger.InfoFormat("UpdateBoardToken row: {0}, column: {1} currentPlayingDirection: {2}", row, column, currentPlayingDirection);

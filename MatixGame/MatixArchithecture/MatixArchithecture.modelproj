@@ -78,6 +78,41 @@
       <SubType>Content</SubType>
       <DependentUpon>class\cell.classdiagram</DependentUpon>
     </Content>
+    <Content Include="sequence\Change User Password.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Change User Password.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Change User Password.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\login and Registration.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\login and Registration.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\login and Registration.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Multi Players Game.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Multi Players Game.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Multi Players Game.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Player Statistics.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Player Statistics.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Player Statistics.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Playing The Game.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Playing The Game.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Playing The Game.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="sequence\Playing the gamme.sequencediagram">
       <SubType>Content</SubType>
     </Content>
@@ -85,12 +120,40 @@
       <SubType>Content</SubType>
       <DependentUpon>sequence\Playing the gamme.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="sequence\Playing with server.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Playing with server.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Playing with server.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Start Playing With Server.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Start Playing With Server.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Start Playing With Server.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="sequence\Registration.sequencediagram">
       <SubType>Content</SubType>
     </Content>
     <Content Include="sequence\Registration.sequencediagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>sequence\Registration.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Starting A New Game.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Starting A New Game.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Starting A New Game.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="sequence\Update User Details.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="sequence\Update User Details.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>sequence\Update User Details.sequencediagram</DependentUpon>
     </Content>
     <Content Include="use case\GetPlayerStatistics.usecasediagram">
       <SubType>Content</SubType>

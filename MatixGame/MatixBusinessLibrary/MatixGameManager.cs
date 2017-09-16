@@ -554,6 +554,15 @@ namespace MatixBusinessLibrary
             return OperationStatusEnum.InvalidEmail;
         }
 
+        /// <summary>
+        /// Update the game action and notify the second player with that action
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <param name="firstEmail"></param>
+        /// <param name="game"></param>
+        /// <returns></returns>
         private OperationStatusEnum SetGameAction(string email, int row, int column, string firstEmail, Game game)
         {
             logger.InfoFormat("SetGameAction email: {0}, row: {1}, column: {2} firstEmail: {3}, GameId: {4}", email, row, column, firstEmail, game.GameId);

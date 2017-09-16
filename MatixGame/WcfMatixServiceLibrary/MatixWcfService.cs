@@ -200,13 +200,13 @@ namespace WcfMatixServiceLibrary
         /// </summary>
         /// <param name="email">Sender email address</param>
         /// <param name="row">The new token row</param>
-        /// <param name="col">The new token column</param>
+        /// <param name="column">The new token column</param>
         /// <returns></returns>
-        public OperationStatusEnum SetGameAction(string email, int row, int col)
+        public OperationStatusEnum SetGameAction(string email, int row, int column)
         {
-            logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to col: {2}", email, row, col);
+            logger.InfoFormat("SetGameAction email: {0}, to row: {1}, to column: {2}", email, row, column);
 
-            OperationStatusEnum result = matixBuisnessInterface.SetGameAction(email, row, col);
+            OperationStatusEnum result = matixBuisnessInterface.SetGameAction(email, row, column);
 
             return result;
         }
