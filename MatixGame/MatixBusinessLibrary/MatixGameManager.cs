@@ -82,7 +82,7 @@ namespace MatixBusinessLibrary
         /// <summary>
         /// Handle client disconnected event
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="email">Email of disconnected player</param>
         public void ClientDisconnected(string email)
         {
             logger.InfoFormat("ClientDisconnected - {0}", email);
@@ -115,7 +115,6 @@ namespace MatixBusinessLibrary
 
             try
             {
-
                 if (matixData.IsPlayerEmailExist(email))
                 {
                     // Error 
