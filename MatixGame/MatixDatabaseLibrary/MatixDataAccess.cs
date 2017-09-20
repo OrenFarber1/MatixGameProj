@@ -104,7 +104,8 @@ namespace MatixDatabaseLibrary
                         LastName = lastName,
                         NickName = nickName,
                         Email = email,
-                        PasswordHash = passwordHash
+                        PasswordHash = passwordHash,
+                        Type = "Human"
                     };
 
                     matixData.Players.InsertOnSubmit(player);

@@ -420,6 +420,8 @@ namespace MatixBusinessLibrary
         /// <returns>XML formated string of the game board</returns>
         private string SerializeMatixBoard(MatixBoard matixBoard)
         {
+            logger.Info("GetRobotPlayingAction");
+
             XmlSerializer s = new XmlSerializer(typeof(MatixBoard));
             StringBuilder sb = new StringBuilder();
             StringWriter sw = new StringWriter(sb);
@@ -435,6 +437,8 @@ namespace MatixBusinessLibrary
         /// <returns></returns>
         public List<MatixCell> GetRowOfCells(int row)
         {
+            logger.InfoFormat("GetRowOfCells row: {0}", row);
+
             List<MatixCell> list = new List<MatixCell>();
 
             for (int i = 0; i < BOARD_SIZE; i++)
@@ -457,6 +461,8 @@ namespace MatixBusinessLibrary
         /// <returns></returns>
         public List<MatixCell> GetColumnOfCells(int column)
         {
+            logger.InfoFormat("GetColumnOfCells column: {0}", column);
+
             List<MatixCell> list = new List<MatixCell>();
 
             for (int i = 0; i < BOARD_SIZE; i++)
@@ -471,5 +477,62 @@ namespace MatixBusinessLibrary
             
             return list;
         }
+
+        public bool IsGameEnded()
+        {           
+            List<MatixCell> list;
+            if (currentTurn == GameTurnType.HorizontalPlayer)
+            {
+                list = GetRowOfCells(currentToken.Row);
+            }
+            else
+            {
+                list = GetColumnOfCells(currentToken.Column);
+            }
+
+            return list.Count == 0;
+        }
+
+        /// <summary>
+        /// Get the selected token by the server
+        /// </summary>
+        /// <returns>Selected Cell</returns>
+        public MatixCell GetRobotPlayingAction()
+        {
+            logger.Info("GetRobotPlayingAction");
+
+            List<MatixCell> list;
+            if (currentTurn == GameTurnType.HorizontalPlayer)
+            {
+                list = GetRowOfCells(currentToken.Row);
+            }
+            else
+            {
+                list = GetColumnOfCells(currentToken.Column);
+            }
+
+            MatixCell maxCell = null;
+            // for the first phase get the high value 
+            foreach (var c in list)
+            {
+                if (c.Used == false)
+                {
+                    if (maxCell == null)
+                    {
+                        maxCell = c;
+                    }
+                    else
+                    {
+                        if (c.Value > maxCell.Value)
+                        {
+                            maxCell = c;
+                        }
+                    }
+                }
+            }
+
+            return maxCell;
+        }
+
     }
 }

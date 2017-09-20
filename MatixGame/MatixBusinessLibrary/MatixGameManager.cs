@@ -536,11 +536,8 @@ namespace MatixBusinessLibrary
 
                     // Update the database 
                     matixData.AddGameAction(email, game.GameId, row, column, score);
-
-                    // After update change the turn to the other player
-                    GameTurnType turn = game.ChangeCurrentTurn();
-
-                    Task.Run(() => SetGameActionTask(email, game, turn, row, column, score));
+                   
+                    Task.Run(() => SetGameActionTask(email, game, row, column, score));
 
                     return OperationStatusEnum.Success;
                 }
@@ -611,9 +608,11 @@ namespace MatixBusinessLibrary
         }
 
 
-        private void SetGameActionTask(string firstEmail, Game game, GameTurnType turn, int row, int col, int score)
+        private void SetGameActionTask(string firstEmail, Game game, int row, int column, int score)
         {
-            logger.InfoFormat("SetGameActionTask email: {0}, row: {1}, col: {2} score: {3}", firstEmail, row, col, score);
+            logger.InfoFormat("SetGameActionTask email: {0}, row: {1}, column: {2} score: {3}", firstEmail, row, column, score);
+
+            GameTurnType turn = game.ChangeCurrentTurn();
 
             PlayerType playerType;
             string otherEmail;
@@ -628,19 +627,11 @@ namespace MatixBusinessLibrary
                 playerType = game.GetVerticalPlayerType();
             }
 
-            List<MatixCell> list;
-            if (turn == GameTurnType.HorizontalPlayer)
-            {
-                list = game.GetRowOfCells(row);
-            }
-            else
-            {
-                list = game.GetColumnOfCells(col);
-            }
+      
 
             // Check if we can continue the game 
 
-            if (list.Count == 0)
+            if (game.IsGameEnded())
             {
                 string horEmail = game.GetHorizontalPlayerEmail();
                 string vertEmail = game.GetVerticalPlayerEmail();
@@ -695,31 +686,12 @@ namespace MatixBusinessLibrary
                 if (playerType == PlayerType.Human)
                 {
                     // Notify the second player 
-                    matixWcfService.NotifyPlayerOfGameAction(otherEmail, row, col, score);
+                    matixWcfService.NotifyPlayerOfGameAction(otherEmail, row, column, score);
                 }
                 else
                 {
                     // Generate game action !!!
-
-                    MatixCell maxCell = null;
-                    // for the first phase get the high value 
-                    foreach (var c in list)
-                    {
-                        if (c.Used == false)
-                        {
-                            if (maxCell == null)
-                            {
-                                maxCell = c;
-                            }
-                            else
-                            {
-                                if (c.Value > maxCell.Value)
-                                {
-                                    maxCell = c;
-                                }
-                            }
-                        }
-                    }
+                    MatixCell maxCell = game.GetRobotPlayingAction();
 
                     // use the max cell as the selected cell
                     SetGameAction(otherEmail, maxCell.Row, maxCell.Column, firstEmail, game);
