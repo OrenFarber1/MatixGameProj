@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         d:DesignHeight="500" d:DesignWidth="525"
         Title="Matix Game" Icon="matix.ico" WindowStartupLocation="CenterScreen"
-         >
+        xmlns:h="clr-namespace:MatixGameClient"
+        h:HelpProvider.HelpString='This form is for your name and address'
+        >
     <Grid>
         <Frame x:Name="mainFrame" Content="" NavigationUIVisibility="Hidden"/>
         
