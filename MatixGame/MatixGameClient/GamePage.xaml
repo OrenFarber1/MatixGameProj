@@ -11,7 +11,7 @@
         <Border >
             <DockPanel >
                 <StackPanel DockPanel.Dock ="top">
-                    <Label  x:Name="loginName" Content="hi user whats up" VerticalAlignment="Bottom" Height="36" FontSize="24" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="32" Grid.ColumnSpan="2" Margin="10,10,0,0" Width="auto" />
+                    <Label  x:Name="loginName" Content="hi user whats up" VerticalAlignment="Bottom" Height="42" FontSize="24" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="32" Grid.ColumnSpan="2" Margin="10,10,0,0" Width="auto" />
                     <Label x:Name="welcomeTitle" Content="Playing Matix Game" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="62" />
                 </StackPanel>
                 <StackPanel DockPanel.Dock ="Left">

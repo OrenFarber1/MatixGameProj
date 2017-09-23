@@ -179,7 +179,7 @@ namespace MatixBusinessLibrary
             {
                 // Generate password hash based on the user password and some salt.           
                 string newPasswordHash = GetHashString(email + newPawwsord + salt);
-                
+
                 try
                 {
                     matixData.ChangePassword(email, newPasswordHash);
@@ -217,10 +217,11 @@ namespace MatixBusinessLibrary
             // checked the database that user email and password exists 
             if (matixData.CheckEmailAndPasswordHash(email, passwordHash))
             {
-                long loginId;
-                // Add a login record
-                if (matixData.PlayerLogin(email, passwordHash, ipAddress, out loginId))
+                try
                 {
+                    // Add a login record
+                    long loginId = matixData.PlayerLogin(email, passwordHash, ipAddress);
+
                     result.Status = OperationStatusEnum.Success;
 
                     userEmailToLoginId[email] = loginId;
@@ -229,7 +230,7 @@ namespace MatixBusinessLibrary
                     if (!userEmailToNickname.TryGetValue(email, out nickName))
                     {
                         // Get it from the database
-                        nickName = matixData.GetPlayerNickName(email);
+                        nickName = matixData.GetPlayerNickname(email);
                         userEmailToNickname[email] = nickName;
                     }
 
@@ -240,10 +241,10 @@ namespace MatixBusinessLibrary
                     }
 
                     result.Nickname = nickName;
-
                 }
-                else
+                catch (Exception ex)
                 {
+                    logger.ErrorFormat("Exception on UserLogin: {0}", ex);
                     result.Status = OperationStatusEnum.Failure;
                 }
             }
@@ -264,7 +265,7 @@ namespace MatixBusinessLibrary
 
 
         public OperationStatusEnum UserLogout(string email, string reason)
-        {          
+        {
             try
             {
                 logger.InfoFormat("UserLogout email: {0}, reason: {1}", email, reason);
@@ -295,6 +296,7 @@ namespace MatixBusinessLibrary
             catch (Exception ex)
             {
                 logger.ErrorFormat("Exception on UserLogout: {0}", ex);
+                return OperationStatusEnum.Failure;
             }
 
             return OperationStatusEnum.Success;
@@ -536,7 +538,7 @@ namespace MatixBusinessLibrary
 
                     // Update the database 
                     matixData.AddGameAction(email, game.GameId, row, column, score);
-                   
+
                     Task.Run(() => SetGameActionTask(email, game, row, column, score));
 
                     return OperationStatusEnum.Success;
@@ -627,7 +629,7 @@ namespace MatixBusinessLibrary
                 playerType = game.GetVerticalPlayerType();
             }
 
-      
+
 
             // Check if we can continue the game 
 
@@ -635,11 +637,11 @@ namespace MatixBusinessLibrary
             {
                 string horEmail = game.GetHorizontalPlayerEmail();
                 string vertEmail = game.GetVerticalPlayerEmail();
-                
+
                 int horScore = game.GetHorizontalScore();
                 int vertScore = game.GetVerticalScore();
 
-        
+
                 int winnerScore;
                 string winnerNickname;
                 if (horScore > vertScore)
@@ -658,13 +660,13 @@ namespace MatixBusinessLibrary
 
                 // Set horizontal player information 
                 matixData.AddPlayerHistory(horEmail, game.GameId, winnerNickname == game.GetHorizontalNickname(), horScore);
-                
+
                 // Set vertical player information 
                 matixData.AddPlayerHistory(vertEmail, game.GameId, winnerNickname == game.GetVerticalPlayerNickname(), vertScore);
 
 
                 if (game.GetHorizontalPlayerType() == PlayerType.Human)
-                {                    
+                {
                     userEmailToGamel.Remove(horEmail);
 
                     // The game is ended and we should notify the players  
@@ -796,7 +798,7 @@ namespace MatixBusinessLibrary
             botNickname = "Matix - 1";
         }
 
-    
+
     }
 
 }

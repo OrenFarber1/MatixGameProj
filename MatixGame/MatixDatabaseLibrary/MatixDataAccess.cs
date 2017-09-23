@@ -40,9 +40,9 @@ namespace MatixDatabaseLibrary
         /// </summary>
         /// <param name="email">User email address</param>
         /// <returns>The nick name string</returns>
-        public string GetPlayerNickName(string email)
+        public string GetPlayerNickname(string email)
         {
-            logger.InfoFormat("GetPlayerNickName Email: {0}", email);
+            logger.InfoFormat("GetPlayerNickname Email: {0}", email);
 
             string nickName = "";
             using (MatixDataDataContext matixData = new MatixDataDataContext())
@@ -213,13 +213,14 @@ namespace MatixDatabaseLibrary
         /// <param name="email">User email address</param>
         /// <param name="passwordHash"></param>
         /// <returns></returns>
-        public bool PlayerLogin(string email, string passwordHash, string ip, out long lognId)
+        public long PlayerLogin(string email, string passwordHash, string ip)
         {
             logger.InfoFormat("PlayerLogin email: {0}", email);
 
+            long lognId = 0;
             try
             {
-                lognId = 0;
+
                 using (MatixDataDataContext matixData = new MatixDataDataContext())
                 {
                     long playerId = 0;
@@ -252,10 +253,10 @@ namespace MatixDatabaseLibrary
                 throw new Invalid​Operation​Exception("Add Player operation Failed");
             }
 
-            return true;
+            return lognId;
         }
 
-        public bool PlayerLogout(long lognId, string email, string reason)
+        public void PlayerLogout(long lognId, string email, string reason)
         {          
             try
             {
@@ -282,8 +283,7 @@ namespace MatixDatabaseLibrary
                 logger.ErrorFormat("Exception on PlayerLogout - {0}", ex);
                 throw new Invalid​Operation​Exception("Player logout operation Failed");
             }
-
-            return true;
+                       
         }
 
         public PlayerScoreData GetPlayerStatistics(string email)
@@ -404,7 +404,7 @@ namespace MatixDatabaseLibrary
             
         }
 
-        public bool AddGameAction(string email, long gameId, int row, int column, int value)
+        public void AddGameAction(string email, long gameId, int row, int column, int value)
         {
             try
             {
@@ -431,8 +431,7 @@ namespace MatixDatabaseLibrary
                 logger.ErrorFormat("Exception on CreateNewGame - {0}", ex);
                 throw new Invalid​Operation​Exception("Create New Game operation Failed");
             }
-
-            return true;
+            
         }
 
         public void AddPlayerHistory(string email, long gameId, bool win, int score)

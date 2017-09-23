@@ -20,7 +20,7 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" x:Name="loginName" Content="hi user whats up" VerticalAlignment="Bottom" Height="38" FontSize="24" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="32" Grid.ColumnSpan="2" Margin="10,0,0,0" Width="auto" />
+        <Label Grid.Row="0" Grid.Column="0" x:Name="loginName" Content="hi user whats up" VerticalAlignment="Bottom" Height="42" FontSize="24" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="32" Grid.ColumnSpan="2" Margin="10,0,0,0" Width="auto" />
         <Label Grid.Row="1" Grid.Column="1" x:Name="listTitle" Content="Select a Player to Play" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="62" FontSize="36" FontFamily="rockwell" FontWeight="Bold" Foreground="#680C8C" MinHeight="62" />
         <Border  Grid.Row="2" Grid.Column="1" CornerRadius="6" BorderBrush="#947500" Background="#FCD544" BorderThickness="2">        
             <StackPanel Background="#FCD544" Grid.Row="2" Grid.Column="1" MinHeight="350" >

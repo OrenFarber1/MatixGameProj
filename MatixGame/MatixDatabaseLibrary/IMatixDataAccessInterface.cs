@@ -10,7 +10,7 @@ namespace MatixDatabaseLibrary
     {
         bool IsPlayerEmailExist(string email);
 
-        string GetPlayerNickName(string email);
+        string GetPlayerNickname(string email);
 
         bool CheckEmailAndPasswordHash(string email, string passwordHash);
 
@@ -20,9 +20,9 @@ namespace MatixDatabaseLibrary
 
         void ChangePassword(string email, string newPawwsordHash);
 
-        bool PlayerLogin(string email, string passwordHash, string ip, out long lognId);
+        long PlayerLogin(string email, string passwordHash, string ip);
 
-        bool PlayerLogout(long lognId, string email, string reason);
+        void PlayerLogout(long lognId, string email, string reason);
         
         PlayerScoreData GetPlayerStatistics(string email);
 
@@ -30,7 +30,7 @@ namespace MatixDatabaseLibrary
 
         long CreateNewGame(string horizontalEmail, string verticalEmail, string boardXml);
         
-        bool AddGameAction(string email, long gameId, int row, int column, int value);
+        void AddGameAction(string email, long gameId, int row, int column, int value);
 
         void AddPlayerHistory(string email, long gameId, bool win, int score);
         
