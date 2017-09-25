@@ -302,7 +302,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)..\MatixHelp\Matix User Manual.chm" "$(TargetDir)Matix User Manual.chm"  /r /y /s /d</PostBuildEvent>
+    <PostBuildEvent>if exist $(TargetPath)
+echo f | xcopy "$(SolutionDir)..\MatixHelp\Matix User Manual.chm" "$(TargetDir)Matix User Manual.chm"  /r /y /d</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
